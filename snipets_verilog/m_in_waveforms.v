@@ -1,0 +1,57 @@
+/*
+0123456789
+0=======0 a
+0=0===0=0 b
+0===0===0 c
+0=======0 a
+0=======0 a
+*/
+
+module test;
+	reg clk,a,b,c;
+	reg[4:0] count;
+	
+	initial begin
+		clk = 1;
+		count =0;
+		
+		forever #10 clk = ~clk;
+	end
+	
+	always@(posedge clk) begin
+		if(count == 10) begin 
+			count = 0;
+			a=1;
+			b=1;
+			c=1;
+		end
+		else if(count == 9) begin
+			a=0;
+			b=0;
+			c=0;
+		end
+		else if(count == 0 || count == 8) begin
+			a=1;
+			b=1;
+			c=1;
+		end
+		else if(count == 2 || count == 6) begin 
+			a=0;
+			b=1;
+			c=0;
+		end
+		else if(count == 4) begin 
+			a=0;
+			b=0;
+			c=1;
+		end
+		else begin
+			a=0;
+			b=0;
+			c=0;
+		end
+		count=count+1;
+	end
+endmodule
+
+

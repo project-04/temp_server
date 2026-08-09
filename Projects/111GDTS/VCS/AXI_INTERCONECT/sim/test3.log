@@ -1,0 +1,2218 @@
+vsim -cvgperinstance -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit mem_cov3;run -all; exit" -wlf wave_file3.wlf -l test3.log -sv_seed random work.top "+UVM_TESTNAME=axi_second_seq_test" 
+Start time: 14:21:28 on Jul 01,2024
+** Note: (vsim-8009) Loading existing optimized design _opt
+//  Questa Sim-64
+//  Version 2019.2 linux_x86_64 Apr 16 2019
+//
+//  Copyright 1991-2019 Mentor Graphics Corporation
+//  All Rights Reserved.
+//
+//  QuestaSim and its associated documentation contain trade
+//  secrets and commercial or financial information that are the property of
+//  Mentor Graphics Corporation and are privileged, confidential,
+//  and exempt from disclosure under the Freedom of Information Act,
+//  5 U.S.C. Section 552. Furthermore, this information
+//  is prohibited from disclosure under the Trade Secrets Act,
+//  18 U.S.C. Section 1905.
+//
+Loading sv_std.std
+Loading work.axi_mif(fast)
+Loading work.axi_sif(fast)
+Loading mtiUvm.uvm_pkg
+Loading work.test_packages(fast)
+Loading mtiUvm.questa_uvm_pkg(fast)
+Loading work.top(fast)
+Loading work.axi_mif(fast)
+Loading work.axi_sif(fast)
+Loading work.axi_interconnect_wrap_4x4(fast)
+Loading work.axi_interconnect(fast)
+Loading work.arbiter(fast)
+Loading work.priority_encoder(fast)
+# Loading /home/cad/eda/Questa_2019/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+** Warning: (vsim-8634) Code was not compiled with coverage options.
+Sv_Seed = 2471491658
+ log -r /* 
+coverage save -onexit mem_cov3
+run -all
+----------------------------------------------------------------
+UVM-1.1d
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+Addressing configuration for axi_interconnect instance top.DUV.axi_interconnect_inst
+ 0 ( 0): 00000000 / 24 -- 00000000-00ffffff
+ 1 ( 0): 01000000 / 24 -- 01000000-01ffffff
+ 2 ( 0): 02000000 / 24 -- 02000000-02ffffff
+ 3 ( 0): 03000000 / 24 -- 03000000-03ffffff
+UVM_INFO @ 0: reporter [RNTST] Running test axi_second_seq_test...
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+--------------------------------------------------------------------
+Name                         Type                        Size  Value
+--------------------------------------------------------------------
+uvm_test_top                 axi_second_seq_test         -     @492 
+  axi_env                    axi_env                     -     @520 
+    mast_agt_top             axi_mast_agt_top            -     @528 
+      agnth[0]               master_agent                -     @695 
+        drvh                 master_driver               -     @852 
+          rsp_port           uvm_analysis_port           -     @867 
+          seq_item_port      uvm_seq_item_pull_port      -     @859 
+        monh                 master_monitor              -     @728 
+          monitor_port       uvm_analysis_port           -     @735 
+        seqrh                axi_mast_sequencer          -     @743 
+          rsp_export         uvm_analysis_export         -     @750 
+          seq_item_export    uvm_seq_item_pull_imp       -     @844 
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+      agnth[1]               master_agent                -     @703 
+        drvh                 master_driver               -     @1008
+          rsp_port           uvm_analysis_port           -     @1023
+          seq_item_port      uvm_seq_item_pull_port      -     @1015
+        monh                 master_monitor              -     @884 
+          monitor_port       uvm_analysis_port           -     @891 
+        seqrh                axi_mast_sequencer          -     @899 
+          rsp_export         uvm_analysis_export         -     @906 
+          seq_item_export    uvm_seq_item_pull_imp       -     @1000
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+      agnth[2]               master_agent                -     @711 
+        drvh                 master_driver               -     @1164
+          rsp_port           uvm_analysis_port           -     @1179
+          seq_item_port      uvm_seq_item_pull_port      -     @1171
+        monh                 master_monitor              -     @1040
+          monitor_port       uvm_analysis_port           -     @1047
+        seqrh                axi_mast_sequencer          -     @1055
+          rsp_export         uvm_analysis_export         -     @1062
+          seq_item_export    uvm_seq_item_pull_imp       -     @1156
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+      agnth[3]               master_agent                -     @719 
+        drvh                 master_driver               -     @1320
+          rsp_port           uvm_analysis_port           -     @1335
+          seq_item_port      uvm_seq_item_pull_port      -     @1327
+        monh                 master_monitor              -     @1196
+          monitor_port       uvm_analysis_port           -     @1203
+        seqrh                axi_mast_sequencer          -     @1211
+          rsp_export         uvm_analysis_export         -     @1218
+          seq_item_export    uvm_seq_item_pull_imp       -     @1312
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+    sb_h                     axi_scoreboard              -     @651 
+      fifo_mast[0]           uvm_tlm_analysis_fifo #(T)  -     @1351
+        analysis_export      uvm_analysis_imp            -     @1390
+        get_ap               uvm_analysis_port           -     @1382
+        get_peek_export      uvm_get_peek_imp            -     @1366
+        put_ap               uvm_analysis_port           -     @1374
+        put_export           uvm_put_imp                 -     @1358
+      fifo_mast[1]           uvm_tlm_analysis_fifo #(T)  -     @1398
+        analysis_export      uvm_analysis_imp            -     @1437
+        get_ap               uvm_analysis_port           -     @1429
+        get_peek_export      uvm_get_peek_imp            -     @1413
+        put_ap               uvm_analysis_port           -     @1421
+        put_export           uvm_put_imp                 -     @1405
+      fifo_mast[2]           uvm_tlm_analysis_fifo #(T)  -     @1445
+        analysis_export      uvm_analysis_imp            -     @1484
+        get_ap               uvm_analysis_port           -     @1476
+        get_peek_export      uvm_get_peek_imp            -     @1460
+        put_ap               uvm_analysis_port           -     @1468
+        put_export           uvm_put_imp                 -     @1452
+      fifo_mast[3]           uvm_tlm_analysis_fifo #(T)  -     @1492
+        analysis_export      uvm_analysis_imp            -     @1531
+        get_ap               uvm_analysis_port           -     @1523
+        get_peek_export      uvm_get_peek_imp            -     @1507
+        put_ap               uvm_analysis_port           -     @1515
+        put_export           uvm_put_imp                 -     @1499
+      fifo_slv[0]            uvm_tlm_analysis_fifo #(T)  -     @1539
+        analysis_export      uvm_analysis_imp            -     @1578
+        get_ap               uvm_analysis_port           -     @1570
+        get_peek_export      uvm_get_peek_imp            -     @1554
+        put_ap               uvm_analysis_port           -     @1562
+        put_export           uvm_put_imp                 -     @1546
+      fifo_slv[1]            uvm_tlm_analysis_fifo #(T)  -     @1586
+        analysis_export      uvm_analysis_imp            -     @1625
+        get_ap               uvm_analysis_port           -     @1617
+        get_peek_export      uvm_get_peek_imp            -     @1601
+        put_ap               uvm_analysis_port           -     @1609
+        put_export           uvm_put_imp                 -     @1593
+      fifo_slv[2]            uvm_tlm_analysis_fifo #(T)  -     @1633
+        analysis_export      uvm_analysis_imp            -     @1672
+        get_ap               uvm_analysis_port           -     @1664
+        get_peek_export      uvm_get_peek_imp            -     @1648
+        put_ap               uvm_analysis_port           -     @1656
+        put_export           uvm_put_imp                 -     @1640
+      fifo_slv[3]            uvm_tlm_analysis_fifo #(T)  -     @1680
+        analysis_export      uvm_analysis_imp            -     @1719
+        get_ap               uvm_analysis_port           -     @1711
+        get_peek_export      uvm_get_peek_imp            -     @1695
+        put_ap               uvm_analysis_port           -     @1703
+        put_export           uvm_put_imp                 -     @1687
+    slv_agt_top              axi_slv_agt_top             -     @535 
+      agnth[0]               slave_agent                 -     @1740
+        drvh                 slave_driver                -     @1897
+          rsp_port           uvm_analysis_port           -     @1912
+          seq_item_port      uvm_seq_item_pull_port      -     @1904
+        monh                 slave_monitor               -     @1773
+          monitor_port       uvm_analysis_port           -     @1780
+        seqrh                axi_slv_sequencer           -     @1788
+          rsp_export         uvm_analysis_export         -     @1795
+          seq_item_export    uvm_seq_item_pull_imp       -     @1889
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+      agnth[1]               slave_agent                 -     @1748
+        drvh                 slave_driver                -     @2053
+          rsp_port           uvm_analysis_port           -     @2068
+          seq_item_port      uvm_seq_item_pull_port      -     @2060
+        monh                 slave_monitor               -     @1929
+          monitor_port       uvm_analysis_port           -     @1936
+        seqrh                axi_slv_sequencer           -     @1944
+          rsp_export         uvm_analysis_export         -     @1951
+          seq_item_export    uvm_seq_item_pull_imp       -     @2045
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+      agnth[2]               slave_agent                 -     @1756
+        drvh                 slave_driver                -     @2209
+          rsp_port           uvm_analysis_port           -     @2224
+          seq_item_port      uvm_seq_item_pull_port      -     @2216
+        monh                 slave_monitor               -     @2085
+          monitor_port       uvm_analysis_port           -     @2092
+        seqrh                axi_slv_sequencer           -     @2100
+          rsp_export         uvm_analysis_export         -     @2107
+          seq_item_export    uvm_seq_item_pull_imp       -     @2201
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+      agnth[3]               slave_agent                 -     @1764
+        drvh                 slave_driver                -     @2365
+          rsp_port           uvm_analysis_port           -     @2380
+          seq_item_port      uvm_seq_item_pull_port      -     @2372
+        monh                 slave_monitor               -     @2241
+          monitor_port       uvm_analysis_port           -     @2248
+        seqrh                axi_slv_sequencer           -     @2256
+          rsp_export         uvm_analysis_export         -     @2263
+          seq_item_export    uvm_seq_item_pull_imp       -     @2357
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+    v_seqrh                  axi_virtual_sequencer       -     @542 
+      rsp_export             uvm_analysis_export         -     @549 
+      seq_item_export        uvm_seq_item_pull_imp       -     @643 
+      arbitration_queue      array                       0     -    
+      lock_queue             array                       0     -    
+      num_last_reqs          integral                    32    'd1  
+      num_last_rsps          integral                    32    'd1  
+--------------------------------------------------------------------
+
+UVM_INFO ../master_agent/master_monitor.sv(131) @ 45000: uvm_test_top.axi_env.mast_agt_top.agnth[0].monh [AXI_MASTER_Monitor_Write_Address_Collect] Displaying Data from AXI Master Monior Write Address Collect
+------------------------------------
+Name       Type      Size  Value    
+------------------------------------
+xtn        axi_xtn   -     @2481    
+  AWID     integral  8     197      
+  AWADDR   integral  32    'h38a69fc
+  AWLEN    integral  8     'd3      
+  AWSIZE   integral  3     'd1      
+  AWBURST  integral  2     2        
+  AWVALID  integral  1     'd0      
+  AWREADY  integral  1     'd0      
+  AWLOCK   integral  1     'd0      
+  AWCACHE  integral  4     'd3      
+  AWQOS    integral  4     11       
+  AWPROT   integral  3     7        
+  AWUSER   integral  1     1        
+  WID      integral  8     'd0      
+  WLAST    integral  1     'd0      
+  WVALID   integral  1     'd0      
+  WREADY   integral  1     'd0      
+  WUSER    integral  1     'd0      
+  BID      integral  8     'd0      
+  BRESP    integral  2     'd0      
+  BVALID   integral  1     'd0      
+  BREADY   integral  1     'd0      
+  BUSER    integral  1     'd0      
+  ARID     integral  8     'd0      
+  ARADDR   integral  32    'h0      
+  ARLEN    integral  8     'd0      
+  ARSIZE   integral  3     'd0      
+  ARBURST  integral  2     'd0      
+  ARVALID  integral  1     'd0      
+  ARREADY  integral  1     'd0      
+  ARLOCK   integral  1     'd0      
+  ARCACHE  integral  4     'd0      
+  ARQOS    integral  4     'd0      
+  ARPROT   integral  3     'd0      
+  ARUSER   integral  1     'd0      
+  RID      integral  4     'd0      
+  RLAST    integral  1     'd0      
+  RVALID   integral  1     'd0      
+  RREADY   integral  1     'd0      
+  RUSER    integral  1     'd0      
+------------------------------------
+UVM_INFO ../master_agent/master_monitor.sv(103) @ 55000: uvm_test_top.axi_env.mast_agt_top.agnth[0].monh [AXI_MASTER_Monitor] Displaying Data from AXI Master Monior 
+UVM_INFO ../slave_agent/slave_monitor.sv(131) @ 65000: uvm_test_top.axi_env.slv_agt_top.agnth[3].monh [AXI_SLAVE_Monitor_Write_Address_Collect] Displaying Data from AXI Slave Monior Write Address Collect
+------------------------------------
+Name       Type      Size  Value    
+------------------------------------
+xtn        axi_xtn   -     @2411    
+  AWID     integral  8     'd0      
+  AWADDR   integral  32    'h38a69fc
+  AWLEN    integral  8     'd3      
+  AWSIZE   integral  3     'd1      
+  AWBURST  integral  2     2        
+  AWVALID  integral  1     'd0      
+  AWREADY  integral  1     'd0      
+  AWLOCK   integral  1     'd0      
+  AWCACHE  integral  4     'd3      
+  AWQOS    integral  4     11       
+  AWPROT   integral  3     7        
+  AWUSER   integral  1     'd0      
+  WID      integral  8     'd0      
+  WLAST    integral  1     'd0      
+  WVALID   integral  1     'd0      
+  WREADY   integral  1     'd0      
+  WUSER    integral  1     'd0      
+  BID      integral  8     'd0      
+  BRESP    integral  2     'd0      
+  BVALID   integral  1     'd0      
+  BREADY   integral  1     'd0      
+  BUSER    integral  1     'd0      
+  ARID     integral  8     'd0      
+  ARADDR   integral  32    'h0      
+  ARLEN    integral  8     'd0      
+  ARSIZE   integral  3     'd0      
+  ARBURST  integral  2     'd0      
+  ARVALID  integral  1     'd0      
+  ARREADY  integral  1     'd0      
+  ARLOCK   integral  1     'd0      
+  ARCACHE  integral  4     'd0      
+  ARQOS    integral  4     'd0      
+  ARPROT   integral  3     'd0      
+  ARUSER   integral  1     'd0      
+  RID      integral  4     'd0      
+  RLAST    integral  1     'd0      
+  RVALID   integral  1     'd0      
+  RREADY   integral  1     'd0      
+  RUSER    integral  1     'd0      
+------------------------------------
+UVM_INFO ../slave_agent/slave_driver.sv(146) @ 75000: uvm_test_top.axi_env.slv_agt_top.agnth[3].drvh [AXI_SLAVE_DRIVER_WRITE_ADDRESS] Data from the Drive_Write_address Task for AXI Slave
+------------------------------------
+Name       Type      Size  Value    
+------------------------------------
+xtn        axi_xtn   -     @2542    
+  AWID     integral  8     'd0      
+  AWADDR   integral  32    'h38a69fc
+  AWLEN    integral  8     'd3      
+  AWSIZE   integral  3     'd1      
+  AWBURST  integral  2     2        
+  AWVALID  integral  1     1        
+  AWREADY  integral  1     'd0      
+  AWLOCK   integral  1     'd0      
+  AWCACHE  integral  4     'd3      
+  AWQOS    integral  4     11       
+  AWPROT   integral  3     7        
+  AWUSER   integral  1     'd0      
+  WID      integral  8     'd0      
+  WLAST    integral  1     'd0      
+  WVALID   integral  1     'd0      
+  WREADY   integral  1     'd0      
+  WUSER    integral  1     'd0      
+  BID      integral  8     'd0      
+  BRESP    integral  2     'd0      
+  BVALID   integral  1     'd0      
+  BREADY   integral  1     'd0      
+  BUSER    integral  1     'd0      
+  ARID     integral  8     'd0      
+  ARADDR   integral  32    'h0      
+  ARLEN    integral  8     'd0      
+  ARSIZE   integral  3     'd0      
+  ARBURST  integral  2     'd0      
+  ARVALID  integral  1     'd0      
+  ARREADY  integral  1     'd0      
+  ARLOCK   integral  1     'd0      
+  ARCACHE  integral  4     'd0      
+  ARQOS    integral  4     'd0      
+  ARPROT   integral  3     'd0      
+  ARUSER   integral  1     'd0      
+  RID      integral  4     'd0      
+  RLAST    integral  1     'd0      
+  RVALID   integral  1     'd0      
+  RREADY   integral  1     'd0      
+  RUSER    integral  1     'd0      
+------------------------------------
+UVM_INFO ../slave_agent/slave_driver.sv(107) @ 75000: uvm_test_top.axi_env.slv_agt_top.agnth[3].drvh [AXI_SLAVE_DRIVER] Data from Drive Task for AXI Slave
+--------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                    
+--------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @2520                                                    
+  begin_time                   time      64    0                                                        
+  depth                        int       32    'd2                                                      
+  parent sequence (name)       string    9     slv_seqh3                                                
+  parent sequence (full name)  string    57    uvm_test_top.axi_env.slv_agt_top.agnth[3].seqrh.slv_seqh3
+  sequencer                    string    47    uvm_test_top.axi_env.slv_agt_top.agnth[3].seqrh          
+  AWID                         integral  8     176                                                      
+  AWADDR                       integral  32    'h2da194b                                                
+  AWLEN                        integral  8     'd7                                                      
+  AWSIZE                       integral  3     'd0                                                      
+  AWBURST                      integral  2     2                                                        
+  AWVALID                      integral  1     1                                                        
+  AWREADY                      integral  1     'd0                                                      
+  AWLOCK                       integral  1     'd0                                                      
+  AWCACHE                      integral  4     9                                                        
+  AWQOS                        integral  4     13                                                       
+  AWPROT                       integral  3     'd3                                                      
+  AWUSER                       integral  1     1                                                        
+  WID                          integral  8     176                                                      
+  w_addr[0]                    integral  32    'h2da194b                                                
+  w_addr[1]                    integral  32    'h2da194c                                                
+  w_addr[2]                    integral  32    'h2da194d                                                
+  w_addr[3]                    integral  32    'h2da194e                                                
+  w_addr[4]                    integral  32    'h2da194f                                                
+  w_addr[5]                    integral  32    'h2da1948                                                
+  w_addr[6]                    integral  32    'h2da1949                                                
+  w_addr[7]                    integral  32    'h2da194a                                                
+  WDATA[0]                     integral  32    'h654313eb                                               
+  WDATA[1]                     integral  32    'haf945270                                               
+  WDATA[2]                     integral  32    'h3cb1315a                                               
+  WDATA[3]                     integral  32    'h889a9342                                               
+  WDATA[4]                     integral  32    'hfd6f9cd6                                               
+  WDATA[5]                     integral  32    'hf92eba51                                               
+  WDATA[6]                     integral  32    'h748fe3d                                                
+  WDATA[7]                     integral  32    'hd23b6d85                                               
+  WSTRB[0]                     integral  4     'b1000                                                   
+  WSTRB[1]                     integral  4     'b1                                                      
+  WSTRB[2]                     integral  4     'b10                                                     
+  WSTRB[3]                     integral  4     'b100                                                    
+  WSTRB[4]                     integral  4     'b1000                                                   
+  WSTRB[5]                     integral  4     'b1                                                      
+  WSTRB[6]                     integral  4     'b10                                                     
+  WSTRB[7]                     integral  4     'b100                                                    
+  WLAST                        integral  1     'd0                                                      
+  WVALID                       integral  1     'd0                                                      
+  WREADY                       integral  1     1                                                        
+  WUSER                        integral  1     1                                                        
+  BID                          integral  8     176                                                      
+  BRESP                        integral  2     'd1                                                      
+  BVALID                       integral  1     'd0                                                      
+  BREADY                       integral  1     'd0                                                      
+  BUSER                        integral  1     'd0                                                      
+  ARID                         integral  8     'd90                                                     
+  ARADDR                       integral  32    'h1bff70f                                                
+  ARLEN                        integral  8     'd4                                                      
+  ARSIZE                       integral  3     'd0                                                      
+  ARBURST                      integral  2     'd1                                                      
+  ARVALID                      integral  1     'd0                                                      
+  ARREADY                      integral  1     1                                                        
+  ARLOCK                       integral  1     1                                                        
+  ARCACHE                      integral  4     12                                                       
+  ARQOS                        integral  4     15                                                       
+  ARPROT                       integral  3     6                                                        
+  ARUSER                       integral  1     'd0                                                      
+  RID                          integral  4     90                                                       
+  r_addr[0]                    integral  32    'h1bff70f                                                
+  r_addr[1]                    integral  32    'h1bff710                                                
+  r_addr[2]                    integral  32    'h1bff711                                                
+  r_addr[3]                    integral  32    'h1bff712                                                
+  r_addr[4]                    integral  32    'h1bff713                                                
+  RDATA[0]                     integral  32    'hd720f90b                                               
+  RDATA[1]                     integral  32    'hb8662533                                               
+  RDATA[2]                     integral  32    'hb76f1672                                               
+  RDATA[3]                     integral  32    'he91e8160                                               
+  RDATA[4]                     integral  32    'h5b7c80b0                                               
+  RRESP[0]                     integral  2     2                                                        
+  RRESP[1]                     integral  2     'd1                                                      
+  RRESP[2]                     integral  2     3                                                        
+  RRESP[3]                     integral  2     3                                                        
+  RRESP[4]                     integral  2     3                                                        
+  RLAST                        integral  1     1                                                        
+  RVALID                       integral  1     'd0                                                      
+  RREADY                       integral  1     1                                                        
+  RUSER                        integral  1     1                                                        
+--------------------------------------------------------------------------------------------------------
+UVM_INFO ../slave_agent/slave_monitor.sv(104) @ 75000: uvm_test_top.axi_env.slv_agt_top.agnth[3].monh [AXI_SLAVE_Monitor] Displaying Data from AXI Slave Monior 
+UVM_INFO ../master_agent/master_driver.sv(139) @ 75000: uvm_test_top.axi_env.mast_agt_top.agnth[0].drvh [AXI_MASTER_DRIVER_WRITE_ADDRESS] Displaying Data from Master Driver Drive_Write_address channel
+----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                      
+----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @2516                                                      
+  begin_time                   time      64    0                                                          
+  depth                        int       32    'd2                                                        
+  parent sequence (name)       string    10    mast_seqh0                                                 
+  parent sequence (full name)  string    59    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh.mast_seqh0
+  sequencer                    string    48    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh           
+  AWID                         integral  8     197                                                        
+  AWADDR                       integral  32    'h38a69fc                                                  
+  AWLEN                        integral  8     'd3                                                        
+  AWSIZE                       integral  3     'd1                                                        
+  AWBURST                      integral  2     2                                                          
+  AWVALID                      integral  1     1                                                          
+  AWREADY                      integral  1     1                                                          
+  AWLOCK                       integral  1     'd0                                                        
+  AWCACHE                      integral  4     'd3                                                        
+  AWQOS                        integral  4     11                                                         
+  AWPROT                       integral  3     7                                                          
+  AWUSER                       integral  1     1                                                          
+  WID                          integral  8     197                                                        
+  w_addr[0]                    integral  32    'h38a69fc                                                  
+  w_addr[1]                    integral  32    'h38a69fe                                                  
+  w_addr[2]                    integral  32    'h38a69f8                                                  
+  w_addr[3]                    integral  32    'h38a69fa                                                  
+  WDATA[0]                     integral  32    'h1f60983c                                                 
+  WDATA[1]                     integral  32    'he4e8ab64                                                 
+  WDATA[2]                     integral  32    'h9f36da                                                   
+  WDATA[3]                     integral  32    'h9285475                                                  
+  WSTRB[0]                     integral  4     'b11                                                       
+  WSTRB[1]                     integral  4     'b1100                                                     
+  WSTRB[2]                     integral  4     'b11                                                       
+  WSTRB[3]                     integral  4     'b1100                                                     
+  WLAST                        integral  1     'd0                                                        
+  WVALID                       integral  1     'd0                                                        
+  WREADY                       integral  1     1                                                          
+  WUSER                        integral  1     1                                                          
+  BID                          integral  8     197                                                        
+  BRESP                        integral  2     'd1                                                        
+  BVALID                       integral  1     'd0                                                        
+  BREADY                       integral  1     1                                                          
+  BUSER                        integral  1     'd0                                                        
+  ARID                         integral  8     233                                                        
+  ARADDR                       integral  32    'h3081efd                                                  
+  ARLEN                        integral  8     'd3                                                        
+  ARSIZE                       integral  3     'd1                                                        
+  ARBURST                      integral  2     'd1                                                        
+  ARVALID                      integral  1     1                                                          
+  ARREADY                      integral  1     'd0                                                        
+  ARLOCK                       integral  1     1                                                          
+  ARCACHE                      integral  4     10                                                         
+  ARQOS                        integral  4     'd1                                                        
+  ARPROT                       integral  3     'd2                                                        
+  ARUSER                       integral  1     1                                                          
+  RID                          integral  4     233                                                        
+  r_addr[0]                    integral  32    'h3081efd                                                  
+  r_addr[1]                    integral  32    'h3081efe                                                  
+  r_addr[2]                    integral  32    'h3081f00                                                  
+  r_addr[3]                    integral  32    'h3081f02                                                  
+  RDATA[0]                     integral  32    'h9e41b6b9                                                 
+  RDATA[1]                     integral  32    'h60b9ac6e                                                 
+  RDATA[2]                     integral  32    'h71029d10                                                 
+  RDATA[3]                     integral  32    'he11a48f2                                                 
+  RRESP[0]                     integral  2     2                                                          
+  RRESP[1]                     integral  2     3                                                          
+  RRESP[2]                     integral  2     3                                                          
+  RRESP[3]                     integral  2     2                                                          
+  RLAST                        integral  1     1                                                          
+  RVALID                       integral  1     1                                                          
+  RREADY                       integral  1     1                                                          
+  RUSER                        integral  1     'd0                                                        
+----------------------------------------------------------------------------------------------------------
+UVM_INFO ../master_agent/master_driver.sv(112) @ 75000: uvm_test_top.axi_env.mast_agt_top.agnth[0].drvh [AXI_MASTER_DRIVER] Displaying Data from Master Driver
+----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                      
+----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @2516                                                      
+  begin_time                   time      64    0                                                          
+  depth                        int       32    'd2                                                        
+  parent sequence (name)       string    10    mast_seqh0                                                 
+  parent sequence (full name)  string    59    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh.mast_seqh0
+  sequencer                    string    48    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh           
+  AWID                         integral  8     197                                                        
+  AWADDR                       integral  32    'h38a69fc                                                  
+  AWLEN                        integral  8     'd3                                                        
+  AWSIZE                       integral  3     'd1                                                        
+  AWBURST                      integral  2     2                                                          
+  AWVALID                      integral  1     1                                                          
+  AWREADY                      integral  1     1                                                          
+  AWLOCK                       integral  1     'd0                                                        
+  AWCACHE                      integral  4     'd3                                                        
+  AWQOS                        integral  4     11                                                         
+  AWPROT                       integral  3     7                                                          
+  AWUSER                       integral  1     1                                                          
+  WID                          integral  8     197                                                        
+  w_addr[0]                    integral  32    'h38a69fc                                                  
+  w_addr[1]                    integral  32    'h38a69fe                                                  
+  w_addr[2]                    integral  32    'h38a69f8                                                  
+  w_addr[3]                    integral  32    'h38a69fa                                                  
+  WDATA[0]                     integral  32    'h1f60983c                                                 
+  WDATA[1]                     integral  32    'he4e8ab64                                                 
+  WDATA[2]                     integral  32    'h9f36da                                                   
+  WDATA[3]                     integral  32    'h9285475                                                  
+  WSTRB[0]                     integral  4     'b11                                                       
+  WSTRB[1]                     integral  4     'b1100                                                     
+  WSTRB[2]                     integral  4     'b11                                                       
+  WSTRB[3]                     integral  4     'b1100                                                     
+  WLAST                        integral  1     'd0                                                        
+  WVALID                       integral  1     'd0                                                        
+  WREADY                       integral  1     1                                                          
+  WUSER                        integral  1     1                                                          
+  BID                          integral  8     197                                                        
+  BRESP                        integral  2     'd1                                                        
+  BVALID                       integral  1     'd0                                                        
+  BREADY                       integral  1     1                                                          
+  BUSER                        integral  1     'd0                                                        
+  ARID                         integral  8     233                                                        
+  ARADDR                       integral  32    'h3081efd                                                  
+  ARLEN                        integral  8     'd3                                                        
+  ARSIZE                       integral  3     'd1                                                        
+  ARBURST                      integral  2     'd1                                                        
+  ARVALID                      integral  1     1                                                          
+  ARREADY                      integral  1     'd0                                                        
+  ARLOCK                       integral  1     1                                                          
+  ARCACHE                      integral  4     10                                                         
+  ARQOS                        integral  4     'd1                                                        
+  ARPROT                       integral  3     'd2                                                        
+  ARUSER                       integral  1     1                                                          
+  RID                          integral  4     233                                                        
+  r_addr[0]                    integral  32    'h3081efd                                                  
+  r_addr[1]                    integral  32    'h3081efe                                                  
+  r_addr[2]                    integral  32    'h3081f00                                                  
+  r_addr[3]                    integral  32    'h3081f02                                                  
+  RDATA[0]                     integral  32    'h9e41b6b9                                                 
+  RDATA[1]                     integral  32    'h60b9ac6e                                                 
+  RDATA[2]                     integral  32    'h71029d10                                                 
+  RDATA[3]                     integral  32    'he11a48f2                                                 
+  RRESP[0]                     integral  2     2                                                          
+  RRESP[1]                     integral  2     3                                                          
+  RRESP[2]                     integral  2     3                                                          
+  RRESP[3]                     integral  2     2                                                          
+  RLAST                        integral  1     1                                                          
+  RVALID                       integral  1     1                                                          
+  RREADY                       integral  1     1                                                          
+  RUSER                        integral  1     'd0                                                        
+----------------------------------------------------------------------------------------------------------
+UVM_INFO ../master_agent/master_monitor.sv(161) @ 225000: uvm_test_top.axi_env.mast_agt_top.agnth[0].monh [AXI_MASTER_Monitor_Write_DATA_Collect] Displaying Data from AXI Master Monior Write DATA Collect
+---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          axi_xtn   -     @2481     
+  AWID       integral  8     197       
+  AWADDR     integral  32    'h38a69fc 
+  AWLEN      integral  8     'd3       
+  AWSIZE     integral  3     'd1       
+  AWBURST    integral  2     2         
+  AWVALID    integral  1     'd0       
+  AWREADY    integral  1     'd0       
+  AWLOCK     integral  1     'd0       
+  AWCACHE    integral  4     'd3       
+  AWQOS      integral  4     11        
+  AWPROT     integral  3     7         
+  AWUSER     integral  1     1         
+  WID        integral  8     197       
+  w_addr[0]  integral  32    'h38a69fc 
+  w_addr[1]  integral  32    'h38a69fe 
+  w_addr[2]  integral  32    'h38a69f8 
+  w_addr[3]  integral  32    'h38a69fa 
+  WDATA[0]   integral  32    'h1f60983c
+  WDATA[1]   integral  32    'he4e8ab64
+  WDATA[2]   integral  32    'h9f36da  
+  WDATA[3]   integral  32    'h9285475 
+  WSTRB[0]   integral  4     'b11      
+  WSTRB[1]   integral  4     'b1100    
+  WSTRB[2]   integral  4     'b11      
+  WSTRB[3]   integral  4     'b1100    
+  WLAST      integral  1     1         
+  WVALID     integral  1     'd0       
+  WREADY     integral  1     'd0       
+  WUSER      integral  1     1         
+  BID        integral  8     'd0       
+  BRESP      integral  2     'd0       
+  BVALID     integral  1     'd0       
+  BREADY     integral  1     'd0       
+  BUSER      integral  1     'd0       
+  ARID       integral  8     'd0       
+  ARADDR     integral  32    'h0       
+  ARLEN      integral  8     'd0       
+  ARSIZE     integral  3     'd0       
+  ARBURST    integral  2     'd0       
+  ARVALID    integral  1     'd0       
+  ARREADY    integral  1     'd0       
+  ARLOCK     integral  1     'd0       
+  ARCACHE    integral  4     'd0       
+  ARQOS      integral  4     'd0       
+  ARPROT     integral  3     'd0       
+  ARUSER     integral  1     'd0       
+  RID        integral  4     'd0       
+  RLAST      integral  1     'd0       
+  RVALID     integral  1     'd0       
+  RREADY     integral  1     'd0       
+  RUSER      integral  1     'd0       
+---------------------------------------
+UVM_INFO ../slave_agent/slave_monitor.sv(163) @ 235000: uvm_test_top.axi_env.slv_agt_top.agnth[3].monh [AXI_SLAVE_Monitor_Write_DATA_Collect] Displaying Data from AXI Slave Monior Write DATA Collect
+---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          axi_xtn   -     @2411     
+  AWID       integral  8     'd0       
+  AWADDR     integral  32    'h38a69fc 
+  AWLEN      integral  8     'd3       
+  AWSIZE     integral  3     'd1       
+  AWBURST    integral  2     2         
+  AWVALID    integral  1     'd0       
+  AWREADY    integral  1     'd0       
+  AWLOCK     integral  1     'd0       
+  AWCACHE    integral  4     'd3       
+  AWQOS      integral  4     11        
+  AWPROT     integral  3     7         
+  AWUSER     integral  1     'd0       
+  WID        integral  8     'd0       
+  w_addr[0]  integral  32    'h38a69fc 
+  w_addr[1]  integral  32    'h38a69fe 
+  w_addr[2]  integral  32    'h38a69f8 
+  w_addr[3]  integral  32    'h38a69fa 
+  WDATA[0]   integral  32    'h1f60983c
+  WDATA[1]   integral  32    'he4e8ab64
+  WDATA[2]   integral  32    'h9f36da  
+  WDATA[3]   integral  32    'h9285475 
+  WSTRB[0]   integral  4     'b11      
+  WSTRB[1]   integral  4     'b1100    
+  WSTRB[2]   integral  4     'b11      
+  WSTRB[3]   integral  4     'b1100    
+  WLAST      integral  1     1         
+  WVALID     integral  1     'd0       
+  WREADY     integral  1     'd0       
+  WUSER      integral  1     'd0       
+  BID        integral  8     'd0       
+  BRESP      integral  2     'd0       
+  BVALID     integral  1     'd0       
+  BREADY     integral  1     'd0       
+  BUSER      integral  1     'd0       
+  ARID       integral  8     'd0       
+  ARADDR     integral  32    'h0       
+  ARLEN      integral  8     'd0       
+  ARSIZE     integral  3     'd0       
+  ARBURST    integral  2     'd0       
+  ARVALID    integral  1     'd0       
+  ARREADY    integral  1     'd0       
+  ARLOCK     integral  1     'd0       
+  ARCACHE    integral  4     'd0       
+  ARQOS      integral  4     'd0       
+  ARPROT     integral  3     'd0       
+  ARUSER     integral  1     'd0       
+  RID        integral  4     'd0       
+  RLAST      integral  1     'd0       
+  RVALID     integral  1     'd0       
+  RREADY     integral  1     'd0       
+  RUSER      integral  1     'd0       
+---------------------------------------
+UVM_INFO ../master_agent/master_driver.sv(170) @ 235000: uvm_test_top.axi_env.mast_agt_top.agnth[0].drvh [AXI_MASTER_DRIVER_WRITE_DATA] Displaying Data from Master Driver Drive_Write_data channel
+----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                      
+----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @2516                                                      
+  begin_time                   time      64    0                                                          
+  end_time                     time      64    75000                                                      
+  depth                        int       32    'd2                                                        
+  parent sequence (name)       string    10    mast_seqh0                                                 
+  parent sequence (full name)  string    59    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh.mast_seqh0
+  sequencer                    string    48    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh           
+  AWID                         integral  8     197                                                        
+  AWADDR                       integral  32    'h38a69fc                                                  
+  AWLEN                        integral  8     'd3                                                        
+  AWSIZE                       integral  3     'd1                                                        
+  AWBURST                      integral  2     2                                                          
+  AWVALID                      integral  1     1                                                          
+  AWREADY                      integral  1     1                                                          
+  AWLOCK                       integral  1     'd0                                                        
+  AWCACHE                      integral  4     'd3                                                        
+  AWQOS                        integral  4     11                                                         
+  AWPROT                       integral  3     7                                                          
+  AWUSER                       integral  1     1                                                          
+  WID                          integral  8     197                                                        
+  w_addr[0]                    integral  32    'h38a69fc                                                  
+  w_addr[1]                    integral  32    'h38a69fe                                                  
+  w_addr[2]                    integral  32    'h38a69f8                                                  
+  w_addr[3]                    integral  32    'h38a69fa                                                  
+  WDATA[0]                     integral  32    'h1f60983c                                                 
+  WDATA[1]                     integral  32    'he4e8ab64                                                 
+  WDATA[2]                     integral  32    'h9f36da                                                   
+  WDATA[3]                     integral  32    'h9285475                                                  
+  WSTRB[0]                     integral  4     'b11                                                       
+  WSTRB[1]                     integral  4     'b1100                                                     
+  WSTRB[2]                     integral  4     'b11                                                       
+  WSTRB[3]                     integral  4     'b1100                                                     
+  WLAST                        integral  1     'd0                                                        
+  WVALID                       integral  1     'd0                                                        
+  WREADY                       integral  1     1                                                          
+  WUSER                        integral  1     1                                                          
+  BID                          integral  8     197                                                        
+  BRESP                        integral  2     'd1                                                        
+  BVALID                       integral  1     'd0                                                        
+  BREADY                       integral  1     1                                                          
+  BUSER                        integral  1     'd0                                                        
+  ARID                         integral  8     233                                                        
+  ARADDR                       integral  32    'h3081efd                                                  
+  ARLEN                        integral  8     'd3                                                        
+  ARSIZE                       integral  3     'd1                                                        
+  ARBURST                      integral  2     'd1                                                        
+  ARVALID                      integral  1     1                                                          
+  ARREADY                      integral  1     'd0                                                        
+  ARLOCK                       integral  1     1                                                          
+  ARCACHE                      integral  4     10                                                         
+  ARQOS                        integral  4     'd1                                                        
+  ARPROT                       integral  3     'd2                                                        
+  ARUSER                       integral  1     1                                                          
+  RID                          integral  4     233                                                        
+  r_addr[0]                    integral  32    'h3081efd                                                  
+  r_addr[1]                    integral  32    'h3081efe                                                  
+  r_addr[2]                    integral  32    'h3081f00                                                  
+  r_addr[3]                    integral  32    'h3081f02                                                  
+  RDATA[0]                     integral  32    'h9e41b6b9                                                 
+  RDATA[1]                     integral  32    'h60b9ac6e                                                 
+  RDATA[2]                     integral  32    'h71029d10                                                 
+  RDATA[3]                     integral  32    'he11a48f2                                                 
+  RRESP[0]                     integral  2     2                                                          
+  RRESP[1]                     integral  2     3                                                          
+  RRESP[2]                     integral  2     3                                                          
+  RRESP[3]                     integral  2     2                                                          
+  RLAST                        integral  1     1                                                          
+  RVALID                       integral  1     1                                                          
+  RREADY                       integral  1     1                                                          
+  RUSER                        integral  1     'd0                                                        
+----------------------------------------------------------------------------------------------------------
+UVM_INFO ../slave_agent/slave_driver.sv(193) @ 275000: uvm_test_top.axi_env.slv_agt_top.agnth[3].drvh [AXI_SLAVE_DRIVER_WRITE_DATA] Data from the Drive_Write_data Task for AXI Slave
+---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          axi_xtn   -     @2542     
+  AWID       integral  8     'd0       
+  AWADDR     integral  32    'h38a69fc 
+  AWLEN      integral  8     'd3       
+  AWSIZE     integral  3     'd1       
+  AWBURST    integral  2     2         
+  AWVALID    integral  1     1         
+  AWREADY    integral  1     'd0       
+  AWLOCK     integral  1     'd0       
+  AWCACHE    integral  4     'd3       
+  AWQOS      integral  4     11        
+  AWPROT     integral  3     7         
+  AWUSER     integral  1     'd0       
+  WID        integral  8     'd0       
+  w_addr[0]  integral  32    'h38a69fc 
+  w_addr[1]  integral  32    'h38a69fe 
+  w_addr[2]  integral  32    'h38a69f8 
+  w_addr[3]  integral  32    'h38a69fa 
+  WDATA[0]   integral  32    'h1f60983c
+  WDATA[1]   integral  32    'he4e8ab64
+  WDATA[2]   integral  32    'h9f36da  
+  WDATA[3]   integral  32    'h9285475 
+  WSTRB[0]   integral  4     'b11      
+  WSTRB[1]   integral  4     'b1100    
+  WSTRB[2]   integral  4     'b11      
+  WSTRB[3]   integral  4     'b1100    
+  WLAST      integral  1     'd0       
+  WVALID     integral  1     'd0       
+  WREADY     integral  1     'd0       
+  WUSER      integral  1     'd0       
+  BID        integral  8     'd0       
+  BRESP      integral  2     'd0       
+  BVALID     integral  1     'd0       
+  BREADY     integral  1     'd0       
+  BUSER      integral  1     'd0       
+  ARID       integral  8     'd0       
+  ARADDR     integral  32    'h0       
+  ARLEN      integral  8     'd0       
+  ARSIZE     integral  3     'd0       
+  ARBURST    integral  2     'd0       
+  ARVALID    integral  1     'd0       
+  ARREADY    integral  1     'd0       
+  ARLOCK     integral  1     'd0       
+  ARCACHE    integral  4     'd0       
+  ARQOS      integral  4     'd0       
+  ARPROT     integral  3     'd0       
+  ARUSER     integral  1     'd0       
+  RID        integral  4     'd0       
+  RLAST      integral  1     'd0       
+  RVALID     integral  1     'd0       
+  RREADY     integral  1     'd0       
+  RUSER      integral  1     'd0       
+---------------------------------------
+UVM_INFO ../slave_agent/slave_monitor.sv(178) @ 285000: uvm_test_top.axi_env.slv_agt_top.agnth[3].monh [AXI_SLAVE_Monitor_Write_Response_Collect] Displaying Data from AXI Slave Monior Write Response Collect
+---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          axi_xtn   -     @2411     
+  AWID       integral  8     'd0       
+  AWADDR     integral  32    'h38a69fc 
+  AWLEN      integral  8     'd3       
+  AWSIZE     integral  3     'd1       
+  AWBURST    integral  2     2         
+  AWVALID    integral  1     'd0       
+  AWREADY    integral  1     'd0       
+  AWLOCK     integral  1     'd0       
+  AWCACHE    integral  4     'd3       
+  AWQOS      integral  4     11        
+  AWPROT     integral  3     7         
+  AWUSER     integral  1     'd0       
+  WID        integral  8     'd0       
+  w_addr[0]  integral  32    'h38a69fc 
+  w_addr[1]  integral  32    'h38a69fe 
+  w_addr[2]  integral  32    'h38a69f8 
+  w_addr[3]  integral  32    'h38a69fa 
+  WDATA[0]   integral  32    'h1f60983c
+  WDATA[1]   integral  32    'he4e8ab64
+  WDATA[2]   integral  32    'h9f36da  
+  WDATA[3]   integral  32    'h9285475 
+  WSTRB[0]   integral  4     'b11      
+  WSTRB[1]   integral  4     'b1100    
+  WSTRB[2]   integral  4     'b11      
+  WSTRB[3]   integral  4     'b1100    
+  WLAST      integral  1     1         
+  WVALID     integral  1     'd0       
+  WREADY     integral  1     'd0       
+  WUSER      integral  1     'd0       
+  BID        integral  8     'd0       
+  BRESP      integral  2     2         
+  BVALID     integral  1     'd0       
+  BREADY     integral  1     'd0       
+  BUSER      integral  1     'd0       
+  ARID       integral  8     'd0       
+  ARADDR     integral  32    'h0       
+  ARLEN      integral  8     'd0       
+  ARSIZE     integral  3     'd0       
+  ARBURST    integral  2     'd0       
+  ARVALID    integral  1     'd0       
+  ARREADY    integral  1     'd0       
+  ARLOCK     integral  1     'd0       
+  ARCACHE    integral  4     'd0       
+  ARQOS      integral  4     'd0       
+  ARPROT     integral  3     'd0       
+  ARUSER     integral  1     'd0       
+  RID        integral  4     'd0       
+  RLAST      integral  1     'd0       
+  RVALID     integral  1     'd0       
+  RREADY     integral  1     'd0       
+  RUSER      integral  1     'd0       
+---------------------------------------
+UVM_INFO ../tb/scoreboard.sv(729) @ 285000: uvm_test_top.axi_env.sb_h [AXI_SCOREBORD-Run_Phase] Data from scoreboard -Slave  Data
+---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          axi_xtn   -     @2411     
+  AWID       integral  8     'd0       
+  AWADDR     integral  32    'h38a69fc 
+  AWLEN      integral  8     'd3       
+  AWSIZE     integral  3     'd1       
+  AWBURST    integral  2     2         
+  AWVALID    integral  1     'd0       
+  AWREADY    integral  1     'd0       
+  AWLOCK     integral  1     'd0       
+  AWCACHE    integral  4     'd3       
+  AWQOS      integral  4     11        
+  AWPROT     integral  3     7         
+  AWUSER     integral  1     'd0       
+  WID        integral  8     'd0       
+  w_addr[0]  integral  32    'h38a69fc 
+  w_addr[1]  integral  32    'h38a69fe 
+  w_addr[2]  integral  32    'h38a69f8 
+  w_addr[3]  integral  32    'h38a69fa 
+  WDATA[0]   integral  32    'h1f60983c
+  WDATA[1]   integral  32    'he4e8ab64
+  WDATA[2]   integral  32    'h9f36da  
+  WDATA[3]   integral  32    'h9285475 
+  WSTRB[0]   integral  4     'b11      
+  WSTRB[1]   integral  4     'b1100    
+  WSTRB[2]   integral  4     'b11      
+  WSTRB[3]   integral  4     'b1100    
+  WLAST      integral  1     1         
+  WVALID     integral  1     'd0       
+  WREADY     integral  1     'd0       
+  WUSER      integral  1     'd0       
+  BID        integral  8     'd0       
+  BRESP      integral  2     2         
+  BVALID     integral  1     'd0       
+  BREADY     integral  1     'd0       
+  BUSER      integral  1     'd0       
+  ARID       integral  8     'd0       
+  ARADDR     integral  32    'h0       
+  ARLEN      integral  8     'd0       
+  ARSIZE     integral  3     'd0       
+  ARBURST    integral  2     'd0       
+  ARVALID    integral  1     'd0       
+  ARREADY    integral  1     'd0       
+  ARLOCK     integral  1     'd0       
+  ARCACHE    integral  4     'd0       
+  ARQOS      integral  4     'd0       
+  ARPROT     integral  3     'd0       
+  ARUSER     integral  1     'd0       
+  RID        integral  4     'd0       
+  RLAST      integral  1     'd0       
+  RVALID     integral  1     'd0       
+  RREADY     integral  1     'd0       
+  RUSER      integral  1     'd0       
+---------------------------------------
+UVM_INFO ../master_agent/master_monitor.sv(175) @ 295000: uvm_test_top.axi_env.mast_agt_top.agnth[0].monh [AXI_MASTER_Monitor_Write_Response_Collect] Displaying Data from AXI Master Monior Write Response Collect
+---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          axi_xtn   -     @2481     
+  AWID       integral  8     197       
+  AWADDR     integral  32    'h38a69fc 
+  AWLEN      integral  8     'd3       
+  AWSIZE     integral  3     'd1       
+  AWBURST    integral  2     2         
+  AWVALID    integral  1     'd0       
+  AWREADY    integral  1     'd0       
+  AWLOCK     integral  1     'd0       
+  AWCACHE    integral  4     'd3       
+  AWQOS      integral  4     11        
+  AWPROT     integral  3     7         
+  AWUSER     integral  1     1         
+  WID        integral  8     197       
+  w_addr[0]  integral  32    'h38a69fc 
+  w_addr[1]  integral  32    'h38a69fe 
+  w_addr[2]  integral  32    'h38a69f8 
+  w_addr[3]  integral  32    'h38a69fa 
+  WDATA[0]   integral  32    'h1f60983c
+  WDATA[1]   integral  32    'he4e8ab64
+  WDATA[2]   integral  32    'h9f36da  
+  WDATA[3]   integral  32    'h9285475 
+  WSTRB[0]   integral  4     'b11      
+  WSTRB[1]   integral  4     'b1100    
+  WSTRB[2]   integral  4     'b11      
+  WSTRB[3]   integral  4     'b1100    
+  WLAST      integral  1     1         
+  WVALID     integral  1     'd0       
+  WREADY     integral  1     'd0       
+  WUSER      integral  1     1         
+  BID        integral  8     197       
+  BRESP      integral  2     2         
+  BVALID     integral  1     'd0       
+  BREADY     integral  1     'd0       
+  BUSER      integral  1     'd0       
+  ARID       integral  8     'd0       
+  ARADDR     integral  32    'h0       
+  ARLEN      integral  8     'd0       
+  ARSIZE     integral  3     'd0       
+  ARBURST    integral  2     'd0       
+  ARVALID    integral  1     'd0       
+  ARREADY    integral  1     'd0       
+  ARLOCK     integral  1     'd0       
+  ARCACHE    integral  4     'd0       
+  ARQOS      integral  4     'd0       
+  ARPROT     integral  3     'd0       
+  ARUSER     integral  1     'd0       
+  RID        integral  4     'd0       
+  RLAST      integral  1     'd0       
+  RVALID     integral  1     'd0       
+  RREADY     integral  1     'd0       
+  RUSER      integral  1     'd0       
+---------------------------------------
+UVM_INFO ../tb/scoreboard.sv(626) @ 295000: uvm_test_top.axi_env.sb_h [AXI_SCOREBORD-Run_Phase] Data from scoreboard -Master  Data
+---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          axi_xtn   -     @2481     
+  AWID       integral  8     197       
+  AWADDR     integral  32    'h38a69fc 
+  AWLEN      integral  8     'd3       
+  AWSIZE     integral  3     'd1       
+  AWBURST    integral  2     2         
+  AWVALID    integral  1     'd0       
+  AWREADY    integral  1     'd0       
+  AWLOCK     integral  1     'd0       
+  AWCACHE    integral  4     'd3       
+  AWQOS      integral  4     11        
+  AWPROT     integral  3     7         
+  AWUSER     integral  1     1         
+  WID        integral  8     197       
+  w_addr[0]  integral  32    'h38a69fc 
+  w_addr[1]  integral  32    'h38a69fe 
+  w_addr[2]  integral  32    'h38a69f8 
+  w_addr[3]  integral  32    'h38a69fa 
+  WDATA[0]   integral  32    'h1f60983c
+  WDATA[1]   integral  32    'he4e8ab64
+  WDATA[2]   integral  32    'h9f36da  
+  WDATA[3]   integral  32    'h9285475 
+  WSTRB[0]   integral  4     'b11      
+  WSTRB[1]   integral  4     'b1100    
+  WSTRB[2]   integral  4     'b11      
+  WSTRB[3]   integral  4     'b1100    
+  WLAST      integral  1     1         
+  WVALID     integral  1     'd0       
+  WREADY     integral  1     'd0       
+  WUSER      integral  1     1         
+  BID        integral  8     197       
+  BRESP      integral  2     2         
+  BVALID     integral  1     'd0       
+  BREADY     integral  1     'd0       
+  BUSER      integral  1     'd0       
+  ARID       integral  8     'd0       
+  ARADDR     integral  32    'h0       
+  ARLEN      integral  8     'd0       
+  ARSIZE     integral  3     'd0       
+  ARBURST    integral  2     'd0       
+  ARVALID    integral  1     'd0       
+  ARREADY    integral  1     'd0       
+  ARLOCK     integral  1     'd0       
+  ARCACHE    integral  4     'd0       
+  ARQOS      integral  4     'd0       
+  ARPROT     integral  3     'd0       
+  ARUSER     integral  1     'd0       
+  RID        integral  4     'd0       
+  RLAST      integral  1     'd0       
+  RVALID     integral  1     'd0       
+  RREADY     integral  1     'd0       
+  RUSER      integral  1     'd0       
+---------------------------------------
+UVM_INFO ../tb/scoreboard.sv(765) @ 295000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--WRITE_DATA] Write Address comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(785) @ 295000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--WRITE_DATA] Write Data comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(785) @ 295000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--WRITE_DATA] Write Data comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(785) @ 295000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--WRITE_DATA] Write Data comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(785) @ 295000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--WRITE_DATA] Write Data comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(791) @ 295000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--WRITE_DATA] Write Strobe comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(791) @ 295000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--WRITE_DATA] Write Strobe comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(791) @ 295000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--WRITE_DATA] Write Strobe comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(791) @ 295000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--WRITE_DATA] Write Strobe comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(808) @ 295000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--READ_DATA] Read Address comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(820) @ 295000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--READ_DATA] Read Control information comparision is Successful
+UVM_INFO ../slave_agent/slave_driver.sv(214) @ 325000: uvm_test_top.axi_env.slv_agt_top.agnth[3].drvh [AXI_SLAVE_DRIVER_WRITE_RESPONSE] Data from the Drive_Write_response Task for AXI Slave
+---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          axi_xtn   -     @2542     
+  AWID       integral  8     'd0       
+  AWADDR     integral  32    'h38a69fc 
+  AWLEN      integral  8     'd3       
+  AWSIZE     integral  3     'd1       
+  AWBURST    integral  2     2         
+  AWVALID    integral  1     1         
+  AWREADY    integral  1     'd0       
+  AWLOCK     integral  1     'd0       
+  AWCACHE    integral  4     'd3       
+  AWQOS      integral  4     11        
+  AWPROT     integral  3     7         
+  AWUSER     integral  1     'd0       
+  WID        integral  8     'd0       
+  w_addr[0]  integral  32    'h38a69fc 
+  w_addr[1]  integral  32    'h38a69fe 
+  w_addr[2]  integral  32    'h38a69f8 
+  w_addr[3]  integral  32    'h38a69fa 
+  WDATA[0]   integral  32    'h1f60983c
+  WDATA[1]   integral  32    'he4e8ab64
+  WDATA[2]   integral  32    'h9f36da  
+  WDATA[3]   integral  32    'h9285475 
+  WSTRB[0]   integral  4     'b11      
+  WSTRB[1]   integral  4     'b1100    
+  WSTRB[2]   integral  4     'b11      
+  WSTRB[3]   integral  4     'b1100    
+  WLAST      integral  1     'd0       
+  WVALID     integral  1     'd0       
+  WREADY     integral  1     'd0       
+  WUSER      integral  1     'd0       
+  BID        integral  8     'd0       
+  BRESP      integral  2     'd0       
+  BVALID     integral  1     'd0       
+  BREADY     integral  1     'd0       
+  BUSER      integral  1     'd0       
+  ARID       integral  8     'd0       
+  ARADDR     integral  32    'h0       
+  ARLEN      integral  8     'd0       
+  ARSIZE     integral  3     'd0       
+  ARBURST    integral  2     'd0       
+  ARVALID    integral  1     'd0       
+  ARREADY    integral  1     'd0       
+  ARLOCK     integral  1     'd0       
+  ARCACHE    integral  4     'd0       
+  ARQOS      integral  4     'd0       
+  ARPROT     integral  3     'd0       
+  ARUSER     integral  1     'd0       
+  RID        integral  4     'd0       
+  RLAST      integral  1     'd0       
+  RVALID     integral  1     'd0       
+  RREADY     integral  1     'd0       
+  RUSER      integral  1     'd0       
+---------------------------------------
+UVM_INFO ../master_agent/master_driver.sv(188) @ 325000: uvm_test_top.axi_env.mast_agt_top.agnth[0].drvh [AXI_MASTER_DRIVER_WRITE_RESPONSE] Displaying Data from Master Driver Drive_Write_Response channel
+----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                      
+----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @2516                                                      
+  begin_time                   time      64    0                                                          
+  end_time                     time      64    75000                                                      
+  depth                        int       32    'd2                                                        
+  parent sequence (name)       string    10    mast_seqh0                                                 
+  parent sequence (full name)  string    59    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh.mast_seqh0
+  sequencer                    string    48    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh           
+  AWID                         integral  8     197                                                        
+  AWADDR                       integral  32    'h38a69fc                                                  
+  AWLEN                        integral  8     'd3                                                        
+  AWSIZE                       integral  3     'd1                                                        
+  AWBURST                      integral  2     2                                                          
+  AWVALID                      integral  1     1                                                          
+  AWREADY                      integral  1     1                                                          
+  AWLOCK                       integral  1     'd0                                                        
+  AWCACHE                      integral  4     'd3                                                        
+  AWQOS                        integral  4     11                                                         
+  AWPROT                       integral  3     7                                                          
+  AWUSER                       integral  1     1                                                          
+  WID                          integral  8     197                                                        
+  w_addr[0]                    integral  32    'h38a69fc                                                  
+  w_addr[1]                    integral  32    'h38a69fe                                                  
+  w_addr[2]                    integral  32    'h38a69f8                                                  
+  w_addr[3]                    integral  32    'h38a69fa                                                  
+  WDATA[0]                     integral  32    'h1f60983c                                                 
+  WDATA[1]                     integral  32    'he4e8ab64                                                 
+  WDATA[2]                     integral  32    'h9f36da                                                   
+  WDATA[3]                     integral  32    'h9285475                                                  
+  WSTRB[0]                     integral  4     'b11                                                       
+  WSTRB[1]                     integral  4     'b1100                                                     
+  WSTRB[2]                     integral  4     'b11                                                       
+  WSTRB[3]                     integral  4     'b1100                                                     
+  WLAST                        integral  1     'd0                                                        
+  WVALID                       integral  1     'd0                                                        
+  WREADY                       integral  1     1                                                          
+  WUSER                        integral  1     1                                                          
+  BID                          integral  8     197                                                        
+  BRESP                        integral  2     'd1                                                        
+  BVALID                       integral  1     'd0                                                        
+  BREADY                       integral  1     1                                                          
+  BUSER                        integral  1     'd0                                                        
+  ARID                         integral  8     233                                                        
+  ARADDR                       integral  32    'h3081efd                                                  
+  ARLEN                        integral  8     'd3                                                        
+  ARSIZE                       integral  3     'd1                                                        
+  ARBURST                      integral  2     'd1                                                        
+  ARVALID                      integral  1     1                                                          
+  ARREADY                      integral  1     'd0                                                        
+  ARLOCK                       integral  1     1                                                          
+  ARCACHE                      integral  4     10                                                         
+  ARQOS                        integral  4     'd1                                                        
+  ARPROT                       integral  3     'd2                                                        
+  ARUSER                       integral  1     1                                                          
+  RID                          integral  4     233                                                        
+  r_addr[0]                    integral  32    'h3081efd                                                  
+  r_addr[1]                    integral  32    'h3081efe                                                  
+  r_addr[2]                    integral  32    'h3081f00                                                  
+  r_addr[3]                    integral  32    'h3081f02                                                  
+  RDATA[0]                     integral  32    'h9e41b6b9                                                 
+  RDATA[1]                     integral  32    'h60b9ac6e                                                 
+  RDATA[2]                     integral  32    'h71029d10                                                 
+  RDATA[3]                     integral  32    'he11a48f2                                                 
+  RRESP[0]                     integral  2     2                                                          
+  RRESP[1]                     integral  2     3                                                          
+  RRESP[2]                     integral  2     3                                                          
+  RRESP[3]                     integral  2     2                                                          
+  RLAST                        integral  1     1                                                          
+  RVALID                       integral  1     1                                                          
+  RREADY                       integral  1     1                                                          
+  RUSER                        integral  1     'd0                                                        
+----------------------------------------------------------------------------------------------------------
+UVM_INFO ../master_agent/master_monitor.sv(204) @ 325000: uvm_test_top.axi_env.mast_agt_top.agnth[0].monh [AXI_MASTER_Monitor_Read_Address_Collect] Displaying Data from AXI Master Monior Read Address Collect
+------------------------------------
+Name       Type      Size  Value    
+------------------------------------
+xtn3       axi_xtn   -     @2485    
+  AWID     integral  8     'd0      
+  AWADDR   integral  32    'h0      
+  AWLEN    integral  8     'd0      
+  AWSIZE   integral  3     'd0      
+  AWBURST  integral  2     'd0      
+  AWVALID  integral  1     'd0      
+  AWREADY  integral  1     'd0      
+  AWLOCK   integral  1     'd0      
+  AWCACHE  integral  4     'd0      
+  AWQOS    integral  4     'd0      
+  AWPROT   integral  3     'd0      
+  AWUSER   integral  1     'd0      
+  WID      integral  8     'd0      
+  WLAST    integral  1     'd0      
+  WVALID   integral  1     'd0      
+  WREADY   integral  1     'd0      
+  WUSER    integral  1     'd0      
+  BID      integral  8     'd0      
+  BRESP    integral  2     'd0      
+  BVALID   integral  1     'd0      
+  BREADY   integral  1     'd0      
+  BUSER    integral  1     'd0      
+  ARID     integral  8     233      
+  ARADDR   integral  32    'h3081efd
+  ARLEN    integral  8     'd3      
+  ARSIZE   integral  3     'd1      
+  ARBURST  integral  2     'd1      
+  ARVALID  integral  1     'd0      
+  ARREADY  integral  1     'd0      
+  ARLOCK   integral  1     1        
+  ARCACHE  integral  4     10       
+  ARQOS    integral  4     'd1      
+  ARPROT   integral  3     'd2      
+  ARUSER   integral  1     1        
+  RID      integral  4     'd0      
+  RLAST    integral  1     'd0      
+  RVALID   integral  1     'd0      
+  RREADY   integral  1     'd0      
+  RUSER    integral  1     'd0      
+------------------------------------
+UVM_INFO ../slave_agent/slave_driver.sv(249) @ 345000: uvm_test_top.axi_env.slv_agt_top.agnth[3].drvh [AXI_SLAVE_DRIVER_READ_ADDRESS] Data from the Drive_read_address Task for AXI Slave
+------------------------------------
+Name       Type      Size  Value    
+------------------------------------
+xtn        axi_xtn   -     @2546    
+  AWID     integral  8     'd0      
+  AWADDR   integral  32    'h0      
+  AWLEN    integral  8     'd0      
+  AWSIZE   integral  3     'd0      
+  AWBURST  integral  2     'd0      
+  AWVALID  integral  1     'd0      
+  AWREADY  integral  1     'd0      
+  AWLOCK   integral  1     'd0      
+  AWCACHE  integral  4     'd0      
+  AWQOS    integral  4     'd0      
+  AWPROT   integral  3     'd0      
+  AWUSER   integral  1     'd0      
+  WID      integral  8     'd0      
+  WLAST    integral  1     'd0      
+  WVALID   integral  1     'd0      
+  WREADY   integral  1     'd0      
+  WUSER    integral  1     'd0      
+  BID      integral  8     'd0      
+  BRESP    integral  2     'd0      
+  BVALID   integral  1     'd0      
+  BREADY   integral  1     'd0      
+  BUSER    integral  1     'd0      
+  ARID     integral  8     'd0      
+  ARADDR   integral  32    'h3081efd
+  ARLEN    integral  8     'd3      
+  ARSIZE   integral  3     'd1      
+  ARBURST  integral  2     'd1      
+  ARVALID  integral  1     'd0      
+  ARREADY  integral  1     'd0      
+  ARLOCK   integral  1     1        
+  ARCACHE  integral  4     10       
+  ARQOS    integral  4     'd1      
+  ARPROT   integral  3     'd2      
+  ARUSER   integral  1     'd0      
+  RID      integral  4     'd0      
+  RLAST    integral  1     'd0      
+  RVALID   integral  1     'd0      
+  RREADY   integral  1     'd0      
+  RUSER    integral  1     'd0      
+------------------------------------
+UVM_INFO ../slave_agent/slave_monitor.sv(207) @ 345000: uvm_test_top.axi_env.slv_agt_top.agnth[3].monh [AXI_SLAVE_Monitor_Read_Address_Collect] Displaying Data from AXI Slave Monior Read Address Collect
+------------------------------------
+Name       Type      Size  Value    
+------------------------------------
+xtn3       axi_xtn   -     @2415    
+  AWID     integral  8     'd0      
+  AWADDR   integral  32    'h0      
+  AWLEN    integral  8     'd0      
+  AWSIZE   integral  3     'd0      
+  AWBURST  integral  2     'd0      
+  AWVALID  integral  1     'd0      
+  AWREADY  integral  1     'd0      
+  AWLOCK   integral  1     'd0      
+  AWCACHE  integral  4     'd0      
+  AWQOS    integral  4     'd0      
+  AWPROT   integral  3     'd0      
+  AWUSER   integral  1     'd0      
+  WID      integral  8     'd0      
+  WLAST    integral  1     'd0      
+  WVALID   integral  1     'd0      
+  WREADY   integral  1     'd0      
+  WUSER    integral  1     'd0      
+  BID      integral  8     'd0      
+  BRESP    integral  2     'd0      
+  BVALID   integral  1     'd0      
+  BREADY   integral  1     'd0      
+  BUSER    integral  1     'd0      
+  ARID     integral  8     'd0      
+  ARADDR   integral  32    'h3081efd
+  ARLEN    integral  8     'd3      
+  ARSIZE   integral  3     'd1      
+  ARBURST  integral  2     'd1      
+  ARVALID  integral  1     'd0      
+  ARREADY  integral  1     'd0      
+  ARLOCK   integral  1     1        
+  ARCACHE  integral  4     10       
+  ARQOS    integral  4     'd1      
+  ARPROT   integral  3     'd2      
+  ARUSER   integral  1     'd0      
+  RID      integral  4     'd0      
+  RLAST    integral  1     'd0      
+  RVALID   integral  1     'd0      
+  RREADY   integral  1     'd0      
+  RUSER    integral  1     'd0      
+------------------------------------
+UVM_INFO ../master_agent/master_driver.sv(222) @ 355000: uvm_test_top.axi_env.mast_agt_top.agnth[0].drvh [AXI_MASTER_DRIVER_READ_ADDRESS] Displaying Data from Master Driver Drive_Read_address channel
+----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                      
+----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @2516                                                      
+  begin_time                   time      64    0                                                          
+  end_time                     time      64    75000                                                      
+  depth                        int       32    'd2                                                        
+  parent sequence (name)       string    10    mast_seqh0                                                 
+  parent sequence (full name)  string    59    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh.mast_seqh0
+  sequencer                    string    48    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh           
+  AWID                         integral  8     197                                                        
+  AWADDR                       integral  32    'h38a69fc                                                  
+  AWLEN                        integral  8     'd3                                                        
+  AWSIZE                       integral  3     'd1                                                        
+  AWBURST                      integral  2     2                                                          
+  AWVALID                      integral  1     1                                                          
+  AWREADY                      integral  1     1                                                          
+  AWLOCK                       integral  1     'd0                                                        
+  AWCACHE                      integral  4     'd3                                                        
+  AWQOS                        integral  4     11                                                         
+  AWPROT                       integral  3     7                                                          
+  AWUSER                       integral  1     1                                                          
+  WID                          integral  8     197                                                        
+  w_addr[0]                    integral  32    'h38a69fc                                                  
+  w_addr[1]                    integral  32    'h38a69fe                                                  
+  w_addr[2]                    integral  32    'h38a69f8                                                  
+  w_addr[3]                    integral  32    'h38a69fa                                                  
+  WDATA[0]                     integral  32    'h1f60983c                                                 
+  WDATA[1]                     integral  32    'he4e8ab64                                                 
+  WDATA[2]                     integral  32    'h9f36da                                                   
+  WDATA[3]                     integral  32    'h9285475                                                  
+  WSTRB[0]                     integral  4     'b11                                                       
+  WSTRB[1]                     integral  4     'b1100                                                     
+  WSTRB[2]                     integral  4     'b11                                                       
+  WSTRB[3]                     integral  4     'b1100                                                     
+  WLAST                        integral  1     'd0                                                        
+  WVALID                       integral  1     'd0                                                        
+  WREADY                       integral  1     1                                                          
+  WUSER                        integral  1     1                                                          
+  BID                          integral  8     197                                                        
+  BRESP                        integral  2     'd1                                                        
+  BVALID                       integral  1     'd0                                                        
+  BREADY                       integral  1     1                                                          
+  BUSER                        integral  1     'd0                                                        
+  ARID                         integral  8     233                                                        
+  ARADDR                       integral  32    'h3081efd                                                  
+  ARLEN                        integral  8     'd3                                                        
+  ARSIZE                       integral  3     'd1                                                        
+  ARBURST                      integral  2     'd1                                                        
+  ARVALID                      integral  1     1                                                          
+  ARREADY                      integral  1     'd0                                                        
+  ARLOCK                       integral  1     1                                                          
+  ARCACHE                      integral  4     10                                                         
+  ARQOS                        integral  4     'd1                                                        
+  ARPROT                       integral  3     'd2                                                        
+  ARUSER                       integral  1     1                                                          
+  RID                          integral  4     233                                                        
+  r_addr[0]                    integral  32    'h3081efd                                                  
+  r_addr[1]                    integral  32    'h3081efe                                                  
+  r_addr[2]                    integral  32    'h3081f00                                                  
+  r_addr[3]                    integral  32    'h3081f02                                                  
+  RDATA[0]                     integral  32    'h9e41b6b9                                                 
+  RDATA[1]                     integral  32    'h60b9ac6e                                                 
+  RDATA[2]                     integral  32    'h71029d10                                                 
+  RDATA[3]                     integral  32    'he11a48f2                                                 
+  RRESP[0]                     integral  2     2                                                          
+  RRESP[1]                     integral  2     3                                                          
+  RRESP[2]                     integral  2     3                                                          
+  RRESP[3]                     integral  2     2                                                          
+  RLAST                        integral  1     1                                                          
+  RVALID                       integral  1     1                                                          
+  RREADY                       integral  1     1                                                          
+  RUSER                        integral  1     'd0                                                        
+----------------------------------------------------------------------------------------------------------
+UVM_INFO ../slave_agent/slave_monitor.sv(235) @ 465000: uvm_test_top.axi_env.slv_agt_top.agnth[3].monh [AXI_SLAVE_Monitor_Read_Data_Collect] Displaying Data from AXI Slave Monior Read Data Collect
+---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn3         axi_xtn   -     @2415     
+  AWID       integral  8     'd0       
+  AWADDR     integral  32    'h0       
+  AWLEN      integral  8     'd0       
+  AWSIZE     integral  3     'd0       
+  AWBURST    integral  2     'd0       
+  AWVALID    integral  1     'd0       
+  AWREADY    integral  1     'd0       
+  AWLOCK     integral  1     'd0       
+  AWCACHE    integral  4     'd0       
+  AWQOS      integral  4     'd0       
+  AWPROT     integral  3     'd0       
+  AWUSER     integral  1     'd0       
+  WID        integral  8     'd0       
+  WLAST      integral  1     'd0       
+  WVALID     integral  1     'd0       
+  WREADY     integral  1     'd0       
+  WUSER      integral  1     'd0       
+  BID        integral  8     'd0       
+  BRESP      integral  2     'd0       
+  BVALID     integral  1     'd0       
+  BREADY     integral  1     'd0       
+  BUSER      integral  1     'd0       
+  ARID       integral  8     'd0       
+  ARADDR     integral  32    'h3081efd 
+  ARLEN      integral  8     'd3       
+  ARSIZE     integral  3     'd1       
+  ARBURST    integral  2     'd1       
+  ARVALID    integral  1     'd0       
+  ARREADY    integral  1     'd0       
+  ARLOCK     integral  1     1         
+  ARCACHE    integral  4     10        
+  ARQOS      integral  4     'd1       
+  ARPROT     integral  3     'd2       
+  ARUSER     integral  1     'd0       
+  RID        integral  4     'd0       
+  r_addr[0]  integral  32    'h3081efd 
+  r_addr[1]  integral  32    'h3081efe 
+  r_addr[2]  integral  32    'h3081f00 
+  r_addr[3]  integral  32    'h3081f02 
+  RDATA[0]   integral  32    'h29a773eb
+  RDATA[1]   integral  32    'h77f8059b
+  RDATA[2]   integral  32    'hc4b66c65
+  RDATA[3]   integral  32    'h672ebbf2
+  RRESP[0]   integral  2     'd0       
+  RRESP[1]   integral  2     2         
+  RRESP[2]   integral  2     2         
+  RRESP[3]   integral  2     2         
+  RLAST      integral  1     1         
+  RVALID     integral  1     'd0       
+  RREADY     integral  1     'd0       
+  RUSER      integral  1     'd0       
+---------------------------------------
+UVM_INFO ../tb/scoreboard.sv(729) @ 465000: uvm_test_top.axi_env.sb_h [AXI_SCOREBORD-Run_Phase] Data from scoreboard -Slave  Data
+---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn3         axi_xtn   -     @2415     
+  AWID       integral  8     'd0       
+  AWADDR     integral  32    'h0       
+  AWLEN      integral  8     'd0       
+  AWSIZE     integral  3     'd0       
+  AWBURST    integral  2     'd0       
+  AWVALID    integral  1     'd0       
+  AWREADY    integral  1     'd0       
+  AWLOCK     integral  1     'd0       
+  AWCACHE    integral  4     'd0       
+  AWQOS      integral  4     'd0       
+  AWPROT     integral  3     'd0       
+  AWUSER     integral  1     'd0       
+  WID        integral  8     'd0       
+  WLAST      integral  1     'd0       
+  WVALID     integral  1     'd0       
+  WREADY     integral  1     'd0       
+  WUSER      integral  1     'd0       
+  BID        integral  8     'd0       
+  BRESP      integral  2     'd0       
+  BVALID     integral  1     'd0       
+  BREADY     integral  1     'd0       
+  BUSER      integral  1     'd0       
+  ARID       integral  8     'd0       
+  ARADDR     integral  32    'h3081efd 
+  ARLEN      integral  8     'd3       
+  ARSIZE     integral  3     'd1       
+  ARBURST    integral  2     'd1       
+  ARVALID    integral  1     'd0       
+  ARREADY    integral  1     'd0       
+  ARLOCK     integral  1     1         
+  ARCACHE    integral  4     10        
+  ARQOS      integral  4     'd1       
+  ARPROT     integral  3     'd2       
+  ARUSER     integral  1     'd0       
+  RID        integral  4     'd0       
+  r_addr[0]  integral  32    'h3081efd 
+  r_addr[1]  integral  32    'h3081efe 
+  r_addr[2]  integral  32    'h3081f00 
+  r_addr[3]  integral  32    'h3081f02 
+  RDATA[0]   integral  32    'h29a773eb
+  RDATA[1]   integral  32    'h77f8059b
+  RDATA[2]   integral  32    'hc4b66c65
+  RDATA[3]   integral  32    'h672ebbf2
+  RRESP[0]   integral  2     'd0       
+  RRESP[1]   integral  2     2         
+  RRESP[2]   integral  2     2         
+  RRESP[3]   integral  2     2         
+  RLAST      integral  1     1         
+  RVALID     integral  1     'd0       
+  RREADY     integral  1     'd0       
+  RUSER      integral  1     'd0       
+---------------------------------------
+UVM_INFO ../master_agent/master_monitor.sv(233) @ 475000: uvm_test_top.axi_env.mast_agt_top.agnth[0].monh [AXI_MASTER_Monitor_Read_Data_Collect] Displaying Data from AXI Master Monior Read Data Collect
+---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn3         axi_xtn   -     @2485     
+  AWID       integral  8     'd0       
+  AWADDR     integral  32    'h0       
+  AWLEN      integral  8     'd0       
+  AWSIZE     integral  3     'd0       
+  AWBURST    integral  2     'd0       
+  AWVALID    integral  1     'd0       
+  AWREADY    integral  1     'd0       
+  AWLOCK     integral  1     'd0       
+  AWCACHE    integral  4     'd0       
+  AWQOS      integral  4     'd0       
+  AWPROT     integral  3     'd0       
+  AWUSER     integral  1     'd0       
+  WID        integral  8     'd0       
+  WLAST      integral  1     'd0       
+  WVALID     integral  1     'd0       
+  WREADY     integral  1     'd0       
+  WUSER      integral  1     'd0       
+  BID        integral  8     'd0       
+  BRESP      integral  2     'd0       
+  BVALID     integral  1     'd0       
+  BREADY     integral  1     'd0       
+  BUSER      integral  1     'd0       
+  ARID       integral  8     233       
+  ARADDR     integral  32    'h3081efd 
+  ARLEN      integral  8     'd3       
+  ARSIZE     integral  3     'd1       
+  ARBURST    integral  2     'd1       
+  ARVALID    integral  1     'd0       
+  ARREADY    integral  1     'd0       
+  ARLOCK     integral  1     1         
+  ARCACHE    integral  4     10        
+  ARQOS      integral  4     'd1       
+  ARPROT     integral  3     'd2       
+  ARUSER     integral  1     1         
+  RID        integral  4     233       
+  r_addr[0]  integral  32    'h3081efd 
+  r_addr[1]  integral  32    'h3081efe 
+  r_addr[2]  integral  32    'h3081f00 
+  r_addr[3]  integral  32    'h3081f02 
+  RDATA[0]   integral  32    'h29a773eb
+  RDATA[1]   integral  32    'h77f8059b
+  RDATA[2]   integral  32    'hc4b66c65
+  RDATA[3]   integral  32    'h672ebbf2
+  RRESP[0]   integral  2     'd0       
+  RRESP[1]   integral  2     2         
+  RRESP[2]   integral  2     2         
+  RRESP[3]   integral  2     2         
+  RLAST      integral  1     1         
+  RVALID     integral  1     'd0       
+  RREADY     integral  1     'd0       
+  RUSER      integral  1     'd0       
+---------------------------------------
+UVM_INFO ../tb/scoreboard.sv(626) @ 475000: uvm_test_top.axi_env.sb_h [AXI_SCOREBORD-Run_Phase] Data from scoreboard -Master  Data
+---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn3         axi_xtn   -     @2485     
+  AWID       integral  8     'd0       
+  AWADDR     integral  32    'h0       
+  AWLEN      integral  8     'd0       
+  AWSIZE     integral  3     'd0       
+  AWBURST    integral  2     'd0       
+  AWVALID    integral  1     'd0       
+  AWREADY    integral  1     'd0       
+  AWLOCK     integral  1     'd0       
+  AWCACHE    integral  4     'd0       
+  AWQOS      integral  4     'd0       
+  AWPROT     integral  3     'd0       
+  AWUSER     integral  1     'd0       
+  WID        integral  8     'd0       
+  WLAST      integral  1     'd0       
+  WVALID     integral  1     'd0       
+  WREADY     integral  1     'd0       
+  WUSER      integral  1     'd0       
+  BID        integral  8     'd0       
+  BRESP      integral  2     'd0       
+  BVALID     integral  1     'd0       
+  BREADY     integral  1     'd0       
+  BUSER      integral  1     'd0       
+  ARID       integral  8     233       
+  ARADDR     integral  32    'h3081efd 
+  ARLEN      integral  8     'd3       
+  ARSIZE     integral  3     'd1       
+  ARBURST    integral  2     'd1       
+  ARVALID    integral  1     'd0       
+  ARREADY    integral  1     'd0       
+  ARLOCK     integral  1     1         
+  ARCACHE    integral  4     10        
+  ARQOS      integral  4     'd1       
+  ARPROT     integral  3     'd2       
+  ARUSER     integral  1     1         
+  RID        integral  4     233       
+  r_addr[0]  integral  32    'h3081efd 
+  r_addr[1]  integral  32    'h3081efe 
+  r_addr[2]  integral  32    'h3081f00 
+  r_addr[3]  integral  32    'h3081f02 
+  RDATA[0]   integral  32    'h29a773eb
+  RDATA[1]   integral  32    'h77f8059b
+  RDATA[2]   integral  32    'hc4b66c65
+  RDATA[3]   integral  32    'h672ebbf2
+  RRESP[0]   integral  2     'd0       
+  RRESP[1]   integral  2     2         
+  RRESP[2]   integral  2     2         
+  RRESP[3]   integral  2     2         
+  RLAST      integral  1     1         
+  RVALID     integral  1     'd0       
+  RREADY     integral  1     'd0       
+  RUSER      integral  1     'd0       
+---------------------------------------
+UVM_INFO ../tb/scoreboard.sv(765) @ 475000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--WRITE_DATA] Write Address comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(778) @ 475000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--WRITE_DATA] Write Control information comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(808) @ 475000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--READ_DATA] Read Address comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(832) @ 475000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--Read_DATA] Read Response comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(832) @ 475000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--Read_DATA] Read Response comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(832) @ 475000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--Read_DATA] Read Response comparision is Successful
+UVM_INFO ../tb/scoreboard.sv(832) @ 475000: uvm_test_top.axi_env.sb_h [AXI_SCORE-BOARD--Read_DATA] Read Response comparision is Successful
+UVM_INFO ../master_agent/master_monitor.sv(131) @ 485000: uvm_test_top.axi_env.mast_agt_top.agnth[0].monh [AXI_MASTER_Monitor_Write_Address_Collect] Displaying Data from AXI Master Monior Write Address Collect
+------------------------------------
+Name       Type      Size  Value    
+------------------------------------
+xtn        axi_xtn   -     @2748    
+  AWID     integral  8     186      
+  AWADDR   integral  32    'h22906a4
+  AWLEN    integral  8     'd3      
+  AWSIZE   integral  3     'd1      
+  AWBURST  integral  2     2        
+  AWVALID  integral  1     'd0      
+  AWREADY  integral  1     'd0      
+  AWLOCK   integral  1     'd0      
+  AWCACHE  integral  4     8        
+  AWQOS    integral  4     'd0      
+  AWPROT   integral  3     'd3      
+  AWUSER   integral  1     'd0      
+  WID      integral  8     'd0      
+  WLAST    integral  1     'd0      
+  WVALID   integral  1     'd0      
+  WREADY   integral  1     'd0      
+  WUSER    integral  1     'd0      
+  BID      integral  8     'd0      
+  BRESP    integral  2     'd0      
+  BVALID   integral  1     'd0      
+  BREADY   integral  1     'd0      
+  BUSER    integral  1     'd0      
+  ARID     integral  8     'd0      
+  ARADDR   integral  32    'h0      
+  ARLEN    integral  8     'd0      
+  ARSIZE   integral  3     'd0      
+  ARBURST  integral  2     'd0      
+  ARVALID  integral  1     'd0      
+  ARREADY  integral  1     'd0      
+  ARLOCK   integral  1     'd0      
+  ARCACHE  integral  4     'd0      
+  ARQOS    integral  4     'd0      
+  ARPROT   integral  3     'd0      
+  ARUSER   integral  1     'd0      
+  RID      integral  4     'd0      
+  RLAST    integral  1     'd0      
+  RVALID   integral  1     'd0      
+  RREADY   integral  1     'd0      
+  RUSER    integral  1     'd0      
+------------------------------------
+UVM_INFO ../master_agent/master_driver.sv(253) @ 485000: uvm_test_top.axi_env.mast_agt_top.agnth[0].drvh [AXI_MASTER_DRIVER_READ_DATA] Displaying Data from Master Driver Drive_Read_data channel
+----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                      
+----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @2516                                                      
+  begin_time                   time      64    0                                                          
+  end_time                     time      64    75000                                                      
+  depth                        int       32    'd2                                                        
+  parent sequence (name)       string    10    mast_seqh0                                                 
+  parent sequence (full name)  string    59    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh.mast_seqh0
+  sequencer                    string    48    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh           
+  AWID                         integral  8     197                                                        
+  AWADDR                       integral  32    'h38a69fc                                                  
+  AWLEN                        integral  8     'd3                                                        
+  AWSIZE                       integral  3     'd1                                                        
+  AWBURST                      integral  2     2                                                          
+  AWVALID                      integral  1     1                                                          
+  AWREADY                      integral  1     1                                                          
+  AWLOCK                       integral  1     'd0                                                        
+  AWCACHE                      integral  4     'd3                                                        
+  AWQOS                        integral  4     11                                                         
+  AWPROT                       integral  3     7                                                          
+  AWUSER                       integral  1     1                                                          
+  WID                          integral  8     197                                                        
+  w_addr[0]                    integral  32    'h38a69fc                                                  
+  w_addr[1]                    integral  32    'h38a69fe                                                  
+  w_addr[2]                    integral  32    'h38a69f8                                                  
+  w_addr[3]                    integral  32    'h38a69fa                                                  
+  WDATA[0]                     integral  32    'h1f60983c                                                 
+  WDATA[1]                     integral  32    'he4e8ab64                                                 
+  WDATA[2]                     integral  32    'h9f36da                                                   
+  WDATA[3]                     integral  32    'h9285475                                                  
+  WSTRB[0]                     integral  4     'b11                                                       
+  WSTRB[1]                     integral  4     'b1100                                                     
+  WSTRB[2]                     integral  4     'b11                                                       
+  WSTRB[3]                     integral  4     'b1100                                                     
+  WLAST                        integral  1     'd0                                                        
+  WVALID                       integral  1     'd0                                                        
+  WREADY                       integral  1     1                                                          
+  WUSER                        integral  1     1                                                          
+  BID                          integral  8     197                                                        
+  BRESP                        integral  2     'd1                                                        
+  BVALID                       integral  1     'd0                                                        
+  BREADY                       integral  1     1                                                          
+  BUSER                        integral  1     'd0                                                        
+  ARID                         integral  8     233                                                        
+  ARADDR                       integral  32    'h3081efd                                                  
+  ARLEN                        integral  8     'd3                                                        
+  ARSIZE                       integral  3     'd1                                                        
+  ARBURST                      integral  2     'd1                                                        
+  ARVALID                      integral  1     1                                                          
+  ARREADY                      integral  1     'd0                                                        
+  ARLOCK                       integral  1     1                                                          
+  ARCACHE                      integral  4     10                                                         
+  ARQOS                        integral  4     'd1                                                        
+  ARPROT                       integral  3     'd2                                                        
+  ARUSER                       integral  1     1                                                          
+  RID                          integral  4     233                                                        
+  r_addr[0]                    integral  32    'h3081efd                                                  
+  r_addr[1]                    integral  32    'h3081efe                                                  
+  r_addr[2]                    integral  32    'h3081f00                                                  
+  r_addr[3]                    integral  32    'h3081f02                                                  
+  RDATA[0]                     integral  32    'h0                                                        
+  RDATA[1]                     integral  32    'h0                                                        
+  RDATA[2]                     integral  32    'h0                                                        
+  RDATA[3]                     integral  32    'h0                                                        
+  RRESP[0]                     integral  2     2                                                          
+  RRESP[1]                     integral  2     3                                                          
+  RRESP[2]                     integral  2     3                                                          
+  RRESP[3]                     integral  2     2                                                          
+  RLAST                        integral  1     1                                                          
+  RVALID                       integral  1     1                                                          
+  RREADY                       integral  1     1                                                          
+  RUSER                        integral  1     'd0                                                        
+----------------------------------------------------------------------------------------------------------
+UVM_INFO ../master_agent/master_monitor.sv(103) @ 495000: uvm_test_top.axi_env.mast_agt_top.agnth[0].monh [AXI_MASTER_Monitor] Displaying Data from AXI Master Monior 
+UVM_INFO ../slave_agent/slave_monitor.sv(131) @ 505000: uvm_test_top.axi_env.slv_agt_top.agnth[2].monh [AXI_SLAVE_Monitor_Write_Address_Collect] Displaying Data from AXI Slave Monior Write Address Collect
+------------------------------------
+Name       Type      Size  Value    
+------------------------------------
+xtn        axi_xtn   -     @2421    
+  AWID     integral  8     'd0      
+  AWADDR   integral  32    'h22906a4
+  AWLEN    integral  8     'd3      
+  AWSIZE   integral  3     'd1      
+  AWBURST  integral  2     2        
+  AWVALID  integral  1     'd0      
+  AWREADY  integral  1     'd0      
+  AWLOCK   integral  1     'd0      
+  AWCACHE  integral  4     8        
+  AWQOS    integral  4     'd0      
+  AWPROT   integral  3     'd3      
+  AWUSER   integral  1     'd0      
+  WID      integral  8     'd0      
+  WLAST    integral  1     'd0      
+  WVALID   integral  1     'd0      
+  WREADY   integral  1     'd0      
+  WUSER    integral  1     'd0      
+  BID      integral  8     'd0      
+  BRESP    integral  2     'd0      
+  BVALID   integral  1     'd0      
+  BREADY   integral  1     'd0      
+  BUSER    integral  1     'd0      
+  ARID     integral  8     'd0      
+  ARADDR   integral  32    'h0      
+  ARLEN    integral  8     'd0      
+  ARSIZE   integral  3     'd0      
+  ARBURST  integral  2     'd0      
+  ARVALID  integral  1     'd0      
+  ARREADY  integral  1     'd0      
+  ARLOCK   integral  1     'd0      
+  ARCACHE  integral  4     'd0      
+  ARQOS    integral  4     'd0      
+  ARPROT   integral  3     'd0      
+  ARUSER   integral  1     'd0      
+  RID      integral  4     'd0      
+  RLAST    integral  1     'd0      
+  RVALID   integral  1     'd0      
+  RREADY   integral  1     'd0      
+  RUSER    integral  1     'd0      
+------------------------------------
+UVM_INFO ../slave_agent/slave_driver.sv(283) @ 505000: uvm_test_top.axi_env.slv_agt_top.agnth[3].drvh [AXI_SLAVE_DRIVER_READ_DATA] Data from the Drive_read_data Task for AXI Slave
+--------------------------------------
+Name         Type      Size  Value    
+--------------------------------------
+xtn          axi_xtn   -     @2546    
+  AWID       integral  8     'd0      
+  AWADDR     integral  32    'h0      
+  AWLEN      integral  8     'd0      
+  AWSIZE     integral  3     'd0      
+  AWBURST    integral  2     'd0      
+  AWVALID    integral  1     'd0      
+  AWREADY    integral  1     'd0      
+  AWLOCK     integral  1     'd0      
+  AWCACHE    integral  4     'd0      
+  AWQOS      integral  4     'd0      
+  AWPROT     integral  3     'd0      
+  AWUSER     integral  1     'd0      
+  WID        integral  8     'd0      
+  WLAST      integral  1     'd0      
+  WVALID     integral  1     'd0      
+  WREADY     integral  1     'd0      
+  WUSER      integral  1     'd0      
+  BID        integral  8     'd0      
+  BRESP      integral  2     'd0      
+  BVALID     integral  1     'd0      
+  BREADY     integral  1     'd0      
+  BUSER      integral  1     'd0      
+  ARID       integral  8     'd0      
+  ARADDR     integral  32    'h3081efd
+  ARLEN      integral  8     'd3      
+  ARSIZE     integral  3     'd1      
+  ARBURST    integral  2     'd1      
+  ARVALID    integral  1     'd0      
+  ARREADY    integral  1     'd0      
+  ARLOCK     integral  1     1        
+  ARCACHE    integral  4     10       
+  ARQOS      integral  4     'd1      
+  ARPROT     integral  3     'd2      
+  ARUSER     integral  1     'd0      
+  RID        integral  4     'd0      
+  r_addr[0]  integral  32    'h3081efd
+  r_addr[1]  integral  32    'h3081efe
+  r_addr[2]  integral  32    'h3081f00
+  r_addr[3]  integral  32    'h3081f02
+  RDATA[0]   integral  32    'h0      
+  RDATA[1]   integral  32    'h0      
+  RDATA[2]   integral  32    'h0      
+  RDATA[3]   integral  32    'h0      
+  RLAST      integral  1     'd0      
+  RVALID     integral  1     'd0      
+  RREADY     integral  1     'd0      
+  RUSER      integral  1     'd0      
+--------------------------------------
+UVM_INFO ../slave_agent/slave_monitor.sv(104) @ 515000: uvm_test_top.axi_env.slv_agt_top.agnth[2].monh [AXI_SLAVE_Monitor] Displaying Data from AXI Slave Monior 
+UVM_INFO ../slave_agent/slave_driver.sv(146) @ 535000: uvm_test_top.axi_env.slv_agt_top.agnth[2].drvh [AXI_SLAVE_DRIVER_WRITE_ADDRESS] Data from the Drive_Write_address Task for AXI Slave
+------------------------------------
+Name       Type      Size  Value    
+------------------------------------
+xtn        axi_xtn   -     @2805    
+  AWID     integral  8     'd0      
+  AWADDR   integral  32    'h22906a4
+  AWLEN    integral  8     'd3      
+  AWSIZE   integral  3     'd1      
+  AWBURST  integral  2     2        
+  AWVALID  integral  1     1        
+  AWREADY  integral  1     'd0      
+  AWLOCK   integral  1     'd0      
+  AWCACHE  integral  4     8        
+  AWQOS    integral  4     'd0      
+  AWPROT   integral  3     'd3      
+  AWUSER   integral  1     'd0      
+  WID      integral  8     'd0      
+  WLAST    integral  1     'd0      
+  WVALID   integral  1     'd0      
+  WREADY   integral  1     'd0      
+  WUSER    integral  1     'd0      
+  BID      integral  8     'd0      
+  BRESP    integral  2     'd0      
+  BVALID   integral  1     'd0      
+  BREADY   integral  1     'd0      
+  BUSER    integral  1     'd0      
+  ARID     integral  8     'd0      
+  ARADDR   integral  32    'h0      
+  ARLEN    integral  8     'd0      
+  ARSIZE   integral  3     'd0      
+  ARBURST  integral  2     'd0      
+  ARVALID  integral  1     'd0      
+  ARREADY  integral  1     'd0      
+  ARLOCK   integral  1     'd0      
+  ARCACHE  integral  4     'd0      
+  ARQOS    integral  4     'd0      
+  ARPROT   integral  3     'd0      
+  ARUSER   integral  1     'd0      
+  RID      integral  4     'd0      
+  RLAST    integral  1     'd0      
+  RVALID   integral  1     'd0      
+  RREADY   integral  1     'd0      
+  RUSER    integral  1     'd0      
+------------------------------------
+UVM_INFO ../slave_agent/slave_driver.sv(107) @ 535000: uvm_test_top.axi_env.slv_agt_top.agnth[2].drvh [AXI_SLAVE_DRIVER] Data from Drive Task for AXI Slave
+--------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                    
+--------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @2801                                                    
+  begin_time                   time      64    75000                                                    
+  depth                        int       32    'd2                                                      
+  parent sequence (name)       string    9     slv_seqh2                                                
+  parent sequence (full name)  string    57    uvm_test_top.axi_env.slv_agt_top.agnth[2].seqrh.slv_seqh2
+  sequencer                    string    47    uvm_test_top.axi_env.slv_agt_top.agnth[2].seqrh          
+  AWID                         integral  8     224                                                      
+  AWADDR                       integral  32    'h2f08647                                                
+  AWLEN                        integral  8     'd0                                                      
+  AWSIZE                       integral  3     'd2                                                      
+  AWBURST                      integral  2     'd0                                                      
+  AWVALID                      integral  1     'd0                                                      
+  AWREADY                      integral  1     'd0                                                      
+  AWLOCK                       integral  1     1                                                        
+  AWCACHE                      integral  4     'd5                                                      
+  AWQOS                        integral  4     'd7                                                      
+  AWPROT                       integral  3     'd1                                                      
+  AWUSER                       integral  1     'd0                                                      
+  WID                          integral  8     224                                                      
+  w_addr[0]                    integral  32    'h2f08647                                                
+  WDATA[0]                     integral  32    'hb496076e                                               
+  WLAST                        integral  1     1                                                        
+  WVALID                       integral  1     'd0                                                      
+  WREADY                       integral  1     1                                                        
+  WUSER                        integral  1     1                                                        
+  BID                          integral  8     224                                                      
+  BRESP                        integral  2     3                                                        
+  BVALID                       integral  1     1                                                        
+  BREADY                       integral  1     'd0                                                      
+  BUSER                        integral  1     1                                                        
+  ARID                         integral  8     149                                                      
+  ARADDR                       integral  32    'h3c2c884                                                
+  ARLEN                        integral  8     'd3                                                      
+  ARSIZE                       integral  3     'd1                                                      
+  ARBURST                      integral  2     'd0                                                      
+  ARVALID                      integral  1     'd0                                                      
+  ARREADY                      integral  1     1                                                        
+  ARLOCK                       integral  1     1                                                        
+  ARCACHE                      integral  4     'd2                                                      
+  ARQOS                        integral  4     'd1                                                      
+  ARPROT                       integral  3     4                                                        
+  ARUSER                       integral  1     'd0                                                      
+  RID                          integral  4     'd5                                                      
+  r_addr[0]                    integral  32    'h3c2c884                                                
+  r_addr[1]                    integral  32    'h3c2c884                                                
+  r_addr[2]                    integral  32    'h3c2c884                                                
+  r_addr[3]                    integral  32    'h3c2c884                                                
+  RDATA[0]                     integral  32    'hc269b410                                               
+  RDATA[1]                     integral  32    'h3dbdb15a                                               
+  RDATA[2]                     integral  32    'hcddb7503                                               
+  RDATA[3]                     integral  32    'h8a0999e1                                               
+  RRESP[0]                     integral  2     3                                                        
+  RRESP[1]                     integral  2     'd0                                                      
+  RRESP[2]                     integral  2     'd0                                                      
+  RRESP[3]                     integral  2     'd0                                                      
+  RLAST                        integral  1     1                                                        
+  RVALID                       integral  1     'd0                                                      
+  RREADY                       integral  1     1                                                        
+  RUSER                        integral  1     'd0                                                      
+--------------------------------------------------------------------------------------------------------
+UVM_INFO ../master_agent/master_driver.sv(139) @ 535000: uvm_test_top.axi_env.mast_agt_top.agnth[0].drvh [AXI_MASTER_DRIVER_WRITE_ADDRESS] Displaying Data from Master Driver Drive_Write_address channel
+----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                      
+----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @2797                                                      
+  begin_time                   time      64    75000                                                      
+  depth                        int       32    'd2                                                        
+  parent sequence (name)       string    10    mast_seqh0                                                 
+  parent sequence (full name)  string    59    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh.mast_seqh0
+  sequencer                    string    48    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh           
+  AWID                         integral  8     186                                                        
+  AWADDR                       integral  32    'h22906a4                                                  
+  AWLEN                        integral  8     'd3                                                        
+  AWSIZE                       integral  3     'd1                                                        
+  AWBURST                      integral  2     2                                                          
+  AWVALID                      integral  1     'd0                                                        
+  AWREADY                      integral  1     1                                                          
+  AWLOCK                       integral  1     'd0                                                        
+  AWCACHE                      integral  4     8                                                          
+  AWQOS                        integral  4     'd0                                                        
+  AWPROT                       integral  3     'd3                                                        
+  AWUSER                       integral  1     'd0                                                        
+  WID                          integral  8     186                                                        
+  w_addr[0]                    integral  32    'h22906a4                                                  
+  w_addr[1]                    integral  32    'h22906a6                                                  
+  w_addr[2]                    integral  32    'h22906a0                                                  
+  w_addr[3]                    integral  32    'h22906a2                                                  
+  WDATA[0]                     integral  32    'h26183fe8                                                 
+  WDATA[1]                     integral  32    'h66207880                                                 
+  WDATA[2]                     integral  32    'he1d2db71                                                 
+  WDATA[3]                     integral  32    'h6d1540fd                                                 
+  WSTRB[0]                     integral  4     'b11                                                       
+  WSTRB[1]                     integral  4     'b1100                                                     
+  WSTRB[2]                     integral  4     'b11                                                       
+  WSTRB[3]                     integral  4     'b1100                                                     
+  WLAST                        integral  1     1                                                          
+  WVALID                       integral  1     1                                                          
+  WREADY                       integral  1     'd0                                                        
+  WUSER                        integral  1     'd0                                                        
+  BID                          integral  8     186                                                        
+  BRESP                        integral  2     'd0                                                        
+  BVALID                       integral  1     'd0                                                        
+  BREADY                       integral  1     1                                                          
+  BUSER                        integral  1     1                                                          
+  ARID                         integral  8     192                                                        
+  ARADDR                       integral  32    'h2a36179                                                  
+  ARLEN                        integral  8     'd5                                                        
+  ARSIZE                       integral  3     'd2                                                        
+  ARBURST                      integral  2     'd0                                                        
+  ARVALID                      integral  1     1                                                          
+  ARREADY                      integral  1     'd0                                                        
+  ARLOCK                       integral  1     1                                                          
+  ARCACHE                      integral  4     'd4                                                        
+  ARQOS                        integral  4     'd3                                                        
+  ARPROT                       integral  3     4                                                          
+  ARUSER                       integral  1     1                                                          
+  RID                          integral  4     'd0                                                        
+  r_addr[0]                    integral  32    'h2a36179                                                  
+  r_addr[1]                    integral  32    'h2a36179                                                  
+  r_addr[2]                    integral  32    'h2a36179                                                  
+  r_addr[3]                    integral  32    'h2a36179                                                  
+  r_addr[4]                    integral  32    'h2a36179                                                  
+  r_addr[5]                    integral  32    'h2a36179                                                  
+  RDATA[0]                     integral  32    'h43a07a29                                                 
+  RDATA[1]                     integral  32    'h4df891d2                                                 
+  RDATA[2]                     integral  32    'hd45c645a                                                 
+  RDATA[3]                     integral  32    'h4a187abb                                                 
+  RDATA[4]                     integral  32    'hb5cc54a6                                                 
+  RDATA[5]                     integral  32    'hdb5b80d6                                                 
+  RRESP[0]                     integral  2     3                                                          
+  RRESP[1]                     integral  2     2                                                          
+  RRESP[2]                     integral  2     2                                                          
+  RRESP[3]                     integral  2     3                                                          
+  RRESP[4]                     integral  2     3                                                          
+  RRESP[5]                     integral  2     3                                                          
+  RLAST                        integral  1     1                                                          
+  RVALID                       integral  1     'd0                                                        
+  RREADY                       integral  1     1                                                          
+  RUSER                        integral  1     'd0                                                        
+----------------------------------------------------------------------------------------------------------
+UVM_INFO ../master_agent/master_driver.sv(112) @ 535000: uvm_test_top.axi_env.mast_agt_top.agnth[0].drvh [AXI_MASTER_DRIVER] Displaying Data from Master Driver
+----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                      
+----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @2797                                                      
+  begin_time                   time      64    75000                                                      
+  depth                        int       32    'd2                                                        
+  parent sequence (name)       string    10    mast_seqh0                                                 
+  parent sequence (full name)  string    59    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh.mast_seqh0
+  sequencer                    string    48    uvm_test_top.axi_env.mast_agt_top.agnth[0].seqrh           
+  AWID                         integral  8     186                                                        
+  AWADDR                       integral  32    'h22906a4                                                  
+  AWLEN                        integral  8     'd3                                                        
+  AWSIZE                       integral  3     'd1                                                        
+  AWBURST                      integral  2     2                                                          
+  AWVALID                      integral  1     'd0                                                        
+  AWREADY                      integral  1     1                                                          
+  AWLOCK                       integral  1     'd0                                                        
+  AWCACHE                      integral  4     8                                                          
+  AWQOS                        integral  4     'd0                                                        
+  AWPROT                       integral  3     'd3                                                        
+  AWUSER                       integral  1     'd0                                                        
+  WID                          integral  8     186                                                        
+  w_addr[0]                    integral  32    'h22906a4                                                  
+  w_addr[1]                    integral  32    'h22906a6                                                  
+  w_addr[2]                    integral  32    'h22906a0                                                  
+  w_addr[3]                    integral  32    'h22906a2                                                  
+  WDATA[0]                     integral  32    'h26183fe8                                                 
+  WDATA[1]                     integral  32    'h66207880                                                 
+  WDATA[2]                     integral  32    'he1d2db71                                                 
+  WDATA[3]                     integral  32    'h6d1540fd                                                 
+  WSTRB[0]                     integral  4     'b11                                                       
+  WSTRB[1]                     integral  4     'b1100                                                     
+  WSTRB[2]                     integral  4     'b11                                                       
+  WSTRB[3]                     integral  4     'b1100                                                     
+  WLAST                        integral  1     1                                                          
+  WVALID                       integral  1     1                                                          
+  WREADY                       integral  1     'd0                                                        
+  WUSER                        integral  1     'd0                                                        
+  BID                          integral  8     186                                                        
+  BRESP                        integral  2     'd0                                                        
+  BVALID                       integral  1     'd0                                                        
+  BREADY                       integral  1     1                                                          
+  BUSER                        integral  1     1                                                          
+  ARID                         integral  8     192                                                        
+  ARADDR                       integral  32    'h2a36179                                                  
+  ARLEN                        integral  8     'd5                                                        
+  ARSIZE                       integral  3     'd2                                                        
+  ARBURST                      integral  2     'd0                                                        
+  ARVALID                      integral  1     1                                                          
+  ARREADY                      integral  1     'd0                                                        
+  ARLOCK                       integral  1     1                                                          
+  ARCACHE                      integral  4     'd4                                                        
+  ARQOS                        integral  4     'd3                                                        
+  ARPROT                       integral  3     4                                                          
+  ARUSER                       integral  1     1                                                          
+  RID                          integral  4     'd0                                                        
+  r_addr[0]                    integral  32    'h2a36179                                                  
+  r_addr[1]                    integral  32    'h2a36179                                                  
+  r_addr[2]                    integral  32    'h2a36179                                                  
+  r_addr[3]                    integral  32    'h2a36179                                                  
+  r_addr[4]                    integral  32    'h2a36179                                                  
+  r_addr[5]                    integral  32    'h2a36179                                                  
+  RDATA[0]                     integral  32    'h43a07a29                                                 
+  RDATA[1]                     integral  32    'h4df891d2                                                 
+  RDATA[2]                     integral  32    'hd45c645a                                                 
+  RDATA[3]                     integral  32    'h4a187abb                                                 
+  RDATA[4]                     integral  32    'hb5cc54a6                                                 
+  RDATA[5]                     integral  32    'hdb5b80d6                                                 
+  RRESP[0]                     integral  2     3                                                          
+  RRESP[1]                     integral  2     2                                                          
+  RRESP[2]                     integral  2     2                                                          
+  RRESP[3]                     integral  2     3                                                          
+  RRESP[4]                     integral  2     3                                                          
+  RRESP[5]                     integral  2     3                                                          
+  RLAST                        integral  1     1                                                          
+  RVALID                       integral  1     'd0                                                        
+  RREADY                       integral  1     1                                                          
+  RUSER                        integral  1     'd0                                                        
+----------------------------------------------------------------------------------------------------------
+UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 536600: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO ../master_agent/master_monitor.sv(239) @ 536600: uvm_test_top.axi_env.mast_agt_top.agnth[0].monh [AXI_MASTER_MONITOR-Report_Phase] Report:Master Monitor collected 2 transactions
+UVM_INFO ../master_agent/master_monitor.sv(239) @ 536600: uvm_test_top.axi_env.mast_agt_top.agnth[1].monh [AXI_MASTER_MONITOR-Report_Phase] Report:Master Monitor collected 2 transactions
+UVM_INFO ../master_agent/master_monitor.sv(239) @ 536600: uvm_test_top.axi_env.mast_agt_top.agnth[2].monh [AXI_MASTER_MONITOR-Report_Phase] Report:Master Monitor collected 2 transactions
+UVM_INFO ../master_agent/master_monitor.sv(239) @ 536600: uvm_test_top.axi_env.mast_agt_top.agnth[3].monh [AXI_MASTER_MONITOR-Report_Phase] Report:Master Monitor collected 2 transactions
+UVM_INFO ../tb/scoreboard.sv(842) @ 536600: uvm_test_top.axi_env.sb_h [AXI_SCOREBOARD-Report_Phase]  ***###*** The No of Transaction Verified are 2   ***###***
+UVM_INFO ../slave_agent/slave_monitor.sv(241) @ 536600: uvm_test_top.axi_env.slv_agt_top.agnth[0].monh [AXI_SLAVE_MONITOR-Report_Phase] Report:Slave Monitor collected 2 transactions
+UVM_INFO ../slave_agent/slave_monitor.sv(241) @ 536600: uvm_test_top.axi_env.slv_agt_top.agnth[1].monh [AXI_SLAVE_MONITOR-Report_Phase] Report:Slave Monitor collected 2 transactions
+UVM_INFO ../slave_agent/slave_monitor.sv(241) @ 536600: uvm_test_top.axi_env.slv_agt_top.agnth[2].monh [AXI_SLAVE_MONITOR-Report_Phase] Report:Slave Monitor collected 2 transactions
+UVM_INFO ../slave_agent/slave_monitor.sv(241) @ 536600: uvm_test_top.axi_env.slv_agt_top.agnth[3].monh [AXI_SLAVE_MONITOR-Report_Phase] Report:Slave Monitor collected 2 transactions
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   68
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[AXI_MASTER_DRIVER]     2
+[AXI_MASTER_DRIVER_READ_ADDRESS]     1
+[AXI_MASTER_DRIVER_READ_DATA]     1
+[AXI_MASTER_DRIVER_WRITE_ADDRESS]     2
+[AXI_MASTER_DRIVER_WRITE_DATA]     1
+[AXI_MASTER_DRIVER_WRITE_RESPONSE]     1
+[AXI_MASTER_MONITOR-Report_Phase]     4
+[AXI_MASTER_Monitor]     2
+[AXI_MASTER_Monitor_Read_Address_Collect]     1
+[AXI_MASTER_Monitor_Read_Data_Collect]     1
+[AXI_MASTER_Monitor_Write_Address_Collect]     2
+[AXI_MASTER_Monitor_Write_DATA_Collect]     1
+[AXI_MASTER_Monitor_Write_Response_Collect]     1
+[AXI_SCORE-BOARD--READ_DATA]     3
+[AXI_SCORE-BOARD--Read_DATA]     4
+[AXI_SCORE-BOARD--WRITE_DATA]    11
+[AXI_SCOREBOARD-Report_Phase]     1
+[AXI_SCOREBORD-Run_Phase]     4
+[AXI_SLAVE_DRIVER]     2
+[AXI_SLAVE_DRIVER_READ_ADDRESS]     1
+[AXI_SLAVE_DRIVER_READ_DATA]     1
+[AXI_SLAVE_DRIVER_WRITE_ADDRESS]     2
+[AXI_SLAVE_DRIVER_WRITE_DATA]     1
+[AXI_SLAVE_DRIVER_WRITE_RESPONSE]     1
+[AXI_SLAVE_MONITOR-Report_Phase]     4
+[AXI_SLAVE_Monitor]     2
+[AXI_SLAVE_Monitor_Read_Address_Collect]     1
+[AXI_SLAVE_Monitor_Read_Data_Collect]     1
+[AXI_SLAVE_Monitor_Write_Address_Collect]     2
+[AXI_SLAVE_Monitor_Write_DATA_Collect]     1
+[AXI_SLAVE_Monitor_Write_Response_Collect]     1
+[Questa UVM]     2
+[RNTST]     1
+[TEST_DONE]     1
+[UVMTOP]     1
+** Note: $finish    : /home/cad/eda/Questa_2019/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+   Time: 536600 ps  Iteration: 54  Instance: /top
+Saving coverage database on exit...
+End time: 14:21:31 on Jul 01,2024, Elapsed time: 0:00:03
+Errors: 0, Warnings: 1

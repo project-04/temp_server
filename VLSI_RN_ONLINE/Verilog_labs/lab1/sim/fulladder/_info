@@ -1,0 +1,89 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+!s11f vlog 2022.1_2 2022.04, Apr  2 2022
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/home1/BPRN24/BokkaCS/VLSI_RN_ONLINE/Verilog_labs/lab1/sim
+T_opt
+!s110 1772617966
+V8J_?DnSEfjlai[EZ7MBCC3
+04 13 4 work full_adder_tb fast 0
+=1-208810b9d0a7-69a800ee-a797a-20316e
+R0
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work fulladder
+Z2 tCvgOpt 0
+n@_opt
+OL;O;2022.1_2;75
+vfull_adder
+Z3 !s110 1772617942
+!i10b 1
+!s100 NZTYjiFmVUH0e8K28E0cl1
+IXaX59LXWb]mOb?:YCn8J_1
+R1
+w1756005198
+8../rtl/full_adder.v
+F../rtl/full_adder.v
+!i122 0
+L0 24 22
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+Z5 OL;L;2022.1_2;75
+r1
+!s85 0
+31
+Z6 !s108 1772617942.000000
+Z7 !s107 ../tb/full_adder_tb.v|../rtl/half_adder.v|../rtl/full_adder.v|
+Z8 !s90 -work|fulladder|../rtl/full_adder.v|../rtl/half_adder.v|../tb/full_adder_tb.v|
+!i113 0
+Z9 o-work fulladder -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+vfull_adder_tb
+R3
+!i10b 1
+!s100 OWnnF19l<_ec^SOe5FcA21
+I:P;dYdKc_dE5zNQQWUBPS1
+R1
+w1756011107
+8../tb/full_adder_tb.v
+F../tb/full_adder_tb.v
+!i122 0
+L0 24 46
+R4
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R2
+vhalf_adder
+R3
+!i10b 1
+!s100 VLDGJHTPdYBob5>58AdkW0
+IhIGD2oa=V5^F8nee5VcKP0
+R1
+w1752901648
+8../rtl/half_adder.v
+F../rtl/half_adder.v
+!i122 0
+L0 24 8
+R4
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R2

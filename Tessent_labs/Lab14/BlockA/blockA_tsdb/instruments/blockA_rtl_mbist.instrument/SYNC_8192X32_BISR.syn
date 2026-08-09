@@ -1,0 +1,50 @@
+/*
+----------------------------------------------------------------------------------
+-                                                                                -
+-  Copyright Mentor Graphics Corporation                                         -
+-  All Rights Reserved                                                           -
+-                                                                                -
+-  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY                               -
+-  INFORMATION WHICH IS THE PROPERTY OF MENTOR GRAPHICS                          -
+-  CORPORATION OR ITS LICENSORS AND IS SUBJECT                                   -
+-  TO LICENSE TERMS.                                                             -
+-                                                                                -
+----------------------------------------------------------------------------------
+-  File created by: Tessent Shell                                                -
+-          Version: 2019.1                                                       -
+-       Created on: Wed Aug 14 12:11:29 IST 2019                                 -
+----------------------------------------------------------------------------------
+
+
+*/
+`celldefine
+module SYNC_8192X32_BISR (
+    SCLK,
+    RSTB,
+    SDIN,
+    SDOUT,
+    CLK,
+    WEB,
+    BWEB,
+    CEB,
+    TSEL,
+    A,
+    D,
+    Q
+
+);
+input           CLK;
+input           WEB;
+input  [31:0]   BWEB;
+input           CEB;
+input   [1:0]   TSEL;
+input  [12:0]   A;
+input  [31:0]   D;
+output [31:0]   Q;
+input SCLK;
+input RSTB;
+input SDIN;
+output SDOUT;
+
+endmodule
+`endcelldefine

@@ -1,0 +1,451 @@
+module tb;
+	integer i,j,k;
+	parameter [7:0] temp = "$";
+
+/*----------------------------------------------------------
+# 1  
+# 1 2  
+# 1 2 3  
+# 1 2 3 4  
+# 1 2 3 4 5 
+*/
+	initial begin
+	$display("\n");
+		for(i=1; i<=5; i=i+1)
+		begin
+			$display("%s",{6{"A"}});
+		end
+	$display("\n");
+	end
+	
+/*----------------------------------------------------------
+# 1  
+# 1 2  
+# 1 2 3  
+# 1 2 3 4  
+# 1 2 3 4 5 
+*/
+	initial begin
+	$display("\n");
+		for(i=1; i<=5; i=i+1)
+		begin
+			for(j=1; j<=6-i; j=j+1)
+			begin
+				$write("%0d ",j);
+			end
+			$display();
+		end
+	$display("\n");
+	end
+	
+/*----------------------------------------------------------
+# 1  
+# 1 2  
+# 1 2 3  
+# 1 2 3 4  
+# 1 2 3 4 5
+*/ 
+	initial begin
+	$display("\n");
+		for(i=1; i<=5; i=i+1)
+		begin
+			for(j=1; j<=i; j=j+1)
+			begin
+				$write("%0d ",j);
+			end
+			$display();
+		end
+	$display("\n");
+	end
+	
+
+/*----------------------------------------------------------
+# 1  
+# 1 2  
+# 1 2 3  
+# 1 2 3 4  
+# 1 2 3 4 5  
+# 1 2 3 4 5  
+# 1 2 3 4  
+# 1 2 3  
+# 1 2  
+# 1 
+*/
+	initial begin
+	$display("\n");
+		for(i=1; i<=5; i=i+1)
+		begin
+			for(j=1; j<=i; j=j+1)
+			begin
+				$write("%0d ",j);
+			end
+			$display();
+		end
+	//$display("\n");
+	end	
+	initial begin
+	///$display("\n");
+		for(i=1; i<=5; i=i+1)
+		begin
+			for(j=1; j<=6-i; j=j+1)
+			begin
+				$write("%0d ",j);
+			end
+			$display();
+		end
+	$display("\n");
+	end
+	
+	
+/*----------------------------------------------------------
+# *      *      * 
+# *     * *     * 
+# *    *   *    * 
+# *   *     *   * 
+# *  *       *  * 
+# * *         * * 
+# **           ** 
+# *             * 
+*/
+	integer r;
+	integer c;
+	integer mid;
+	initial 
+	begin
+		r=8;
+		c=15;
+		mid = ((c/2));
+		$display("\n");
+		
+		for(i=0; i<r; i=i+1)
+		begin
+			if(i==0)
+			begin
+				for(j=0; j<c; j=j+1)
+				begin
+					if(j==0 || j==mid || j==c-1)
+						$write("*");
+					else
+						$write(" ");
+				end
+				$display();
+			end
+			
+			else if(i==r)
+			begin
+				for(j=0; j<c; j=j+1)
+				begin
+					if(j==0 || j==c-1)
+						$write("*");
+					else
+						$write(" ");
+				end
+				$display();
+			end
+			
+			else
+			begin
+				for(j=0; j<c; j=j+1)
+				begin
+					if(j==0 || j==mid-i || j==mid+i || j==c-1)
+						$write("*");
+					else
+						$write(" ");
+				end
+				$display();
+			end
+		end
+
+	end
+	
+	
+endmodule
+/*
+# ___1___ 
+# __212__ 
+# _32123_ 
+# 4321234 
+*/
+
+module test;
+	integer r,c;
+	integer i,j,k;
+	
+	initial begin
+		r=7;
+		c=2*r-1;
+		
+		for(i=0; i<r; i=i+1)
+		begin
+			//for(j=0; j<c; j=j+1)
+			begin
+				for(k=(c/2)-i; k>0 ; k=k-1)
+				begin
+					$write("_");
+				end
+				
+				for(k=i+1; k>1; k=k-1)
+				begin
+					$write("%0d",k);
+				end
+				
+				for(k=1; k<=i+1; k=k+1)
+				begin
+					$write("%0d",k);
+				end
+				
+				for(k=(c/2); k>i ; k=k-1)
+				begin
+					$write("_");
+				end
+				//$write("\t");
+			end
+		$display();
+		end
+	end
+endmodule
+
+
+
+
+/*
+# **** 
+# *  * 
+# *  * 
+# *  * 
+# **** 
+*/
+module test2;
+	integer i,j;
+	integer r,c;
+	
+	initial begin
+		$display;
+		r=5;
+		c=4;
+		
+		for(i=1; i<=r; i=i+1)
+		begin
+			if(i==1 || i==r)
+			begin
+				for(j=1; j<=c; j=j+1)
+				begin
+					$write("*");
+				end
+			end
+					
+			else
+			begin
+				for(j=1; j<=c; j=j+1)
+				begin
+					if(j==1 || j==c)
+					begin
+						$write("*");
+					end
+					else
+					begin	
+						$write(" ");
+					end
+				end
+			end
+			$display;
+		end
+	end
+endmodule
+
+
+
+/*
+#     *
+#    **
+#   ***
+#  ****
+# *****
+*/
+
+module test3;
+	integer r,c,i,j;
+	
+	initial begin
+		$display;
+		r=5;
+		c=5;
+		
+		for(i=1; i<=r; i=i+1) //i=1;
+		begin
+			for(j=(r-i); j>=1; j=j-1) //j=5-1=4, 4 spaces
+			begin
+				$write(" ");
+			end
+			for(j=i; j>=1; j=j-1)
+			begin
+				$write("*");
+			end
+			$display;
+		end
+	end
+endmodule
+
+
+/*
+# *****
+# **** 
+# ***  
+# **   
+# *  
+*/
+
+module test4;
+	integer r,c,i,j;
+	
+	initial begin
+		$display;
+		
+		r=5;c=5;
+		
+		for(i=0; i<=r; i=i+1) //i=0
+		begin
+			for(j=r-i; j>=1; j=j-1) $write("*"); //j=5-0=5, 5 stars;
+			for(j=i  ; j>=1; j=j-1) $write(" ");
+			$display;
+		end
+	end
+endmodule
+	
+
+/*
+# ____1____ 
+# ___1_1___
+# __1_2_1__ 
+# _1_2_2_1_
+# 1_2_3_1_1 
+*/
+/*
+# ____1____ 
+# ___1_1___.
+# __1_2_1__ 
+# _1_3_3_1_
+# 1_4_6_4_1 
+*/
+module test5;
+	integer r,c,i,j;
+	integer arr[4:0][4:0];
+	
+	task pasical_fun(input integer r);
+	begin: fun
+		//integer arr[5:1][5:1];
+		for(i=0; i<r; i=i+1)
+		begin
+			for(j=0; j<(r+1); j=j+1)
+			begin
+				if(j==0 || i==j)
+					arr[i][j] = 1;
+				else
+					arr[i][j] = arr[i-1][j-1]+arr[i-1][j];
+			end
+		end
+		/*for(i=0; i<r; i=i+1)
+		begin
+			for(j=0; j<r; j=j+1)
+			begin
+				$write("%0d ", arr[i][j]);
+			end
+			$display();
+		end*/
+	end
+	endtask
+	
+	initial begin
+		$display;
+		
+		r=5;c=5;
+		pasical_fun(r);
+		
+		for(i=0; i<r; i=i+1)
+		begin
+			for(j=i; j<r; j=j+1)
+			begin
+				$write(" ");
+			end
+			for(j=0; j<i+1; j=j+1)
+			begin
+				$write("%0d ", arr[i][j]);
+			end
+			$display();
+		end
+	end
+endmodule
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//que: write the RTL for a BCD counter which countes the values form 00-99?
+
+module bcd(
+	input clk, rst,
+	output reg [3:0] bcd);
+	  
+	always@(posedge clk, posedge rst) // (or and ,) work same, or else we can use (*) as well
+	begin
+		if(rst) bcd = 4'b0000;
+		else if(bcd == 4'b1001) bcd = 4'b0000;
+	  	else bcd = bcd+1'b1;
+	end
+endmodule
+
+module bcd_00_99(
+	input clk, rst,
+	output wire [3:0] msb_bcd, lsb_bcd);
+	
+	reg temp_clk;
+	
+	bcd bcd1(temp_clk, rst, msb_bcd);
+	bcd bcd2(clk,      rst, lsb_bcd);
+	
+	always@(posedge clk or posedge rst)
+	begin
+		if(rst) temp_clk = 1'b0;
+		if(lsb_bcd == 4'b1001) temp_clk = 1'b1;
+	  	else if(lsb_bcd == 4'b0100) temp_clk = 1'b0;
+	end
+endmodule
+
+module tb;
+	reg clk, rst;
+	wire [3:0] msb_bcd, lsb_bcd;
+	
+	bcd_00_99 bcd_00_99_inst(clk, rst, msb_bcd, lsb_bcd);
+	
+	initial $monitor("msb_bcd lsb_bcd = %0d%0d", msb_bcd, lsb_bcd);
+	
+	always #2 clk = ~clk;
+	
+	initial begin
+		clk = 0;
+		rst = 1;
+		
+		#20;
+		rst = 0;
+		#500 $finish;
+	end
+endmodule

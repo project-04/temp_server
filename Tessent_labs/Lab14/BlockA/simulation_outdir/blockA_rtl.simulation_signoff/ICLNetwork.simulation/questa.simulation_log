@@ -1,0 +1,171 @@
+Number of expected miscompares = 0
+
+
+vlib ./questa_testbench_library
+** Warning: (vlib-34) Library already exists at "./questa_testbench_library".
+vmap testbench_library ./questa_testbench_library
+QuestaSim-64 vmap 2019.2 Lib Mapping Utility 2019.04 Apr 16 2019
+vmap testbench_library ./questa_testbench_library 
+Modifying modelsim.ini
+vmap dut_work ../questa.logical_libraries/dut_work
+QuestaSim-64 vmap 2019.2 Lib Mapping Utility 2019.04 Apr 16 2019
+vmap dut_work ../questa.logical_libraries/dut_work 
+Modifying modelsim.ini
+
+# Entry 1
+vlog -work testbench_library -mixedansiports +librescan -vlog01compat -ysearchlib \
+      "../patterns_directory/ICLNetwork.v"
+QuestaSim-64 vlog 2019.2 Compiler 2019.04 Apr 16 2019
+Start time: 12:11:42 on Aug 14,2019
+vlog -work testbench_library -mixedansiports "+librescan" -vlog01compat -ysearchlib ../patterns_directory/ICLNetwork.v 
+-- Compiling module TB
+
+Top level modules:
+	TB
+End time: 12:11:42 on Aug 14,2019, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+if [ $? != 0 ] ; then xitval=-1; echo "Failure on entry 1"; fi
+
+# Entry 2
+vlog -work testbench_library -mixedansiports +librescan -vlog01compat -ysearchlib \
+      "./patterns.configuration"
+QuestaSim-64 vlog 2019.2 Compiler 2019.04 Apr 16 2019
+Start time: 12:11:42 on Aug 14,2019
+vlog -work testbench_library -mixedansiports "+librescan" -vlog01compat -ysearchlib ./patterns.configuration 
+-- Compiling configuration ICLNetwork_configuration
+
+Top level modules:
+	ICLNetwork_configuration
+End time: 12:11:42 on Aug 14,2019, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+if [ $? != 0 ] ; then xitval=-1; echo "Failure on entry 2"; fi
+
+if [ $xitval -ne 0 ]; then
+  echo "Simulation of the pattern cancelled"
+  exit $xitval
+fi
+
+vsim -c -lib "testbench_library" -do 'run -all; exit' +nowarnTFMPC +NEWPATH=../patterns_directory \
+      ICLNetwork_configuration
+Reading pref.tcl
+
+# 2019.2
+
+# vsim -c -lib testbench_library -do "run -all; exit" "+nowarnTFMPC" "+NEWPATH=../patterns_directory" ICLNetwork_configuration 
+# Start time: 12:11:43 on Aug 14,2019
+# ** Note: (vsim-3812) Design is being optimized...
+# 
+# //  MGLS: This application requires a newer mgls_asynch
+# //  MGLS library version is v9.17_10.2, mgls_asynch version is v9.13_5.4
+# //  MGLS at /home/cad/eda/tessent/lnx-x86/bin64/mgls/
+# //  Questa Sim-64
+# //  Version 2019.2 linux_x86_64 Apr 16 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.ICLNetwork_configuration(fast)
+# Loading work.TB(fast)
+# Loading dut_work.SYNC_8192X32_BISR(fast)
+# Loading dut_work.buf02(fast)
+# Loading dut_work.cgand(fast)
+# Loading dut_work.clock_mux21(fast)
+# Loading dut_work.inv01(fast)
+# Loading dut_work.mux21(fast)
+# Loading dut_work.and02(fast)
+# run -all
+# Found New Path ../patterns_directory
+# 
+# Loading ../patterns_directory/ICLNetwork.v.po.name
+# 
+# Loading ../patterns_directory/ICLNetwork.v.0.vec
+# 
+# 100ns: Pattern_set blockA
+# 300ns:  Activate selection for scan mux blockA_rtl_tessent_sib_sti_inst.scan_in_mux, selection 1: sib, ltest_en = 2'bxx -> scan_in_mux = ijtag_si
+# 400ns:  Scan in verification pattern 1 to the scan register blockA_rtl_tessent_sib_sti_inst.sib
+# 800ns:  Scan out verification pattern 1 from the scan register blockA_rtl_tessent_sib_sti_inst.sib
+# 1300ns:  Activate selection of the following scan muxes:
+# 1300ns:   blockA_rtl_tessent_sib_sti_inst.scan_in_mux, selection 0: sib, ltest_en = 2'b10 -> scan_in_mux = ijtag_from_so
+# 1300ns:   blockA_rtl_tessent_sib_mbist_inst.scan_in_mux, selection 0: sib = 1'b0 -> scan_in_mux = ijtag_si
+# 1400ns:  Scan in verification pattern 10 to the following scan registers:
+# 1400ns:   blockA_rtl_tessent_sib_sti_inst.sib
+# 1400ns:   blockA_rtl_tessent_sib_mbist_inst.sib
+# 1900ns:  Scan out verification pattern 10 from the following scan registers:
+# 1900ns:   blockA_rtl_tessent_sib_sti_inst.sib
+# 1900ns:   blockA_rtl_tessent_sib_mbist_inst.sib
+# 2500ns:  Activate selection of the following scan muxes:
+# 2500ns:   blockA_rtl_tessent_sib_sti_inst.scan_in_mux, selection 0: sib, ltest_en = 2'b10 -> scan_in_mux = ijtag_from_so
+# 2500ns:   blockA_rtl_tessent_sib_mbist_inst.scan_in_mux, selection 1: sib = 1'b1 -> scan_in_mux = ijtag_from_so
+# 2500ns:   blockA_rtl_tessent_mbist_bap_inst.fromBistMux_0, selection 1: sib_0, BIST_SETUP_tdr[1], ChainBypassMode = 3'bxxx -> fromBistMux_0 = ENABLE_MEM_RESET_tdr
+# 2600ns:  Scan in verification pattern 1011.. to the following scan registers:
+# 2600ns:   blockA_rtl_tessent_sib_sti_inst.sib
+# 2600ns:   blockA_rtl_tessent_sib_mbist_inst.sib
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.sib_0
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr
+# 2600ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0]
+# 5200ns:  Scan out verification pattern 1011.. from the following scan registers:
+# 5200ns:   blockA_rtl_tessent_sib_sti_inst.sib
+# 5200ns:   blockA_rtl_tessent_sib_mbist_inst.sib
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.sib_0
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr
+# 5200ns:   blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0]
+# 
+# Simulation finished at time 7901
+# Number of miscompares  =           0
+# Number of 0/1 compares =          31
+# Number of Z compares   =           0
+# 
+# No error between simulated and expected patterns
+# 
+# ** Note: $finish    : ../patterns_directory/ICLNetwork.v(1143)
+#    Time: 7902 ns  Iteration: 0  Instance: /TB
+# End time: 12:11:43 on Aug 14,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+if [ $? != 0 ] ; then xitval=-1; fi
+
+if [ $xitval -ne 0 ]; then
+  echo "Simulation failed"
+fi
+
+exit $xitval
+exit0

@@ -1,0 +1,51 @@
+//-------------------------------------------------
+//  File created by: Tessent Shell
+//          Version: 2019.1
+//       Created on: Wed Aug 14 12:11:41 IST 2019
+//-------------------------------------------------
+
+
+PatternsSpecification(blockA,rtl,signoff) {
+  Patterns(ICLNetwork) {
+    ICLNetworkVerify(blockA) {
+    }
+  }
+  Patterns(MemoryBist_P1) {
+    ClockPeriods {
+      CLK : 12.0ns;
+    }
+    TestStep(run_time_prog) {
+      MemoryBist {
+        run_mode : run_time_prog;
+        reduced_address_count : on;
+        Controller(blockA_rtl_tessent_mbist_c1_controller_inst) {
+          RepairOptions {
+            check_repair_status : on;
+          }
+          DiagnosisOptions {
+            compare_go : on;
+            compare_go_id : on;
+          }
+        }
+      }
+    }
+  }
+  Patterns(MemoryBist_ParallelRetentionTest_P1) {
+    ClockPeriods {
+      CLK : 12.0ns;
+    }
+    TestStep(ParallelRetentionTest) {
+      MemoryBist {
+        run_mode : hw_default;
+        parallel_retention_time : 0;
+        reduced_address_count : on;
+        Controller(blockA_rtl_tessent_mbist_c1_controller_inst) {
+          parallel_retention_group : 1;
+          DiagnosisOptions {
+            compare_go_id : on;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+#Set the context to patterns and sub-context to scan_diagnosis
+set_context patterns -scan_diagnosis
+
+#Read the flattenned model
+read_flat_model netlist/tk_design.flat
+
+#Set the diagnosis option
+set_diagnosis_options -bridge OFF -cell OFF
+
+#Read the pattern file produced by test-kompress
+set_pattern_source external ./pattern/pat.wgl -wgl
+
+#Run diagnosis
+diagnose_failures fail1.log -output fail1.txt -rep
+
+#Create additional internal patterns
+create_diagnosis_patterns -diagnosis_report fail1.txt
+
+#Save additional patterns
+write_patterns ./pattern/patt_iter.wgl -wgl -rep
+
+exit -d

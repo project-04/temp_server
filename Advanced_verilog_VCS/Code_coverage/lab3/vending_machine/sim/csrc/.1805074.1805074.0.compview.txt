@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1758950800.461798373, "rt":0.27, "ut":0.12, "st":0.05}}
+{"vcselab":{"timestamp_begin":1758950800.784197860, "rt":0.18, "ut":0.14, "st":0.03}}
+{"link":{"timestamp_begin":1758950801.007380132, "rt":0.17, "ut":0.12, "st":0.06}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1758950800.224475285}
+{"VCS_COMP_START_TIME": 1758950800.224475285}
+{"VCS_COMP_END_TIME": 1758950801.221242181}
+{"VCS_USER_OPTIONS": "../rtl/coincol.v ../tb/tb_coincol3.v -cm line+tgl+fsm+branch+cond"}
+{"vcs1": {"peak_mem": 1805262}}
+{"stitch_vcselab": {"peak_mem": 1805302}}

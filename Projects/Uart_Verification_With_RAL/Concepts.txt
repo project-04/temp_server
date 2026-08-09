@@ -1,0 +1,28 @@
+1. Sticky parity bit: 
+
+   The LCR[5] th bit is sticky parity bit enable. If it is made high, irrespective of the actual parity bit to be
+   send in the character frame, it send the inverse of LCR[4] as the parity bit.
+
+   Lets say 0010_1011 is stored in the LCR. Then the parity bit of the character frame sent will always be '1' as the 
+   LCR[4]=0. So its inverse is sent as parity bit.
+   eg. (MSB) 1_1_11001101_0 (LSB) will be the frame sent to the UART1 by UART0 eventhough odd parity is enabled.
+
+   Hence forces the parity bit to be transmitted and checked as a fixed value (either a logic high or low), 
+   regardless of the data being sent.
+
+2. Parity error scenarios:
+
+   (Q) If 2 uarts are communicating between each other and while sending from uart1 to uart2 there is a parity error. 
+       So will the data send be received an stored in the uart2?
+   Ans: If error detection is enabled and the parity error is detected, the data will still be stored in the UART2 
+        receiver buffer, but an error flag will typically be set to indicate that a parity error occurred.
+
+3. UART DUT takes 5 clock cycle(5 posedge and 5 negedge) to write a value to a register.
+
+4. In most UART implementations,upcoming transactions (subsequent bytes) will continue to be received even after a
+   parity error has been detected, without requiring an immediate reset of the error flag. The UART will not "stop" 
+   or halt its operation entirely
+
+5. Unlike parity error, the transaction stops once it flags the FRAMING ERROR, to prevent the loss of data bits.
+
+

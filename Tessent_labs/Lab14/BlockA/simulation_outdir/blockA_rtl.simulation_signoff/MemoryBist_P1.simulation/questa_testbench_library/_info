@@ -1,0 +1,76 @@
+m255
+K4
+z2
+!s11f vlog 2019.2 2019.04, Apr 16 2019
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/susmita/MBIST_exercise1/MBIST_exercise1/BlockA/simulation_outdir/blockA_rtl.simulation_signoff/MemoryBist_P1.simulation
+T_opt
+!s110 1565691881
+VZX<bz5JgTF3JQKcAddH@M1
+Z1 04 27 4 work MemoryBist_P1_configuration fast 0
+=1-0a94ef0fe38b-5d528fe9-453ab-5269
+Z2 o-quiet -auto_acc_if_foreign -work testbench_library +nowarnTFMPC
+Z3 tCvgOpt 0
+n@_opt
+Z4 OL;O;2019.2;69
+R0
+T_opt1
+Z5 !s110 1565764904
+V:Q;GQ45=n0YJVSnV6]g?g1
+R1
+=1-0a94ef0fe38b-5d53ad28-9f39b-399a
+R2
+R3
+n@_opt1
+R4
+JMemoryBist_P1_configuration
+R5
+!i10b 0
+!s100 lU7`LjOejTD`@i2J@@E>h2
+!s11b oMDbYcjZGmj`c`dSLNaLK1
+I9Z7bWiGA1_[ja=oXRz?CC0
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 d/home/susmita/MBIST_exercise1/MBIST/BlockA/simulation_outdir/blockA_rtl.simulation_signoff/MemoryBist_P1.simulation
+w1565764901
+8./patterns.configuration
+F./patterns.configuration
+L0 1
+Z8 OL;L;2019.2;69
+r1
+!s85 0
+31
+Z9 !s108 1565764903.000000
+!s107 ./patterns.configuration|
+!s90 -work|testbench_library|-mixedansiports|+librescan|-vlog01compat|-ysearchlib|./patterns.configuration|
+!i113 0
+Z10 o-work testbench_library -mixedansiports +librescan -vlog01compat -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R3
+n@memory@bist_@p1_configuration
+vTB
+!s110 1565764903
+!i10b 1
+!s100 <4j8n8e?oU10^]OO?Pz<S0
+!s11b eJeb8?^gleY1gYeCMV<m`3
+I]f<]eOC]FBNXI?hZ3THMU2
+R6
+R7
+w1565764900
+8../patterns_directory/MemoryBist_P1.v
+F../patterns_directory/MemoryBist_P1.v
+L0 28
+R8
+r1
+!s85 0
+31
+R9
+!s107 ../patterns_directory/MemoryBist_P1.v|
+!s90 -work|testbench_library|-mixedansiports|+librescan|-vlog01compat|-ysearchlib|../patterns_directory/MemoryBist_P1.v|
+!i113 0
+R10
+R3
+n@t@b

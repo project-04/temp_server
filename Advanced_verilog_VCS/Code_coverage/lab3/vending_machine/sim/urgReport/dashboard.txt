@@ -1,0 +1,28 @@
+Dashboard
+
+Date: Wed Sep 24 12:53:10 2025
+
+User: BokkaCS
+
+Version: T-2022.06-SP1
+Command line: urg -dir simv.vdb -show text 
+
+Number of tests: 1
+
+-------------------------------------------------------------------------------
+Total Coverage Summary 
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 59.21  74.31  33.33  71.67  38.46  78.26 
+
+
+-------------------------------------------------------------------------------
+Hierarchical coverage data for top-level instances 
+SCORE  LINE   COND   TOGGLE FSM    BRANCH NAME       
+ 59.21  74.31  33.33  71.67  38.46  78.26 tb_coincol 
+
+
+-------------------------------------------------------------------------------
+Total Module Definition Coverage Summary 
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 59.21  74.31  33.33  71.67  38.46  78.26 
+

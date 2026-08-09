@@ -1,0 +1,330 @@
+module test;
+
+class c #(type j=bit);
+endclass
+
+class d1 #(type p=real) extends c;
+endclass
+
+class d2 #(type p=longint) extends c #(int);
+endclass
+
+class d3 extends c #(d2);
+endclass
+
+
+
+d1 h1;
+d2 h2;
+d3 h3;
+initial begin
+h1 = new;
+$display(h1);
+end
+endmodule
+module test_test;
+	class test_1;
+		rand bit [7:0] temp;
+
+	//	constraint c1 {temp%5==0;}
+
+		function void post_randomize();
+			$display("%d ",temp);
+		endfunction
+
+	endclass
+
+	test_1 h1;
+
+	initial
+	begin
+		h1=new;
+		repeat(10) begin assert(h1.randomize()); end
+	end
+endmodule
+module test();
+int d[];
+
+function automatic void add(int element, ref int array[]);
+	array = new[array.size()+1] (array);
+	array[array.size()-1] = element;
+endfunction
+
+initial
+begin
+
+//adding elements
+d=new[10];
+d={1,2,3,4,5,6,7,8,9,10};
+
+$display("d = ", d);
+$display("size : %d", d.size());
+
+add(100, d);
+//for(int i=1; i<=5; i++) add(i*100, d);
+
+$display("d = ", d);
+$display("size : %d", d.size());
+
+end
+endmodulemodule test();
+int d[];
+int temp[];
+
+int data_da[];
+
+int result;
+
+//function automatic void(int index, ref int array[]);
+//	foreach(i)
+		
+		//if(i>index && array.size()-1) array[i] = i+1;
+
+initial begin
+d=new[10];
+foreach(d[i]) d[i]=i+1;
+$display("d = %p",d);
+
+//remove index 3 element
+temp=new[9];
+foreach(temp[i])
+begin
+if(i>=3) temp[i] = d[i+1];
+else temp[i] = d[i];
+end
+d=new[9] (temp);
+$display("d = %p",d);
+
+/*
+//remove 7 in the dynamic array
+temp=new[8];
+foreach(temp[i])
+begin
+if(d[i]!=7) temp[i] = d[i];
+if(d[i]!=7) temp[i] = d[i+1];
+
+else temp[i] = d[i];
+end
+d=new[8] (temp);
+$display("d = %p",d);
+*/
+
+data_da = new[10];
+
+foreach(data_da[i]) data_da[i] = {$random} % 20;
+
+data_da.sort();
+
+$display("data_da = %p",data_da);
+
+result = data_da.sum with (int'(item>7));
+
+$display("no. of items greater than 7 = %0d", result);
+
+result = data_da.sum with ((item>7)*item);
+			
+$display("sum of items greater than 7 = %0d", result);
+
+end
+endmodule
+module test();
+int d[];
+int d1[];
+
+initial begin
+int  d[];
+int d1[];
+
+d=new[10];
+d1=new[10];
+
+$display(d,"\n",d1);
+
+end
+endmodule
+module test();
+int q1[$];
+
+initial
+begin
+q1={12,36,47,54};
+$display("q1 = ", q1);
+
+$display("size : %d", q1.size());
+
+//foreach(q1[i])                    begin $display("i = %d, q1_element = %d", i, q1.pop_back()); end   //not working
+//for(int i=0; i<=q1.size(); i=i+1) begin $display("i = %d, q1_element = %d", i, q1.pop_back()); end   //not working
+
+
+//for(int i=0; i<4; i=i+1) begin $display("i = %d, q1_element = %d", i, q1.pop_back()); end   //working
+//for(int i=0; q1.size()!=0 ; i=i+1) begin $display("i = %d, q1_element = %d", i, q1.pop_back()); end   //working
+
+$display("q1 = ", q1);
+
+end
+endmodule    
+1. write a code to generate a random size for a dynamic array and to find the elements greater then 30 using array locater method.
+2. 
+3. 
+module test();
+int queue[$];
+
+initial
+begin
+queue={1,2,3,4,5,6,7,8,9,10};
+
+$display("queue = ", queue);
+$display("size : %queue", queue.size());
+
+foreach(queue[i])                 
+begin 
+if(queue[i]%2 == 0) queue.delete(i);   //not working
+end
+
+$queueisplay("queue = ", queue);
+$display("size : %queue", queue.size());
+
+
+end
+endmodule 
+/*module test_test;
+	class test_1;
+		rand bit [7:0] temp;
+
+		constraint c1 {temp%5==0;}
+		constraint c2 {temp inside{[1:50]};}
+
+		function void post_randomize();
+			$write("%d ",temp);
+		endfunction
+
+	endclass
+
+	class test_2;
+		rand bit [7:0] temp;
+		
+		int d[]={1,2,3,4,5,6};
+
+		function int fun(int a);
+		int ans;
+		for(int i=a; i<a; i++)
+			ans = i;
+		endfunction	
+
+		//foreach(d[i]) d[i]=i+1;
+		//d=[1,2,3,4,55,6];
+
+		//constraint c1{temp inside{d};}
+		constraint c0{temp == fun(foreach(a[i]));
+
+		function void post_randomize();
+			$write("%d ",temp);
+		endfunction
+
+	endclass
+
+
+	test_1 h1;
+	test_2 h2;
+
+	initial
+	begin
+	
+		//d=new[10];
+
+		//h1=new;
+		//repeat(10) assert(h1.randomize());
+
+		h2=new;
+		repeat(10) assert(h2.randomize());
+
+	end
+endmodule*/
+
+
+
+module test_mailbox;
+	
+	class packet;
+		rand bit [3:0] temp;
+	endclass
+
+	class generator;
+		packet p_h;
+		mailbox #(packet) gen2drv;
+
+		function new(mailbox #(packet) gen2drv);
+			this.gen2drv = gen2drv;
+		endfunction
+
+		task start;
+		fork
+			repeat(10)
+			begin
+				p_h = new;
+				assert(p_h.randomize());
+				gen2drv.put(p_h);
+			end
+		join_none
+		endtask
+	endclass
+
+	class driver;
+		packet p_h;
+		mailbox #(packet) gen2drv;
+
+		function new(mailbox #(packet) gen2drv);
+			this.gen2drv = gen2drv;
+		endfunction
+
+		task start;
+		fork
+			repeat(10)
+			begin
+				//p_h = new;
+				gen2drv.get(p_h);
+				p_h.display("Recived data");
+			end
+		join_none
+		endtask
+	endclass
+
+	class env;
+		mailbox #(packet) gen2drv = new;
+		generator gen;
+		driver drv;
+		
+		function void build;
+			gen = new(gen2drv);
+			drv = new(gen2drv);
+		endfunction
+
+		task start;
+			gen.start;
+			drv.start;
+		endtask
+	endclass
+	
+	env en;
+
+	initial 
+	begin
+		en = new;
+		en.build;
+		en.start;
+		//$display("mailbox=%p",en.gen2drv);
+	end
+endmodule
+module test();
+int a;
+
+function byte hello();
+return 10;
+endfunction;
+
+initial begin
+
+$display(hello());
+
+end
+endmodule

@@ -1,0 +1,23 @@
+//-------------------------------------------------
+//  File created by: Tessent Shell
+//          Version: 2019.1
+//       Created on: Wed Aug 14 12:11:37 IST 2019
+//-------------------------------------------------
+
+
+TsdbInfo(blockA,rtl) {
+  tessent_tool_version : 2019.1;
+  tessent_meta_version : 10;
+  version : 3;
+  creation_date : Wed Aug 14 06:41:37 GMT 2019;
+  creation_user : susmita;
+  creation_step : process_dft_specification;
+  level : sub_block;
+  icl_extraction_needed : On;
+  library_name : work;
+  gate_extension : vg;
+  interface_has_external_dependencies : 0;
+  OpenedTsdbDirectories {
+    /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb;
+  }
+}

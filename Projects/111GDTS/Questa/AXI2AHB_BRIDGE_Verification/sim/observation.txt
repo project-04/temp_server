@@ -1,0 +1,16 @@
+--if AXI master initiates both read and write transactions, the bridge performs only on write operation and ignores
+the read operation.
+
+--AXI2AHB bridge will get the axi transactions from axi master and convert those transactions into ahb non-seq single transfers and give them to ahb slave. So we will only get hburst=0 .
+
+--Bridge does not support out of order transaction. It also does not support split and retry response from the slave.
+
+--Bridge is not giving response for single transfer(awlen=0)
+
+--Bridge is not supporting read operation with wait states.
+
+doubt : ===================================
+
+why in ahb_seqs:  repeat((2*(env_cfg.ahb_length.pop_front()))+2)
+
+why hrdata is not driven in rsp = 2 

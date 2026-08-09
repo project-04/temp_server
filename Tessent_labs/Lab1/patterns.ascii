@@ -1,0 +1,63 @@
+//
+//  Tessent Shell  2022.2
+//
+//  Design  = design/c1.v
+//  Created = Wed Jun 24 18:07:04 IST 2026
+//
+//  Statistics:
+//      Test Coverage   =  100.00%
+//      Total Faults    =  40
+//          DS (det_simulation)    =  40
+//      Total            Patterns  =  6
+//
+//  Settings:
+//      Simulation Mode =  combinational, seq_depth = 0
+//      Fault Type      =  stuck
+//      Fault Mode      =  uncollapsed
+//      Pos_Det Credit  =  50%
+//      Z external      =  X
+//      Z internal      =  X
+//      wired_net       =  WIRE
+//
+//  Warnings:
+//
+
+ASCII_PATTERN_FILE_VERSION = 3;
+
+
+SETUP = 
+
+    declare input bus "PI" = "/a", "/b", "/c", "/d", "/e";
+
+    declare output bus "PO" = "/z";
+
+end;
+
+SCAN_TEST =
+
+    pattern = 0;
+    force   "PI" "00111" 0;
+    measure "PO" "1" 1;
+
+    pattern = 1;
+    force   "PI" "11101" 0;
+    measure "PO" "1" 1;
+
+    pattern = 2;
+    force   "PI" "11011" 0;
+    measure "PO" "1" 1;
+
+    pattern = 3;
+    force   "PI" "01001" 0;
+    measure "PO" "0" 1;
+
+    pattern = 4;
+    force   "PI" "01100" 0;
+    measure "PO" "0" 1;
+
+    pattern = 5;
+    force   "PI" "10111" 0;
+    measure "PO" "0" 1;
+
+end;
+

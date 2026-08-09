@@ -1,0 +1,48 @@
+//--------------------------------------------------------
+//
+//  Copyright Mentor Graphics Corporation
+//  All Rights Reserved
+//
+//  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY
+//  INFORMATION WHICH IS THE PROPERTY OF MENTOR GRAPHICS
+//  CORPORATION OR ITS LICENSORS AND IS SUBJECT
+//  TO LICENSE TERMS.
+//
+//--------------------------------------------------------
+//  File created by: Tessent Shell
+//          Version: 2019.1
+//       Created on: Wed Aug 14 12:11:28 IST 2019
+//--------------------------------------------------------
+
+Core(blockA_rtl_tessent_sib_1) {
+  Scan {
+    module_type                 : occ;
+    allow_scan_out_retiming     : 0;
+    occ_type                    : sti;
+    supports_add_core_instances : 1;
+    is_hard_module              : 1;
+    traceable                   : 1;
+    Clock(ltest_clk) {
+      off_state       : 1'b0;
+    }
+    ClockOut (to_ijtag_tck) {
+      slow_clock_input : ltest_clk;
+    }
+    CaptureClockEn(tessent_persistent_cell_occ_clock_gate/FE) {
+      clock_input : ltest_clk;
+    }
+    TestEn(ltest_en) {
+      active_polarity : 1'b1;
+    }
+    ScanEn(ltest_scan_en) {
+      active_polarity : 1'b1;
+    }
+    ScanChain {
+      length          : 7;
+      scan_in_port    : ltest_si;
+      scan_out_port   : ltest_so;
+      scan_in_clock   : ltest_clk;
+      scan_out_clock  : ~ltest_clk;
+    }
+  }
+}

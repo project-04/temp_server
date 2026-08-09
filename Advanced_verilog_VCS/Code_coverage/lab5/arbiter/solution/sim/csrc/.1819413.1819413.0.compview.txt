@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1758951310.140328959, "rt":0.30, "ut":0.14, "st":0.06}}
+{"vcselab":{"timestamp_begin":1758951310.496850061, "rt":0.19, "ut":0.15, "st":0.02}}
+{"link":{"timestamp_begin":1758951310.726738827, "rt":0.17, "ut":0.11, "st":0.06}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1758951309.888974005}
+{"VCS_COMP_START_TIME": 1758951309.888974005}
+{"VCS_COMP_END_TIME": 1758951310.940244371}
+{"VCS_USER_OPTIONS": "../rtl/arbiter.v ../tb/bfm_arbiter.v ../tb/tb_userinterface.v -cm line+tgl+fsm+branch+cond"}
+{"vcs1": {"peak_mem": 1819621}}
+{"stitch_vcselab": {"peak_mem": 1819661}}

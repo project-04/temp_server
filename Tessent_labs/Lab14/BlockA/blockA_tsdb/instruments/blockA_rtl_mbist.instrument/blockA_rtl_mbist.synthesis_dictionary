@@ -1,0 +1,60 @@
+#--------------------------------------------------------
+#
+#  Copyright Mentor Graphics Corporation
+#  All Rights Reserved
+#
+#  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY
+#  INFORMATION WHICH IS THE PROPERTY OF MENTOR GRAPHICS
+#  CORPORATION OR ITS LICENSORS AND IS SUBJECT
+#  TO LICENSE TERMS.
+#
+#--------------------------------------------------------
+#  File created by: Tessent Shell
+#          Version: 2019.1
+#       Created on: Wed Aug 14 12:11:31 IST 2019
+#--------------------------------------------------------
+
+set synthesis_dictionary {
+  designs_dictionary {
+    blockA_rtl_tessent_mbist_bap_sib {}
+    blockA_rtl_tessent_mbist_bap {
+      output_files {
+        blockA_rtl_tessent_mbist_bap.vg {
+          module_name_list {blockA_rtl_tessent_mbist_bap blockA_rtl_tessent_mbist_bap_tdr blockA_rtl_tessent_mbist_bap_sib}
+        }
+      }
+      size_only_prefix_list tessent_persistent_cell_
+    }
+    blockA_rtl_tessent_mbist_c1_interface_m1_ColumnRedundancyAnalysis {}
+    blockA_rtl_tessent_mbist_c1_interface_m1_RowRedundancyAnalysis {}
+    blockA_rtl_tessent_mbist_c1_controller_assembly {
+      dont_touch_list {}
+      sdc {
+        file_name blockA_rtl_tessent_mbist_c1_controller_assembly.sdc
+        proc_list {tessent_set_default_variables tessent_create_functional_clocks tessent_constrain_blockA_rtl_tessent_mbist_c1_controller_assembly_non_modal}
+      }
+      size_only_prefix_list tessent_persistent_cell_
+      output_files {
+        blockA_rtl_tessent_mbist_c1_interface_m1.vg {
+          module_name_list {
+            blockA_rtl_tessent_mbist_c1_interface_m1 blockA_rtl_tessent_mbist_c1_interface_m1_STATUS
+            blockA_rtl_tessent_mbist_c1_interface_m1_ColumnRedundancyAnalysis blockA_rtl_tessent_mbist_c1_interface_m1_RowRedundancyAnalysis
+          }
+        }
+        blockA_rtl_tessent_mbist_c1_controller.vg {
+          module_name_list {blockA_rtl_tessent_mbist_c1_controller blockA_rtl_tessent_mbist_c1_controller_ctl_comp blockA_rtl_tessent_mbist_c1_controller_async_interf blockA_rtl_tessent_mbist_c1_controller_option blockA_rtl_tessent_mbist_c1_controller_pointer_cntrl blockA_rtl_tessent_mbist_c1_controller_add_format blockA_rtl_tessent_mbist_c1_controller_add_gen blockA_rtl_tessent_mbist_c1_controller_fsm blockA_rtl_tessent_mbist_c1_controller_signal_gen blockA_rtl_tessent_mbist_c1_controller_repeat_loop_cntrl blockA_rtl_tessent_mbist_c1_controller_data_gen}
+        }
+      }
+    }
+  }
+  design_source_dictionary {
+    read1 {
+      format verilog_2001
+      files {
+        blockA_rtl_tessent_mbist_bap.v blockA_rtl_tessent_mbist_c1_controller_assembly.v
+        blockA_rtl_tessent_mbist_c1_controller.v blockA_rtl_tessent_mbist_c1_interface_m1.v
+      }
+      work_library work
+    }
+  }
+}

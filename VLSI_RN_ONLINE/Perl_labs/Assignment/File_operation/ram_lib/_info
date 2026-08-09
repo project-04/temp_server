@@ -1,0 +1,65 @@
+m255
+K4
+z2
+!s11f vlog 2019.2 2019.04, Apr 16 2019
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/susmita/Perl_labs/Assignment/File_operation
+T_opt
+!s110 1656928493
+VaLhTo=k39Qa_0NCf2c8je0
+04 6 4 work ram_tb fast 0
+=1-40f2e9380ac2-62c2b8e7-87e83-69f0
+o-quiet -auto_acc_if_foreign -work ram_lib
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2019.2;69
+R0
+vram_tb
+Z2 !s110 1663152119
+!i10b 1
+!s100 F1aD>e3j;5T41<eSUE7NT2
+!s11b :EHJ9O?9eFkDNiIP>g>JP3
+IFf8;YZiVDa9>mz^_?^]lE3
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1656669486
+8ram_tb.v
+Fram_tb.v
+Z4 L0 24
+Z5 OL;L;2019.2;69
+r1
+!s85 0
+31
+Z6 !s108 1663152119.000000
+!s107 ram_tb.v|ram.v|
+Z7 !s90 -work|ram_lib|ram.v|ram_tb.v|
+!i113 0
+Z8 o-work ram_lib -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+vsync_ram
+R2
+!i10b 1
+!s100 ?MizD;kMLl]kT5KMW2RLL0
+!s11b BKLc]JFQ=Kj^:A>Y=Mnno2
+Im0]SdSGYAlVC@PVcZj94k0
+R3
+R0
+w1655364850
+8ram.v
+Fram.v
+R4
+R5
+r1
+!s85 0
+31
+R6
+Z9 !s107 ram_tb.v|ram.v|
+R7
+!i113 0
+R8
+R1

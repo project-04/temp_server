@@ -1,0 +1,47 @@
+#--------------------------------------------------------
+#
+#  Copyright Mentor Graphics Corporation
+#  All Rights Reserved
+#
+#  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY
+#  INFORMATION WHICH IS THE PROPERTY OF MENTOR GRAPHICS
+#  CORPORATION OR ITS LICENSORS AND IS SUBJECT
+#  TO LICENSE TERMS.
+#
+#--------------------------------------------------------
+#  File created by: Tessent Shell
+#          Version: 2019.1
+#       Created on: Wed Aug 14 12:11:28 IST 2019
+#--------------------------------------------------------
+
+set synthesis_dictionary {
+  design_source_dictionary {
+    read1 {
+      format verilog_2001
+      work_library work
+      files {
+        ./blockA_rtl_tessent_sib_1.v ./blockA_rtl_tessent_sib_2.v
+      }
+    }
+  }
+  designs_dictionary {
+    blockA_rtl_tessent_sib_1 {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      output_files {
+        blockA_rtl_tessent_sib_1.vg {
+          module_name_list blockA_rtl_tessent_sib_1
+        }
+      }
+    }
+    blockA_rtl_tessent_sib_2 {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      output_files {
+        blockA_rtl_tessent_sib_2.vg {
+          module_name_list blockA_rtl_tessent_sib_2
+        }
+      }
+    }
+  }
+}

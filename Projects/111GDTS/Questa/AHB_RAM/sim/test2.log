@@ -1,0 +1,363 @@
+vsim -cvgperinstance -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit -assert -directive -cvg -codeAll mem_cov2;run -all; exit" -wlf wave_file2.wlf -l test2.log -sv_seed random work.Top "+UVM_TESTNAME=incr_transfer_test" 
+Start time: 10:55:52 on Jun 21,2024
+** Note: (vsim-8009) Loading existing optimized design _opt
+//  Questa Sim-64
+//  Version 2019.2 linux_x86_64 Apr 16 2019
+//
+//  Copyright 1991-2019 Mentor Graphics Corporation
+//  All Rights Reserved.
+//
+//  QuestaSim and its associated documentation contain trade
+//  secrets and commercial or financial information that are the property of
+//  Mentor Graphics Corporation and are privileged, confidential,
+//  and exempt from disclosure under the Freedom of Information Act,
+//  5 U.S.C. Section 552. Furthermore, this information
+//  is prohibited from disclosure under the Trade Secrets Act,
+//  18 U.S.C. Section 1905.
+//
+** Warning: License feature 'msimhdlsim' will expire today.
+Loading sv_std.std
+Loading work.bridge_if(fast)
+Loading mtiUvm.uvm_pkg
+Loading work.bridge_pkg(fast)
+Loading mtiUvm.questa_uvm_pkg(fast)
+Loading work.Top(fast)
+Loading work.bridge_if(fast)
+Loading work.AHBBlockRam(fast)
+# Loading /home/cad/eda/Questa_2019/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+** Warning: License feature 'msimcoverage' will expire today.
+** Warning: (vsim-8634) Code was not compiled with coverage options.
+Sv_Seed = 2009159061
+ log -r /* 
+coverage save -onexit -assert -directive -cvg -codeAll mem_cov2
+run -all
+----------------------------------------------------------------
+UVM-1.1d
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+UVM_INFO @ 0: reporter [RNTST] Running test incr_transfer_test...
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+--------------------------------------------------------------------
+Name                         Type                        Size  Value
+--------------------------------------------------------------------
+uvm_test_top                 incr_transfer_test          -     @473 
+  envh                       Tb                          -     @487 
+    ahb_top                  ahb_agent_top               -     @495 
+      hagnt[0]               ahb_agent                   -     @619 
+        hdrv                 ahb_drv                     -     @647 
+          rsp_port           uvm_analysis_port           -     @662 
+          seq_item_port      uvm_seq_item_pull_port      -     @654 
+        hmon                 ahb_mon                     -     @632 
+          monitor_port       uvm_analysis_port           -     @639 
+        hseqr                ahb_seqr                    -     @670 
+          rsp_export         uvm_analysis_export         -     @677 
+          seq_item_export    uvm_seq_item_pull_imp       -     @771 
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+    sb                       scoreboard                  -     @611 
+      fifo_ahb_h[0]          uvm_tlm_analysis_fifo #(T)  -     @787 
+        analysis_export      uvm_analysis_imp            -     @826 
+        get_ap               uvm_analysis_port           -     @818 
+        get_peek_export      uvm_get_peek_imp            -     @802 
+        put_ap               uvm_analysis_port           -     @810 
+        put_export           uvm_put_imp                 -     @794 
+    v_sequencer              virtual_sequencer           -     @502 
+      rsp_export             uvm_analysis_export         -     @509 
+      seq_item_export        uvm_seq_item_pull_imp       -     @603 
+      arbitration_queue      array                       0     -    
+      lock_queue             array                       0     -    
+      num_last_reqs          integral                    32    'd1  
+      num_last_rsps          integral                    32    'd1  
+--------------------------------------------------------------------
+
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+--------------------------------------------------------------------
+Name                         Type                        Size  Value
+--------------------------------------------------------------------
+uvm_test_top                 incr_transfer_test          -     @473 
+  envh                       Tb                          -     @487 
+    ahb_top                  ahb_agent_top               -     @495 
+      hagnt[0]               ahb_agent                   -     @619 
+        hdrv                 ahb_drv                     -     @647 
+          rsp_port           uvm_analysis_port           -     @662 
+          seq_item_port      uvm_seq_item_pull_port      -     @654 
+        hmon                 ahb_mon                     -     @632 
+          monitor_port       uvm_analysis_port           -     @639 
+        hseqr                ahb_seqr                    -     @670 
+          rsp_export         uvm_analysis_export         -     @677 
+          seq_item_export    uvm_seq_item_pull_imp       -     @771 
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+    sb                       scoreboard                  -     @611 
+      fifo_ahb_h[0]          uvm_tlm_analysis_fifo #(T)  -     @787 
+        analysis_export      uvm_analysis_imp            -     @826 
+        get_ap               uvm_analysis_port           -     @818 
+        get_peek_export      uvm_get_peek_imp            -     @802 
+        put_ap               uvm_analysis_port           -     @810 
+        put_export           uvm_put_imp                 -     @794 
+    v_sequencer              virtual_sequencer           -     @502 
+      rsp_export             uvm_analysis_export         -     @509 
+      seq_item_export        uvm_seq_item_pull_imp       -     @603 
+      arbitration_queue      array                       0     -    
+      lock_queue             array                       0     -    
+      num_last_reqs          integral                    32    'd1  
+      num_last_rsps          integral                    32    'd1  
+--------------------------------------------------------------------
+
+** Warning: License feature 'svverification' will expire today.
+UVM_INFO ../ahb_agent_top/ahb_drv.sv(61) @ 30: uvm_test_top.envh.ahb_top.hagnt[0].hdrv [ahb_drv] Printing from driver /n ------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                            
+------------------------------------------------------------------------------------------------
+req                            ahb_xtn   -     @854                                             
+  begin_time                   time      64    20                                               
+  depth                        int       32    'd2                                              
+  parent sequence (name)       string    8     incr_seq                                         
+  parent sequence (full name)  string    49    uvm_test_top.envh.ahb_top.hagnt[0].hseqr.incr_seq
+  sequencer                    string    40    uvm_test_top.envh.ahb_top.hagnt[0].hseqr         
+  Htrans                       integral  2     2                                                
+  length                       integral  8     'd4                                              
+  Hsel                         integral  1     1                                                
+  Hburst                       integral  3     'd3                                              
+  Hsize                        integral  3     'd0                                              
+  Haddr                        integral  8     'd75                                             
+  Hwdata                       integral  32    'heee776ab                                       
+  Hwrite                       integral  1     1                                                
+  Hready_in                    integral  1     1                                                
+  Hresp                        integral  1     'd0                                              
+------------------------------------------------------------------------------------------------
+
+UVM_INFO ../ahb_agent_top/ahb_drv.sv(61) @ 40: uvm_test_top.envh.ahb_top.hagnt[0].hdrv [ahb_drv] Printing from driver /n ------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                            
+------------------------------------------------------------------------------------------------
+req                            ahb_xtn   -     @854                                             
+  begin_time                   time      64    30                                               
+  end_time                     time      64    30                                               
+  depth                        int       32    'd2                                              
+  parent sequence (name)       string    8     incr_seq                                         
+  parent sequence (full name)  string    49    uvm_test_top.envh.ahb_top.hagnt[0].hseqr.incr_seq
+  sequencer                    string    40    uvm_test_top.envh.ahb_top.hagnt[0].hseqr         
+  Htrans                       integral  2     3                                                
+  length                       integral  8     'd4                                              
+  Hsel                         integral  1     1                                                
+  Hburst                       integral  3     'd3                                              
+  Hsize                        integral  3     'd0                                              
+  Haddr                        integral  8     'd76                                             
+  Hwdata                       integral  32    'hd5e93ab1                                       
+  Hwrite                       integral  1     1                                                
+  Hready_in                    integral  1     1                                                
+  Hresp                        integral  1     'd0                                              
+------------------------------------------------------------------------------------------------
+
+UVM_INFO ../ahb_agent_top/ahb_mon.sv(72) @ 40: uvm_test_top.envh.ahb_top.hagnt[0].hmon [ahb_mon] Printing from ahb_mon ---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          ahb_xtn   -     @844      
+  Htrans     integral  2     2         
+  length     integral  8     'd4       
+  Hsel       integral  1     1         
+  Hburst     integral  3     'd3       
+  Hsize      integral  3     'd0       
+  Haddr      integral  8     'd75      
+  Hwdata     integral  32    'heee776ab
+  mem[0]     integral  32    'h0       
+  mem[1]     integral  32    'h0       
+  Hwrite     integral  1     1         
+  Hready_in  integral  1     1         
+  Hresp      integral  1     'd0       
+---------------------------------------
+
+UVM_INFO ../ahb_agent_top/ahb_drv.sv(61) @ 50: uvm_test_top.envh.ahb_top.hagnt[0].hdrv [ahb_drv] Printing from driver /n ------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                            
+------------------------------------------------------------------------------------------------
+req                            ahb_xtn   -     @854                                             
+  begin_time                   time      64    40                                               
+  end_time                     time      64    40                                               
+  depth                        int       32    'd2                                              
+  parent sequence (name)       string    8     incr_seq                                         
+  parent sequence (full name)  string    49    uvm_test_top.envh.ahb_top.hagnt[0].hseqr.incr_seq
+  sequencer                    string    40    uvm_test_top.envh.ahb_top.hagnt[0].hseqr         
+  Htrans                       integral  2     3                                                
+  length                       integral  8     'd4                                              
+  Hsel                         integral  1     1                                                
+  Hburst                       integral  3     'd3                                              
+  Hsize                        integral  3     'd0                                              
+  Haddr                        integral  8     'd77                                             
+  Hwdata                       integral  32    'h30383314                                       
+  Hwrite                       integral  1     1                                                
+  Hready_in                    integral  1     1                                                
+  Hresp                        integral  1     'd0                                              
+------------------------------------------------------------------------------------------------
+
+UVM_INFO ../ahb_agent_top/ahb_mon.sv(72) @ 50: uvm_test_top.envh.ahb_top.hagnt[0].hmon [ahb_mon] Printing from ahb_mon ---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          ahb_xtn   -     @907      
+  Htrans     integral  2     3         
+  length     integral  8     'd4       
+  Hsel       integral  1     1         
+  Hburst     integral  3     'd3       
+  Hsize      integral  3     'd0       
+  Haddr      integral  8     'd76      
+  Hwdata     integral  32    'hd5e93ab1
+  mem[0]     integral  32    'h0       
+  mem[1]     integral  32    'h0       
+  Hwrite     integral  1     1         
+  Hready_in  integral  1     1         
+  Hresp      integral  1     'd0       
+---------------------------------------
+
+UVM_INFO ../ahb_agent_top/ahb_drv.sv(61) @ 60: uvm_test_top.envh.ahb_top.hagnt[0].hdrv [ahb_drv] Printing from driver /n ------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                            
+------------------------------------------------------------------------------------------------
+req                            ahb_xtn   -     @854                                             
+  begin_time                   time      64    50                                               
+  end_time                     time      64    50                                               
+  depth                        int       32    'd2                                              
+  parent sequence (name)       string    8     incr_seq                                         
+  parent sequence (full name)  string    49    uvm_test_top.envh.ahb_top.hagnt[0].hseqr.incr_seq
+  sequencer                    string    40    uvm_test_top.envh.ahb_top.hagnt[0].hseqr         
+  Htrans                       integral  2     3                                                
+  length                       integral  8     'd4                                              
+  Hsel                         integral  1     1                                                
+  Hburst                       integral  3     'd3                                              
+  Hsize                        integral  3     'd0                                              
+  Haddr                        integral  8     'd78                                             
+  Hwdata                       integral  32    'hb74b15ef                                       
+  Hwrite                       integral  1     1                                                
+  Hready_in                    integral  1     1                                                
+  Hresp                        integral  1     'd0                                              
+------------------------------------------------------------------------------------------------
+
+UVM_INFO ../ahb_agent_top/ahb_mon.sv(72) @ 60: uvm_test_top.envh.ahb_top.hagnt[0].hmon [ahb_mon] Printing from ahb_mon ---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          ahb_xtn   -     @911      
+  Htrans     integral  2     3         
+  length     integral  8     'd4       
+  Hsel       integral  1     1         
+  Hburst     integral  3     'd3       
+  Hsize      integral  3     'd0       
+  Haddr      integral  8     'd77      
+  Hwdata     integral  32    'h30383314
+  mem[0]     integral  32    'hb1      
+  mem[1]     integral  32    'hb1      
+  Hwrite     integral  1     1         
+  Hready_in  integral  1     1         
+  Hresp      integral  1     'd0       
+---------------------------------------
+
+UVM_INFO ../ahb_agent_top/ahb_mon.sv(72) @ 70: uvm_test_top.envh.ahb_top.hagnt[0].hmon [ahb_mon] Printing from ahb_mon ---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          ahb_xtn   -     @915      
+  Htrans     integral  2     3         
+  length     integral  8     'd4       
+  Hsel       integral  1     1         
+  Hburst     integral  3     'd3       
+  Hsize      integral  3     'd0       
+  Haddr      integral  8     'd78      
+  Hwdata     integral  32    'hb74b15ef
+  mem[0]     integral  32    'h33b1    
+  mem[1]     integral  32    'h33b1    
+  Hwrite     integral  1     1         
+  Hready_in  integral  1     1         
+  Hresp      integral  1     'd0       
+---------------------------------------
+
+UVM_INFO ../ahb_agent_top/ahb_mon.sv(72) @ 80: uvm_test_top.envh.ahb_top.hagnt[0].hmon [ahb_mon] Printing from ahb_mon ---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          ahb_xtn   -     @920      
+  Htrans     integral  2     3         
+  length     integral  8     'd4       
+  Hsel       integral  1     1         
+  Hburst     integral  3     'd3       
+  Hsize      integral  3     'd0       
+  Haddr      integral  8     'd78      
+  Hwdata     integral  32    'hb74b15ef
+  mem[0]     integral  32    'h4b33b1  
+  mem[1]     integral  32    'h4b33b1  
+  Hwrite     integral  1     1         
+  Hready_in  integral  1     1         
+  Hresp      integral  1     'd0       
+---------------------------------------
+
+UVM_INFO ../ahb_agent_top/ahb_mon.sv(72) @ 90: uvm_test_top.envh.ahb_top.hagnt[0].hmon [ahb_mon] Printing from ahb_mon ---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          ahb_xtn   -     @924      
+  Htrans     integral  2     3         
+  length     integral  8     'd4       
+  Hsel       integral  1     1         
+  Hburst     integral  3     'd3       
+  Hsize      integral  3     'd0       
+  Haddr      integral  8     'd78      
+  Hwdata     integral  32    'hb74b15ef
+  mem[0]     integral  32    'h4b33b1  
+  mem[1]     integral  32    'h4b33b1  
+  Hwrite     integral  1     1         
+  Hready_in  integral  1     1         
+  Hresp      integral  1     'd0       
+---------------------------------------
+
+UVM_INFO ../ahb_agent_top/ahb_mon.sv(72) @ 100: uvm_test_top.envh.ahb_top.hagnt[0].hmon [ahb_mon] Printing from ahb_mon ---------------------------------------
+Name         Type      Size  Value     
+---------------------------------------
+xtn          ahb_xtn   -     @928      
+  Htrans     integral  2     3         
+  length     integral  8     'd4       
+  Hsel       integral  1     1         
+  Hburst     integral  3     'd3       
+  Hsize      integral  3     'd0       
+  Haddr      integral  8     'd78      
+  Hwdata     integral  32    'hb74b15ef
+  mem[0]     integral  32    'h4b33b1  
+  mem[1]     integral  32    'h4b33b1  
+  Hwrite     integral  1     1         
+  Hready_in  integral  1     1         
+  Hresp      integral  1     'd0       
+---------------------------------------
+
+UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 110: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   17
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[Questa UVM]     2
+[RNTST]     1
+[TEST_DONE]     1
+[UVMTOP]     2
+[ahb_drv]     4
+[ahb_mon]     7
+** Note: $finish    : /home/cad/eda/Questa_2019/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+   Time: 110 ns  Iteration: 54  Instance: /Top
+Saving coverage database on exit...
+End time: 10:55:54 on Jun 21,2024, Elapsed time: 0:00:02
+Errors: 0, Warnings: 1

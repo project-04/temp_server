@@ -1,0 +1,165 @@
+vsim -cvgperinstance -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit mem_cov2;run -all; exit" -wlf wave_file2.wlf -l test2.log -sv_seed random work.top "+UVM_TESTNAME=test1" 
+Start time: 15:19:23 on Apr 17,2025
+** Note: (vsim-8009) Loading existing optimized design _opt
+//  Questa Sim-64
+//  Version 2019.2 linux_x86_64 Apr 16 2019
+//
+//  Copyright 1991-2019 Mentor Graphics Corporation
+//  All Rights Reserved.
+//
+//  QuestaSim and its associated documentation contain trade
+//  secrets and commercial or financial information that are the property of
+//  Mentor Graphics Corporation and are privileged, confidential,
+//  and exempt from disclosure under the Freedom of Information Act,
+//  5 U.S.C. Section 552. Furthermore, this information
+//  is prohibited from disclosure under the Trade Secrets Act,
+//  18 U.S.C. Section 1905.
+//
+Loading sv_std.std
+Loading work.av_if(fast)
+Loading mtiUvm.uvm_pkg
+Loading work.avip_pkg(fast)
+Loading mtiUvm.questa_uvm_pkg(fast)
+Loading work.top(fast)
+Loading work.av_if(fast)
+# Loading /home/cad/eda/Questa_2019/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+** Warning: (vsim-8634) Code was not compiled with coverage options.
+Sv_Seed = 3357223978
+ log -r /* 
+coverage save -onexit mem_cov2
+run -all
+----------------------------------------------------------------
+UVM-1.1d
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+UVM_INFO @ 0: reporter [RNTST] Running test test1...
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+------------------------------------------------------------------
+Name                       Type                        Size  Value
+------------------------------------------------------------------
+uvm_test_top               test1                       -     @474 
+  env_h                    env                         -     @490 
+    m_agt[0]               m_agent                     -     @506 
+      m_drv                m_driver                    -     @657 
+        rsp_port           uvm_analysis_port           -     @672 
+        seq_item_port      uvm_seq_item_pull_port      -     @664 
+      m_mon                m_monitor                   -     @533 
+        monitor_port       uvm_analysis_port           -     @540 
+      m_seqr               ma_sequencer                -     @548 
+        rsp_export         uvm_analysis_export         -     @555 
+        seq_item_export    uvm_seq_item_pull_imp       -     @649 
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    s_agt[0]               s_agent                     -     @517 
+      s_drv                s_driver                    -     @817 
+        rsp_port           uvm_analysis_port           -     @832 
+        seq_item_port      uvm_seq_item_pull_port      -     @824 
+      s_mon                s_monitor                   -     @693 
+        monitor_port       uvm_analysis_port           -     @700 
+      s_seqr               s_sequencer                 -     @708 
+        rsp_export         uvm_analysis_export         -     @715 
+        seq_item_export    uvm_seq_item_pull_imp       -     @809 
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    sbh                    scoreboard                  -     @524 
+      mst_fifo             uvm_tlm_analysis_fifo #(T)  -     @852 
+        analysis_export    uvm_analysis_imp            -     @891 
+        get_ap             uvm_analysis_port           -     @883 
+        get_peek_export    uvm_get_peek_imp            -     @867 
+        put_ap             uvm_analysis_port           -     @875 
+        put_export         uvm_put_imp                 -     @859 
+      slv_fifo             uvm_tlm_analysis_fifo #(T)  -     @899 
+        analysis_export    uvm_analysis_imp            -     @938 
+        get_ap             uvm_analysis_port           -     @930 
+        get_peek_export    uvm_get_peek_imp            -     @914 
+        put_ap             uvm_analysis_port           -     @922 
+        put_export         uvm_put_imp                 -     @906 
+------------------------------------------------------------------
+
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = 2
+UVM_INFO ../master_agent/master_seqs.sv(31) @ 25: uvm_test_top.env_h.m_agt[0].m_seqr@@s1 [SEQUENCE] DATA IN THE SEQUENCE
+----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+req           trans     -     @955      
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  1     'd0       
+  HADDR       integral  32    'hc1517fb6
+  HTRANS      integral  2     2         
+  HWDATA      integral  32    'h2d73e08c
+  HLEN        integral  8     'd1       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     'd0       
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+UVM_INFO ../master_agent/master_driver.sv(51) @ 35: uvm_test_top.env_h.m_agt[0].m_drv [MASTER DRV] THIS IS AHB DRIVER 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+req           trans     -     @955      
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  1     'd0       
+  HADDR       integral  32    'hc1517fb6
+  HTRANS      integral  2     2         
+  HWDATA      integral  32    'h2d73e08c
+  HLEN        integral  8     'd1       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     'd0       
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 65: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO ../tb/scoreboard.sv(165) @ 65: uvm_test_top.env_h.sbh [Addr Pass REPORT]  Address match count is 0
+UVM_INFO ../tb/scoreboard.sv(166) @ 65: uvm_test_top.env_h.sbh [Data Pass REPORT]  Data match count is 0
+UVM_INFO ../tb/scoreboard.sv(168) @ 65: uvm_test_top.env_h.sbh [Addr Fail Report]  Address mismatch count is 0
+UVM_INFO ../tb/scoreboard.sv(169) @ 65: uvm_test_top.env_h.sbh [Data Fail Reprot]  Data mismatch count is 0
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   11
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[Addr Fail Report]     1
+[Addr Pass REPORT]     1
+[Data Fail Reprot]     1
+[Data Pass REPORT]     1
+[MASTER DRV]     1
+[Questa UVM]     2
+[RNTST]     1
+[SEQUENCE]     1
+[TEST_DONE]     1
+[UVMTOP]     1
+** Note: $finish    : /home/cad/eda/Questa_2019/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+   Time: 65 ns  Iteration: 54  Instance: /top
+Saving coverage database on exit...
+End time: 15:19:24 on Apr 17,2025, Elapsed time: 0:00:01
+Errors: 0, Warnings: 1

@@ -1,0 +1,66 @@
+//--------------------------------------------------------
+//
+//  Copyright Mentor Graphics Corporation
+//  All Rights Reserved
+//
+//  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY
+//  INFORMATION WHICH IS THE PROPERTY OF MENTOR GRAPHICS
+//  CORPORATION OR ITS LICENSORS AND IS SUBJECT
+//  TO LICENSE TERMS.
+//
+//--------------------------------------------------------
+//  File created by: Tessent Shell
+//          Version: 2019.1
+//       Created on: Wed Aug 14 12:11:28 IST 2019
+//--------------------------------------------------------
+
+Core(blockA_rtl_tessent_sib_1) {
+  Occ {
+    version: 4;
+    clock_type : tck;
+    Interface {
+      SlowClock(ltest_clk) {
+            persistent_pin: tessent_persistent_cell_cts_stop_buf/Y;
+      }
+      ScanEnable(ltest_scan_en) {
+            persistent_pin: tessent_persistent_cell_ltest_scan_en_buf/Y;
+      }
+      CaptureEnable(ltest_capture_en) {
+            persistent_pin: tessent_persistent_cell_ltest_capture_en_buf/Y;
+      }
+      StaticClockControlMode(ltest_static_clock_control_mode) {
+            persistent_pin: tessent_persistent_cell_static_clock_control_mode_buf/Y;
+      }
+      ClockSequence(ltest_clock_sequence[1:0]) {
+            persistent_pin(0): tessent_persistent_cell_clock_sequence_buf_0/Y;
+            persistent_pin(1): tessent_persistent_cell_clock_sequence_buf_1/Y;
+      }
+      ScanInput(ltest_si) {
+            persistent_pin: tessent_persistent_cell_ltest_scan_in_buf/Y;
+      }
+      ScanOutput(ltest_so) {
+            persistent_pin: tessent_persistent_cell_occ_ctrl_so_buf/Y;
+      }
+      ShiftRegisterClock(tessent_persistent_cell_cts_stop_buf/Y) {
+      }
+      GatedClock(tessent_persistent_cell_ltest_clock_mux/Y) {
+      }
+    }
+    Parameters {
+      iproc : setup;
+      StaticClockControl {
+        parameter     : static_clock_control;
+        type          : string;
+        default_value : off;
+      }
+    }
+    ControlBits {
+      ControlBit(occ_ctrl[0]) {
+      }
+      ControlBit(occ_ctrl[1]) {
+      }
+    }
+    capture_trigger: capture_en;
+    static_clock_control: external;
+  }
+}

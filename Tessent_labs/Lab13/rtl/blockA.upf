@@ -1,0 +1,6 @@
+####### Define Power Islands ###########
+
+create_power_domain pd_A
+
+create_power_domain pd_B -element {blockA_l1_i1}
+create_power_domain pd_A -element {blockA_l1_i1/blockA_l2_i1}

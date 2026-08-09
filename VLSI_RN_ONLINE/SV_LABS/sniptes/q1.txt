@@ -1,0 +1,3 @@
+1. write a code to generate a random size for a dynamic array and to find the elements greater then 30 using array locater method.
+2. 
+3. 

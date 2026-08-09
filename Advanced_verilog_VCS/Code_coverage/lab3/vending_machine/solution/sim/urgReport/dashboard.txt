@@ -1,0 +1,31 @@
+Dashboard
+
+Date: Mon Jul  1 12:16:26 2024
+
+User: Sanjay_TECH
+
+Version: T-2022.06-SP1
+Command line: urg -dir simv.vdb cov -format both
+Number of tests: 1
+
+-------------------------------------------------------------------------------
+Total Coverage Summary 
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 59.21  74.31  33.33  71.67  38.46  78.26 
+
+
+-------------------------------------------------------------------------------
+Hierarchical coverage data for top-level instances 
+SCORE  LINE   COND   TOGGLE FSM    BRANCH NAME       
+ 59.21  74.31  33.33  71.67  38.46  78.26 tb_coincol 
+
+
+-------------------------------------------------------------------------------
+Total Module Definition Coverage Summary 
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 59.21  74.31  33.33  71.67  38.46  78.26 
+
+
+-------------------------------------------------------------------------------
+Ignored covdb dirs: 
+cov 

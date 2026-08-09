@@ -1,0 +1,39 @@
+class io_sequence extends uvm_sequence#(io_xtn);
+
+	`uvm_object_utils(io_sequence)
+
+	extern function new(string name="io_sequence");
+
+endclass
+
+function io_sequence:: new(string name="io_sequence");
+	super.new(name);
+endfunction
+
+
+
+class io_seq1 extends io_sequence;
+
+	`uvm_object_utils(io_seq1)
+
+	extern function new(string name="io_seq1");
+	extern task body();
+
+endclass
+
+function io_seq1:: new(string name="io_seq1");
+	super.new(name);
+endfunction
+
+task io_seq1::body();
+
+	req=io_xtn::type_id::create("req");
+   begin
+
+       start_item(req);
+       assert(req.randomize());
+       finish_item(req);
+
+   end
+
+endtask

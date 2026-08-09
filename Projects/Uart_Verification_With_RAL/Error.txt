@@ -1,0 +1,67 @@
+*****************************************************************************************************************// FRAMING ERROR
+
+   In UART, FE happen when the receiver misses the expected stop bit,
+   usually due to mismatched baud rates, noise, signal distortion, or incorrect data/stop bit settings, 
+   causing the receiver tolose synchronization with the sender's data stream.
+
+   A framing error in the 16550A UART occurs when the receiving device fails to detect the expected stop 
+   bit at the correct time. 
+
+   UART0 sends a character frame but UART1 doesn't receive the stop bit.
+
+   Let's say UART0 sends 8 bits data-bits and UART1 is waiting for 5 bits data-bits.
+   UART1 will wait for stop bit after 5th data-bit, but if it doesn't receive it, UART1 should throw a 
+   framing-error.
+
+   Note: Framing error bit in LSR is cleared upon reading the LSR.
+
+****************************************************************************************************************// BREAK ERROR
+
+   In UART, BE happen when the RX line is held low for the entire frame.
+
+   The "BREAK ERROR" in a 16550A UART is a specific type of "FRAMING ERROR" that occurs when the incoming
+   serial data line remains at a continuous logical 0 (space condition) for longer than the time it takes
+   to transmit a single full character(including start and stop bits).
+
+   Let's say UART0 is sending the data at one speed and UART1 receives at different speed(Baud rate mismatch).
+   The data won't be received, therefore when even after the timeout if UART1 expected the data but,not
+   received it means it will throw a break error.
+
+   Also when there is a mismatch in the connection between the TX and RX of both the UARTs this error 
+   might occur.
+
+   "I waited for data, but nothing showed up before my timer ran out.”
+
+   Note: Break error bit in LSR is cleared upon reading the LSR.
+
+*****************************************************************************************************************// PARITY ERROR
+
+   In UART, PE occurs when UART0 is working on odd parity and UART1 is working on even parity, and 
+   vice-versa or if the UART0 doesn't send has the parity bit but UART1 expects it. This might cause a PE.
+
+*****************************************************************************************************************// OVERRUN ERROR
+
+   In UART, when the RBR fills up, it throws an OE.
+
+*****************************************************************************************************************// TIMEOUT ERROR
+
+   No new data arrived for a timeout period,i.e 4 character period eventhough RX fifo has some data.
+   Reading from RBR resets this.
+
+   The timeout interrupt addresses a specific scenario: when a data packet is received, but the total
+   number of bytes in the final part of the packet is less than the configured FIFO trigger level.
+
+   The receiver timeout feature automatically generates an interrupt to the CPU after a specific period 
+   of line inactivity (typically four continuous character times after the last stop bit is received). 
+   This notifies the CPU that a communication pause has occurred and that there is data in the FIFO that
+   needs to be read, even if the trigger level was not reached. 
+
+****************************************************************************************************************// THR EMPTY ERROR
+
+   Triggered when THR and shift register is empty.
+   Writing to it resets this.
+
+
+   
+
+

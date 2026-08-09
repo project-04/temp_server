@@ -1,0 +1,101 @@
+GNU gdb (GDB) Red Hat Enterprise Linux 8.2-20.el8
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word".
+Attaching to process 3061109
+[New LWP 3062646]
+[New LWP 3062655]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib64/libthread_db.so.1".
+0x000015554e2306c2 in waitpid () from /lib64/libc.so.6
+Missing separate debuginfos, use: yum debuginfo-install bzip2-libs-1.0.6-26.el8.x86_64 dbus-glib-0.110-2.el8.x86_64 dbus-libs-1.12.8-26.el8.x86_64 expat-2.2.5-11.el8.x86_64 flac-libs-1.3.2-9.el8_8.1.x86_64 glib2-2.56.4-161.el8.x86_64 glibc-2.28-236.el8.7.x86_64 gmp-6.1.2-10.el8.x86_64 gnutls-3.6.16-8.el8_9.x86_64 graphite2-1.3.10-10.el8.x86_64 gsm-1.0.17-5.el8.x86_64 jbigkit-libs-2.1-14.el8.x86_64 keyutils-libs-1.5.10-9.el8.x86_64 krb5-libs-1.18.2-26.el8_9.x86_64 libICE-1.0.9-15.el8.x86_64 libSM-1.2.3-1.el8.x86_64 libX11-1.6.8-6.el8.x86_64 libX11-xcb-1.6.8-6.el8.x86_64 libXScrnSaver-1.2.3-1.el8.x86_64 libXau-1.0.9-3.el8.x86_64 libXcomposite-0.4.4-14.el8.x86_64 libXcursor-1.1.15-3.el8.x86_64 libXext-1.3.4-1.el8.x86_64 libXfixes-5.0.3-7.el8.x86_64 libXft-2.3.3-1.el8.x86_64 libXrandr-1.5.2-1.el8.x86_64 libXrender-0.9.10-7.el8.x86_64 libXtst-1.2.3-7.el8.x86_64 libasyncns-0.8-14.el8.x86_64 libblkid-2.32.1-43.el8.x86_64 libcap-2.48-6.el8_9.x86_64 libcom_err-1.45.6-5.el8.x86_64 libffi-3.1-24.el8.x86_64 libgcrypt-1.8.5-7.el8_6.x86_64 libglvnd-glx-1.3.4-1.el8.x86_64 libgpg-error-1.31-1.el8.x86_64 libmount-2.32.1-43.el8.x86_64 libogg-1.3.2-10.el8.x86_64 libpng12-1.2.57-5.el8.x86_64 libselinux-2.9-8.el8.x86_64 libsndfile-1.0.28-13.el8.x86_64 libtasn1-4.13-4.el8_7.x86_64 libtiff-4.0.9-29.el8_8.x86_64 libunistring-0.9.9-3.el8.x86_64 libuuid-2.32.1-43.el8.x86_64 libvorbis-1.3.6-2.el8.x86_64 libxcb-1.13.1-1.el8.x86_64 lz4-libs-1.8.3-3.el8_4.x86_64 nettle-3.4.1-7.el8.x86_64 openssl-libs-1.1.1k-12.el8_9.x86_64 p11-kit-0.23.22-1.el8.x86_64 pcre-8.42-6.el8.x86_64 pulseaudio-libs-14.0-4.el8.x86_64 pulseaudio-libs-glib2-14.0-4.el8.x86_64 sqlite-libs-3.26.0-19.el8_9.x86_64 systemd-libs-239-78.el8.x86_64 xcb-util-0.4.0-10.el8.x86_64
+(gdb) (gdb) 
+Thread 3 (Thread 0x15553e559700 (LWP 3062655)):
+#0  0x000015555185045c in pthread_cond_wait@@GLIBC_2.3.2 () at /lib64/libpthread.so.0
+#1  0x000015555027e5f7 in QWaitCondition::wait(QMutex*, QDeadlineTimer) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Core.so.5
+#2  0x000015555027baee in  () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Core.so.5
+#3  0x00001555502786b3 in  () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Core.so.5
+#4  0x0000000012fb7119 in SNPSee_d9c72da67e7a1f57e9891545cd875e2719332304182309de ()
+#5  0x000015555184a1ca in start_thread () at /lib64/libpthread.so.0
+#6  0x000015554e170e73 in clone () at /lib64/libc.so.6
+
+Thread 2 (Thread 0x15553f461700 (LWP 3062646)):
+#0  0x000015554e25b301 in poll () at /lib64/libc.so.6
+#1  0x000015554fbd86cf in _xcb_conn_wait () at /lib64/libxcb.so.1
+#2  0x000015554fbda35a in xcb_wait_for_event () at /lib64/libxcb.so.1
+#3  0x00001555415afe58 in  () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5XcbQpa.so.5
+#4  0x00001555502786b3 in  () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Core.so.5
+#5  0x0000000012fb7119 in SNPSee_d9c72da67e7a1f57e9891545cd875e2719332304182309de ()
+#6  0x000015555184a1ca in start_thread () at /lib64/libpthread.so.0
+#7  0x000015554e170e73 in clone () at /lib64/libc.so.6
+
+Thread 1 (Thread 0x155542593d80 (LWP 3061109)):
+#0  0x000015554e2306c2 in waitpid () at /lib64/libc.so.6
+#1  0x000015554e192ce7 in do_system () at /lib64/libc.so.6
+#2  0x0000000012fed25d in SNPSee_4f1eca636f186904 ()
+#3  0x0000000012fb91ed in SNPSee_216f3c2f4c55dbceb170dcb7639b9c2cdd496024a8e266b98132685c735317487fd2aa296d8a7317 ()
+#4  0x0000000012fbabdd in SNPSee_216f3c2f4c55dbceb170dcb7639b9c2cdd496024a8e266b98132685c73531748e1eb9162e9fd7182 ()
+#5  0x0000000000d4429a in SNPSee_f1ee00d2049be34bc9fa2aabd0709c661b77ea09a2cd7785 ()
+#6  0x000000000da335a1 in SNPSee_b0111077a1564ec2f03c23d0bb102089cced107fffe7abc9 ()
+#7  0x000000000da33f0a in SNPSee_616b6e047c741ff1baf571efe85d3536eac68d027a1be0e0030a066449e92897 ()
+#8  0x000000000da33a0d in SNPSee_b5b74bb29e23928e271a046254d5c62e ()
+#9  0x00000000127d3c70 in SNPSee_3da1e8e388eef22c4cad96049bb507e323902e731626b6f85a1de23e01dcfb84 ()
+#10 0x0000155551854cf0 in <signal handler called> () at /lib64/libpthread.so.0
+#11 0x0000155550a157b6 in  () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Gui.so.5
+#12 0x0000155550d2cfc7 in QPainter::setPen(QColor const&) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Gui.so.5
+#13 0x00001555513aa945 in QItemDelegate::drawDisplay(QPainter*, QStyleOptionViewItem const&, QRect const&, QString const&) const () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#14 0x00000000029fb524 in SNPSee_0dfd3e10bc49bf0e01143771e312295faa7956efae3101299959b5b0f1705076b07b8b926e4255126a9db8aca38df389fe313a51b4c1162efc1ccfe2d44d965423796c263ddef194ae9ab4d10cae48de69921be4afb6f650 ()
+#15 0x00001555513ae6ce in QItemDelegate::paint(QPainter*, QStyleOptionViewItem const&, QModelIndex const&) const () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#16 0x00001555513f57d0 in QTreeView::drawRow(QPainter*, QStyleOptionViewItem const&, QModelIndex const&) const () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#17 0x00001555513fb6e6 in QTreeView::drawTree(QPainter*, QRegion const&) const () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#18 0x00001555514006e3 in QTreeView::paintEvent(QPaintEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#19 0x0000000001ef2746 in SNPSee_ef9fc21edd91c41f2d4a1a5f6fc6d638ab576b3bfc61f0216bc2272c705ebffab2204830659586f56ae84f47d7088215 ()
+#20 0x0000155551165996 in QWidget::event(QEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#21 0x0000155551217293 in QFrame::event(QEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#22 0x000015555139340a in QAbstractItemView::viewportEvent(QEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#23 0x0000155551401929 in QTreeView::viewportEvent(QEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#24 0x000015555045eb02 in QCoreApplicationPrivate::sendThroughObjectEventFilters(QObject*, QEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Core.so.5
+#25 0x0000155551123bb1 in QApplicationPrivate::notify_helper(QObject*, QEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#26 0x000015555112c4c6 in QApplication::notify(QObject*, QEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#27 0x0000000001fca643 in SNPSee_9886f32bf8214536ec9f95d3ed3c7f5e64ba1872850550598ca741cdfb68659679bafee2b9707c59 ()
+#28 0x000015555045ed71 in QCoreApplication::notifyInternal2(QObject*, QEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Core.so.5
+#29 0x000015555115df0c in QWidgetPrivate::sendPaintEvent(QRegion const&) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#30 0x000015555115e772 in QWidgetPrivate::drawWidget(QPaintDevice*, QRegion const&, QPoint const&, QFlags<QWidgetPrivate::DrawWidgetFlag>, QPainter*, QWidgetRepaintManager*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#31 0x0000155551135f46 in  () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#32 0x0000155551136a34 in  () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#33 0x000015555115f68d in QWidgetPrivate::syncBackingStore() () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#34 0x0000155551165fae in QWidget::event(QEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#35 0x000015555127bccb in QMainWindow::event(QEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#36 0x00000000020e0f00 in SNPSee_4923ddf81716603ff6b0711392b4a99d7063303ad3d4f550bd2d0a72a3f3d324 ()
+#37 0x0000155551123bc2 in QApplicationPrivate::notify_helper(QObject*, QEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#38 0x000015555112c4c6 in QApplication::notify(QObject*, QEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Widgets.so.5
+#39 0x0000000001fca643 in SNPSee_9886f32bf8214536ec9f95d3ed3c7f5e64ba1872850550598ca741cdfb68659679bafee2b9707c59 ()
+#40 0x000015555045ed71 in QCoreApplication::notifyInternal2(QObject*, QEvent*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Core.so.5
+#41 0x0000155550461610 in QCoreApplicationPrivate::sendPostedEvents(QObject*, int, QThreadData*) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Core.so.5
+#42 0x00001555504b38a1 in QEventDispatcherUNIX::processEvents(QFlags<QEventLoop::ProcessEventsFlag>) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Core.so.5
+#43 0x00000000015807ad in SNPSee_022a2517f3563cbec2b5b42fedeb3dda68298addcf6014c77180d8caa827bd35279c339b109c845b928007e791d4668ff5d311bfb9e94450ab3ccaa8ebfc54a950b981701765173873c40273f1516ffa5352ef056534af68 ()
+#44 0x00000000013eced5 in SNPSee_80051c3e017cbcc0e527ada7eaf06b628ebb3290689b73b98b5c8979b8a944fddf301789f3c04ee9e18e02a6e8dc8c8cc8d90585d03a00ea2c8799e295df6dd58edeea89405a17bcdadbde37f16eda3e ()
+#45 0x000000001315c222 in SNPSee_cf98e994a81a3699f563cc87d9a119de ()
+#46 0x00000000013ed017 in SNPSee_80051c3e017cbcc0e527ada7eaf06b628ebb3290689b73b98b5c8979b8a944fddf301789f3c04ee9e18e02a6e8dc8c8cc8d90585d03a00ea2c8799e295df6dd58edeea89405a17bcdadbde37f16eda3e ()
+#47 0x000015555045da6b in QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>) () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Core.so.5
+#48 0x0000155550465733 in QCoreApplication::exec() () at /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/../shlib/libQt5Core.so.5
+#49 0x0000000001fa793f in SNPSee_b81f4656f0d7d3ca1b0bca755b60caea2cb50375ef5e9df280c2a7ba1e2ca19f7750e3d580600edd04a01dc4363d697fcd6b18c4d0ab558c ()
+#50 0x0000000002da2cbf in SNPSee_76d6cca1ef29382ca84b036280d53dca ()
+#51 0x0000000000d48ac6 in SNPSee_a8c67c391924da59bb0a6e836c77e2d8 ()
+#52 0x0000000000c481b9 in SNPSee_5a24f30b88271223 ()
+#53 0x000015554e171d85 in __libc_start_main () at /lib64/libc.so.6
+#54 0x0000000000d4213e in SNPSee_d06eed713327be76 ()
+(gdb) Detaching from program: /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/linux64/syn/bin/common_shell_exec, process 3061109
+[Inferior 1 (process 3061109) detached]
+(gdb) 

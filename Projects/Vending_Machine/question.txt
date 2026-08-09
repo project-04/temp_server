@@ -1,0 +1,51 @@
+Verification Task: Coin Vending Machine FSM, Monetary Accumulation, and Output Encoding
+
+   Verify the functionality and correctness of the given coin vending machine RTL (Moore FSM) by validating its behavior under different coin insertion sequenc   es, monetary accumulation logic, and output indication conditions.
+
+   The design accepts multiple coin denominations and asserts done_out only when the total accumulated value reaches 1 Rupee (100 paise). The current accumulat   ed amount is reflected through two 7-segment displays.
+
+
+Verification Scenarios:
+
+     1) Accumulation of 25 Paise Coins
+
+            Write and execute a test to verify correct FSM transitions and outputs when 25-paise coins are inserted four consecutive times.
+ 
+            Ensure: done_out is asserted only after the fourth coin.
+
+
+
+     2) Accumulation of 50 Paise Coins
+
+            Write and execute a test to verify correct behavior when 50-paise coins are inserted twice.
+
+            Ensure:done_out is asserted after the second insertion
+
+
+    3) Mixed Coin Sequence (50 Paise followed by 1 Rupee)
+
+               Write and execute a test to verify correct handling of mixed denomination inputs.
+
+               Ensure:done_out asserts immediately after reaching 1 Rupee.
+
+
+     4) Incomplete Amount (75 Paise Case)
+
+               Write and execute a negative test to verify behavior when the accumulated amount does not reach 1 Rupee.
+
+               Ensure:done_out remains deasserted.
+
+
+
+
+
+Verification Requirements:
+
+1) Scoreboard : Implement a scoreboard to Check correctness of done_out assertion and Compare expected vs actual 7-segment display outputs
+
+
+2) Functional Coverage : Develop Coverage of all four verification sequences listed above
+
+3) SystemVerilog Assertions (SVA) : Write assertions to verify FSM resets correctly and done_out is asserted only in STATE100 and Correct seven-segment outputs                                    for each state
+
+

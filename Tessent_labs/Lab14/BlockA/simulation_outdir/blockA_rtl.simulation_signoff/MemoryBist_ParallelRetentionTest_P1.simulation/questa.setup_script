@@ -1,0 +1,9 @@
+#!/bin/sh
+export PATH='.:/home/cad/eda/tessent/bin:/home/cad/eda/Mentor/Questa_2019/questasim/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/ISE/bin/lin64:/home/cad/eda/Xilinx/14.7/ISE_DS/ISE/sysgen/util:/home/cad/eda/Xilinx/14.7/ISE_DS/ISE/../../../DocNav:/home/cad/eda/Xilinx/14.7/ISE_DS/PlanAhead/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/EDK/bin/lin64:/home/cad/eda/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/lin/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/EDK/gnu/powerpc-eabi/lin/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/EDK/gnu/arm/lin/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_be/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_le/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/common/bin/lin64:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/susmita/.local/bin:/home/susmita/bin'
+export MTI_VCO_MODE='64'
+export LD_LIBRARY_PATH='/home/cad/eda/tessent/lnx-x86/lib64:/usr/local/lib:/home/cad/eda/tessent/bin:/home/cad/eda/Mentor/Questa_2019/questasim/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/ISE/bin/lin64:/home/cad/eda/Xilinx/14.7/ISE_DS/ISE/sysgen/util:/home/cad/eda/Xilinx/14.7/ISE_DS/ISE/../../../DocNav:/home/cad/eda/Xilinx/14.7/ISE_DS/PlanAhead/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/EDK/bin/lin64:/home/cad/eda/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/lin/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/EDK/gnu/powerpc-eabi/lin/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/EDK/gnu/arm/lin/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_be/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/linux_toolchain/lin64_le/bin:/home/cad/eda/Xilinx/14.7/ISE_DS/common/bin/lin64:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin'
+export JAGUAR_HOME='/home/cad/eda/tessent'
+export MGLS_HOME='/home/cad/eda/tessent/lnx-x86/bin64/mgls/'
+export TESSENT_HOME='/home/cad/eda/tessent'
+export LM_LICENSE_FILE='/home/B47/akhil/Xilinx.lic'
+export MGLS_LICENSE_FILE='1717@172.16.17.1'

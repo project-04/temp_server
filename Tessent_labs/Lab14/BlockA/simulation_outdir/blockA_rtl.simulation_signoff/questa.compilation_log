@@ -1,0 +1,106 @@
+
+if [ ! -d questa.logical_libraries ] ; then mkdir questa.logical_libraries; fi
+
+
+vlib ./questa.logical_libraries/dut_work
+** Warning: (vlib-34) Library already exists at "./questa.logical_libraries/dut_work".
+vmap work ./questa.logical_libraries/dut_work
+QuestaSim-64 vmap 2019.2 Lib Mapping Utility 2019.04 Apr 16 2019
+vmap work ./questa.logical_libraries/dut_work 
+Modifying modelsim.ini
+
+
+
+# Entry 1
+vlog -work work -mixedansiports +librescan -vlog01compat -ysearchlib \
+      "../../blockA_tsdb/dft_inserted_designs/blockA_rtl.dft_inserted_design/modified_rtl_files/blockA.v" \
+      -f questa.arguments_1
+QuestaSim-64 vlog 2019.2 Compiler 2019.04 Apr 16 2019
+Start time: 12:11:42 on Aug 14,2019
+vlog -work work -mixedansiports "+librescan" -vlog01compat -ysearchlib ../../blockA_tsdb/dft_inserted_designs/blockA_rtl.dft_inserted_design/modified_rtl_files/blockA.v -f questa.arguments_1 
+-- Compiling module blockA
+-- Scanning library file '../../../Libs/adk_4_1/verilog/adk.v'
+
+Top level modules:
+	blockA
+End time: 12:11:42 on Aug 14,2019, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+if [ $? != 0 ] ; then xitval=-1; echo "Failure on entry 1"; fi
+
+# Entry 2
+vlog -work work -mixedansiports +librescan -vlog01compat -ysearchlib \
+      "../../blockA_tsdb/instruments/blockA_rtl_cells.instrument/blockA_rtl_tessent_posedge_synchronizer_reset.v" \
+      -f questa.arguments_1
+QuestaSim-64 vlog 2019.2 Compiler 2019.04 Apr 16 2019
+Start time: 12:11:42 on Aug 14,2019
+vlog -work work -mixedansiports "+librescan" -vlog01compat -ysearchlib ../../blockA_tsdb/instruments/blockA_rtl_cells.instrument/blockA_rtl_tessent_posedge_synchronizer_reset.v -f questa.arguments_1 
+-- Compiling module blockA_rtl_tessent_posedge_synchronizer_reset
+
+Top level modules:
+	blockA_rtl_tessent_posedge_synchronizer_reset
+End time: 12:11:42 on Aug 14,2019, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+if [ $? != 0 ] ; then xitval=-1; echo "Failure on entry 2"; fi
+
+# Entry 3
+vlog -work work -mixedansiports +librescan -vlog01compat -ysearchlib \
+      "../../blockA_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_1.v" \
+      "../../blockA_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_2.v" \
+      -f questa.arguments_1
+QuestaSim-64 vlog 2019.2 Compiler 2019.04 Apr 16 2019
+Start time: 12:11:42 on Aug 14,2019
+vlog -work work -mixedansiports "+librescan" -vlog01compat -ysearchlib ../../blockA_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_1.v ../../blockA_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_2.v -f questa.arguments_1 
+-- Compiling module blockA_rtl_tessent_sib_1
+-- Compiling module blockA_rtl_tessent_sib_2
+-- Scanning library file '../../../Libs/adk_4_1/verilog/adk.v'
+
+Top level modules:
+	blockA_rtl_tessent_sib_1
+	blockA_rtl_tessent_sib_2
+End time: 12:11:42 on Aug 14,2019, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+if [ $? != 0 ] ; then xitval=-1; echo "Failure on entry 3"; fi
+
+# Entry 4
+vlog -work work -mixedansiports +librescan -vlog01compat -ysearchlib \
+      "../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_bap.v" \
+      "../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.v" \
+      "../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_interface_m1.v" \
+      -f questa.arguments_1
+QuestaSim-64 vlog 2019.2 Compiler 2019.04 Apr 16 2019
+Start time: 12:11:42 on Aug 14,2019
+vlog -work work -mixedansiports "+librescan" -vlog01compat -ysearchlib ../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_bap.v ../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.v ../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_interface_m1.v -f questa.arguments_1 
+-- Compiling module blockA_rtl_tessent_mbist_bap
+-- Compiling module blockA_rtl_tessent_mbist_bap_tdr
+-- Compiling module blockA_rtl_tessent_mbist_bap_sib
+-- Compiling module blockA_rtl_tessent_mbist_c1_controller
+-- Compiling module blockA_rtl_tessent_mbist_c1_controller_ctl_comp
+-- Compiling module blockA_rtl_tessent_mbist_c1_controller_async_interf
+-- Compiling module blockA_rtl_tessent_mbist_c1_controller_option
+-- Compiling module blockA_rtl_tessent_mbist_c1_controller_pointer_cntrl
+-- Compiling module blockA_rtl_tessent_mbist_c1_controller_add_format
+-- Compiling module blockA_rtl_tessent_mbist_c1_controller_add_gen
+-- Compiling module blockA_rtl_tessent_mbist_c1_controller_fsm
+-- Compiling module blockA_rtl_tessent_mbist_c1_controller_signal_gen
+-- Compiling module blockA_rtl_tessent_mbist_c1_controller_repeat_loop_cntrl
+-- Compiling module blockA_rtl_tessent_mbist_c1_controller_data_gen
+-- Compiling module blockA_rtl_tessent_mbist_c1_interface_m1
+-- Compiling module blockA_rtl_tessent_mbist_c1_interface_m1_STATUS
+-- Compiling module blockA_rtl_tessent_mbist_c1_interface_m1_ColumnRedundancyAnalysis
+-- Compiling module blockA_rtl_tessent_mbist_c1_interface_m1_RowRedundancyAnalysis
+-- Scanning library file '../../../Libs/adk_4_1/verilog/adk.v'
+
+Top level modules:
+	blockA_rtl_tessent_mbist_bap
+	blockA_rtl_tessent_mbist_c1_controller
+	blockA_rtl_tessent_mbist_c1_interface_m1
+End time: 12:11:42 on Aug 14,2019, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+if [ $? != 0 ] ; then xitval=-1; echo "Failure on entry 4"; fi
+
+if [ $xitval -ne 0 ]; then
+  echo "Compilation failed"
+fi
+
+exit $xitval
+exit0

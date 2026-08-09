@@ -1,0 +1,148 @@
+class scoreboard extends uvm_scoreboard;
+
+	//Register to Factory
+	`uvm_component_utils(scoreboard)
+
+	//Configuration Object Handle and Property
+	env_config m_cfg;
+
+
+	int data_verified_count;
+      
+	//AHB & APB Transaction Handle
+	trans xtn,xtn1;
+
+	//Analysis FIFO
+	uvm_tlm_analysis_fifo#(trans) mst_fifo;
+	uvm_tlm_analysis_fifo#(trans) slv_fifo;
+
+	//Covergroup for AHB Transaction
+/*	covergroup ahb_fcov;
+		option.per_instance = 1;
+		SIZE: coverpoint xtn.hsize{bins add[]={0,2};}
+		ADDR: coverpoint xtn.haddr{bins first_slave={[32'h8000_0000:32'h8000_03ff]};
+						bins second_slave={[32'h8400_0000:32'h8400_03ff]};
+						bins third_slave={[32'h8800_0000:32'h8800_03ff]};
+						bins fourth_slave={[32'h8c00_0000:32'h8c00_03ff]};}
+		TRANS:coverpoint xtn.Htrans{bins trans[]={[0:3]};}
+	endgroup
+	
+	//Covergroup for APB Transaction
+	covergroup apb_fcov;
+		option.per_instance = 1;
+		
+		ADDR: coverpoint xtn1.Paddr{bins first_slave={[32'h8000_0000:32'h8000_03ff]};
+						bins second_slave={[32'h8400_0000:32'h8400_03ff]};
+						bins third_slave={[32'h8800_0000:32'h8800_03ff]};
+						bins fourth_slave={[32'h8c00_0000:32'h8c00_03ff]};
+										}
+		SEL: coverpoint xtn1.Pselx{bins first_slave={4'b0001};
+						bins second_slave={4'b0010};
+						bins third_slave={4'b0100};
+						bins fourth_slave={4'b1000};
+										}
+		
+	endgroup 
+*/
+
+	//------------------------------------------
+	// Methods
+	// -----------------------------------------
+	extern function new(string name = "scoreboard", uvm_component parent);	
+	extern function void build_phase(uvm_phase phase);
+	extern task run_phase(uvm_phase phase);
+	extern function void check1(trans xtn,trans xtn1);
+	extern function void compare(bit[31:0] mem[int],bit[31:0] mem1[int],int master_haddr,int slave_haddr);
+endclass: scoreboard
+
+//Constructor new
+function scoreboard::new(string name = "scoreboard", uvm_component parent);
+	super.new(name, parent);
+
+//	ahb_fcov = new();
+//	apb_fcov = new();
+
+endfunction 
+
+function void scoreboard::build_phase(uvm_phase phase);
+	//Get Configuration Object from Database
+	if(!uvm_config_db#(env_config)::get(this, "", "env_config", m_cfg))
+		`uvm_fatal("SCOREBOARD", "Cannot get Configuration Object from ENV")	
+	
+	super.build_phase(phase);
+	
+    
+        	mst_fifo=new("mst_fifo",this);
+        	slv_fifo=new("slv_fifo",this);
+        
+
+
+endfunction //build_phase
+
+task scoreboard::run_phase(uvm_phase phase);
+	fork
+	begin
+		forever 
+		begin
+			mst_fifo.get(xtn);
+			`uvm_info("master_scoreboard",$sformatf("Printing from SB of master side data %s",xtn.sprint),UVM_LOW)
+        	end
+   	end
+
+	begin
+		forever
+		begin
+		        slv_fifo.get(xtn1);
+			`uvm_info("slave_scoreboard",$sformatf("Printing from SB of slave side data %s",xtn.sprint),UVM_LOW)
+			check1(xtn,xtn1);
+   		end
+	end
+	join
+endtask
+
+
+function void scoreboard::check1(trans xtn,trans xtn1);
+
+	if(xtn.hwrite)
+		compare(xtn.master_write_mem,xtn1.slave_write_mem,xtn.haddr,xtn1.haddr);
+	else
+		compare(xtn.master_read_mem,xtn1.slave_read_mem,xtn.haddr,xtn1.haddr);
+endfunction
+ 
+function void scoreboard::compare(bit[31:0] mem[int],bit[31:0] mem1[int],int master_haddr,int slave_haddr);
+
+	if(master_haddr==slave_haddr)
+  	`uvm_info("SB","Address compared successfully",UVM_LOW)
+  	
+	else
+ 	`uvm_info("SB","Address not compared successfully",UVM_LOW)
+
+	if(xtn.hwrite)
+	begin
+		if(mem==mem1)
+		`uvm_info("SB","write data matched successfully",UVM_LOW)
+  		else
+		begin
+		`uvm_info("SB","write data mismatched",UVM_LOW)	
+		$display("%p \n %p",mem,mem1);
+		end
+	end
+
+	else
+	begin
+		if(mem==mem1)
+		`uvm_info("SB","Read data matched successfully",UVM_LOW)
+		else
+		`uvm_info("SB","Read data mismatched",UVM_LOW)
+	end
+
+//data_verified_count++;
+  
+//	ahb_fcov.sample();
+//	apb_fcov.sample(); 
+
+endfunction
+
+
+
+

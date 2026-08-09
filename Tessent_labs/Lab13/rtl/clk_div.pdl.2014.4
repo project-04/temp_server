@@ -1,0 +1,31 @@
+iProcsForModule clk_div
+iProc init {{ratio 4} {validate_only 0}} {
+  #### Validation part ####
+
+  if {$ratio ni {1 2 4 8}} {
+    set err "Illegal value '$ratio' for option 'ratio'. Must be 1, 2, 4, or 8. Default is 4."
+    if {[info exists ::mentor::iproc_parameter(ratio)]} {
+      add_config_message -display -config $::mentor::iproc_parameter(ratio) $err
+    } else {
+      display_message $err
+    }
+    return -code error
+  }
+  if {$validate_only} { 
+    # Skip PDL part
+    return 
+  }
+ 
+  #### PDL part ####
+
+  iClock clk_in
+  iWrite rst 0b1
+  iWrite ratio [expr int(log($ratio)/log(2))]
+  iApply
+  iWrite rst 0b0
+  iApply
+  iRunLoop 8 -sck clk_in
+  iClockOverride clk_out -freqDivider $ratio
+}
+
+  

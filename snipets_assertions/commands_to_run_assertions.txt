@@ -1,0 +1,12 @@
+Questa
+compile: 	qverilog -vopt +acc (file1.sv file2.sv)
+wave   : 	vsim work.tb -voptargs=+acc
+1. go to view -> coverage -> tickmark it & add assertions module signals to waves & add assertions to the wave.
+
+
+VCS
+compile:	vcs -sverilog -debug_access+all -kdb (file1.sv file2.sv)
+wave   : 	./simv -verdi
+1. go to view -> signal list & add assertions module signals to waves & simulation -> reset & simulation -> run/continue.
+
+

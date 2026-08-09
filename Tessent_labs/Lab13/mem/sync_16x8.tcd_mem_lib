@@ -1,0 +1,86 @@
+MemoryTemplate (SYNC_1R1W_16x8) { // {{{
+
+    MemoryType          : SRAM;  // PG mandatory
+    CellName            : SYNC_1R1W_16x8;
+    Algorithm           : SMarchCHKBvcd;
+    BitGrouping         : 1;
+    //ShadowWrite         : On;
+    //ShadowWriteOK       : On;
+    //ShadowRead          : On;
+    //ReadOutofRangeOK    : On;
+    TransparentMode     : SyncMux;
+    //DataOutStage        : None;
+    OperationSet        : Sync;
+    LogicalPorts        : 1R1W;
+
+    Port (CLKR) {
+        Function: Clock;
+        Polarity: ActiveHigh;
+        LogicalPort: R;
+    }
+    Port (CLKW) {
+        Function: Clock;
+        Polarity: ActiveHigh;
+        LogicalPort: W;
+    }
+    Port (AR[3:0]) {
+        Function: Address;
+        LogicalPort: R;
+    }
+    Port (AW[3:0]) {
+        Function: Address;
+        LogicalPort: W;
+    }
+    Port (D[7:0]) { 
+        Function: Data; 
+        Direction: Input; 
+        LogicalPort: W;
+    }
+    Port (Q[7:0]) { 
+        Function: Data; 
+        Direction: Output; 
+        LogicalPort: R;
+    }
+    Port (RE) {
+        Function: ReadEnable; 
+        Polarity: ActiveHigh; 
+        LogicalPort: R;
+    }
+    Port (WE) {
+        Function: WriteEnable; 
+        Polarity: ActiveHigh; 
+        LogicalPort: W;
+    }
+    Port (GWE[7:0]) {
+        Function: GroupWriteEnable; 
+        Polarity: ActiveHigh; 
+        LogicalPort: W;
+    }
+    Port (OE) {
+        Function: OutputEnable; 
+        //Function: LogicHigh; 
+        Polarity: ActiveHigh; 
+        LogicalPort: R;
+    }
+
+    //AddressConfig {
+    //  LogicalAddressMap {
+    //    ColumnAddress[2:0] : Address[2:0];
+    //    RowAddress   [0:0] : Address[3:3];
+    //  }
+    //  CountRange(ColumnAddress) : [3'b000:3'b111];  // 8 col
+    //  CountRange(RowAddress)    : [1'b0:1'b1];      // 2 row
+    //}
+
+    AddressCounter {
+        Function ( ColumnAddress ) {
+            LogicalAddressMap { ColumnAddress[2:0]:Address[2:0]; }
+            CountRange[0:7];  // 8 col
+        }
+        Function ( RowAddress ) {
+            LogicalAddressMap { RowAddress[0:0]:Address[3:3]; }
+            CountRange[0:1];  // 2 row
+        }
+    }
+
+}  // MemoryTemplate }}}

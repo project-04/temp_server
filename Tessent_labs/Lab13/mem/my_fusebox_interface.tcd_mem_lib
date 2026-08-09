@@ -1,0 +1,20 @@
+Core(my_fusebox_interface) {
+  FuseBoxInterface {
+    write_duration               : 200ns;
+    read_word_size               : 1;
+    align_access_en_with_address : auto;
+    number_of_fuses              : 512;
+    Interface {
+      clock                : clock;
+      select               : select;
+      access_en            : access_en;
+      write_en             : write_en;
+      address              : address[9:0];
+      programming_voltage  : vddq;
+      write_duration_count : write_duration_count[31:0];
+      logictest_en         : scan_test;
+      done                 : done;
+      read_data            : read_data;
+    }
+  }
+}

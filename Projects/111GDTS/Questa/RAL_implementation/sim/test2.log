@@ -1,0 +1,430 @@
+vsim -cvgperinstance -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit mem_cov2;run -all; exit" -wlf wave_file2.wlf -l test2.log -sv_seed random work.top "+UVM_TESTNAME=test1" 
+Start time: 14:50:50 on May 12,2025
+** Note: (vsim-8009) Loading existing optimized design _opt1
+//  Questa Sim-64
+//  Version 2019.2 linux_x86_64 Apr 16 2019
+//
+//  Copyright 1991-2019 Mentor Graphics Corporation
+//  All Rights Reserved.
+//
+//  QuestaSim and its associated documentation contain trade
+//  secrets and commercial or financial information that are the property of
+//  Mentor Graphics Corporation and are privileged, confidential,
+//  and exempt from disclosure under the Freedom of Information Act,
+//  5 U.S.C. Section 552. Furthermore, this information
+//  is prohibited from disclosure under the Trade Secrets Act,
+//  18 U.S.C. Section 1905.
+//
+Loading sv_std.std
+Loading work.intf(fast)
+Loading mtiUvm.uvm_pkg
+Loading work.avip_pkg(fast)
+Loading mtiUvm.questa_uvm_pkg(fast)
+Loading work.top(fast)
+Loading work.intf(fast)
+Loading work.reg_mem_block(fast)
+# Loading /home/cad/eda/Questa_2019/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+** Warning: (vsim-8634) Code was not compiled with coverage options.
+Sv_Seed = 3942121034
+ log -r /* 
+coverage save -onexit mem_cov2
+run -all
+----------------------------------------------------------------
+UVM-1.1d
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+UVM_INFO @ 0: reporter [RNTST] Running test test1...
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+------------------------------------------------------------------
+Name                       Type                        Size  Value
+------------------------------------------------------------------
+uvm_test_top               test1                       -     @474 
+  env_h                    env                         -     @503 
+    m_agt[0]               m_agent                     -     @519 
+      m_drv                m_driver                    -     @694 
+        rsp_port           uvm_analysis_port           -     @709 
+        seq_item_port      uvm_seq_item_pull_port      -     @701 
+      m_mon                m_monitor                   -     @570 
+        monitor_port       uvm_analysis_port           -     @577 
+      m_seqr               ma_sequencer                -     @585 
+        rsp_export         uvm_analysis_export         -     @592 
+        seq_item_export    uvm_seq_item_pull_imp       -     @686 
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    predictor              uvm_reg_predictor #(trans)  -     @544 
+      bus_in               uvm_analysis_imp            -     @551 
+      reg_ap               uvm_analysis_port           -     @559 
+    s_agt[0]               s_agent                     -     @530 
+      s_drv                s_driver                    -     @854 
+        rsp_port           uvm_analysis_port           -     @869 
+        seq_item_port      uvm_seq_item_pull_port      -     @861 
+      s_mon                s_monitor                   -     @730 
+        monitor_port       uvm_analysis_port           -     @737 
+      s_seqr               s_sequencer                 -     @745 
+        rsp_export         uvm_analysis_export         -     @752 
+        seq_item_export    uvm_seq_item_pull_imp       -     @846 
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    sbh                    scoreboard                  -     @537 
+      mst_fifo             uvm_tlm_analysis_fifo #(T)  -     @889 
+        analysis_export    uvm_analysis_imp            -     @928 
+        get_ap             uvm_analysis_port           -     @920 
+        get_peek_export    uvm_get_peek_imp            -     @904 
+        put_ap             uvm_analysis_port           -     @912 
+        put_export         uvm_put_imp                 -     @896 
+      slv_fifo             uvm_tlm_analysis_fifo #(T)  -     @936 
+        analysis_export    uvm_analysis_imp            -     @975 
+        get_ap             uvm_analysis_port           -     @967 
+        get_peek_export    uvm_get_peek_imp            -     @951 
+        put_ap             uvm_analysis_port           -     @959 
+        put_export         uvm_put_imp                 -     @943 
+------------------------------------------------------------------
+
+UVM_INFO ../ral_agent/adapter.sv(34) @ 25: reporter [adapter] The Values of rw.kind ='{kind:UVM_READ, addr:0, data:0, n_bits:0, byte_en:255, status:UVM_IS_OK}
+UVM_INFO ../master_agent/master_driver.sv(44) @ 25: uvm_test_top.env_h.m_agt[0].m_drv [__master_driver__] THIS IS Master Driver 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+req         trans     -     @997 
+  wr_en     integral  1     1    
+  address   integral  4     'd0  
+  data_in   integral  8     249  
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd0  
+---------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=0  mem = 0
+UVM_INFO ../ral_agent/adapter.sv(34) @ 35: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:0, data:249, n_bits:0, byte_en:255, status:UVM_IS_OK}
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=249  mem = 249
+UVM_INFO ../ral_agent/adapter.sv(34) @ 45: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:0, data:249, n_bits:0, byte_en:255, status:UVM_IS_OK}
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=249  mem = 249
+UVM_INFO ../master_agent/master_driver.sv(44) @ 55: uvm_test_top.env_h.m_agt[0].m_drv [__master_driver__] THIS IS Master Driver 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+req         trans     -     @1087
+  wr_en     integral  1     1    
+  address   integral  4     14   
+  data_in   integral  8     243  
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd0  
+---------------------------------
+
+UVM_INFO ../ral_agent/adapter.sv(34) @ 55: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:0, data:249, n_bits:0, byte_en:255, status:UVM_IS_OK}
+UVM_INFO ../slave_agent/slave_monitor.sv(38) @ 55: uvm_test_top.env_h.s_agt[0].s_mon [__slave_monitor__] Printing from slave monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @1074
+  wr_en     integral  1     'd0  
+  address   integral  4     'd0  
+  data_in   integral  8     'd0  
+  rd_en     integral  1     1    
+  data_out  integral  8     249  
+---------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=249  mem = 249
+UVM_INFO ../master_agent/master_monitor.sv(42) @ 65: uvm_test_top.env_h.m_agt[0].m_mon [__master_monitor__] THIS IS Master Monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @719 
+  wr_en     integral  1     1    
+  address   integral  4     14   
+  data_in   integral  8     243  
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd0  
+---------------------------------
+
+UVM_INFO ../ral_agent/adapter.sv(34) @ 65: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:14, data:243, n_bits:0, byte_en:255, status:UVM_IS_OK}
+UVM_INFO ../slave_agent/slave_monitor.sv(38) @ 65: uvm_test_top.env_h.s_agt[0].s_mon [__slave_monitor__] Printing from slave monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @1091
+  wr_en     integral  1     'd0  
+  address   integral  4     'd0  
+  data_in   integral  8     'd0  
+  rd_en     integral  1     1    
+  data_out  integral  8     249  
+---------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=243  mem = 243
+UVM_INFO ../master_agent/master_monitor.sv(42) @ 75: uvm_test_top.env_h.m_agt[0].m_mon [__master_monitor__] THIS IS Master Monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @719 
+  wr_en     integral  1     1    
+  address   integral  4     14   
+  data_in   integral  8     243  
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd0  
+---------------------------------
+
+UVM_INFO ../ral_agent/adapter.sv(34) @ 75: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:14, data:243, n_bits:0, byte_en:255, status:UVM_IS_OK}
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=243  mem = 243
+UVM_INFO ../master_agent/master_driver.sv(44) @ 85: uvm_test_top.env_h.m_agt[0].m_drv [__master_driver__] THIS IS Master Driver 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+req         trans     -     @1128
+  wr_en     integral  1     1    
+  address   integral  4     14   
+  data_in   integral  8     'd34 
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd0  
+---------------------------------
+
+UVM_INFO ../master_agent/master_monitor.sv(42) @ 85: uvm_test_top.env_h.m_agt[0].m_mon [__master_monitor__] THIS IS Master Monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @719 
+  wr_en     integral  1     1    
+  address   integral  4     14   
+  data_in   integral  8     243  
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd0  
+---------------------------------
+
+UVM_INFO ../ral_agent/adapter.sv(34) @ 85: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:14, data:243, n_bits:0, byte_en:255, status:UVM_IS_OK}
+UVM_INFO ../slave_agent/slave_monitor.sv(38) @ 85: uvm_test_top.env_h.s_agt[0].s_mon [__slave_monitor__] Printing from slave monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @1115
+  wr_en     integral  1     'd0  
+  address   integral  4     'd0  
+  data_in   integral  8     'd0  
+  rd_en     integral  1     1    
+  data_out  integral  8     243  
+---------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=243  mem = 243
+UVM_INFO ../master_agent/master_monitor.sv(42) @ 95: uvm_test_top.env_h.m_agt[0].m_mon [__master_monitor__] THIS IS Master Monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @719 
+  wr_en     integral  1     1    
+  address   integral  4     14   
+  data_in   integral  8     'd34 
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd0  
+---------------------------------
+
+UVM_INFO ../ral_agent/adapter.sv(34) @ 95: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:14, data:34, n_bits:0, byte_en:255, status:UVM_IS_OK}
+UVM_INFO ../slave_agent/slave_monitor.sv(38) @ 95: uvm_test_top.env_h.s_agt[0].s_mon [__slave_monitor__] Printing from slave monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @1132
+  wr_en     integral  1     'd0  
+  address   integral  4     'd0  
+  data_in   integral  8     'd0  
+  rd_en     integral  1     1    
+  data_out  integral  8     243  
+---------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=34  mem = 34
+UVM_INFO ../master_agent/master_monitor.sv(42) @ 105: uvm_test_top.env_h.m_agt[0].m_mon [__master_monitor__] THIS IS Master Monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @719 
+  wr_en     integral  1     1    
+  address   integral  4     14   
+  data_in   integral  8     'd34 
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd0  
+---------------------------------
+
+UVM_INFO ../ral_agent/adapter.sv(34) @ 105: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:14, data:34, n_bits:0, byte_en:255, status:UVM_IS_OK}
+UVM_INFO ../slave_agent/slave_monitor.sv(38) @ 105: uvm_test_top.env_h.s_agt[0].s_mon [__slave_monitor__] Printing from slave monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @1144
+  wr_en     integral  1     'd0  
+  address   integral  4     'd0  
+  data_in   integral  8     'd0  
+  rd_en     integral  1     'd0  
+  data_out  integral  8     243  
+---------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=34  mem = 34
+UVM_INFO ../master_agent/master_driver.sv(44) @ 115: uvm_test_top.env_h.m_agt[0].m_drv [__master_driver__] THIS IS Master Driver 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+req         trans     -     @1169
+  wr_en     integral  1     1    
+  address   integral  4     'd0  
+  data_in   integral  8     'd19 
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd0  
+---------------------------------
+
+UVM_INFO ../master_agent/master_monitor.sv(42) @ 115: uvm_test_top.env_h.m_agt[0].m_mon [__master_monitor__] THIS IS Master Monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @719 
+  wr_en     integral  1     1    
+  address   integral  4     14   
+  data_in   integral  8     'd34 
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd0  
+---------------------------------
+
+UVM_INFO ../ral_agent/adapter.sv(34) @ 115: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:14, data:34, n_bits:0, byte_en:255, status:UVM_IS_OK}
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=34  mem = 34
+UVM_INFO ../ral_agent/adapter.sv(34) @ 125: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:0, data:19, n_bits:0, byte_en:255, status:UVM_IS_OK}
+UVM_INFO ../slave_agent/slave_monitor.sv(38) @ 125: uvm_test_top.env_h.s_agt[0].s_mon [__slave_monitor__] Printing from slave monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @1173
+  wr_en     integral  1     'd0  
+  address   integral  4     'd0  
+  data_in   integral  8     'd0  
+  rd_en     integral  1     1    
+  data_out  integral  8     'd34 
+---------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=19  mem = 19
+UVM_INFO ../ral_agent/adapter.sv(34) @ 135: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:0, data:19, n_bits:0, byte_en:255, status:UVM_IS_OK}
+UVM_INFO ../slave_agent/slave_monitor.sv(38) @ 135: uvm_test_top.env_h.s_agt[0].s_mon [__slave_monitor__] Printing from slave monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @1185
+  wr_en     integral  1     'd0  
+  address   integral  4     'd0  
+  data_in   integral  8     'd0  
+  rd_en     integral  1     'd0  
+  data_out  integral  8     249  
+---------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=19  mem = 19
+UVM_INFO ../master_agent/master_driver.sv(44) @ 145: uvm_test_top.env_h.m_agt[0].m_drv [__master_driver__] THIS IS Master Driver 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+req         trans     -     @1210
+  wr_en     integral  1     1    
+  address   integral  4     14   
+  data_in   integral  8     215  
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd0  
+---------------------------------
+
+UVM_INFO ../ral_agent/adapter.sv(34) @ 145: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:0, data:19, n_bits:0, byte_en:255, status:UVM_IS_OK}
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=19  mem = 19
+UVM_INFO ../master_agent/master_monitor.sv(42) @ 155: uvm_test_top.env_h.m_agt[0].m_mon [__master_monitor__] THIS IS Master Monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @719 
+  wr_en     integral  1     1    
+  address   integral  4     14   
+  data_in   integral  8     215  
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd0  
+---------------------------------
+
+UVM_INFO ../ral_agent/adapter.sv(34) @ 155: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:14, data:215, n_bits:0, byte_en:255, status:UVM_IS_OK}
+UVM_INFO ../slave_agent/slave_monitor.sv(38) @ 155: uvm_test_top.env_h.s_agt[0].s_mon [__slave_monitor__] Printing from slave monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @1214
+  wr_en     integral  1     'd0  
+  address   integral  4     'd0  
+  data_in   integral  8     'd0  
+  rd_en     integral  1     1    
+  data_out  integral  8     'd19 
+---------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=215  mem = 215
+UVM_INFO ../master_agent/master_monitor.sv(42) @ 165: uvm_test_top.env_h.m_agt[0].m_mon [__master_monitor__] THIS IS Master Monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @719 
+  wr_en     integral  1     1    
+  address   integral  4     14   
+  data_in   integral  8     215  
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd0  
+---------------------------------
+
+UVM_INFO ../ral_agent/adapter.sv(34) @ 165: reporter [adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:14, data:215, n_bits:0, byte_en:255, status:UVM_IS_OK}
+UVM_INFO ../slave_agent/slave_monitor.sv(38) @ 165: uvm_test_top.env_h.s_agt[0].s_mon [__slave_monitor__] Printing from slave monitor 
+ ---------------------------------
+Name        Type      Size  Value
+---------------------------------
+txn         trans     -     @1226
+  wr_en     integral  1     'd0  
+  address   integral  4     'd0  
+  data_in   integral  8     'd0  
+  rd_en     integral  1     'd0  
+  data_out  integral  8     'd34 
+---------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=215  mem = 215
+UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 175: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=215  mem = 215
+UVM_INFO ../tb/scoreboard.sv(86) @ 175: uvm_test_top.env_h.sbh [Addr Pass REPORT]  Address match count is 0
+UVM_INFO ../tb/scoreboard.sv(87) @ 175: uvm_test_top.env_h.sbh [Data Pass REPORT]  Data match count is 0
+UVM_INFO ../tb/scoreboard.sv(89) @ 175: uvm_test_top.env_h.sbh [Addr Fail Report]  Address mismatch count is 0
+UVM_INFO ../tb/scoreboard.sv(90) @ 175: uvm_test_top.env_h.sbh [Data Fail Reprot]  Data mismatch count is 0
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   46
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[Addr Fail Report]     1
+[Addr Pass REPORT]     1
+[Data Fail Reprot]     1
+[Data Pass REPORT]     1
+[Questa UVM]     2
+[RNTST]     1
+[TEST_DONE]     1
+[UVMTOP]     1
+[__master_driver__]     5
+[__master_monitor__]     8
+[__slave_monitor__]     9
+[adapter]    15
+** Note: $finish    : /home/cad/eda/Questa_2019/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+   Time: 175 ns  Iteration: 54  Instance: /top
+Saving coverage database on exit...
+End time: 14:50:51 on May 12,2025, Elapsed time: 0:00:01
+Errors: 0, Warnings: 1

@@ -1,0 +1,8 @@
+<Command name="schRTLInfo"  delimiter="."  >
+<RTLBlock >
+<RTLInfo   name="currentstate_0"  type="2"  fileName="../rtl/arbiter.v"  >
+    <Seg beginLine="110"  endLine="136"  />
+  </RTLInfo>
+<Instance name="tb_userinterface.BFM1.DUT1"  />
+</RTLBlock>
+</Command>

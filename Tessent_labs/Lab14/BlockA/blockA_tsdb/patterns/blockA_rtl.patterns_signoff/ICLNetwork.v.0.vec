@@ -1,0 +1,382 @@
+//
+// Verilog format test patterns produced by Tessent Shell 2019.1
+// Filename       : ./blockA_tsdb/patterns/blockA_rtl.patterns_signoff/ICLNetwork.v.0.vec
+// Idstamp        : 2019.1:9779:6099:0:0000
+// Date           : Wed Aug 14 12:11:40 2019
+//
+// Format of broadside vector:
+//   PI_bits PO_bits MASK_bits Increment_bit Timeplate_bits(1) PatType_bits(3)
+//   VecType_bits(4)
+//   Increment_bit  - indicates when to increment pattern count
+//   Timeplate_bits - encodes timeplate number to use
+//   PatType_bits   - encodes pattern type
+//   VecType_bits   - encodes vector type
+// Simulation Cycle 0  Timestamp 0 ns
+01000XXX0010101011
+
+// Scan test block
+
+// Pattern 0 Cycle 1 Timestamp 100 ns 
+000000000000000000000000000001000110000
+ // Start Pattern (0) MSG
+// Pattern_set blockA 
+000000000000000000000000000101000110000
+// + System reset 
+1000000X0Z10101011
+1100000X0Z10101011
+//  Activate selection for scan mux blockA_rtl_tessent_sib_sti_inst.scan_in_mux, selection 1: sib, ltest_en = 2'bxx -> scan_in_mux = ijtag_si 
+000000000000000000000000000101010110000
+// + Scan path activation 
+//  
+// + Write integrity pattern to scan registers 
+// + scan vector ijtag_si..ijtag_so ( 
+//        W 0:0    R 0:0   blockA_rtl_tessent_sib_sti_inst.sib 
+// ) 
+// +  Loading: 1 
+// Unloading: 0 
+// + Associated TAP transition: IDLE -> DRSELECT 
+1100010X0Z10101011
+//  Scan in verification pattern 1 to the scan register blockA_rtl_tessent_sib_sti_inst.sib 
+000000000000000000000000000101100110000
+// + Associated TAP transition: DRSELECT -> DRCAPTURE 
+1100010X0Z10101011
+// + Associated TAP transition: DRCAPTURE -> DRSHIFT 
+1110010X0Z10101011
+// + Shift Cycle 
+// + Associated TAP transition: DRSHIFT -> DREXIT1 
+110101101Z10101011
+000000000000000000000000000101110110000
+// + Associated TAP transition: DREXIT1 -> DRPAUSE 
+1100010X0Z10101011
+//  Scan out verification pattern 1 from the scan register blockA_rtl_tessent_sib_sti_inst.sib 
+000000000000000000000000000110000110000
+// + Read integrity pattern from scan registers 
+// + scan vector ijtag_si..ijtag_so ( 
+//        W 0:0    R 0:0   blockA_rtl_tessent_sib_sti_inst.sib 
+// ) 
+// +  Loading: 1 
+// Unloading: 1 
+// + Associated TAP transition: DRPAUSE -> DREXIT2 
+1100010X0Z10101011
+// + Associated TAP transition: DREXIT2 -> DRSHIFT 
+1100010X0Z10101011
+// + Shift Cycle 
+// + Associated TAP transition: DRSHIFT -> DREXIT1 
+// Simulation Cycle 10  Timestamp 1000 ns
+110101111Z10101011
+000000000000000000000000000101110110000
+// + Associated TAP transition: DREXIT1 -> DRUPDATE 
+1100110X0Z10101011
+// + Associated TAP transition: DRUPDATE -> IDLE 
+1100010X0Z10101011
+//  Activate selection of the following scan muxes: 
+000000000000000000000000000110010110000
+//   blockA_rtl_tessent_sib_sti_inst.scan_in_mux, selection 0: sib, ltest_en = 2'b10 -> scan_in_mux = ijtag_from_so 
+000000000000000000000000000110100110000
+//   blockA_rtl_tessent_sib_mbist_inst.scan_in_mux, selection 0: sib = 1'b0 -> scan_in_mux = ijtag_si 
+000000000000000000000000000110110110000
+// + Scan path activation 
+//  
+// + Write integrity pattern to scan registers 
+// + scan vector ijtag_si..ijtag_so ( 
+//        W 1:1    R 1:1   blockA_rtl_tessent_sib_mbist_inst.sib 
+//        W 0:0    R 0:0   blockA_rtl_tessent_sib_sti_inst.sib 
+// ) 
+// +  Loading: 0_1 
+// Unloading: 0_0 
+// + Associated TAP transition: IDLE -> DRSELECT 
+1100010X0Z10101011
+//  Scan in verification pattern 10 to the following scan registers: 
+000000000000000000000000000111000110000
+//   blockA_rtl_tessent_sib_sti_inst.sib 
+000000000000000000000000000111010110000
+//   blockA_rtl_tessent_sib_mbist_inst.sib 
+000000000000000000000000000111100110000
+// + Associated TAP transition: DRSELECT -> DRCAPTURE 
+1100010X0Z10101011
+// + Associated TAP transition: DRCAPTURE -> DRSHIFT 
+1110010X0Z10101011
+// + Shift Cycles 
+110101101Z10101011
+000000000000000000000000000101110110000
+// + Associated TAP transition: DRSHIFT -> DREXIT1 
+110101001Z10101011
+000000000000000000000000000111110110000
+// + Associated TAP transition: DREXIT1 -> DRPAUSE 
+1100010X0Z10101011
+//  Scan out verification pattern 10 from the following scan registers: 
+000000000000000000000000001000000110000
+//   blockA_rtl_tessent_sib_sti_inst.sib 
+000000000000000000000000000111010110000
+//   blockA_rtl_tessent_sib_mbist_inst.sib 
+000000000000000000000000000111100110000
+// + Read integrity pattern from scan registers 
+// + scan vector ijtag_si..ijtag_so ( 
+//        W 1:1    R 1:1   blockA_rtl_tessent_sib_mbist_inst.sib 
+//        W 0:0    R 0:0   blockA_rtl_tessent_sib_sti_inst.sib 
+// ) 
+// +  Loading: 1_1 
+// Unloading: 0_1 
+// + Associated TAP transition: DRPAUSE -> DREXIT2 
+1100010X0Z10101011
+// + Associated TAP transition: DREXIT2 -> DRSHIFT 
+// Simulation Cycle 20  Timestamp 2000 ns
+1100010X0Z10101011
+// + Shift Cycles 
+110101111Z10101011
+000000000000000000000000000101110110000
+// + Associated TAP transition: DRSHIFT -> DREXIT1 
+110101101Z10101011
+000000000000000000000000000111110110000
+// + Associated TAP transition: DREXIT1 -> DRUPDATE 
+1100110X0Z10101011
+// + Associated TAP transition: DRUPDATE -> IDLE 
+1100010X0Z10101011
+//  Activate selection of the following scan muxes: 
+000000000000000000000000000110010110000
+//   blockA_rtl_tessent_sib_sti_inst.scan_in_mux, selection 0: sib, ltest_en = 2'b10 -> scan_in_mux = ijtag_from_so 
+000000000000000000000000000110100110000
+//   blockA_rtl_tessent_sib_mbist_inst.scan_in_mux, selection 1: sib = 1'b1 -> scan_in_mux = ijtag_from_so 
+000000000000000000000000001000010110000
+//   blockA_rtl_tessent_mbist_bap_inst.fromBistMux_0, selection 1: sib_0, BIST_SETUP_tdr[1], ChainBypassMode = 3'bxxx -> fromBistMux_0 = ENABLE_MEM_RESET_tdr 
+000000000000000000000000001000100110000
+// + Scan path activation 
+//  
+// + Write integrity pattern to scan registers 
+// + scan vector ijtag_si..ijtag_so ( 
+//        W 22:20    R 22:20   blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 
+//        W 19:19    R 19:19   blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 
+//        W 18:18    R 18:18   blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 
+//        W 17:17    R 17:17   blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 
+//        W 16:16    R 16:16   blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 
+//        W 15:15    R 15:15   blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 
+//        W 14:14    R 14:14   blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 
+//        W 13:13    R 13:13   blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 
+//        W 12:12    R 12:12   blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 
+//        W 11:11    R 11:11   blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 
+//        W 10:10    R 10:10   blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 
+//        W  9: 9    R  9: 9   blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 
+//        W  8: 8    R  8: 8   blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 
+//        W  7: 7    R  7: 7   blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 
+//        W  6: 6    R  6: 6   blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 
+//        W  5: 5    R  5: 5   blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 
+//        W  4: 4    R  4: 4   blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 
+//        W  3: 3    R  3: 3   blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 
+//        W  2: 2    R  2: 2   blockA_rtl_tessent_mbist_bap_inst.sib_0 
+//        W  1: 1    R  1: 1   blockA_rtl_tessent_sib_mbist_inst.sib 
+//        W  0: 0    R  0: 0   blockA_rtl_tessent_sib_sti_inst.sib 
+// ) 
+// +  Loading: 110_1_1_1_1_1_1_0_0_0_0_1_1_1_1_0_0_1_1_0_1 
+// Unloading: XXX_X_X_X_X_X_X_X_X_X_X_X_X_X_X_X_X_X_X_0_0 
+// + Associated TAP transition: IDLE -> DRSELECT 
+1100010X0Z10101011
+//  Scan in verification pattern 1011.. to the following scan registers: 
+000000000000000000000000001000110110000
+//   blockA_rtl_tessent_sib_sti_inst.sib 
+000000000000000000000000000111010110000
+//   blockA_rtl_tessent_sib_mbist_inst.sib 
+000000000000000000000000000111100110000
+//   blockA_rtl_tessent_mbist_bap_inst.sib_0 
+000000000000000000000000001001000110000
+//   blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 
+000000000000000000000000001001010110000
+//   blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 
+000000000000000000000000001001100110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 
+000000000000000000000000001001110110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 
+000000000000000000000000001010000110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 
+000000000000000000000000001010010110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 
+000000000000000000000000001010100110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 
+000000000000000000000000001010110110000
+//   blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 
+000000000000000000000000001011000110000
+//   blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 
+000000000000000000000000001011010110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 
+000000000000000000000000001011100110000
+//   blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 
+000000000000000000000000001011110110000
+//   blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 
+000000000000000000000000001100000110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 
+000000000000000000000000001100010110000
+//   blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 
+000000000000000000000000001100100110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 
+000000000000000000000000001100110110000
+//   blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 
+000000000000000000000000001101000110000
+//   blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 
+000000000000000000000000001101010110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 
+000000000000000000000000001101100110000
+// + Associated TAP transition: DRSELECT -> DRCAPTURE 
+1100010X0Z10101011
+// + Associated TAP transition: DRCAPTURE -> DRSHIFT 
+1110010X0Z10101011
+// + Shift Cycles 
+110101101Z10101011
+000000000000000000000000000101110110000
+110101001Z10101011
+000000000000000000000000000111110110000
+// Simulation Cycle 30  Timestamp 3000 ns
+1101011X0Z10101011
+1101011X0Z10101011
+1101010X0Z10101011
+1101010X0Z10101011
+1101011X0Z10101011
+1101011X0Z10101011
+1101011X0Z10101011
+1101011X0Z10101011
+1101010X0Z10101011
+1101010X0Z10101011
+// Simulation Cycle 40  Timestamp 4000 ns
+1101010X0Z10101011
+1101010X0Z10101011
+1101011X0Z10101011
+1101011X0Z10101011
+1101011X0Z10101011
+1101011X0Z10101011
+1101011X0Z10101011
+1101011X0Z10101011
+1101010X0Z10101011
+1101011X0Z10101011
+// + Associated TAP transition: DRSHIFT -> DREXIT1 
+// Simulation Cycle 50  Timestamp 5000 ns
+1101011X0Z10101011
+// + Associated TAP transition: DREXIT1 -> DRPAUSE 
+1100010X0Z10101011
+//  Scan out verification pattern 1011.. from the following scan registers: 
+000000000000000000000000001101110110000
+//   blockA_rtl_tessent_sib_sti_inst.sib 
+000000000000000000000000000111010110000
+//   blockA_rtl_tessent_sib_mbist_inst.sib 
+000000000000000000000000000111100110000
+//   blockA_rtl_tessent_mbist_bap_inst.sib_0 
+000000000000000000000000001001000110000
+//   blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 
+000000000000000000000000001001010110000
+//   blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 
+000000000000000000000000001001100110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 
+000000000000000000000000001001110110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 
+000000000000000000000000001010000110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 
+000000000000000000000000001010010110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 
+000000000000000000000000001010100110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 
+000000000000000000000000001010110110000
+//   blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 
+000000000000000000000000001011000110000
+//   blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 
+000000000000000000000000001011010110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 
+000000000000000000000000001011100110000
+//   blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 
+000000000000000000000000001011110110000
+//   blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 
+000000000000000000000000001100000110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 
+000000000000000000000000001100010110000
+//   blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 
+000000000000000000000000001100100110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 
+000000000000000000000000001100110110000
+//   blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 
+000000000000000000000000001101000110000
+//   blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 
+000000000000000000000000001101010110000
+//   blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 
+000000000000000000000000001101100110000
+// + Read integrity pattern from scan registers 
+// + scan vector ijtag_si..ijtag_so ( 
+//        W 22:20    R 22:20   blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 
+//        W 19:19    R 19:19   blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 
+//        W 18:18    R 18:18   blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 
+//        W 17:17    R 17:17   blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 
+//        W 16:16    R 16:16   blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 
+//        W 15:15    R 15:15   blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 
+//        W 14:14    R 14:14   blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 
+//        W 13:13    R 13:13   blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 
+//        W 12:12    R 12:12   blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 
+//        W 11:11    R 11:11   blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 
+//        W 10:10    R 10:10   blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 
+//        W  9: 9    R  9: 9   blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 
+//        W  8: 8    R  8: 8   blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 
+//        W  7: 7    R  7: 7   blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 
+//        W  6: 6    R  6: 6   blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 
+//        W  5: 5    R  5: 5   blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 
+//        W  4: 4    R  4: 4   blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 
+//        W  3: 3    R  3: 3   blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 
+//        W  2: 2    R  2: 2   blockA_rtl_tessent_mbist_bap_inst.sib_0 
+//        W  1: 1    R  1: 1   blockA_rtl_tessent_sib_mbist_inst.sib 
+//        W  0: 0    R  0: 0   blockA_rtl_tessent_sib_sti_inst.sib 
+// ) 
+// +  Loading: 000_0_0_0_1_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0 
+// Unloading: 110_1_1_1_1_1_1_0_0_0_0_1_1_1_1_0_0_1_1_0_1 
+// + Associated TAP transition: DRPAUSE -> DREXIT2 
+1100010X0Z10101011
+// + Associated TAP transition: DREXIT2 -> DRSHIFT 
+1100010X0Z10101011
+// + Shift Cycles 
+110101011Z10101011
+000000000000000000000000000101110110000
+110101001Z10101011
+000000000000000000000000000111110110000
+110101011Z10101011
+000000000000000000000000001110000110000
+110101011Z10101011
+000000000000000000000000001110010110000
+110101001Z10101011
+000000000000000000000000001110100110000
+110101001Z10101011
+000000000000000000000000001110110110000
+// Simulation Cycle 60  Timestamp 6000 ns
+110101011Z10101011
+000000000000000000000000001111000110000
+110101011Z10101011
+000000000000000000000000001111010110000
+110101011Z10101011
+000000000000000000000000001111100110000
+110101011Z10101011
+000000000000000000000000001111110110000
+110101001Z10101011
+000000000000000000000000010000000110000
+110101001Z10101011
+000000000000000000000000010000010110000
+110101001Z10101011
+000000000000000000000000010000100110000
+110101001Z10101011
+000000000000000000000000010000110110000
+110101011Z10101011
+000000000000000000000000010001000110000
+110101011Z10101011
+000000000000000000000000010001010110000
+// Simulation Cycle 70  Timestamp 7000 ns
+110101111Z10101011
+000000000000000000000000010001100110000
+110101011Z10101011
+000000000000000000000000010001110110000
+110101011Z10101011
+000000000000000000000000010010000110000
+110101011Z10101011
+000000000000000000000000010010010110000
+110101001Z10101011
+000000000000000000000000010010100110000
+110101011Z10101011
+000000000000000000000000010010110110000
+// + Associated TAP transition: DRSHIFT -> DREXIT1 
+110101011Z10101011
+000000000000000000000000010011000110000
+// + Associated TAP transition: DREXIT1 -> DRUPDATE 
+1100110X0Z10101011
+// + Associated TAP transition: DRUPDATE -> IDLE 
+1100010X0Z10101011
+// end of Vec file MSG
+000000000000000000000000000000110110000

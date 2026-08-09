@@ -1,0 +1,24 @@
+#Set the context to patterns and sub-context to scan_diagnosis
+set_context patterns -scan_diagnosis
+
+#Read the flattenned model
+read_flat_model netlist/tk_design.flat
+
+#Set the diagnosis option
+set_diagnosis -bridge OFF -cell OFF
+
+#Read both the pattern files
+set_pattern_source external ./pattern/pat.wgl -wgl
+
+set_pattern_source external ./pattern/patt_iter.wgl -wgl -append
+
+#Read failure files
+
+read_failure ./fail1.log
+
+read_failure ./fail2_iter.log -append
+
+#Perform the diagnosis
+diagnose failure -internal
+
+exit -d

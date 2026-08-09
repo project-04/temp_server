@@ -1,0 +1,271 @@
+vsim -cvgperinstance -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit -assert -directive -cvg -codeAll mem_cov2;run -all; exit" -wlf wave_file2.wlf -l test2.log -sv_seed random work.Top "+UVM_TESTNAME=unspecified_incr_transfer_test" 
+Start time: 10:26:21 on May 09,2025
+** Note: (vsim-8009) Loading existing optimized design _opt1
+//  Questa Sim-64
+//  Version 2019.2 linux_x86_64 Apr 16 2019
+//
+//  Copyright 1991-2019 Mentor Graphics Corporation
+//  All Rights Reserved.
+//
+//  QuestaSim and its associated documentation contain trade
+//  secrets and commercial or financial information that are the property of
+//  Mentor Graphics Corporation and are privileged, confidential,
+//  and exempt from disclosure under the Freedom of Information Act,
+//  5 U.S.C. Section 552. Furthermore, this information
+//  is prohibited from disclosure under the Trade Secrets Act,
+//  18 U.S.C. Section 1905.
+//
+Loading sv_std.std
+Loading work.bridge_if(fast)
+Loading mtiUvm.uvm_pkg
+Loading work.bridge_pkg(fast)
+Loading mtiUvm.questa_uvm_pkg(fast)
+Loading work.Top(fast)
+Loading work.bridge_if(fast)
+Loading work.rtl_top(fast)
+Loading work.ahb(fast)
+Loading work.apb_controller(fast)
+Loading work.apb(fast)
+# Loading /home/cad/eda/Questa_2019/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+** Warning: (vsim-8634) Code was not compiled with coverage options.
+Sv_Seed = 905067707
+ log -r /* 
+coverage save -onexit -assert -directive -cvg -codeAll mem_cov2
+run -all
+----------------------------------------------------------------
+UVM-1.1d
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+UVM_INFO @ 0: reporter [RNTST] Running test unspecified_incr_transfer_test...
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+------------------------------------------------------------------------
+Name                         Type                            Size  Value
+------------------------------------------------------------------------
+uvm_test_top                 unspecified_incr_transfer_test  -     @476 
+  envh                       Tb                              -     @492 
+    ahb_top                  ahb_agent_top                   -     @500 
+      hagnt[0]               ahb_agent                       -     @631 
+        hdrv                 ahb_drv                         -     @659 
+          rsp_port           uvm_analysis_port               -     @674 
+          seq_item_port      uvm_seq_item_pull_port          -     @666 
+        hmon                 ahb_mon                         -     @644 
+          monitor_port       uvm_analysis_port               -     @651 
+        hseqr                ahb_seqr                        -     @682 
+          rsp_export         uvm_analysis_export             -     @689 
+          seq_item_export    uvm_seq_item_pull_imp           -     @783 
+          arbitration_queue  array                           0     -    
+          lock_queue         array                           0     -    
+          num_last_reqs      integral                        32    'd1  
+          num_last_rsps      integral                        32    'd1  
+    apb_top                  apb_agt_top                     -     @507 
+      hagnt[0]               apb_agent                       -     @803 
+        driver_h             apb_driver                      -     @827 
+          rsp_port           uvm_analysis_port               -     @842 
+          seq_item_port      uvm_seq_item_pull_port          -     @834 
+        hmon                 apb_monitor                     -     @812 
+          monitor_port       uvm_analysis_port               -     @819 
+    sb                       scoreboard                      -     @623 
+      fifo_ahb_h[0]          uvm_tlm_analysis_fifo #(T)      -     @853 
+        analysis_export      uvm_analysis_imp                -     @892 
+        get_ap               uvm_analysis_port               -     @884 
+        get_peek_export      uvm_get_peek_imp                -     @868 
+        put_ap               uvm_analysis_port               -     @876 
+        put_export           uvm_put_imp                     -     @860 
+      fifo_apb_h[0]          uvm_tlm_analysis_fifo #(T)      -     @900 
+        analysis_export      uvm_analysis_imp                -     @939 
+        get_ap               uvm_analysis_port               -     @931 
+        get_peek_export      uvm_get_peek_imp                -     @915 
+        put_ap               uvm_analysis_port               -     @923 
+        put_export           uvm_put_imp                     -     @907 
+    v_sequencer              virtual_sequencer               -     @514 
+      rsp_export             uvm_analysis_export             -     @521 
+      seq_item_export        uvm_seq_item_pull_imp           -     @615 
+      arbitration_queue      array                           0     -    
+      lock_queue             array                           0     -    
+      num_last_reqs          integral                        32    'd1  
+      num_last_rsps          integral                        32    'd1  
+------------------------------------------------------------------------
+
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+------------------------------------------------------------------------
+Name                         Type                            Size  Value
+------------------------------------------------------------------------
+uvm_test_top                 unspecified_incr_transfer_test  -     @476 
+  envh                       Tb                              -     @492 
+    ahb_top                  ahb_agent_top                   -     @500 
+      hagnt[0]               ahb_agent                       -     @631 
+        hdrv                 ahb_drv                         -     @659 
+          rsp_port           uvm_analysis_port               -     @674 
+          seq_item_port      uvm_seq_item_pull_port          -     @666 
+        hmon                 ahb_mon                         -     @644 
+          monitor_port       uvm_analysis_port               -     @651 
+        hseqr                ahb_seqr                        -     @682 
+          rsp_export         uvm_analysis_export             -     @689 
+          seq_item_export    uvm_seq_item_pull_imp           -     @783 
+          arbitration_queue  array                           0     -    
+          lock_queue         array                           0     -    
+          num_last_reqs      integral                        32    'd1  
+          num_last_rsps      integral                        32    'd1  
+    apb_top                  apb_agt_top                     -     @507 
+      hagnt[0]               apb_agent                       -     @803 
+        driver_h             apb_driver                      -     @827 
+          rsp_port           uvm_analysis_port               -     @842 
+          seq_item_port      uvm_seq_item_pull_port          -     @834 
+        hmon                 apb_monitor                     -     @812 
+          monitor_port       uvm_analysis_port               -     @819 
+    sb                       scoreboard                      -     @623 
+      fifo_ahb_h[0]          uvm_tlm_analysis_fifo #(T)      -     @853 
+        analysis_export      uvm_analysis_imp                -     @892 
+        get_ap               uvm_analysis_port               -     @884 
+        get_peek_export      uvm_get_peek_imp                -     @868 
+        put_ap               uvm_analysis_port               -     @876 
+        put_export           uvm_put_imp                     -     @860 
+      fifo_apb_h[0]          uvm_tlm_analysis_fifo #(T)      -     @900 
+        analysis_export      uvm_analysis_imp                -     @939 
+        get_ap               uvm_analysis_port               -     @931 
+        get_peek_export      uvm_get_peek_imp                -     @915 
+        put_ap               uvm_analysis_port               -     @923 
+        put_export           uvm_put_imp                     -     @907 
+    v_sequencer              virtual_sequencer               -     @514 
+      rsp_export             uvm_analysis_export             -     @521 
+      seq_item_export        uvm_seq_item_pull_imp           -     @615 
+      arbitration_queue      array                           0     -    
+      lock_queue             array                           0     -    
+      num_last_reqs          integral                        32    'd1  
+      num_last_rsps          integral                        32    'd1  
+------------------------------------------------------------------------
+
+UVM_INFO ../apb_agent_top/apb_monitor.sv(36) @ 0: uvm_test_top.envh.apb_top.hagnt[0].hmon [APB_MONITOR] THIS IS APB MONITOR IN RUN
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+------------------------------------------------------------------------
+Name                         Type                            Size  Value
+------------------------------------------------------------------------
+uvm_test_top                 unspecified_incr_transfer_test  -     @476 
+  envh                       Tb                              -     @492 
+    ahb_top                  ahb_agent_top                   -     @500 
+      hagnt[0]               ahb_agent                       -     @631 
+        hdrv                 ahb_drv                         -     @659 
+          rsp_port           uvm_analysis_port               -     @674 
+          seq_item_port      uvm_seq_item_pull_port          -     @666 
+        hmon                 ahb_mon                         -     @644 
+          monitor_port       uvm_analysis_port               -     @651 
+        hseqr                ahb_seqr                        -     @682 
+          rsp_export         uvm_analysis_export             -     @689 
+          seq_item_export    uvm_seq_item_pull_imp           -     @783 
+          arbitration_queue  array                           0     -    
+          lock_queue         array                           0     -    
+          num_last_reqs      integral                        32    'd1  
+          num_last_rsps      integral                        32    'd1  
+    apb_top                  apb_agt_top                     -     @507 
+      hagnt[0]               apb_agent                       -     @803 
+        driver_h             apb_driver                      -     @827 
+          rsp_port           uvm_analysis_port               -     @842 
+          seq_item_port      uvm_seq_item_pull_port          -     @834 
+        hmon                 apb_monitor                     -     @812 
+          monitor_port       uvm_analysis_port               -     @819 
+    sb                       scoreboard                      -     @623 
+      fifo_ahb_h[0]          uvm_tlm_analysis_fifo #(T)      -     @853 
+        analysis_export      uvm_analysis_imp                -     @892 
+        get_ap               uvm_analysis_port               -     @884 
+        get_peek_export      uvm_get_peek_imp                -     @868 
+        put_ap               uvm_analysis_port               -     @876 
+        put_export           uvm_put_imp                     -     @860 
+      fifo_apb_h[0]          uvm_tlm_analysis_fifo #(T)      -     @900 
+        analysis_export      uvm_analysis_imp                -     @939 
+        get_ap               uvm_analysis_port               -     @931 
+        get_peek_export      uvm_get_peek_imp                -     @915 
+        put_ap               uvm_analysis_port               -     @923 
+        put_export           uvm_put_imp                     -     @907 
+    v_sequencer              virtual_sequencer               -     @514 
+      rsp_export             uvm_analysis_export             -     @521 
+      seq_item_export        uvm_seq_item_pull_imp           -     @615 
+      arbitration_queue      array                           0     -    
+      lock_queue             array                           0     -    
+      num_last_reqs          integral                        32    'd1  
+      num_last_rsps          integral                        32    'd1  
+------------------------------------------------------------------------
+
+inside DEFAULT state                  10
+                  11 ENTERED:&&
+                  11 ENTERED:&&
+                  11 ENTERED:&&
+UVM_INFO ../ahb_agent_top/ahb_seqs.sv(105) @ 20: uvm_test_top.envh.ahb_top.hagnt[0].hseqr@@unspec_seq [UNSPECIFIED_INCREMENT] Printing from seqs /n --------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                              
+--------------------------------------------------------------------------------------------------
+req                            ahb_xtn   -     @971                                               
+  begin_time                   time      64    20                                                 
+  depth                        int       32    'd2                                                
+  parent sequence (name)       string    10    unspec_seq                                         
+  parent sequence (full name)  string    51    uvm_test_top.envh.ahb_top.hagnt[0].hseqr.unspec_seq
+  sequencer                    string    40    uvm_test_top.envh.ahb_top.hagnt[0].hseqr           
+  Htrans                       integral  2     2                                                  
+  Hburst                       integral  3     6                                                  
+  Hsize                        integral  3     'd0                                                
+  Haddr                        integral  32    'h8c0003a9                                         
+  Hwdata                       integral  32    'h0                                                
+  Hrdata                       integral  32    'h0                                                
+  Hwrite                       integral  1     'd0                                                
+--------------------------------------------------------------------------------------------------
+
+                  21 ENTERED:&&
+                  30 ENTERED:&&
+UVM_INFO ../ahb_agent_top/ahb_seqs.sv(134) @ 30: uvm_test_top.envh.ahb_top.hagnt[0].hseqr@@unspec_seq [UNSPECIFIED_INCREMENT] Printing from seqs /n --------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                              
+--------------------------------------------------------------------------------------------------
+req                            ahb_xtn   -     @971                                               
+  begin_time                   time      64    30                                                 
+  end_time                     time      64    30                                                 
+  depth                        int       32    'd2                                                
+  parent sequence (name)       string    10    unspec_seq                                         
+  parent sequence (full name)  string    51    uvm_test_top.envh.ahb_top.hagnt[0].hseqr.unspec_seq
+  sequencer                    string    40    uvm_test_top.envh.ahb_top.hagnt[0].hseqr           
+  Htrans                       integral  2     'd0                                                
+  Hburst                       integral  3     6                                                  
+  Hsize                        integral  3     'd0                                                
+  Haddr                        integral  32    'h8c0003a9                                         
+  Hwdata                       integral  32    'h0                                                
+  Hrdata                       integral  32    'h0                                                
+  Hwrite                       integral  1     'd0                                                
+--------------------------------------------------------------------------------------------------
+
+                  40 ENTERED:&&
+                  40 ENTERED:&&
+UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 40: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   10
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[APB_MONITOR]     1
+[Questa UVM]     2
+[RNTST]     1
+[TEST_DONE]     1
+[UNSPECIFIED_INCREMENT]     2
+[UVMTOP]     3
+** Note: $finish    : /home/cad/eda/Questa_2019/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+   Time: 40 ns  Iteration: 71  Instance: /Top
+Saving coverage database on exit...
+End time: 10:26:23 on May 09,2025, Elapsed time: 0:00:02
+Errors: 0, Warnings: 1

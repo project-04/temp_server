@@ -1,0 +1,4 @@
+1. sort the contents of a dynamic array which contains 10 elements  in it (do it with and without array methods).
+2. writea snipet in sv to inset one queue into another queue do it with and without array methods)
+3. 
+4. 

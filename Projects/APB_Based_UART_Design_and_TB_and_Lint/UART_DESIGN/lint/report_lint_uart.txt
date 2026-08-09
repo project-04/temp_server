@@ -1,0 +1,336 @@
+
+  -----------------------------------------------------------------------------
+  Report Summary
+  -----------------------------------------------------------------------------
+  Product Info
+    Name    : VC Static Master Shell
+    Version : T-2022.06 -- May 30, 2022
+
+  Report Info
+    Created : Jul 20, 2026  17:56:24
+
+    TopLevelModule: uart_16550
+
+  -----------------------------------------------------------------------------
+  Management Summary
+  -----------------------------------------------------------------------------
+  Stage             Family      Fatals    Errors  Warnings     Infos
+  -----             --------  --------  --------  --------  --------
+  BUILTIN_CHECK     CODING           0         0         1         0
+  LANGUAGE_CHECK    CODING           0         2         8         2
+  STRUCTURAL_CHECK  CODING           0         1         0        11
+  -----             --------  --------  --------  --------  --------
+  Total                              0         3         9        13
+
+
+  -----------------------------------------------------------------------------
+  Tree Summary
+  -----------------------------------------------------------------------------
+  Severity  Stage             Tag                       Count
+  --------  -----             ------------------------  -----
+  error     LANGUAGE_CHECK    W123                          2
+  error     STRUCTURAL_CHECK  UndrivenInTerm-ML             1
+  warning   BUILTIN_CHECK     CheckDelayTimescale-ML        1
+  warning   LANGUAGE_CHECK    STARC05-2.11.3.1              3
+  warning   LANGUAGE_CHECK    W240                          5
+  info      LANGUAGE_CHECK    ReportPortInfo-ML             1
+  info      LANGUAGE_CHECK    W240                          1
+  info      STRUCTURAL_CHECK  RegInputOutput-ML            11
+  --------  -----             ------------------------  -----
+  Total                                                    25
+
+
+
+  -----------------------------------------------------------------------------
+  UndrivenInTerm-ML  (1 error/0 waived)
+  -----------------------------------------------------------------------------
+  Tag              : UndrivenInTerm-ML
+  Description      : Detected undriven input terminal [DesignObjSignal]
+  Violation        : Lint:1
+  Goal             : lint_rtl
+  Module           : uart_register_file
+  FileName         : ./../rtl/uart_register_file.v
+  LineNumber       : 301
+  Statement        :       case(PADDR)
+  DesignObjSignal  : control/MSR[7:0]
+  String1          : 
+
+  -----------------------------------------------------------------------------
+  W123  (1 error/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : W123
+  Description   : Please refer to 'SignalUsageReport.rpt' for details of violating bits
+  Violation     : Lint:13
+  Goal          : lint_rtl
+  Module        : uart_16550
+  FileName      : /home1/BPRN24/BokkaCS/Projects/APB_Based_UART_Design_and_TB_and_Lint/UART_DESIGN/lint/vcst_rtdb/spyglass/vc_lint0/uart_16550/VC_GOAL0/spyglass_reports/lint/SignalUsageReport.rpt
+  LineNumber    : 1
+  Statement     : #     Comment          : SignalUsageReport : It dumps details of violating bits of a signal
+
+  -----------------------------------------------------------------------------
+  W123  (1 error/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : W123
+  Description   : Variable '[VariableName]'[ExprSize] read but never set.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:14
+  Goal          : lint_rtl
+  Module        : uart_register_file
+  FileName      : ./../rtl/uart_register_file.v
+  LineNumber    : 308
+  Statement     :         `MSR  : PRDATA = {24'h0, MSR};
+  VariableName  : MSR[7:0]
+  ExprSize      : 
+  HIERARCHY     : :uart_16550:control@uart_register_file
+
+  -----------------------------------------------------------------------------
+  CheckDelayTimescale-ML  (1 warning/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : CheckDelayTimescale-ML
+  Description   : Delay used without timescale compiler directive
+  Violation     : Lint:25
+  Goal          : lint_rtl
+  Module        : uart_register_file
+  FileName      : ./../rtl/uart_register_file.v
+  LineNumber    : 397
+  Statement     :         dlc <= #1 0;
+
+  -----------------------------------------------------------------------------
+  STARC05-2.11.3.1  (3 warnings/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : STARC05-2.11.3.1
+  Description   : Combinational and sequential parts of an FSM '[Module_Name].[Signal]' described in same always block
+  Violation     : Lint:21
+  Goal          : lint_rtl
+  Module        : uart_register_file
+  FileName      : ./../rtl/uart_register_file.v
+  LineNumber    : 122
+  Statement     :    case (fsm_state)
+  Module_Name   : uart_register_file
+  Signal        : fsm_state
+  -----------------------------------------------------------------------------
+  Tag           : STARC05-2.11.3.1
+  Description   : Combinational and sequential parts of an FSM '[Module_Name].[Signal]' described in same always block
+  Violation     : Lint:22
+  Goal          : lint_rtl
+  Module        : uart_tx
+  FileName      : ./../rtl/tx.v
+  LineNumber    : 89
+  Statement     :          case(tx_state)
+  Module_Name   : uart_tx
+  Signal        : tx_state
+  -----------------------------------------------------------------------------
+  Tag           : STARC05-2.11.3.1
+  Description   : Combinational and sequential parts of an FSM '[Module_Name].[Signal]' described in same always block
+  Violation     : Lint:23
+  Goal          : lint_rtl
+  Module        : uart_rx
+  FileName      : ./../rtl/rx.v
+  LineNumber    : 93
+  Statement     :            case(rx_state)
+  Module_Name   : uart_rx
+  Signal        : rx_state
+
+  -----------------------------------------------------------------------------
+  W240  (5 warnings/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:20
+  Goal          : lint_rtl
+  Module        : uart_register_file
+  FileName      : ./../rtl/uart_register_file.v
+  LineNumber    : 40
+  Statement     :                            input[4:0] tx_fifo_count,
+  Signal        : tx_fifo_count[4:0]
+  HIERARCHY     : :uart_16550:control@uart_register_file
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:17
+  Goal          : lint_rtl
+  Module        : uart_register_file
+  FileName      : ./../rtl/uart_register_file.v
+  LineNumber    : 46
+  Statement     :                            input rx_idle,
+  Signal        : rx_idle
+  HIERARCHY     : :uart_16550:control@uart_register_file
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:15
+  Goal          : lint_rtl
+  Module        : uart_register_file
+  FileName      : ./../rtl/uart_register_file.v
+  LineNumber    : 55
+  Statement     :                            input push_rx_fifo,
+  Signal        : push_rx_fifo
+  HIERARCHY     : :uart_16550:control@uart_register_file
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:19
+  Goal          : lint_rtl
+  Module        : uart_register_file
+  FileName      : ./../rtl/uart_register_file.v
+  LineNumber    : 42
+  Statement     :                            input tx_fifo_full,
+  Signal        : tx_fifo_full
+  HIERARCHY     : :uart_16550:control@uart_register_file
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:16
+  Goal          : lint_rtl
+  Module        : uart_register_file
+  FileName      : ./../rtl/uart_register_file.v
+  LineNumber    : 54
+  Statement     :                            input rx_fifo_full,
+  Signal        : rx_fifo_full
+  HIERARCHY     : :uart_16550:control@uart_register_file
+
+  -----------------------------------------------------------------------------
+  RegInputOutput-ML  (11 infos/0 waived)
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:7
+  Goal                : lint_rtl
+  FileName            : ./../rtl/uart_16550.v
+  LineNumber          : 42
+  Statement           :   	output TXD,
+  Signal              : TXD
+  Module              : uart_16550
+  DesignObjHierarchy  : uart_16550
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:9
+  Goal                : lint_rtl
+  FileName            : ./../rtl/uart_16550.v
+  LineNumber          : 45
+  Statement           :   	output baud_o
+  Signal              : baud_o
+  Module              : uart_16550
+  DesignObjHierarchy  : uart_16550
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:8
+  Goal                : lint_rtl
+  FileName            : ./../rtl/uart_16550.v
+  LineNumber          : 43
+  Statement           :   	input RXD,
+  Signal              : RXD
+  Module              : uart_16550
+  DesignObjHierarchy  : uart_16550
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:2
+  Goal                : lint_rtl
+  FileName            : ./../rtl/uart_16550.v
+  LineNumber          : 29
+  Statement           :   	input PRESETn,
+  Signal              : PRESETn
+  Module              : uart_16550
+  DesignObjHierarchy  : uart_16550
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:6
+  Goal                : lint_rtl
+  FileName            : ./../rtl/uart_16550.v
+  LineNumber          : 37
+  Statement           :   	output PSLVERR,
+  Signal              : PSLVERR
+  Module              : uart_16550
+  DesignObjHierarchy  : uart_16550
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:10
+  Goal                : lint_rtl
+  FileName            : ./../rtl/uart_16550.v
+  LineNumber          : 31
+  Statement           :   	input [31:0] PWDATA,
+  Signal              : PWDATA[31:0]
+  Module              : uart_16550
+  DesignObjHierarchy  : uart_16550
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:5
+  Goal                : lint_rtl
+  FileName            : ./../rtl/uart_16550.v
+  LineNumber          : 35
+  Statement           :   	input PSEL,
+  Signal              : PSEL
+  Module              : uart_16550
+  DesignObjHierarchy  : uart_16550
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:4
+  Goal                : lint_rtl
+  FileName            : ./../rtl/uart_16550.v
+  LineNumber          : 34
+  Statement           :   	input PENABLE,
+  Signal              : PENABLE
+  Module              : uart_16550
+  DesignObjHierarchy  : uart_16550
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:11
+  Goal                : lint_rtl
+  FileName            : ./../rtl/uart_16550.v
+  LineNumber          : 30
+  Statement           :   	input [31:0] PADDR,
+  Signal              : PADDR[31:0]
+  Module              : uart_16550
+  DesignObjHierarchy  : uart_16550
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:12
+  Goal                : lint_rtl
+  FileName            : ./../rtl/uart_16550.v
+  LineNumber          : 32
+  Statement           :   	output[31:0] PRDATA,
+  Signal              : PRDATA[31:0]
+  Module              : uart_16550
+  DesignObjHierarchy  : uart_16550
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:3
+  Goal                : lint_rtl
+  FileName            : ./../rtl/uart_16550.v
+  LineNumber          : 33
+  Statement           :   	input PWRITE,
+  Signal              : PWRITE
+  Module              : uart_16550
+  DesignObjHierarchy  : uart_16550
+
+  -----------------------------------------------------------------------------
+  ReportPortInfo-ML  (1 info/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : ReportPortInfo-ML
+  Description   : Port Information for top design unit has been generated. For details see report ReportPortInfo.rpt
+  Violation     : Lint:24
+  Goal          : lint_rtl
+  FileName      : /home1/BPRN24/BokkaCS/Projects/APB_Based_UART_Design_and_TB_and_Lint/UART_DESIGN/lint/vcst_rtdb/spyglass/vc_lint0/uart_16550/VC_GOAL0/spyglass_reports/morelint/ReportPortInfo
+  LineNumber    : 1
+  Statement     : #     Comment          : Report Top Level Module Port Info
+
+  -----------------------------------------------------------------------------
+  W240  (1 info/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Please refer to 'SignalUsageReport.rpt' for details of violating bits
+  Violation     : Lint:18
+  Goal          : lint_rtl
+  Module        : uart_16550
+  FileName      : /home1/BPRN24/BokkaCS/Projects/APB_Based_UART_Design_and_TB_and_Lint/UART_DESIGN/lint/vcst_rtdb/spyglass/vc_lint0/uart_16550/VC_GOAL0/spyglass_reports/lint/SignalUsageReport.rpt
+  LineNumber    : 1
+  Statement     : #     Comment          : SignalUsageReport : It dumps details of violating bits of a signal

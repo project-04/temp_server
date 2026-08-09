@@ -1,0 +1,35 @@
+# vsim -vopt -c -do "run -all; exit" fulladder.full_adder_tb 
+# Start time: 15:22:46 on Mar 04,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  Questa Sim-64
+# //  Version 2022.1_2 linux_x86_64 Apr  2 2022
+# //
+# //  Copyright 1991-2022 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.full_adder_tb(fast)
+# ** Warning: (vsim-PLI-3003) [TOFD] - System task or function '$fsdbDumpvars' is not defined.
+#    Time: 0 ns  Iteration: 0  Instance: /full_adder_tb File: ../tb/full_adder_tb.v Line: 64
+# run -all
+# ** Error (suppressible): (vsim-12023) Cannot execute undefined system task/function '$fsdbDumpvars'
+#    Time: 0 ns  Iteration: 0  Process: /full_adder_tb/#INITIAL#37 File: ../tb/full_adder_tb.v Line: 64
+# Input a=0, b=0, c=0, Output sum =0, carry=0
+# Input a=0, b=0, c=1, Output sum =1, carry=0
+# Input a=0, b=1, c=0, Output sum =1, carry=0
+# Input a=0, b=1, c=1, Output sum =0, carry=1
+# Input a=1, b=0, c=0, Output sum =1, carry=0
+# Input a=1, b=0, c=1, Output sum =0, carry=1
+# Input a=1, b=1, c=0, Output sum =0, carry=1
+# Input a=1, b=1, c=1, Output sum =1, carry=1
+# ** Note: $finish    : ../tb/full_adder_tb.v(59)
+#    Time: 100 ns  Iteration: 0  Instance: /full_adder_tb
+# End time: 15:22:47 on Mar 04,2026, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 1

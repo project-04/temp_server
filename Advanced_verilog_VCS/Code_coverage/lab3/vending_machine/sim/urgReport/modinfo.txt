@@ -1,0 +1,660 @@
+===============================================================================
+Module : tb_coincol
+===============================================================================
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 64.52  67.61 --      61.43 --     --     
+
+Source File(s) : 
+
+/home1/BPRN24/BokkaCS/Advanced_verilog_VCS/Code_coverage/lab3/vending_machine/sim/../tb/tb_coincol1.v
+
+Module self-instances :
+
+SCORE  LINE   COND   TOGGLE FSM    BRANCH NAME       
+ 64.52  67.61 --      61.43 --     --     tb_coincol 
+
+
+
+-------------------------------------------------------------------------------
+Line Coverage for Module : tb_coincol
+
+             Line No.   Total   Covered  Percent
+TOTAL                       71       48    67.61
+ALWAYS             56        4        4   100.00
+ROUTINE            63       15       12    80.00
+ROUTINE            84       45       25    55.56
+INITIAL           167        7        7   100.00
+
+55                            begin
+56         2/2                   #(CYCLE/2) clock = 1'b0;
+57         2/2          	 #(CYCLE/2) clock = 1'b1;
+58                            end
+59                      
+60                         //Reset Checking
+61                         task sync_reset;
+62                            begin
+63         1/1          	 reset = 1'b1;
+64         1/1          	 coin  = 2'b11;
+65         1/1          	 coin_sum = 8'd0;
+66         2/2          	 @(posedge clock);
+67         2/2          	 #(THOLD);
+68         1/1          	 if(done !== 1'b0 || lsb7seg !== 7'b1000000 || msb7seg !== 7'b1000000)
+69                      	    begin
+70         0/1     ==>  	       $display("Reset is not working");
+71         0/1     ==>  	       $display("Error at time %t",$time);
+72         0/1     ==>  	       $stop;
+73                      	    end
+                        MISSING_ELSE
+74         1/1          	 $display("Reset is perfect \n");
+75         1/1          	 {reset,coin} = 3'bx;
+76         2/2          	 #(CYCLE - THOLD - TSETUP);
+77                            end
+78                         endtask
+79                      
+80                         //Loading coins
+81                         task load_coin;
+82                         input [1:0] data;      
+83                            begin
+84         1/1          	 reset = 1'b0;
+85         1/1          	 coin  = data;
+86                      	 //Conversion
+87         1/1          	 if(coin == 2'b00)
+88         1/1          	    temp = 8'd25;
+89         0/1     ==>  	 else if(coin == 2'b01)
+90         0/1     ==>  	    temp = 8'd50; 
+91         0/1     ==>  	 else if(coin == 2'b10)
+92         0/1     ==>  	    temp = 8'd100;
+93         0/1     ==>  	 else if(coin == 2'b11)
+94         0/1     ==>  	    temp = 8'd0;
+                   ==>  MISSING_ELSE
+95         2/2          	 @(posedge clock);
+96         2/2          	 #(THOLD);
+97                      	 //Stores total amount
+98         1/1          	 coin_sum = coin_sum + temp;
+99         1/1          	 case(coin_sum)
+100                     	    PAISE25    :
+101                     	                  begin 
+102        1/1          	       		     if(done !== 1'b0 || lsb7seg !== 7'b0100100 || msb7seg !== 7'b0010100)
+103                     		  	        begin
+104        0/1     ==>  		     		   $display("Error at time %t",$time);
+105        0/1     ==>  	             		   $stop;
+106                     	          	        end
+                        MISSING_ELSE
+107        1/1          	       		     $display("Now the Amount is 25 Paise");
+108        1/1          	       		     $display("DONE = %b \n",done);
+109                     	    		  end
+110                     
+111                      	    PAISE50    :
+112                     	    		  begin   
+113        1/1          	       		     if(done !== 1'b0 ||lsb7seg !== 7'b0100010 ||msb7seg !== 7'b1000000)
+114                         		  		begin
+115        0/1     ==>    		     		   $display("Error at time %t",$time);
+116        0/1     ==>  		     		   $stop;
+117                      		  		end
+                        MISSING_ELSE
+118        1/1          	       		     $display("Now the Amount is 50 Paise");
+119        1/1          	       		     $display("DONE = %b \n",done);
+120                                               end 
+121                     
+122                     	    PAISE75    :
+123                      	    		  begin 
+124        1/1           	       		     if(done !== 1'b0 || lsb7seg !== 7'b1111000 ||msb7seg !== 7'b0010010)
+125                      	          		begin
+126        0/1     ==>  		     		   $display("Error at time %t",$time);
+127        0/1     ==>    		     		   $stop;
+128                      		  		end
+                        MISSING_ELSE
+129        1/1          	       		     $display("Now the Amount is 75 Paise");
+130        1/1          	       		     $display("DONE = %b \n",done);
+131                        	                  end
+132                     
+133                      	    RUPEE1     :
+134                     	    		  begin
+135        1/1          	       		     if(done !== 1'b1 || lsb7seg !== 7'b0001001 ||msb7seg !== 7'b0001000)
+136                      	          		begin
+137        0/1     ==>  		     		   $display("Error at time %t",$time);
+138        0/1     ==>  		     		   $stop;
+139                     		  		end
+                        MISSING_ELSE
+140        1/1          	       		     $display("Now the Amount is 1 Rupee");
+141        1/1          	       		     $display("DONE = %b \n",done);
+142                     	    	      	  end 
+143                     
+144                     	    NOCOIN     :
+145        0/1     ==>  	    		  $display("You have to put some amount");                     
+146                     
+147                     	    default    ://Covers the amounts 125, 150 ans 175 
+148                                 	          begin
+149        0/1     ==>  	       		     if(done !== 1'b1 || lsb7seg !== 7'b0001001 ||msb7seg !== 7'b0001000)
+150                     	                  	begin
+151        0/1     ==>  		      		   $display("Error at time %t",$time);
+152        0/1     ==>  		     		   $stop;
+153                     		                end
+                   ==>  MISSING_ELSE
+154        0/1     ==>     	       		     $display("Now the Amount is 1 Rupee");
+155        0/1     ==>  	       		     $display("DONE = %b \n",done);
+156                     	                  end                      
+157                     
+158                              endcase
+159        1/1                   coin <= 2'bx;
+160        2/2                   #(CYCLE - THOLD - TSETUP); 
+161                           end
+162                        endtask
+163                     
+164                        //Applying Stimulus
+165                        initial
+166                           begin
+167        1/1                   sync_reset;
+168                     	 //check by 25 paise
+169        1/1          	 load_coin(2'b00);
+170        1/1          	 load_coin(2'b00);
+171        1/1          	 load_coin(2'b00);
+172        1/1          	 load_coin(2'b00);
+173        2/2          	 #50 $finish;
+
+-------------------------------------------------------------------------------
+Toggle Coverage for Module : tb_coincol
+                Total Covered Percent 
+Totals          8     3       37.50   
+Total Bits      70    43      61.43   
+Total Bits 0->1 35    21      60.00   
+Total Bits 1->0 35    22      62.86   
+
+                              
+Signals          8  3  37.50  
+Signal Bits      70 43 61.43  
+Signal Bits 0->1 35 21 60.00  
+Signal Bits 1->0 35 22 62.86  
+
+Signal Details
+              Toggle Toggle 1->0 Toggle 0->1 
+clock         Yes    Yes         Yes         
+reset         No     Yes         No          
+coin[1:0]     No     Yes         No          
+temp[7:0]     No     No          No          
+coin_sum[1:0] Yes    Yes         Yes         
+coin_sum[2]   No     No          Yes         
+coin_sum[5:3] Yes    Yes         Yes         
+coin_sum[6]   No     No          Yes         
+coin_sum[7]   No     No          No          
+done          Yes    Yes         Yes         
+lsb7seg[6:0]  Yes    Yes         Yes         
+msb7seg[0]    No     No          No          
+msb7seg[4:1]  Yes    Yes         Yes         
+msb7seg[5]    No     No          No          
+msb7seg[6]    Yes    Yes         Yes         
+
+
+-------------------------------------------------------------------------------
+===============================================================================
+Module Instance : tb_coincol
+===============================================================================
+
+Instance :
+
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 64.52  67.61 --      61.43 --     --     
+
+
+Instance's subtree :
+
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 59.21  74.31  33.33  71.67  38.46  78.26 
+
+
+Module : 
+
+SCORE  LINE   COND   TOGGLE FSM    BRANCH NAME       
+ 64.52  67.61 --      61.43 --     --     tb_coincol 
+
+
+Parent : 
+
+none
+----------------
+
+
+Subtrees :
+
+SCORE  LINE   COND   TOGGLE FSM    BRANCH NAME 
+ 64.58  86.84  33.33  86.00  38.46  78.26 DUT  
+
+
+
+-------------------------------------------------------------------------------
+Since this is the module's only instance, the coverage report is the same as for the module.
+===============================================================================
+Module : coincol
+===============================================================================
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 64.58  86.84  33.33  86.00  38.46  78.26 
+
+Source File(s) : 
+
+/home1/BPRN24/BokkaCS/Advanced_verilog_VCS/Code_coverage/lab3/vending_machine/sim/../rtl/coincol.v
+
+Module self-instances :
+
+SCORE  LINE   COND   TOGGLE FSM    BRANCH NAME           
+ 64.58  86.84  33.33  86.00  38.46  78.26 tb_coincol.DUT 
+
+
+
+-------------------------------------------------------------------------------
+Line Coverage for Module : coincol
+
+             Line No.   Total   Covered  Percent
+TOTAL                       38       33    86.84
+ALWAYS             57        3        3   100.00
+ALWAYS             66       24       19    79.17
+ALWAYS            132       11       11   100.00
+
+56                            begin
+57         1/1                   if(reset)
+58         1/1          	    prestate <= STATE00;
+59                      	 else
+60         1/1          	    prestate <= nextstate;
+61                            end
+62                      
+63                         //Next state decoder logic
+64                         always @(*)
+65                            begin
+66         1/1          	case(prestate)
+67                      	   STATE00 : 
+68                      	 	       begin
+69         1/1          	   	          if(coin_in == 2'b00)
+70         1/1          	                     nextstate = STATE25;
+71         1/1          	                  else if(coin_in == 2'b01)
+72         0/1     ==>  	       		     nextstate = STATE50;
+73         1/1          	   	          else if(coin_in == 2'b10)
+74         0/1     ==>  	                     nextstate = STATE100;
+75                      	                  else
+76         1/1          	                     nextstate = STATE00;
+77                      	               end
+78                      	   STATE25 :
+79                      	 	       begin
+80         1/1          	    	          if(coin_in == 2'b00)
+81         1/1          	       		     nextstate = STATE50;
+82         1/1          	                  else if(coin_in == 2'b01)
+83         0/1     ==>   	                     nextstate = STATE75;
+84         1/1          	                  else if(coin_in == 2'b10)
+85         0/1     ==>  	                     nextstate = STATE100;
+86                      	                  else
+87         1/1          	                     nextstate = STATE25;
+88                      	               end 
+89                      	   STATE50 :
+90                      	               begin
+91         1/1          	   	          if(coin_in == 2'b00)
+92         1/1          	       		     nextstate = STATE75;
+93         1/1          	   	          else if(coin_in == 2'b01 || coin_in == 2'b10)                              
+94         0/1     ==>  	      		     nextstate = STATE100;
+95                      	   	          else
+96         1/1          	       		     nextstate = STATE50;
+97                      	               end
+98                      	   STATE75 :
+99                      	 	       begin
+100        1/1          	                  if(coin_in == 2'b00 || coin_in == 2'b01 || coin_in == 2'b10)                              
+101        1/1          	                     nextstate = STATE100;
+102                     	                  else
+103        1/1          	                     nextstate = STATE75;
+104                     	               end 
+105        1/1          	   default :   nextstate = STATE00;
+106                           endcase
+107                        end
+108                     
+109                        //Output logic
+110                        assign done_out = (prestate == STATE100) ? 1'b1 : 1'b0;
+111                     
+112                        /************************************************
+113                     
+114                        SEVEN SEGMENT LED DISPLAY
+115                     
+116                            a
+117                           ---    
+118                        f |   | b
+119                           ---  <-- g
+120                        e |   | c
+121                           ---
+122                           d  
+123                     
+124                        Each LED segment is active low.
+125                        Both lsb7seg and msb7seg are assigned
+126                        in the order "gfedcba"
+127                     
+128                        ************************************************/
+129                     
+130                        always @(prestate)
+131                           begin
+132        1/1                   case(prestate)
+133                                 STATE25  : 
+134                     	                begin
+135        1/1          	          	   lsb7seg_out = 7'b0100100;
+136        1/1          	          	   msb7seg_out = 7'b0010100;
+137                     	                end
+138                     	    STATE50  : 
+139                     	       	        begin
+140        1/1          	          	   lsb7seg_out = 7'b0100010;
+141        1/1          	          	   msb7seg_out = 7'b1000000;
+142                     	                end
+143                     	    STATE75  : 
+144                     	       	        begin
+145        1/1          	          	   lsb7seg_out = 7'b1111000;
+146        1/1          	          	   msb7seg_out = 7'b0010010;
+147                     	       	       end
+148                     	    STATE100 : 
+149                     	       	        begin
+150        1/1          	                   lsb7seg_out = 7'b0001001;
+151        1/1          	                   msb7seg_out = 7'b0001000;
+152                     	                end
+153                     	    default  : 
+154                     	        	begin
+155        1/1          	          	   lsb7seg_out = 7'b1000000;
+156        1/1          	          	   msb7seg_out = 7'b1000000;
+
+-------------------------------------------------------------------------------
+Cond Coverage for Module : coincol
+
+               Total   Covered  Percent
+Conditions          9        3    33.33
+Logical             9        3    33.33
+Non-Logical         0        0
+Event               0        0
+
+ LINE       93
+ EXPRESSION ((coin_in == 2'b1) || (coin_in == 2'b10))
+             --------1--------    ---------2--------
+
+-1- -2- Status
+ 0   0  Not Covered
+ 0   1  Not Covered
+ 1   0  Not Covered
+
+ LINE       100
+ EXPRESSION ((coin_in == 2'b0) || (coin_in == 2'b1) || (coin_in == 2'b10))
+             --------1--------    --------2--------    ---------3--------
+
+-1- -2- -3- Status
+ 0   0   0  Not Covered
+ 0   0   1  Not Covered
+ 0   1   0  Not Covered
+ 1   0   0  Covered
+
+ LINE       110
+ EXPRESSION ((prestate == STATE100) ? 1'b1 : 1'b0)
+             -----------1----------
+
+-1- Status
+ 0  Covered
+ 1  Covered
+
+-------------------------------------------------------------------------------
+Toggle Coverage for Module : coincol
+                Total Covered Percent 
+Totals          8     5       62.50   
+Total Bits      50    43      86.00   
+Total Bits 0->1 25    20      80.00   
+Total Bits 1->0 25    23      92.00   
+
+                            
+Ports          6  3  50.00  
+Port Bits      38 31 81.58  
+Port Bits 0->1 19 14 73.68  
+Port Bits 1->0 19 17 89.47  
+
+                              
+Signals          2  2  100.00 
+Signal Bits      12 12 100.00 
+Signal Bits 0->1 6  6  100.00 
+Signal Bits 1->0 6  6  100.00 
+
+Port Details
+                 Toggle Toggle 1->0 Toggle 0->1 Direction 
+clock            Yes    Yes         Yes         INPUT     
+reset            No     Yes         No          INPUT     
+coin_in[1:0]     No     Yes         No          INPUT     
+done_out         Yes    Yes         Yes         OUTPUT    
+lsb7seg_out[6:0] Yes    Yes         Yes         OUTPUT    
+msb7seg_out[0]   No     No          No          OUTPUT    
+msb7seg_out[4:1] Yes    Yes         Yes         OUTPUT    
+msb7seg_out[5]   No     No          No          OUTPUT    
+msb7seg_out[6]   Yes    Yes         Yes         OUTPUT    
+
+Signal Details
+               Toggle Toggle 1->0 Toggle 0->1 
+prestate[2:0]  Yes    Yes         Yes         
+nextstate[2:0] Yes    Yes         Yes         
+
+
+-------------------------------------------------------------------------------
+FSM Coverage for Module : coincol
+Summary for FSM :: prestate
+            Total Covered Percent                         
+States      5     5       100.00  (Not included in score) 
+Transitions 13    5       38.46                           
+Sequences   0     0                                       
+
+State, Transition and Sequence Details for FSM :: prestate
+-------------------------------------------------------------------------------
+states   Line No. Covered 
+STATE00  58       Covered 
+STATE100 74       Covered 
+STATE25  70       Covered 
+STATE50  72       Covered 
+STATE75  83       Covered 
+
+transitions       Line No. Covered     
+STATE00->STATE100 74       Not Covered 
+STATE00->STATE25  70       Covered     
+STATE00->STATE50  72       Not Covered 
+STATE100->STATE00 58       Covered     
+STATE25->STATE00  58       Not Covered 
+STATE25->STATE100 85       Not Covered 
+STATE25->STATE50  81       Covered     
+STATE25->STATE75  83       Not Covered 
+STATE50->STATE00  58       Not Covered 
+STATE50->STATE100 94       Not Covered 
+STATE50->STATE75  92       Covered     
+STATE75->STATE00  58       Not Covered 
+STATE75->STATE100 101      Covered     
+
+
+-------------------------------------------------------------------------------
+Branch Coverage for Module : coincol
+         Line No. Total Covered Percent 
+Branches          23    18      78.26   
+TERNARY  110      2     2       100.00  
+IF       57       2     2       100.00  
+CASE     66       14    9       64.29   
+CASE     132      5     5       100.00  
+
+
+110           assign done_out = (prestate == STATE100) ? 1'b1 : 1'b0;
+                                                       -1-  
+                                                       ==>  
+                                                       ==>  
+
+Branches:
+
+-1- Status  
+1   Covered 
+0   Covered 
+
+
+57                  if(reset)
+                    -1-  
+58         	    prestate <= STATE00;
+           	    ==>
+59         	 else
+60         	    prestate <= nextstate;
+           	    ==>
+
+Branches:
+
+-1- Status  
+1   Covered 
+0   Covered 
+
+
+66         	case(prestate)
+           	-1-  
+67         	   STATE00 : 
+68         	 	       begin
+69         	   	          if(coin_in == 2'b00)
+           	   	          -2-  
+70         	                     nextstate = STATE25;
+           	                     ==>
+71         	                  else if(coin_in == 2'b01)
+           	                       -3-  
+72         	       		     nextstate = STATE50;
+           	       		     ==>
+73         	   	          else if(coin_in == 2'b10)
+           	   	               -4-  
+74         	                     nextstate = STATE100;
+           	                     ==>
+75         	                  else
+76         	                     nextstate = STATE00;
+           	                     ==>
+77         	               end
+78         	   STATE25 :
+79         	 	       begin
+80         	    	          if(coin_in == 2'b00)
+           	    	          -5-  
+81         	       		     nextstate = STATE50;
+           	       		     ==>
+82         	                  else if(coin_in == 2'b01)
+           	                       -6-  
+83          	                     nextstate = STATE75;
+            	                     ==>
+84         	                  else if(coin_in == 2'b10)
+           	                       -7-  
+85         	                     nextstate = STATE100;
+           	                     ==>
+86         	                  else
+87         	                     nextstate = STATE25;
+           	                     ==>
+88         	               end 
+89         	   STATE50 :
+90         	               begin
+91         	   	          if(coin_in == 2'b00)
+           	   	          -8-  
+92         	       		     nextstate = STATE75;
+           	       		     ==>
+93         	   	          else if(coin_in == 2'b01 || coin_in == 2'b10)                              
+           	   	               -9-  
+94         	      		     nextstate = STATE100;
+           	      		     ==>
+95         	   	          else
+96         	       		     nextstate = STATE50;
+           	       		     ==>
+97         	               end
+98         	   STATE75 :
+99         	 	       begin
+100        	                  if(coin_in == 2'b00 || coin_in == 2'b01 || coin_in == 2'b10)                              
+           	                  -10-  
+101        	                     nextstate = STATE100;
+           	                     ==>
+102        	                  else
+103        	                     nextstate = STATE75;
+           	                     ==>
+104        	               end 
+105        	   default :   nextstate = STATE00;
+           	   ==>
+
+Branches:
+
+-1-      -2- -3- -4- -5- -6- -7- -8- -9- -10- Status      
+STATE00  1   -   -   -   -   -   -   -   -    Covered     
+STATE00  0   1   -   -   -   -   -   -   -    Not Covered 
+STATE00  0   0   1   -   -   -   -   -   -    Not Covered 
+STATE00  0   0   0   -   -   -   -   -   -    Covered     
+STATE25  -   -   -   1   -   -   -   -   -    Covered     
+STATE25  -   -   -   0   1   -   -   -   -    Not Covered 
+STATE25  -   -   -   0   0   1   -   -   -    Not Covered 
+STATE25  -   -   -   0   0   0   -   -   -    Covered     
+STATE50  -   -   -   -   -   -   1   -   -    Covered     
+STATE50  -   -   -   -   -   -   0   1   -    Not Covered 
+STATE50  -   -   -   -   -   -   0   0   -    Covered     
+STATE75  -   -   -   -   -   -   -   -   1    Covered     
+STATE75  -   -   -   -   -   -   -   -   0    Covered     
+default  -   -   -   -   -   -   -   -   -    Covered     
+
+
+132                 case(prestate)
+                    -1-  
+133                    STATE25  : 
+134        	                begin
+135        	          	   lsb7seg_out = 7'b0100100;
+           	          	   ==>
+136        	          	   msb7seg_out = 7'b0010100;
+137        	                end
+138        	    STATE50  : 
+139        	       	        begin
+140        	          	   lsb7seg_out = 7'b0100010;
+           	          	   ==>
+141        	          	   msb7seg_out = 7'b1000000;
+142        	                end
+143        	    STATE75  : 
+144        	       	        begin
+145        	          	   lsb7seg_out = 7'b1111000;
+           	          	   ==>
+146        	          	   msb7seg_out = 7'b0010010;
+147        	       	       end
+148        	    STATE100 : 
+149        	       	        begin
+150        	                   lsb7seg_out = 7'b0001001;
+           	                   ==>
+151        	                   msb7seg_out = 7'b0001000;
+152        	                end
+153        	    default  : 
+154        	        	begin
+155        	          	   lsb7seg_out = 7'b1000000;
+           	          	   ==>
+
+Branches:
+
+-1-       Status  
+STATE25   Covered 
+STATE50   Covered 
+STATE75   Covered 
+STATE100  Covered 
+default   Covered 
+
+
+-------------------------------------------------------------------------------
+===============================================================================
+Module Instance : tb_coincol.DUT
+===============================================================================
+
+Instance :
+
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 64.58  86.84  33.33  86.00  38.46  78.26 
+
+
+Instance's subtree :
+
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 64.58  86.84  33.33  86.00  38.46  78.26 
+
+
+Module : 
+
+SCORE  LINE   COND   TOGGLE FSM    BRANCH NAME    
+ 64.58  86.84  33.33  86.00  38.46  78.26 coincol 
+
+
+Parent : 
+
+SCORE  LINE   COND   TOGGLE FSM    BRANCH NAME       
+ 64.52  67.61 --      61.43 --     --     tb_coincol 
+
+
+Subtrees :
+
+
+no children
+----------------
+
+
+-------------------------------------------------------------------------------
+Since this is the module's only instance, the coverage report is the same as for the module.

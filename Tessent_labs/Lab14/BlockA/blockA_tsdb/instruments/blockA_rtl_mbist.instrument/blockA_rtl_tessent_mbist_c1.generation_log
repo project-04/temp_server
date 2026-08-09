@@ -1,0 +1,335 @@
+membistipg c1 -configfile /tmp/.tessent.tmp.susmita.Mass.12017/scratch/membistipg_workdir/blockA_rtl_tessent_mbist_c1_controller/c1.membist  -library /tmp/.tessent.tmp.susmita.Mass.12017/scratch/membistipg_workdir/blockA_rtl_tessent_mbist_c1_controller/MemLibs/SYNC_8192X32_BISR.lib -clockPeriod 12 -failureLimit 4096 -compStat sharedwithgo -usemulticyclepaths on -parallelStaticRetentionTest on -controllertype programmable -extension v -structuralExtension vg -bak off -flow tessent_shell -designName blockA -pass_id rtl -scratch_dir "/tmp/.tessent.tmp.susmita.Mass.12017/scratch/membistipg_workdir" -outDir "/home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument" -log membistipg.log_c1 -xortreecapacity 3
+
+***************************************************************************************************
+*                                                                                                 *
+* THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION WHICH IS THE PROPERTY OF            *
+* MENTOR GRAPHICS CORPORATION OR ITS LICENSORS AND IS SUBJECT TO LICENSE TERMS.                   *
+*                                                                                                 *
+* Copyright 1992-2019 Mentor Graphics Corporation                                                 *
+*                                                                                                 *
+* All Rights Reserved.                                                                            *
+*                                                                                                 *
+* RESTRICTED RIGHTS USE (SHORT FORM)                                                              *
+*                                                                                                 *
+***************************************************************************************************
+
+
+***************************************************************************************************
+*                                                                                                 *
+*                                        membistipGenerate                                        *
+*                                         Version 2019.1                                          *
+*                               (optimized for 64-bit architecture)                               *
+*                                                                                                 *
+***************************************************************************************************
+
+ Parsing command line options...
+ Reading the configuration file /tmp/.tessent.tmp.susmita.Mass.12017/scratch/membistipg_workdir/blockA_rtl_tessent_mbist_c1_controller/c1.membist.
+ Reading the library file /tmp/.tessent.tmp.susmita.Mass.12017/scratch/membistipg_workdir/blockA_rtl_tessent_mbist_c1_controller/MemLibs/SYNC_8192X32_BISR.lib.
+
+
+
+Checked out mttsmemorybistf from mttsmemorybist_c.
+Checked out mttsmemstdprog from mttsmemorybist_c.
+Checked out mttsmembira from mttsmembrepair_c.
+Warning [PPHW01] : You have not specified the property NumberOfDataRegisterBits. The controller is HardProgrammable 
+                   and only specifies algorithms from the SMarch/SMarchCHKB family. Setting the size 
+                   of the expect and write data registers to the minimum value of 2 bits.
+
+User Options:                           
+  Working Directory:                    /home/susmita/MBIST_exercise1/MBIST/BlockA/
+  Source Directory:                     /home/cad/eda/tessent
+  Configuration File:                   blockA.membistpg
+  Memory Library File:                  /tmp/.tessent.tmp.susmita.Mass.12017/scratch/membistipg_workdir/blockA_rtl_tessent_mbist_c1_controller/MemLibs/SYNC_8192X32_BISR.lib
+  Output Directory:                     /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument
+  Log File:                             /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument/membistipg.log_c1
+  Language:                             VERILOG
+  Extension:                            v
+  Structural Extension:                 vg
+  Collar Generation:                    ON
+  Controller Generation:                ON
+  CompStat:                             SHAREDWITHGO
+  Scan Model Generation:                ON
+  Scan Chains:                          PREP
+  Clock Period:                         12 ns
+  Xor Tree Capacity:                    3
+  Use MultiCycle Paths:                 ON
+  Include Test Pattern Library:         ON
+  Algorithm Summary:                    OFF
+
+Including Algorithms from the Test Pattern Library...
+  Including the Library Test Pattern SMARCHCHKB.
+
+Controller Options:                     
+  Controller Type:                      Programmable
+  Soft-Algorithm Instructions:          0
+  SoftAlgorithmAddressMinMax:           No
+  EnableAEqualsBCommand:                No
+  X0 Address Segment Bits:              0
+  Y0 Address Segment Bits:              0
+  InvertDataWithAddressBitRange:        0
+  Data Register Bits:                   2
+  Delay Counter Bits:                   0
+  CounterA Bits:                        0
+  Stop-On-Nth-Error Counter Bits:       12
+
+Validating all user specified algorithms and any included algorithms from the library of test patterns...
+
+  Calculating the run length for algorithm SMARCHCHKB...
+    Run Length Summary for Algorithm SMARCHCHKB and OperationSet SYNC used in Step 0 with BitSlice 1
+      Instruction(INST0_IDLE_PH_1)
+        Total Instruction Executions:        1.0
+        Total Clocks:                        4.0
+      Instruction(INS1_PH_2)
+        Total Instruction Executions:        1.0
+        Total Clocks:                        2.0
+      Instruction(INS2_PH_2)
+        Total Instruction Executions:        1.0
+        Total Clocks:                        2.0
+      Instruction(INS3_PH_3)
+        Total Instruction Executions:        1.0
+        Total Clocks:                        2.0
+      Instruction(INS4_PH_3)
+        Total Instruction Executions:        1.0
+        Total Clocks:                        2.0
+      Instruction(INS5_IDLE_PH_4)
+        Total Instruction Executions:        1.0
+        Total Clocks:                        4.0
+      Instruction(INS6_PH_5)
+        Total Instruction Executions:        8192.0
+        Total Clocks:                        16384.0
+      Instruction(INS7_PH_6)
+        Total Instruction Executions:        8192.0
+        Total Clocks:                        16384.0
+      Instruction(INS8_PH_7)
+        Total Instruction Executions:        8192.0
+        Total Clocks:                        16384.0
+      Instruction(INST9_IDLE_PH_8)
+        Total Instruction Executions:        1.0
+        Total Clocks:                        4.0
+      Instruction(INS10_PH_9)
+        Total Instruction Executions:        1.0
+        Total Clocks:                        2.0
+      Instruction(INS11_PH_9)
+        Total Instruction Executions:        1.0
+        Total Clocks:                        2.0
+      Instruction(INS12_PH_10)
+        Total Instruction Executions:        8191.0
+        Total Clocks:                        16382.0
+      Instruction(INS13_PH_11)
+        Total Instruction Executions:        16384.0
+        Total Clocks:                        32768.0
+      Instruction(INS14_PH_11)
+        Total Instruction Executions:        16384.0
+        Total Clocks:                        32768.0
+      Instruction(INS15_PH_13)
+        Total Instruction Executions:        16384.0
+        Total Clocks:                        32768.0
+      Instruction(INS16_PH_13)
+        Total Instruction Executions:        16384.0
+        Total Clocks:                        32768.0
+      Instruction(INS17_PH_15)
+        Total Instruction Executions:        8192.0
+        Total Clocks:                        16384.0
+      Instruction(INS18_PH_15)
+        Total Instruction Executions:        8192.0
+        Total Clocks:                        16384.0
+      Total Clocks:                          229398.0
+      Total Time(@12ns period):              2.752776 ms
+      Max Number of Strobes:                 106502.0
+
+Memory Configurations:                  
+
+Memory:                                 m1
+
+  Status Information
+  ------------------
+    DataComparatorMap
+    -----------------
+    DataComparator[0] <- GO_ID[0] <- DATA[0] 
+    DataComparator[1] <- GO_ID[1] <- DATA[1] 
+    DataComparator[2] <- GO_ID[2] <- DATA[2] 
+    DataComparator[3] <- GO_ID[3] <- DATA[3] 
+    DataComparator[4] <- GO_ID[4] <- DATA[4] 
+    DataComparator[5] <- GO_ID[5] <- DATA[5] 
+    DataComparator[6] <- GO_ID[6] <- DATA[6] 
+    DataComparator[7] <- GO_ID[7] <- DATA[7] 
+    DataComparator[8] <- GO_ID[8] <- DATA[8] 
+    DataComparator[9] <- GO_ID[9] <- DATA[9] 
+    DataComparator[10] <- GO_ID[10] <- DATA[10] 
+    DataComparator[11] <- GO_ID[11] <- DATA[11] 
+    DataComparator[12] <- GO_ID[12] <- DATA[12] 
+    DataComparator[13] <- GO_ID[13] <- DATA[13] 
+    DataComparator[14] <- GO_ID[14] <- DATA[14] 
+    DataComparator[15] <- GO_ID[15] <- DATA[15] 
+    DataComparator[16] <- GO_ID[16] <- DATA[16] 
+    DataComparator[17] <- GO_ID[17] <- DATA[17] 
+    DataComparator[18] <- GO_ID[18] <- DATA[18] 
+    DataComparator[19] <- GO_ID[19] <- DATA[19] 
+    DataComparator[20] <- GO_ID[20] <- DATA[20] 
+    DataComparator[21] <- GO_ID[21] <- DATA[21] 
+    DataComparator[22] <- GO_ID[22] <- DATA[22] 
+    DataComparator[23] <- GO_ID[23] <- DATA[23] 
+    DataComparator[24] <- GO_ID[24] <- DATA[24] 
+    DataComparator[25] <- GO_ID[25] <- DATA[25] 
+    DataComparator[26] <- GO_ID[26] <- DATA[26] 
+    DataComparator[27] <- GO_ID[27] <- DATA[27] 
+    DataComparator[28] <- GO_ID[28] <- DATA[28] 
+    DataComparator[29] <- GO_ID[29] <- DATA[29] 
+    DataComparator[30] <- GO_ID[30] <- DATA[30] 
+    DataComparator[31] <- GO_ID[31] <- DATA[31] 
+
+
+  Address Counter
+  ---------------
+  RowAddress[8:0] Countrange:           Maximum[9'b111111111]
+                                        Minimum[9'b000000000]
+  ColumnAddress[3:0] Countrange:        Maximum[4'b1111]
+                                        Minimum[4'b0000]
+
+  Function Data Bus  Data Register Bit  Port
+  ----------------   -----------------  ----
+  d[31] (INPUT)      WRITE[1]           D[31]
+  d[30] (INPUT)      WRITE[0]           D[30]
+  d[29] (INPUT)      WRITE[1]           D[29]
+  d[28] (INPUT)      WRITE[0]           D[28]
+  d[27] (INPUT)      WRITE[1]           D[27]
+  d[26] (INPUT)      WRITE[0]           D[26]
+  d[25] (INPUT)      WRITE[1]           D[25]
+  d[24] (INPUT)      WRITE[0]           D[24]
+  d[23] (INPUT)      WRITE[1]           D[23]
+  d[22] (INPUT)      WRITE[0]           D[22]
+  d[21] (INPUT)      WRITE[1]           D[21]
+  d[20] (INPUT)      WRITE[0]           D[20]
+  d[19] (INPUT)      WRITE[1]           D[19]
+  d[18] (INPUT)      WRITE[0]           D[18]
+  d[17] (INPUT)      WRITE[1]           D[17]
+  d[16] (INPUT)      WRITE[0]           D[16]
+  d[15] (INPUT)      WRITE[1]           D[15]
+  d[14] (INPUT)      WRITE[0]           D[14]
+  d[13] (INPUT)      WRITE[1]           D[13]
+  d[12] (INPUT)      WRITE[0]           D[12]
+  d[11] (INPUT)      WRITE[1]           D[11]
+  d[10] (INPUT)      WRITE[0]           D[10]
+  d[9] (INPUT)       WRITE[1]           D[9]
+  d[8] (INPUT)       WRITE[0]           D[8]
+  d[7] (INPUT)       WRITE[1]           D[7]
+  d[6] (INPUT)       WRITE[0]           D[6]
+  d[5] (INPUT)       WRITE[1]           D[5]
+  d[4] (INPUT)       WRITE[0]           D[4]
+  d[3] (INPUT)       WRITE[1]           D[3]
+  d[2] (INPUT)       WRITE[0]           D[2]
+  d[1] (INPUT)       WRITE[1]           D[1]
+  d[0] (INPUT)       WRITE[0]           D[0]
+  d[31] (OUTPUT)     EXPECT[1]          Q[31]
+  d[30] (OUTPUT)     EXPECT[0]          Q[30]
+  d[29] (OUTPUT)     EXPECT[1]          Q[29]
+  d[28] (OUTPUT)     EXPECT[0]          Q[28]
+  d[27] (OUTPUT)     EXPECT[1]          Q[27]
+  d[26] (OUTPUT)     EXPECT[0]          Q[26]
+  d[25] (OUTPUT)     EXPECT[1]          Q[25]
+  d[24] (OUTPUT)     EXPECT[0]          Q[24]
+  d[23] (OUTPUT)     EXPECT[1]          Q[23]
+  d[22] (OUTPUT)     EXPECT[0]          Q[22]
+  d[21] (OUTPUT)     EXPECT[1]          Q[21]
+  d[20] (OUTPUT)     EXPECT[0]          Q[20]
+  d[19] (OUTPUT)     EXPECT[1]          Q[19]
+  d[18] (OUTPUT)     EXPECT[0]          Q[18]
+  d[17] (OUTPUT)     EXPECT[1]          Q[17]
+  d[16] (OUTPUT)     EXPECT[0]          Q[16]
+  d[15] (OUTPUT)     EXPECT[1]          Q[15]
+  d[14] (OUTPUT)     EXPECT[0]          Q[14]
+  d[13] (OUTPUT)     EXPECT[1]          Q[13]
+  d[12] (OUTPUT)     EXPECT[0]          Q[12]
+  d[11] (OUTPUT)     EXPECT[1]          Q[11]
+  d[10] (OUTPUT)     EXPECT[0]          Q[10]
+  d[9] (OUTPUT)      EXPECT[1]          Q[9]
+  d[8] (OUTPUT)      EXPECT[0]          Q[8]
+  d[7] (OUTPUT)      EXPECT[1]          Q[7]
+  d[6] (OUTPUT)      EXPECT[0]          Q[6]
+  d[5] (OUTPUT)      EXPECT[1]          Q[5]
+  d[4] (OUTPUT)      EXPECT[0]          Q[4]
+  d[3] (OUTPUT)      EXPECT[1]          Q[3]
+  d[2] (OUTPUT)      EXPECT[0]          Q[2]
+  d[1] (OUTPUT)      EXPECT[1]          Q[1]
+  d[0] (OUTPUT)      EXPECT[0]          Q[0]
+
+  Function Address Bus             Logical Bit         Port
+  --------------------             -----------         ----
+  Address[12]                      RowAddress[8]       A[12]
+  Address[11]                      RowAddress[7]       A[11]
+  Address[10]                      RowAddress[6]       A[10]
+  Address[9]                       RowAddress[5]       A[9]
+  Address[8]                       RowAddress[4]       A[8]
+  Address[7]                       RowAddress[3]       A[7]
+  Address[6]                       RowAddress[2]       A[6]
+  Address[5]                       RowAddress[1]       A[5]
+  Address[4]                       RowAddress[0]       A[4]
+  Address[3]                       ColumnAddress[3]    A[3]
+  Address[2]                       ColumnAddress[2]    A[2]
+  Address[1]                       ColumnAddress[1]    A[1]
+  Address[0]                       ColumnAddress[0]    A[0]
+
+  Test Port                        Logical Read/Write Ports
+  ---------                        ------------------------
+  0                                (All ports)
+
+
+Summary of Operations                   
+---------------------
+
+  OperationSetFamily:                   DEFAULT
+
+    OperationSet:                       SYNC
+
+      Operation:                        NOOPERATION
+        Tick:                           1234
+        WRITEENABLE:                    0000
+        SELECT:                         1111
+        STROBEDATAOUT:                  0000
+
+      Operation:                        WRITE
+        Tick:                           12
+        WRITEENABLE:                    11
+        SELECT:                         11
+        STROBEDATAOUT:                  00
+
+      Operation:                        READ
+        Tick:                           12
+        WRITEENABLE:                    00
+        SELECT:                         11
+        STROBEDATAOUT:                  01
+
+      Operation:                        READMODIFYWRITE
+        Tick:                           12
+        WRITEENABLE:                    01
+        SELECT:                         11
+        STROBEDATAOUT:                  01
+
+      Operation:                        WRITEREAD
+        Tick:                           12
+        WRITEENABLE:                    10
+        SELECT:                         11
+        STROBEDATAOUT:                  00
+
+
+ Generating design files...
+   Generating controller module:                     /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.v
+   Generating interface module:                      /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_interface_m1.v
+   Generating interface ICL:                         /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_interface_m1.icl
+   Generating memory scan model:                     /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument/SYNC_8192X32_BISR.scan
+   Generating memory synthesis model:                /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument/SYNC_8192X32_BISR.syn
+   Generating gtool_info file:                       /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.gtool_info
+   Generating ICL file:                              /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.icl
+   Generating PDL file:                              /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.pdl
+   Generating Tessent Instrument Description file:   /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.tcd
+   Generating assembly ETA.info file:                /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_eta.info
+   Generating designa file:                          /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1.designa
+
+ Error Summary:
+
+	Total Warnings	: 1
+
+ Log file is /home/susmita/MBIST_exercise1/MBIST/BlockA/blockA_tsdb/instruments/blockA_rtl_mbist.instrument/membistipg.log_c1.
+
+ Done.
+

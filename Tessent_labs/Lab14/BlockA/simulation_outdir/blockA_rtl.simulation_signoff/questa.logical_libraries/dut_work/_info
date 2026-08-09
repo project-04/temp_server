@@ -1,0 +1,747 @@
+m255
+K4
+z2
+!s11f vlog 2019.2 2019.04, Apr 16 2019
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/susmita/MBIST_exercise1/MBIST_exercise1/BlockA/simulation_outdir/blockA_rtl.simulation_signoff
+vand02
+Z1 !s110 1565691878
+!i10b 1
+!s100 ?[_bQ<]iHf`e4?JB_m>bT2
+!s11b dTjF3KI8hA;2`Jm9NCT:Q0
+I=W?oYnGAIF[h[HJ:[9BbS2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1565605953
+Z4 8../../../Libs/adk_4_1/verilog/adk.v
+Z5 F../../../Libs/adk_4_1/verilog/adk.v
+L0 39
+Z6 OL;L;2019.2;69
+r1
+!s85 0
+31
+Z7 !s108 1565691878.000000
+Z8 !s107 ../../mbist_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_interface_m1.v|../../mbist_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.v|../../mbist_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_bap.v|
+Z9 !s90 -work|work|-mixedansiports|+librescan|-vlog01compat|-ysearchlib|../../mbist_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_bap.v|../../mbist_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.v|../../mbist_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_interface_m1.v|-f|questa.arguments_1|
+!i113 0
+Z10 o-work work -mixedansiports +librescan -vlog01compat +libext+.v+.v.gz -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z11 !s92 -work work -mixedansiports +librescan -vlog01compat -y ../../../Libs/mem -y ../../../Libs/rtl -v ../../../Libs/adk_4_1/verilog/adk.v -v /home/cad/eda/tessent/lnx-x86/lib64/hdleng/lib/dft_sim.v +libext+.v+.v.gz +incdir+../.. -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z12 tCvgOpt 0
+vblockA
+Z13 !s110 1565764902
+!i10b 1
+!s100 d[R6d=O:<WonGnlX:Keo31
+!s11b iI;D93Do5jQS7dX>=Ac3c2
+ISL`B4>SVEcb?:?T=P:6kH2
+R2
+Z14 d/home/susmita/MBIST_exercise1/MBIST/BlockA/simulation_outdir/blockA_rtl.simulation_signoff
+w1565764897
+8../../blockA_tsdb/dft_inserted_designs/blockA_rtl.dft_inserted_design/modified_rtl_files/blockA.v
+F../../blockA_tsdb/dft_inserted_designs/blockA_rtl.dft_inserted_design/modified_rtl_files/blockA.v
+L0 1
+R6
+r1
+!s85 0
+31
+Z15 !s108 1565764902.000000
+!s107 ../../blockA_tsdb/dft_inserted_designs/blockA_rtl.dft_inserted_design/modified_rtl_files/blockA.v|
+!s90 -work|work|-mixedansiports|+librescan|-vlog01compat|-ysearchlib|../../blockA_tsdb/dft_inserted_designs/blockA_rtl.dft_inserted_design/modified_rtl_files/blockA.v|-f|questa.arguments_1|
+!i113 0
+R10
+R11
+R12
+nblock@a
+vblockA_rtl_tessent_mbist_bap
+R13
+!i10b 1
+!s100 5B_DI]InQ7Y<9OW@2<acK1
+!s11b fVN<1KLci6D?UQbC^z?4^3
+I_ebe6n?oRjDZ]CT9]0bBR2
+R2
+R14
+Z16 w1565764891
+Z17 8../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_bap.v
+Z18 F../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_bap.v
+Z19 L0 17
+R6
+r1
+!s85 0
+31
+R15
+!s107 ../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_interface_m1.v|../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.v|../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_bap.v|
+Z20 !s90 -work|work|-mixedansiports|+librescan|-vlog01compat|-ysearchlib|../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_bap.v|../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.v|../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_interface_m1.v|-f|questa.arguments_1|
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_bap
+vblockA_rtl_tessent_mbist_bap_sib
+R13
+!i10b 1
+!s100 4ffB1I7FYHiI:UlAEYMTS1
+!s11b za;k=BcX^[Ech8<h`7kJO3
+IERRS<IO`UA]PPQ9O;>^Rg0
+R2
+R14
+R16
+R17
+R18
+L0 534
+R6
+r1
+!s85 0
+31
+R15
+Z21 !s107 ../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_interface_m1.v|../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.v|../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_bap.v|
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_bap_sib
+vblockA_rtl_tessent_mbist_bap_tdr
+R13
+!i10b 1
+!s100 ^Uml_b@?ggNW;MV_EL9A_1
+!s11b `D4CQRLN]PHRU8cjnom093
+I<bF614?TO92YU_B;9F1;00
+R2
+R14
+R16
+R17
+R18
+L0 195
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_bap_tdr
+vblockA_rtl_tessent_mbist_c1_controller
+R13
+!i10b 1
+!s100 ;BcPJ:gWN0O>5BG7l61f63
+!s11b i[OjD<TigK>6TXdEFH_lP3
+I5<dT4Q=cC;]WXk4IAPIT[2
+R2
+R14
+Z22 w1565764889
+Z23 8../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.v
+Z24 F../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.v
+L0 28
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_controller
+vblockA_rtl_tessent_mbist_c1_controller_add_format
+R13
+!i10b 1
+!s100 TZ33NPTQ97hh]gR;Wi]6Q0
+!s11b Rg35zdlPQ5<DkkdA6N>k:1
+IaO^EIe=;=gU:33khlAM:32
+R2
+R14
+R22
+R23
+R24
+L0 2921
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_controller_add_format
+vblockA_rtl_tessent_mbist_c1_controller_add_gen
+R13
+!i10b 1
+!s100 N>aN[d6N58jZJ6HYXmg_a3
+!s11b hAfhdGhTzBzV=n93K2YK=0
+IR9HJfhI3DEhEV:17iTFzg0
+R2
+R14
+R22
+R23
+R24
+L0 2957
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_controller_add_gen
+vblockA_rtl_tessent_mbist_c1_controller_async_interf
+R13
+!i10b 1
+!s100 fD;cR0HFe[3KNZVAS]Rfn3
+!s11b iVI^H6>0_l<M]XTOXPF5c0
+IQd7O<fH^?794FP<48aT9A3
+R2
+R14
+R22
+R23
+R24
+L0 1357
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_controller_async_interf
+vblockA_rtl_tessent_mbist_c1_controller_ctl_comp
+R13
+!i10b 1
+!s100 fk7RTSg]A0>PU22Z`Fb8=1
+!s11b aWLPED?chaTA^zmL>nGcE2
+IMIA[S1S1`6X:S>:>CaE[A2
+R2
+R14
+R22
+R23
+R24
+L0 1104
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_controller_ctl_comp
+vblockA_rtl_tessent_mbist_c1_controller_data_gen
+R13
+!i10b 1
+!s100 N3[zO[C77YVGXfGRg4PSQ1
+!s11b ]CPBa^]NOKjlM@_@[JULX2
+IV<J?;aMZmJDf_9>?1[9T_3
+R2
+R14
+R22
+R23
+R24
+L0 4593
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_controller_data_gen
+vblockA_rtl_tessent_mbist_c1_controller_fsm
+R13
+!i10b 1
+!s100 in?:l5ImBndjMfJkH_aDZ3
+!s11b KnmzVK?CagmR[diDz>YXP3
+IXzNoZI6P3CCKLP@YU9]<22
+R2
+R14
+R22
+R23
+R24
+L0 3709
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_controller_fsm
+vblockA_rtl_tessent_mbist_c1_controller_option
+R13
+!i10b 1
+!s100 A9Tz[BUG@Z[moNeB`?63R3
+!s11b 7JcajU>12o`EGZ:b3UoZY1
+IQcE:G3i>5S1VclB0;ZRj^2
+R2
+R14
+R22
+R23
+R24
+L0 1462
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_controller_option
+vblockA_rtl_tessent_mbist_c1_controller_pointer_cntrl
+R13
+!i10b 1
+!s100 @3Q7mDDPNWA6KdaK7W<6H0
+!s11b YfXRcf>7Pe]@;j=Z?Ifzd0
+IodSgL@fd<Zh0_0SGnFcgE1
+R2
+R14
+R22
+R23
+R24
+L0 1601
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_controller_pointer_cntrl
+vblockA_rtl_tessent_mbist_c1_controller_repeat_loop_cntrl
+R13
+!i10b 1
+!s100 =8PRC85h9:a3N76QUfn2E3
+!s11b 0PA2<Ag_4dVaKYjc2<^GO0
+IGCb]QePnHoN4EL;ojQEkF3
+R2
+R14
+R22
+R23
+R24
+L0 4262
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_controller_repeat_loop_cntrl
+vblockA_rtl_tessent_mbist_c1_controller_signal_gen
+R13
+!i10b 1
+!s100 8kIHAPY9956]@CBUTT;8]3
+!s11b J^n1ei1e0`ibKN38F?RMC0
+I=^F0]=b8mbZe_0L520c5A0
+R2
+R14
+R22
+R23
+R24
+L0 3905
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_controller_signal_gen
+vblockA_rtl_tessent_mbist_c1_interface_m1
+R13
+!i10b 1
+!s100 `zhemgW1RJnQk?<K`e>NR1
+!s11b cI^Ff?RXf8lOMDLKWUlR?2
+I`a<?9Q8Hn9`Y;o<@_;_lJ3
+R2
+R14
+R22
+Z25 8../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_interface_m1.v
+Z26 F../../blockA_tsdb/instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_interface_m1.v
+L0 54
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_interface_m1
+vblockA_rtl_tessent_mbist_c1_interface_m1_ColumnRedundancyAnalysis
+R13
+!i10b 1
+!s100 M<oU^Qkm6kTVM>Cog8gED0
+!s11b U7QDzBUU5ijO?4a6FBMhc0
+I<ZXP]g4eRlPjJ4kHDnLVh3
+R2
+R14
+R22
+R25
+R26
+L0 1563
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_interface_m1_@column@redundancy@analysis
+vblockA_rtl_tessent_mbist_c1_interface_m1_RowRedundancyAnalysis
+R13
+!i10b 1
+!s100 PDBcZd=Dj963ik[^ob@[k0
+!s11b 4iBA`ZXoeB>VgAe[c?lZj3
+I]b`X;El>8;G0b:fP`daTG1
+R2
+R14
+R22
+R25
+R26
+L0 1736
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_interface_m1_@row@redundancy@analysis
+vblockA_rtl_tessent_mbist_c1_interface_m1_STATUS
+R13
+!i10b 1
+!s100 O@AOY3:mRPDD>Z596f9fE2
+!s11b AaVLmbH<3WYD:lDAY2J@>0
+IXR3<5HGKHjEYZ^<hOiT5L1
+R2
+R14
+R22
+R25
+R26
+L0 1010
+R6
+r1
+!s85 0
+31
+R15
+R21
+R20
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_mbist_c1_interface_m1_@s@t@a@t@u@s
+vblockA_rtl_tessent_posedge_synchronizer_reset
+R13
+!i10b 1
+!s100 UV32?UNejK7;Jb5<c0Y6f0
+!s11b k3a]_B?6<0EZccL_m7bgD3
+IhO]jRl1`:APgVEe`Qd6:z1
+R2
+R14
+Z27 w1565764888
+8../../blockA_tsdb/instruments/blockA_rtl_cells.instrument/blockA_rtl_tessent_posedge_synchronizer_reset.v
+F../../blockA_tsdb/instruments/blockA_rtl_cells.instrument/blockA_rtl_tessent_posedge_synchronizer_reset.v
+L0 18
+R6
+r1
+!s85 0
+31
+R15
+!s107 ../../blockA_tsdb/instruments/blockA_rtl_cells.instrument/blockA_rtl_tessent_posedge_synchronizer_reset.v|
+!s90 -work|work|-mixedansiports|+librescan|-vlog01compat|-ysearchlib|../../blockA_tsdb/instruments/blockA_rtl_cells.instrument/blockA_rtl_tessent_posedge_synchronizer_reset.v|-f|questa.arguments_1|
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_posedge_synchronizer_reset
+vblockA_rtl_tessent_sib_1
+R13
+!i10b 1
+!s100 AMg=1G53P?ebTb3akL_1:3
+!s11b c>:6A>Q7kLHJD10<zI7AL1
+Inf]1OIjaP<ab3DMU4XHDN2
+R2
+R14
+R27
+8../../blockA_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_1.v
+F../../blockA_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_1.v
+R19
+R6
+r1
+!s85 0
+31
+R15
+Z28 !s107 ../../blockA_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_2.v|../../blockA_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_1.v|
+Z29 !s90 -work|work|-mixedansiports|+librescan|-vlog01compat|-ysearchlib|../../blockA_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_1.v|../../blockA_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_2.v|-f|questa.arguments_1|
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_sib_1
+vblockA_rtl_tessent_sib_2
+R13
+!i10b 1
+!s100 MzcjL_3gk3VZR67BLAEBA1
+!s11b azEZoY>dmHLLZ8z;ikiNZ0
+I[m2V^mgkF]LBLJb92`2i>1
+R2
+R14
+R27
+8../../blockA_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_2.v
+F../../blockA_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_2.v
+R19
+R6
+r1
+!s85 0
+31
+R15
+R28
+R29
+!i113 0
+R10
+R11
+R12
+nblock@a_rtl_tessent_sib_2
+vbuf02
+R1
+!i10b 1
+!s100 47FKSH?;0g=bd=CeaDT:53
+!s11b 9jFjIE4C5Fk?l08>[Q7XW2
+I`n?F5A;C:YO;<b>=4dJeD0
+R2
+R0
+R3
+R4
+R5
+L0 831
+R6
+r1
+!s85 0
+31
+R7
+Z30 !s107 ../../mbist_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_2.v|../../mbist_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_1.v|
+Z31 !s90 -work|work|-mixedansiports|+librescan|-vlog01compat|-ysearchlib|../../mbist_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_1.v|../../mbist_tsdb/instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_2.v|-f|questa.arguments_1|
+!i113 0
+R10
+R11
+R12
+vcgand
+R1
+!i10b 1
+!s100 foCWZ>[54_JJUaHULW:Ci2
+!s11b 4^^VZMMNh49GQKFYhObTe1
+IBekj3ZHb_ODe3Q@iTSMo60
+R2
+R0
+R3
+R4
+R5
+L0 3781
+R6
+r1
+!s85 0
+31
+R7
+R30
+R31
+!i113 0
+R10
+R11
+R12
+vclock_mux21
+R1
+!i10b 1
+!s100 Gc>Sg1`2NRlT=GE5;TC:;2
+Z32 !s11b @R0P]=NUX0P=;eJ204>n]3
+IajV>j[>?zS33CA]FO8h1o1
+R2
+R0
+R3
+R4
+R5
+L0 4138
+R6
+r1
+!s85 0
+31
+R7
+R30
+R31
+!i113 0
+R10
+R11
+R12
+vinv01
+R1
+!i10b 1
+!s100 jF^]RHdlg2Be[5=GMSk8A2
+!s11b nYg<;`>d=PO9AD=KRD;D`1
+IZ9gRz8X90ij3fTJzzm:aZ1
+R2
+R0
+R3
+R4
+R5
+L0 1460
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R11
+R12
+Ulatch_n
+R1
+!i10b 1
+!s100 adJWS;jHOWM@NVZVG^mbF0
+!s11b GkWXTPz21@5Bd:NM?DD9:0
+IP:?jjb<zf[]BiKZ]6GI5o3
+R2
+R0
+R3
+R4
+R5
+L0 1728
+R6
+r1
+!s85 0
+31
+R7
+R30
+R31
+!i113 0
+R10
+R11
+R12
+Umux2
+R1
+!i10b 1
+!s100 oMg:>lX>=Z?<fXoj;?^C93
+!s11b [8I9GOn>iBL_bX]eF;8Aj1
+I0cVnU07FLX@j<zDhzcc@J2
+R2
+R0
+R3
+R4
+R5
+L0 1998
+R6
+r1
+!s85 0
+31
+R7
+R30
+R31
+!i113 0
+R10
+R11
+R12
+vmux21
+R1
+!i10b 1
+!s100 Oe;0AEFGjlQj^e0?Dez361
+R32
+Ihg:G>_cOW@hT98>Hh00>J1
+R2
+R0
+R3
+R4
+R5
+L0 2015
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R11
+R12
+vSYNC_8192X32_BISR
+R1
+!i10b 1
+!s100 zLTh5@MC3fX75NaINWPkW2
+!s11b i0]0io;_jzB<BciW9Oj<>1
+IGSWGFe1I:9m;QgXz6]=eT1
+R2
+R0
+R3
+8../../../Libs/mem/SYNC_8192X32_BISR.v
+F../../../Libs/mem/SYNC_8192X32_BISR.v
+L0 4
+R6
+r1
+!s85 0
+31
+R7
+!s107 ../../mbist_tsdb/dft_inserted_designs/blockA_rtl.dft_inserted_design/modified_rtl_files/blockA.v|
+!s90 -work|work|-mixedansiports|+librescan|-vlog01compat|-ysearchlib|../../mbist_tsdb/dft_inserted_designs/blockA_rtl.dft_inserted_design/modified_rtl_files/blockA.v|-f|questa.arguments_1|
+!i113 0
+R10
+R11
+R12
+n@s@y@n@c_8192@x32_@b@i@s@r

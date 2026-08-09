@@ -1,0 +1,42 @@
+set dft_summary {
+  blockA {
+    mentor::memory_bist::DftSpecification {
+      Controller {
+        rtl:c1 {
+          ControllerInfo {
+            clk_period 12
+            clock_label clka
+          }
+          ModuleName blockA_rtl_tessent_mbist_c1_controller
+          Instance blockA_rtl_tessent_mbist_c1_controller_inst
+          ControllerID c1
+          DesignID rtl
+          BistAccessPortModuleName blockA_rtl_tessent_mbist_bap
+          BistPort {blockA_rtl_tessent_mbist_bap_inst/bistEn[0]}
+          Step {
+            0 {
+              StepInfo {
+                power_mw 2.9999999999999996
+                run_time_ns 2754216.0
+                test_cycles 229518
+              }
+              MemoryInstance {
+                memA {
+                  power_mw 2.9999999999999996
+                  interface_id m1
+                  template /Core(SYNC_8192X32_BISR)/Memory
+                  type sram
+                  object_id instance:0
+                  memory_interface_instance memA_interface_inst
+                }
+              }
+            }
+          }
+          power_mw 2.9999999999999996
+          run_time_ns 2754216.0
+          test_cycles 229518
+        }
+      }
+    }
+  }
+}

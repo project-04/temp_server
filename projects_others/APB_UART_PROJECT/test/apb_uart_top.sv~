@@ -1,0 +1,58 @@
+
+module top;
+
+	import uvm_pkg::*;
+	import apb_uart_pkg::*;
+	
+	bit pclk0;
+	bit pclk1;
+
+	
+
+	uart_if s_if0 (pclk0);
+	uart_if	s_if1 (pclk1);
+
+	uart_16550 duv0 (
+  				.PCLK	 (pclk0),
+  				.PRESETn (s_if0.Presetn),
+  				.PADDR   (s_if0.Paddr),
+  				.PWDATA  (s_if0.Pwdata),
+  				.PRDATA  (s_if0.Prdata),
+  				.PWRITE  (s_if0.Pwrite),
+  				.PENABLE (s_if0.Penable),
+  				.PSEL  	 (s_if0.Psel),
+  				.PREADY  (s_if0.Pready),
+  				.PSLVERR (s_if0.Pslverr),
+  				.IRQ	 (s_if0.IRQ),
+  				.TXD	 (s_if0.TXD),
+  				.RXD	 (s_if0.RXD),
+  				.baud_o  (s_if0.baud_o)
+  			);
+
+
+	uart_16550 duv1 (
+  				.PCLK	 (pclk1),
+  				.PRESETn (s_if1.Presetn),
+  				.PADDR   (s_if1.Paddr),
+  				.PWDATA  (s_if1.Pwdata),
+  				.PRDATA  (s_if1.Prdata),
+  				.PWRITE  (s_if1.Pwrite),
+  				.PENABLE (s_if1.Penable),
+  				.PSEL  	 (s_if1.Psel),
+  				.PREADY  (s_if1.Pready),
+  				.PSLVERR (s_if1.Pslverr),
+  				.IRQ	 (s_if1.IRQ),
+  				.TXD	 (s_if1.TXD),
+  				.RXD	 (s_if1.RXD),
+  				.baud_o  (s_if1.baud_o)
+  			);
+
+	initial 
+		begin 
+			uvm_config_db#(virtual uart_if)::set(null,"*","uart_if0",s_if0);
+			uvm_config_db#(virtual uart_if)::set(null,"*","uart_if1",s_if1);		
+			
+			run_test("apb_uart_test");
+		end
+
+endmodule	

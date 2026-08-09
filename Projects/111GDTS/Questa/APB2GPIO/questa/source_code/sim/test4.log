@@ -1,0 +1,387 @@
+vsim -cvgperinstance -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit mem_cov4;run -all; exit" -wlf wave_file4.wlf -l test4.log -sv_seed random work.top "+UVM_TESTNAME=output_test" 
+Start time: 10:19:15 on Jun 10,2025
+** Note: (vsim-8009) Loading existing optimized design _opt
+//  Questa Sim-64
+//  Version 2019.2 linux_x86_64 Apr 16 2019
+//
+//  Copyright 1991-2019 Mentor Graphics Corporation
+//  All Rights Reserved.
+//
+//  QuestaSim and its associated documentation contain trade
+//  secrets and commercial or financial information that are the property of
+//  Mentor Graphics Corporation and are privileged, confidential,
+//  and exempt from disclosure under the Freedom of Information Act,
+//  5 U.S.C. Section 552. Furthermore, this information
+//  is prohibited from disclosure under the Trade Secrets Act,
+//  18 U.S.C. Section 1905.
+//
+** Warning: License feature 'msimhdlsim' will expire in 10 days.
+Loading sv_std.std
+Loading work.apb_if(fast)
+Loading work.io_pad_if(fast)
+Loading mtiUvm.uvm_pkg
+Loading work.pkg(fast)
+Loading work.aux_input_if(fast)
+Loading mtiUvm.questa_uvm_pkg(fast)
+Loading work.top(fast)
+Loading work.apb_if(fast)
+Loading work.aux_input_if(fast)
+Loading work.io_pad_if(fast)
+Loading work.gpio_core(fast)
+Loading work.apb_slave_interface(fast)
+Loading work.aux_interface(fast)
+Loading work.gpio_register(fast)
+Loading work.io_interface(fast)
+** Warning: License feature 'mtiverification' will expire in 10 days.
+# Loading /home/cad/eda/Questa_2019/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+** Warning: License feature 'svverification' will expire in 10 days.
+** Warning: License feature 'msimcoverage' will expire in 10 days.
+** Warning: (vsim-8634) Code was not compiled with coverage options.
+Sv_Seed = 634783224
+ log -r /* 
+coverage save -onexit mem_cov4
+run -all
+----------------------------------------------------------------
+UVM-1.1d
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+UVM_INFO @ 0: reporter [RNTST] Running test output_test...
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+--------------------------------------------------------------------
+Name                         Type                        Size  Value
+--------------------------------------------------------------------
+uvm_test_top                 output_test                 -     @485 
+  envh                       env                         -     @544 
+    apb_agt_toph             apb_agent_top               -     @556 
+      agnth                  apb_agent                   -     @834 
+        drvh                 apb_driver                  -     @863 
+          rsp_port           uvm_analysis_port           -     @878 
+          seq_item_port      uvm_seq_item_pull_port      -     @870 
+        monitor              apb_monitor                 -     @848 
+          monitor_port       uvm_analysis_port           -     @855 
+        seqrh                apb_sequencer               -     @886 
+          rsp_export         uvm_analysis_export         -     @893 
+          seq_item_export    uvm_seq_item_pull_imp       -     @987 
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+    aux_agt_toph             aux_agent_top               -     @563 
+      agnth                  aux_agent                   -     @1002
+        drvh                 aux_driver                  -     @1031
+          rsp_port           uvm_analysis_port           -     @1046
+          seq_item_port      uvm_seq_item_pull_port      -     @1038
+        monitor              aux_monitor                 -     @1016
+          monitor_port       uvm_analysis_port           -     @1023
+        seqrh                aux_sequencer               -     @1054
+          rsp_export         uvm_analysis_export         -     @1061
+          seq_item_export    uvm_seq_item_pull_imp       -     @1155
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+    io_agt_toph              io_agent_top                -     @570 
+      agnth                  io_agent                    -     @1170
+        drvh                 io_driver                   -     @1199
+          rsp_port           uvm_analysis_port           -     @1214
+          seq_item_port      uvm_seq_item_pull_port      -     @1206
+        monitor              io_monitor                  -     @1184
+          monitor_port       uvm_analysis_port           -     @1191
+        seqrh                io_sequencer                -     @1222
+          rsp_export         uvm_analysis_export         -     @1229
+          seq_item_export    uvm_seq_item_pull_imp       -     @1323
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+    sb                       scoreboard                  -     @577 
+      apb_fifo               uvm_tlm_analysis_fifo #(T)  -     @584 
+        analysis_export      uvm_analysis_imp            -     @623 
+        get_ap               uvm_analysis_port           -     @615 
+        get_peek_export      uvm_get_peek_imp            -     @599 
+        put_ap               uvm_analysis_port           -     @607 
+        put_export           uvm_put_imp                 -     @591 
+      aux_fifo               uvm_tlm_analysis_fifo #(T)  -     @631 
+        analysis_export      uvm_analysis_imp            -     @670 
+        get_ap               uvm_analysis_port           -     @662 
+        get_peek_export      uvm_get_peek_imp            -     @646 
+        put_ap               uvm_analysis_port           -     @654 
+        put_export           uvm_put_imp                 -     @638 
+      io_fifo                uvm_tlm_analysis_fifo #(T)  -     @678 
+        analysis_export      uvm_analysis_imp            -     @717 
+        get_ap               uvm_analysis_port           -     @709 
+        get_peek_export      uvm_get_peek_imp            -     @693 
+        put_ap               uvm_analysis_port           -     @701 
+        put_export           uvm_put_imp                 -     @685 
+    v_seqrh                  v_sequencer                 -     @725 
+      rsp_export             uvm_analysis_export         -     @732 
+      seq_item_export        uvm_seq_item_pull_imp       -     @826 
+      arbitration_queue      array                       0     -    
+      lock_queue             array                       0     -    
+      num_last_reqs          integral                    32    'd1  
+      num_last_rsps          integral                    32    'd1  
+--------------------------------------------------------------------
+
+UVM_INFO ../io_pad_agent/io_drv.sv(48) @ 1000: uvm_test_top.envh.io_agt_toph.agnth.drvh [io_pad__driver] Printing from IO_PAD Driver class -------------------------------------
+Name      Type      Size  Value      
+-------------------------------------
+req       io_xtn    -     @1392      
+  io_pad  integral  32    'h0xxxxxxxx
+-------------------------------------
+ 
+
+UVM_INFO ../aux_agent/aux_drv.sv(48) @ 1000: uvm_test_top.envh.aux_agt_toph.agnth.drvh [aux_driver] Printing from AUX_IN Driver class ------------------------------------
+Name      Type      Size  Value     
+------------------------------------
+req       aux_xtn   -     @1396     
+  aux_in  integral  32    'ha4aae43e
+------------------------------------
+ 
+
+UVM_INFO ../apb_agent/apb_drv.sv(84) @ 13000: uvm_test_top.envh.apb_agt_toph.agnth.drvh [apb_driver] The Transaction sent to the DUT is  
+ ---------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                               
+---------------------------------------------------------------------------------------------------
+req                            apb_xtn   -     @1388                                               
+  begin_time                   time      64    5000                                                
+  depth                        int       32    'd2                                                 
+  parent sequence (name)       string    9     apb_seqh2                                           
+  parent sequence (full name)  string    52    uvm_test_top.envh.apb_agt_toph.agnth.seqrh.apb_seqh2
+  sequencer                    string    42    uvm_test_top.envh.apb_agt_toph.agnth.seqrh          
+  PRESETn                      integral  1     'h0                                                 
+  PWRITE                       integral  1     'h1                                                 
+  PSEL                         integral  1     'h0                                                 
+  PENABLE                      integral  1     'h0                                                 
+  PADDR                        integral  32    'h2                                                 
+  PWDATA                       integral  32    'hffffffff                                          
+  PRDATA                       integral  32    'h0                                                 
+  PREADY                       integral  1     'h0                                                 
+  PSLVERR                      integral  1     'h0                                                 
+  IRQ                          integral  1     'h0                                                 
+---------------------------------------------------------------------------------------------------
+
+UVM_INFO ../apb_agent/apb_mon.sv(108) @ 13000: uvm_test_top.envh.apb_agt_toph.agnth.monitor [apb_monitor] The Data Collected from APB Monitor is 
+ -------------------------------------
+Name       Type      Size  Value     
+-------------------------------------
+xtn        apb_xtn   -     @1365     
+  PRESETn  integral  1     'h0       
+  PWRITE   integral  1     'h1       
+  PSEL     integral  1     'h1       
+  PENABLE  integral  1     'h1       
+  PADDR    integral  32    'h2       
+  PWDATA   integral  32    'hffffffff
+  PRDATA   integral  32    'h0       
+  PREADY   integral  1     'h1       
+  PSLVERR  integral  1     'h0       
+  IRQ      integral  1     'h0       
+-------------------------------------
+
+UVM_INFO ../apb_agent/apb_drv.sv(84) @ 21000: uvm_test_top.envh.apb_agt_toph.agnth.drvh [apb_driver] The Transaction sent to the DUT is  
+ ---------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                               
+---------------------------------------------------------------------------------------------------
+req                            apb_xtn   -     @1388                                               
+  begin_time                   time      64    13000                                               
+  end_time                     time      64    13000                                               
+  depth                        int       32    'd2                                                 
+  parent sequence (name)       string    9     apb_seqh2                                           
+  parent sequence (full name)  string    52    uvm_test_top.envh.apb_agt_toph.agnth.seqrh.apb_seqh2
+  sequencer                    string    42    uvm_test_top.envh.apb_agt_toph.agnth.seqrh          
+  PRESETn                      integral  1     'h0                                                 
+  PWRITE                       integral  1     'h1                                                 
+  PSEL                         integral  1     'h0                                                 
+  PENABLE                      integral  1     'h0                                                 
+  PADDR                        integral  32    'h1                                                 
+  PWDATA                       integral  32    'h12345678                                          
+  PRDATA                       integral  32    'h0                                                 
+  PREADY                       integral  1     'h0                                                 
+  PSLVERR                      integral  1     'h0                                                 
+  IRQ                          integral  1     'h0                                                 
+---------------------------------------------------------------------------------------------------
+
+UVM_INFO ../apb_agent/apb_mon.sv(108) @ 21000: uvm_test_top.envh.apb_agt_toph.agnth.monitor [apb_monitor] The Data Collected from APB Monitor is 
+ -------------------------------------
+Name       Type      Size  Value     
+-------------------------------------
+xtn        apb_xtn   -     @1523     
+  PRESETn  integral  1     'h0       
+  PWRITE   integral  1     'h1       
+  PSEL     integral  1     'h1       
+  PENABLE  integral  1     'h1       
+  PADDR    integral  32    'h1       
+  PWDATA   integral  32    'h12345678
+  PRDATA   integral  32    'h0       
+  PREADY   integral  1     'h1       
+  PSLVERR  integral  1     'h0       
+  IRQ      integral  1     'h0       
+-------------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  12345678
+UVM_INFO ../apb_agent/apb_drv.sv(84) @ 29000: uvm_test_top.envh.apb_agt_toph.agnth.drvh [apb_driver] The Transaction sent to the DUT is  
+ ---------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                               
+---------------------------------------------------------------------------------------------------
+req                            apb_xtn   -     @1388                                               
+  begin_time                   time      64    21000                                               
+  end_time                     time      64    21000                                               
+  depth                        int       32    'd2                                                 
+  parent sequence (name)       string    9     apb_seqh2                                           
+  parent sequence (full name)  string    52    uvm_test_top.envh.apb_agt_toph.agnth.seqrh.apb_seqh2
+  sequencer                    string    42    uvm_test_top.envh.apb_agt_toph.agnth.seqrh          
+  PRESETn                      integral  1     'h0                                                 
+  PWRITE                       integral  1     'h1                                                 
+  PSEL                         integral  1     'h0                                                 
+  PENABLE                      integral  1     'h0                                                 
+  PADDR                        integral  32    'h3                                                 
+  PWDATA                       integral  32    'h0                                                 
+  PRDATA                       integral  32    'h0                                                 
+  PREADY                       integral  1     'h0                                                 
+  PSLVERR                      integral  1     'h0                                                 
+  IRQ                          integral  1     'h0                                                 
+---------------------------------------------------------------------------------------------------
+
+UVM_INFO ../apb_agent/apb_mon.sv(108) @ 29000: uvm_test_top.envh.apb_agt_toph.agnth.monitor [apb_monitor] The Data Collected from APB Monitor is 
+ --------------------------------
+Name       Type      Size  Value
+--------------------------------
+xtn        apb_xtn   -     @1539
+  PRESETn  integral  1     'h0  
+  PWRITE   integral  1     'h1  
+  PSEL     integral  1     'h1  
+  PENABLE  integral  1     'h1  
+  PADDR    integral  32    'h3  
+  PWDATA   integral  32    'h0  
+  PRDATA   integral  32    'h0  
+  PREADY   integral  1     'h1  
+  PSLVERR  integral  1     'h0  
+  IRQ      integral  1     'h0  
+--------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  12345678
+UVM_INFO ../apb_agent/apb_drv.sv(84) @ 37000: uvm_test_top.envh.apb_agt_toph.agnth.drvh [apb_driver] The Transaction sent to the DUT is  
+ --------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                              
+--------------------------------------------------------------------------------------------------
+req                            apb_xtn   -     @1583                                              
+  begin_time                   time      64    29000                                              
+  depth                        int       32    'd2                                                
+  parent sequence (name)       string    8     rd_seqh2                                           
+  parent sequence (full name)  string    51    uvm_test_top.envh.apb_agt_toph.agnth.seqrh.rd_seqh2
+  sequencer                    string    42    uvm_test_top.envh.apb_agt_toph.agnth.seqrh         
+  PRESETn                      integral  1     'h0                                                
+  PWRITE                       integral  1     'h0                                                
+  PSEL                         integral  1     'h0                                                
+  PENABLE                      integral  1     'h0                                                
+  PADDR                        integral  32    'h7                                                
+  PWDATA                       integral  32    'h0                                                
+  PRDATA                       integral  32    'h0                                                
+  PREADY                       integral  1     'h0                                                
+  PSLVERR                      integral  1     'h0                                                
+  IRQ                          integral  1     'h0                                                
+--------------------------------------------------------------------------------------------------
+
+UVM_INFO ../apb_agent/apb_mon.sv(108) @ 37000: uvm_test_top.envh.apb_agt_toph.agnth.monitor [apb_monitor] The Data Collected from APB Monitor is 
+ --------------------------------
+Name       Type      Size  Value
+--------------------------------
+xtn        apb_xtn   -     @1595
+  PRESETn  integral  1     'h0  
+  PWRITE   integral  1     'h0  
+  PSEL     integral  1     'h1  
+  PENABLE  integral  1     'h1  
+  PADDR    integral  32    'h7  
+  PWDATA   integral  32    'h0  
+  PRDATA   integral  32    'h0  
+  PREADY   integral  1     'h1  
+  PSLVERR  integral  1     'h0  
+  IRQ      integral  1     'h0  
+--------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  12345678
+UVM_INFO ../apb_agent/apb_drv.sv(84) @ 45000: uvm_test_top.envh.apb_agt_toph.agnth.drvh [apb_driver] The Transaction sent to the DUT is  
+ --------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                              
+--------------------------------------------------------------------------------------------------
+req                            apb_xtn   -     @1583                                              
+  begin_time                   time      64    37000                                              
+  end_time                     time      64    37000                                              
+  depth                        int       32    'd2                                                
+  parent sequence (name)       string    8     rd_seqh2                                           
+  parent sequence (full name)  string    51    uvm_test_top.envh.apb_agt_toph.agnth.seqrh.rd_seqh2
+  sequencer                    string    42    uvm_test_top.envh.apb_agt_toph.agnth.seqrh         
+  PRESETn                      integral  1     'h0                                                
+  PWRITE                       integral  1     'h0                                                
+  PSEL                         integral  1     'h0                                                
+  PENABLE                      integral  1     'h0                                                
+  PADDR                        integral  32    'h0                                                
+  PWDATA                       integral  32    'h0                                                
+  PRDATA                       integral  32    'h0                                                
+  PREADY                       integral  1     'h0                                                
+  PSLVERR                      integral  1     'h0                                                
+  IRQ                          integral  1     'h0                                                
+--------------------------------------------------------------------------------------------------
+
+UVM_INFO ../apb_agent/apb_mon.sv(108) @ 45000: uvm_test_top.envh.apb_agt_toph.agnth.monitor [apb_monitor] The Data Collected from APB Monitor is 
+ -------------------------------------
+Name       Type      Size  Value     
+-------------------------------------
+xtn        apb_xtn   -     @1647     
+  PRESETn  integral  1     'h0       
+  PWRITE   integral  1     'h0       
+  PSEL     integral  1     'h1       
+  PENABLE  integral  1     'h1       
+  PADDR    integral  32    'h0       
+  PWDATA   integral  32    'h0       
+  PRDATA   integral  32    'h12345678
+  PREADY   integral  1     'h1       
+  PSLVERR  integral  1     'h0       
+  IRQ      integral  1     'h0       
+-------------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  12345678
+UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 55000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO ../apb_agent/apb_drv.sv(97) @ 55000: uvm_test_top.envh.apb_agt_toph.agnth.drvh [apb_driver] APB DRIVER: The no of transactions sent from APB DRIVER are : 5
+UVM_INFO ../apb_agent/apb_mon.sv(118) @ 55000: uvm_test_top.envh.apb_agt_toph.agnth.monitor [apb_monitor] APB Monitor: The no of transactions collected in the APB Monitor is : 5
+UVM_INFO ../tb/scoreboard.sv(286) @ 55000: uvm_test_top.envh.sb [SB_out_or_bidir] General-Purpose I/O as Polled Out or bi directional id Working
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   20
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[Questa UVM]     2
+[RNTST]     1
+[SB_out_or_bidir]     1
+[TEST_DONE]     1
+[UVMTOP]     1
+[apb_driver]     6
+[apb_monitor]     6
+[aux_driver]     1
+[io_pad__driver]     1
+** Note: $finish    : /home/cad/eda/Questa_2019/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+   Time: 550 ns  Iteration: 54  Instance: /top
+Saving coverage database on exit...
+End time: 10:19:17 on Jun 10,2025, Elapsed time: 0:00:02
+Errors: 0, Warnings: 1

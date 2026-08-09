@@ -1,0 +1,4 @@
+config ICLNetwork_configuration;
+  design TB;
+  default liblist dut_work testbench_library;
+endconfig

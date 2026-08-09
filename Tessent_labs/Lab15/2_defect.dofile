@@ -1,0 +1,17 @@
+#Set the context to patterns and sub-context to scan_diagnosis
+set_context patterns -scan_diagnosis
+
+#Read the flattenned model
+read_flat_model netlist/tk_design.flat
+
+#Set the diagnosis option
+set_diagnosis -bridge OFF -cell OFF
+
+#Read the pattern file produced by the 1st step
+set_pattern_source external ./pattern/patt_iter.wgl -wgl 
+
+
+#Emulate the failure
+write_failures fail2_iter.log -rep -cycle /cpu_i/uSDM/ix3171/Y -stuck 1
+
+exit -d

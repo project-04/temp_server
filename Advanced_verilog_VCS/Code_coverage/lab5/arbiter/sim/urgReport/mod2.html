@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="Author" content="<username>"> <meta name="GENERATOR" content="urg/version [en] (platform name) [urg]">
+<title>Unified Coverage Report :: Module :: bfm_arbiter</title>
+<link type="text/css" rel="stylesheet" href="css/.urg.css">
+<link type="text/css" rel="stylesheet" href="css/.layout.css">
+<link type="text/css" rel="stylesheet" href="css/.breadcrumb.css">
+<script type="text/javascript" src="js/.jquery.js"></script>
+<script type="text/javascript" src="js/.jquery-ui.js"></script>
+<script type="text/javascript" src="js/.sortable.js"></script>
+<script type="text/javascript" src="js/.layout.js"></script>
+<script type="text/javascript" src="js/.breadcrumb.js"></script>
+<script type="text/javascript">
+var layout, westLayout, centerLayout;
+$(document).ready(function () {
+  if ($("#north-bread-crumb")) {
+    $("#north-bread-crumb").jBreadCrumb({easing:'swing'})
+  }
+  layout = $("body").layout({ 
+    resizable: true,
+    spacing_open: 4,
+    spacing_closed: 4,
+    north: {
+      size: 76
+    },
+    south: {
+      size: 45,
+      initClosed: true
+    },
+    west: {
+      size: 500,
+      resizable: true,
+      initClosed: false
+    }
+  });
+  centerLayout = $('div.ui-layout-center').layout({
+    north__paneSelector: ".ui-layout-center-inner-north",
+    center__paneSelector: ".ui-layout-center-inner-center", 
+    north__size: 50,
+    spacing_open: 4,
+    spacing_closed: 4
+  });
+});
+</script>
+</head>
+<body onLoad="initPage();"><div class="ui-layout-north">
+<div class="logo"></div>
+<center class="pagetitle">Module Definition</center>
+<div align="center"><a href="dashboard.html" ><b>dashboard</b></a> | <a href="hierarchy.html" ><b>hierarchy</b></a> | <a href="modlist.html" ><b>modlist</b></a> | groups | <a href="tests.html" ><b>tests</b></a> | asserts</div>
+
+</div>
+<div class="ui-layout-west">
+<div name='tag_bfm_arbiter'>
+<div class=modhdr>
+<br clear=all>
+<span class=titlename>Module : <a href="#"  onclick="showContent('tag_bfm_arbiter')">bfm_arbiter</a></span>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td>SCORE</td><td>LINE</td><td>COND</td><td>TOGGLE</td><td>FSM</td><td>BRANCH</td></tr><tr>
+<td class="s9 cl rt"> 92.27</td>
+<td class="s7 cl rt"><a href="mod2.html#Line" > 79.83</a></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod2.html#Toggle" > 96.97</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod2.html#Branch" >100.00</a></td>
+</tr></table><br clear=all>
+<span class=repname>Source File(s) : </span>
+<br clear=all>
+<a href="javascript:void(0);"  onclick="openSrcFile('/home1/BPRN24/BokkaCS/Advanced_verilog_VCS/Code_coverage/lab5/arbiter/sim/../tb/bfm_arbiter.v')">/home1/BPRN24/BokkaCS/Advanced_verilog_VCS/Code_coverage/lab5/arbiter/sim/../tb/bfm_arbiter.v</a><br clear=all>
+<br clear=all>
+<span class=repname>Module self-instances :</span>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">NAME</td><td>SCORE</td><td>LINE</td><td>COND</td><td>TOGGLE</td><td>FSM</td><td>BRANCH</td></tr><tr>
+<td class="wht cl wordwrap"><a href="mod2.html#inst_tag_2"  onclick="showContent('inst_tag_2')">tb_userinterface.BFM1</a></td>
+<td class="s9 cl rt"> 92.27</td>
+<td class="s7 cl rt"><a href="mod2.html#Line" > 79.83</a></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod2.html#Toggle" > 96.97</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod2.html#Branch" >100.00</a></td>
+</tr></table></div>
+</div>
+<br clear=all>
+<div name='tag_bfm_arbiter'>
+<hr>
+<a name="inst_tag_2"></a>
+<div class=modhdr>
+<br clear=all>
+<span class=titlename>Module Instance : <a href="hierarchy.html#tag_urg_inst_2" >tb_userinterface.BFM1</a></span>
+<br clear=all>
+<br clear=all>
+<span class=repname>Instance :</span>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td>SCORE</td><td>LINE</td><td>COND</td><td>TOGGLE</td><td>FSM</td><td>BRANCH</td></tr><tr>
+<td class="s9 cl rt"> 92.27</td>
+<td class="s7 cl rt"><a href="mod2.html#Line" > 79.83</a></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod2.html#Toggle" > 96.97</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod2.html#Branch" >100.00</a></td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class=repname>Instance's subtree :</span>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td>SCORE</td><td>LINE</td><td>COND</td><td>TOGGLE</td><td>FSM</td><td>BRANCH</td></tr><tr>
+<td class="s9 cl rt"> 90.19</td>
+<td class="s8 cl rt"> 87.06</td>
+<td class="s10 cl rt">100.00</td>
+<td class="s9 cl rt"> 92.41</td>
+<td class="s7 cl rt"> 75.00</td>
+<td class="s9 cl rt"> 96.49</td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class=repname>Parent : </span>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td>SCORE</td><td>LINE</td><td>COND</td><td>TOGGLE</td><td>FSM</td><td>BRANCH</td><td class="alfsrt">NAME</td></tr><tr>
+<td class="s10 cl rt">100.00</td>
+<td class="s10 cl rt">100.00</td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt">100.00</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td><a href="mod0.html#inst_tag_0" >tb_userinterface</a></td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class=repname>Subtrees :</span>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">NAME</td><td>SCORE</td><td>LINE</td><td>COND</td><td>TOGGLE</td><td>FSM</td><td>BRANCH</td></tr><tr>
+<td class="wht cl wordwrap"><a href="mod1.html#inst_tag_1" id="tag_urg_inst_1">DUT1</a></td>
+<td class="s9 cl rt"> 91.44</td>
+<td class="s9 cl rt"> 97.56</td>
+<td class="s10 cl rt">100.00</td>
+<td class="s8 cl rt"> 88.80</td>
+<td class="s7 cl rt"> 75.00</td>
+<td class="s9 cl rt"> 95.83</td>
+</tr></table><br clear=all>
+</div>
+</div>
+<hr>
+Since this is the module's only instance, the coverage report is the same as for the module.</div>
+<div class="ui-layout-center">
+<div class="ui-layout-center-inner-center">
+<div name='tag_bfm_arbiter'>
+<a name="Line"></a>
+Line Coverage for Module : <a href="mod2.html" >bfm_arbiter</a><br clear=all>
+<table class="noborder">
+<col width="122">
+<col span="4" width="82">
+<tr><th></th><th>Line No.</th><th>Total</th><th>Covered</th><th>Percent</th></tr>
+<tr class="s7"><td class="lf">TOTAL</td><td></td><td>119</td><td>95</td><td>79.83</td></tr>
+<tr class="s8"><td class="lf">ROUTINE</td><td>111</td><td>19</td><td>16</td><td>84.21</td></tr>
+<tr class="s6"><td class="lf">ROUTINE</td><td>156</td><td>34</td><td>22</td><td>64.71</td></tr>
+<tr class="s10"><td class="lf">ROUTINE</td><td>242</td><td>10</td><td>10</td><td>100.00</td></tr>
+<tr class="s6"><td class="lf">ROUTINE</td><td>257</td><td>27</td><td>18</td><td>66.67</td></tr>
+<tr class="s10"><td class="lf">ALWAYS</td><td>319</td><td>29</td><td>29</td><td>100.00</td></tr>
+</table>
+<pre class="code"><br clear=all>
+110                     			begin
+111        2/2          				@(negedge clock);
+112        1/1          				reset = 1'b1;
+113        1/1          				{datawritebus_proca,
+114                     				datawritebus_procb,
+115                     				datawritebus_procc} = $random;
+116                     
+117        1/1          				{addbus_proca,
+118                     				addbus_procb,
+119                     				addbus_procc} = $random;
+120                     
+121        1/1          				{r_wb_proca,    
+122                     				r_wb_procb,
+123                     				r_wb_procc} = $random;
+124                     
+125        2/2          				@(posedge clock);
+126        2/2          				#(THOLD);
+127                     
+128        1/1          				if(addbus_ram !== 12'bz || 
+129                     					datawritebus_ram !== 8'bz ||
+130                     					r_wb_ram !== 1'bz)
+131                     					begin
+132        <font color = "red">0/1     ==>  						$display(&quot;Reset is not working\n&quot;);</font>
+133        <font color = "red">0/1     ==>  						$display(&quot;Error at time %t&quot;, $time);</font>
+134        <font color = "red">0/1     ==>  						$stop; </font>
+135                     					end
+                        MISSING_ELSE
+136        1/1          				$display(&quot;Reset is working\n&quot;);
+137        1/1          				reset = 1'b0;
+138        1/1          				{datawritebus_proca,
+139                     				datawritebus_procb,
+140                     				datawritebus_procc} = 24'bx;
+141                     				
+142        1/1          				{addbus_proca,
+143                     				addbus_procb,
+144                     				addbus_procc} = 36'bx;
+145                     
+146        1/1          				{r_wb_proca,    
+147                     				r_wb_procb,
+148                     				r_wb_procc} = 3'bx; 
+149                     			end
+150                     		endtask
+151                     
+152                     		//Checking requests
+153                     		task request;
+154                     			input [2:0] data;
+155                     			begin
+156        2/2          				@(negedge clock);
+157        1/1          				{reqa,reqb,reqc} = data;
+158                     
+159        1/1          				{datawritebus_proca,
+160                     				 datawritebus_procb,
+161                     				 datawritebus_procc} = {$random};
+162                     
+163        1/1          				{addbus_proca,
+164                     				 addbus_procb,
+165                     				 addbus_procc} = {$random};
+166                     
+167        1/1          				{r_wb_proca,    
+168                     				 r_wb_procb,
+169                     				 r_wb_procc}  = {$random};
+170                     
+171        2/2          				@(posedge clock);
+172        2/2          				#(THOLD);
+173                     
+174        1/1          				case(data)
+175                     					NR : begin
+176        1/1          								if(addbus_ram !== 12'bz ||
+177                     								datawritebus_ram !== 8'bz ||
+178                     								r_wb_ram !== 1'bz)
+179                     									begin                 
+180        <font color = "red">0/1     ==>  										$display(&quot;Arbiter is not working when NR\n&quot;);</font>
+181        <font color = "red">0/1     ==>  										$display(&quot;Error at time %t&quot;, $time);</font>
+182        <font color = "red">0/1     ==>  										$stop; </font>
+183                     									end
+                        MISSING_ELSE
+184        1/1          							  $display(&quot;Arbiter is working when NR\n&quot;);
+185                     							end
+186                     
+187                     					RA : begin
+188        1/1          								if(addbus_ram !== addbus_proca ||
+189                     								datawritebus_ram !== datawritebus_proca ||
+190                     								r_wb_ram !== r_wb_proca)
+191                     									begin                 
+192        <font color = "red">0/1     ==>  										$display(&quot;Arbiter is not working when RA\n&quot;);</font>
+193        <font color = "red">0/1     ==>  										$display(&quot;Error at time %t&quot;, $time);</font>
+194        <font color = "red">0/1     ==>  										$stop; </font>
+195                     									end
+                        MISSING_ELSE
+196        1/1          								$display(&quot;Arbiter is working when RA\n&quot;);
+197                     							end
+198                     
+199                     					RB : begin
+200        1/1          								if(addbus_ram !== addbus_procb ||
+201                     								datawritebus_ram !== datawritebus_procb ||
+202                     								r_wb_ram !== r_wb_procb)
+203                     									begin                 
+204        <font color = "red">0/1     ==>  										$display(&quot;Arbiter is not working when RB\n&quot;);</font>
+205        <font color = "red">0/1     ==>  										$display(&quot;Error at time %t&quot;, $time);</font>
+206        <font color = "red">0/1     ==>  										$stop; </font>
+207                     									end
+                        MISSING_ELSE
+208        1/1          								$display(&quot;Arbiter is working when RB\n&quot;);
+209                     							end   
+210                     
+211                     					RC : begin
+212        1/1          								if(addbus_ram !== addbus_procc ||
+213                     								datawritebus_ram !== datawritebus_procc ||
+214                     								r_wb_ram !== r_wb_procc)
+215                     									begin                 
+216        <font color = "red">0/1     ==>  										$display(&quot;Arbiter is not working when RC\n&quot;);</font>
+217        <font color = "red">0/1     ==>  										$display(&quot;Error at time %t&quot;, $time);</font>
+218        <font color = "red">0/1     ==>  										$stop; </font>
+219                     									end
+                        MISSING_ELSE
+220        1/1          								$display(&quot;Arbiter is working when RC\n&quot;);
+221                     							end     
+                   <font color = "red">==>  MISSING_DEFAULT</font>
+222                     				endcase   
+223                     				
+224        1/1          				{datawritebus_proca,
+225                     				datawritebus_procb,
+226                     				datawritebus_procc} = 24'bx;
+227                     
+228        1/1          				{addbus_proca,
+229                     				addbus_procb,
+230                     				addbus_procc} = 36'bx;
+231                     
+232        1/1          				{r_wb_proca,    
+233                     				r_wb_procb,
+234                     				r_wb_procc} = 3'bx;   
+235                     			end
+236                     		endtask
+237                     
+238                     		//Setting Access Time 
+239                     		task set_acc;
+240                     			input [7:0] data;
+241                     			begin
+242        2/2          				@(negedge clock);
+243        1/1          				en_timeout = 1'b1;
+244        1/1          				datawritebus_proca = data; 
+245        2/2          				@(posedge clock);
+246        2/2          				#(THOLD);
+247        1/1          				en_timeout = 1'b0;
+248        1/1          				datawritebus_proca = 8'bx;
+249                     			end
+250                     		endtask
+251                     
+252                     		//Access Time Checking between Processors
+253                     		task any2req;
+254                     			input [2:0] data;
+255                     			input [5:0] acc_time;
+256                     			begin
+257        2/2          				@(negedge clock);
+258        1/1          				{reqa,reqb,reqc} = data;
+259                     
+260        1/1          				{datawritebus_proca,
+261                     				datawritebus_procb,
+262                     				datawritebus_procc} = {$random};
+263                     
+264        1/1          				{addbus_proca,
+265                     				addbus_procb,
+266                     				addbus_procc} = {$random};
+267                     
+268        1/1          				{r_wb_proca,    
+269                     				r_wb_procb,
+270                     				r_wb_procc} = {$random};   
+271                     
+272        1/1          				repeat(acc_time+1)
+273        2/2          				@(posedge clock);
+                        REPEAT_FALSE
+274        2/2          				#(THOLD);
+275                     
+276        1/1          				case(data)
+277                     					RAB  : begin                
+278        1/1          									if(addbus_ram !== addbus_procb ||
+279                     									datawritebus_ram !== datawritebus_procb ||
+280                     									r_wb_ram !== r_wb_procb)
+281                     										begin                 
+282        <font color = "red">0/1     ==>  											$display(&quot;Arbiter is not working when RAB \n&quot;);</font>
+283        <font color = "red">0/1     ==>  											$display(&quot;Error at time %t&quot;, $time);</font>
+284        <font color = "red">0/1     ==>  											$stop; </font>
+285                     										end
+                        MISSING_ELSE
+286        1/1          									$display(&quot;Arbiter is working when RAB\n&quot;);
+287                     								end
+288                     
+289                     					RBC  : begin                
+290        1/1          									if(addbus_ram !== addbus_procc ||
+291                     									datawritebus_ram !== datawritebus_procc ||
+292                     									r_wb_ram !== r_wb_procc)
+293                     										begin                 
+294        <font color = "red">0/1     ==>  											$display(&quot;Arbiter is not working when RBC \n&quot;);</font>
+295        <font color = "red">0/1     ==>  											$display(&quot;Error at time %t&quot;, $time);</font>
+296        <font color = "red">0/1     ==>  											$stop; </font>
+297                     										end
+                        MISSING_ELSE
+298        1/1          									$display(&quot;Arbiter is working when RBC\n&quot;);
+299                     								end
+300                     
+301                     					RCA  : begin                
+302        1/1          									if(addbus_ram !== addbus_proca ||
+303                     									datawritebus_ram !== datawritebus_proca ||
+304                     									r_wb_ram !== r_wb_proca)
+305                     										begin                 
+306        <font color = "red">0/1     ==>  											$display(&quot;Arbiter is not working when RCA \n&quot;);</font>
+307        <font color = "red">0/1     ==>  											$display(&quot;Error at time %t&quot;, $time);</font>
+308        <font color = "red">0/1     ==>  											$stop; </font>
+309                     										end
+                        MISSING_ELSE
+310        1/1          									$display(&quot;Arbiter is working when RCA\n&quot;);
+311                     								end
+                   <font color = "red">==>  MISSING_DEFAULT</font>
+312                     				endcase
+313                     			end
+314                     		endtask
+315                     
+316                     		//Sampling and executing Commands
+317                     		always @(posedge clock)
+318                     			begin
+319        1/1          			case(bfm_command)
+320                     			NOREQ    : begin
+321        1/1          									bfm_grant = 1'b0;
+322        1/1          									request(NR);
+323        1/1          									bfm_grant = 1'b1;
+324                     								 end
+325                     
+326                     			REQFA    : begin
+327        1/1          									bfm_grant = 1'b0;
+328        1/1          									request(RA);
+329        1/1          									request(NR);
+330        1/1          									bfm_grant = 1'b1;
+331                     								end
+332                     
+333                     			REQFB    : begin
+334        1/1          									bfm_grant = 1'b0;
+335        1/1          									request(RB);
+336        1/1          									request(NR);
+337        1/1          									bfm_grant = 1'b1;
+338                     								end                  
+339                     
+340                     			REQFC    : begin
+341        1/1          									bfm_grant = 1'b0;
+342        1/1          									request(RC);
+343        1/1          									request(NR);
+344        1/1          									bfm_grant = 1'b1;
+345                     								end
+346                     
+347                     			SACC     : begin
+348        1/1          									bfm_grant = 1'b0;
+349        1/1          									set_acc(8'd25);                    
+350        1/1          									bfm_grant = 1'b1;
+351                     								end 
+352                     						 
+353                     			ATCAB    : begin
+354        1/1          									bfm_grant = 1'b0;
+355        1/1          									request(RA);
+356        1/1          									any2req(RAB,6'd25);
+357        1/1          									bfm_grant = 1'b1;
+358                     								end 
+359                     
+360                     			ATCBC    : begin
+361        1/1          									bfm_grant = 1'b0;                    
+362        1/1          									any2req(RBC,6'd25);
+363        1/1          									bfm_grant = 1'b1;
+364                     								end 
+365                     
+366                     			ATCCA    : begin
+367        1/1          									bfm_grant = 1'b0;                    
+368        1/1          									any2req(RCA,6'd25);
+369        1/1          									bfm_grant = 1'b1;
+370                     								end 
+                        MISSING_DEFAULT
+</pre>
+<hr>
+<a name="Toggle"></a>
+Toggle Coverage for Module : <a href="mod2.html" >bfm_arbiter</a><br clear=all>
+<table align=left class="noborder">
+<tr>
+<th nowrap width=120></th><th nowrap width=80>Total</th><th nowrap width=80>Covered</th><th nowrap width=80>Percent</th></tr><tr class="s8">
+<td>Totals</td>
+<td class="rt">24</td>
+<td class="rt">21</td>
+<td class="rt">87.50 </td>
+</tr><tr class="s9">
+<td>Total Bits</td>
+<td class="rt">198</td>
+<td class="rt">192</td>
+<td class="rt">96.97 </td>
+</tr><tr class="s9">
+<td nowrap>Total Bits 0->1</td>
+<td class="rt">99</td>
+<td class="rt">93</td>
+<td class="rt">93.94 </td>
+</tr><tr class="s10">
+<td nowrap>Total Bits 1->0</td>
+<td class="rt">99</td>
+<td class="rt">99</td>
+<td class="rt">100.00</td>
+</tr></table><br clear=all>
+<table align=left class="noborder">
+<tr>
+<th nowrap width=120></th><th nowrap width=80></th><th nowrap width=80></th><th nowrap width=80></th></tr><tr class="s10">
+<td>Ports</td>
+<td class="rt">3</td>
+<td class="rt">3</td>
+<td class="rt">100.00</td>
+</tr><tr class="s10">
+<td>Port Bits</td>
+<td class="rt">12</td>
+<td class="rt">12</td>
+<td class="rt">100.00</td>
+</tr><tr class="s10">
+<td nowrap>Port Bits 0->1</td>
+<td class="rt">6</td>
+<td class="rt">6</td>
+<td class="rt">100.00</td>
+</tr><tr class="s10">
+<td nowrap>Port Bits 1->0</td>
+<td class="rt">6</td>
+<td class="rt">6</td>
+<td class="rt">100.00</td>
+</tr></table><br clear=all>
+<table align=left class="noborder">
+<tr>
+<th nowrap width=120></th><th nowrap width=80></th><th nowrap width=80></th><th nowrap width=80></th></tr><tr class="s8">
+<td>Signals</td>
+<td class="rt">21</td>
+<td class="rt">18</td>
+<td class="rt">85.71 </td>
+</tr><tr class="s9">
+<td>Signal Bits</td>
+<td class="rt">186</td>
+<td class="rt">180</td>
+<td class="rt">96.77 </td>
+</tr><tr class="s9">
+<td nowrap>Signal Bits 0->1</td>
+<td class="rt">93</td>
+<td class="rt">87</td>
+<td class="rt">93.55 </td>
+</tr><tr class="s10">
+<td nowrap>Signal Bits 1->0</td>
+<td class="rt">93</td>
+<td class="rt">93</td>
+<td class="rt">100.00</td>
+</tr></table><br clear=all>
+<table align=left class="sortable noborder">
+<caption><b>Port Details</b></caption>
+<tr class="sortablehead">
+<td class="alfsrt">Name</td><td class="alfsrt">Toggle</td><td class="alfsrt">Toggle 1->0</td><td class="alfsrt">Toggle 0->1</td><td class="alfsrt">Direction</td></tr><tr>
+<td>bfm_clk</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td>INPUT</td>
+</tr><tr>
+<td>bfm_command[3:0]</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td>INPUT</td>
+</tr><tr>
+<td>bfm_grant</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td>OUTPUT</td>
+</tr></table><br clear=all>
+<table align=left class="sortable noborder">
+<caption><b>Signal Details</b></caption>
+<tr class="sortablehead">
+<td class="alfsrt">Name</td><td class="alfsrt">Toggle</td><td class="alfsrt">Toggle 1->0</td><td class="alfsrt">Toggle 0->1</td></tr><tr>
+<td>reset</td>
+<td class="s3 cl">No</td>
+<td class="s9 cl">Yes</td>
+<td class="s3 cl">No</td>
+</tr><tr>
+<td>en_timeout</td>
+<td class="s3 cl">No</td>
+<td class="s9 cl">Yes</td>
+<td class="s3 cl">No</td>
+</tr><tr>
+<td>reqa</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>reqb</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>reqc</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>r_wb_proca</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>r_wb_procb</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>r_wb_procc</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>addbus_proca[7:0]</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>addbus_proca[11:8]</td>
+<td class="s3 cl">No</td>
+<td class="s9 cl">Yes</td>
+<td class="s3 cl">No</td>
+</tr><tr>
+<td>addbus_procb[11:0]</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>addbus_procc[11:0]</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>datawritebus_proca[7:0]</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>datawritebus_procb[7:0]</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>datawritebus_procc[7:0]</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>acka</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>ackb</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>ackc</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>r_wb_ram</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>clock</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>addbus_ram[11:0]</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr><tr>
+<td>datawritebus_ram[7:0]</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+<td class="s9 cl">Yes</td>
+</tr></table><br clear=all>
+<hr>
+<a name="Branch"></a>
+Branch Coverage for Module : <a href="mod2.html" >bfm_arbiter</a><br clear=all>
+<table align=left class="noborder">
+<tr>
+<th nowrap width=120></th><th nowrap width=80>Line No.</th><th nowrap width=80>Total</th><th nowrap width=80>Covered</th><th nowrap width=80>Percent</th></tr><tr class="s10">
+<td>Branches</td>
+<td></td>
+<td class="rt">9</td>
+<td class="rt">9</td>
+<td class="rt">100.00</td>
+</tr><tr class="s10">
+<td>CASE</td>
+<td class="rt">319</td>
+<td class="rt">9</td>
+<td class="rt">9</td>
+<td class="rt">100.00</td>
+</tr></table><br clear=all>
+<pre class="code"><br clear=all>
+319        			case(bfm_command)
+           			<font color = "green">-1-</font>  
+320        			NOREQ    : begin
+321        									bfm_grant = 1'b0;
+           <font color = "green">									==></font>
+322        									request(NR);
+323        									bfm_grant = 1'b1;
+324        								 end
+325        
+326        			REQFA    : begin
+327        									bfm_grant = 1'b0;
+           <font color = "green">									==></font>
+328        									request(RA);
+329        									request(NR);
+330        									bfm_grant = 1'b1;
+331        								end
+332        
+333        			REQFB    : begin
+334        									bfm_grant = 1'b0;
+           <font color = "green">									==></font>
+335        									request(RB);
+336        									request(NR);
+337        									bfm_grant = 1'b1;
+338        								end                  
+339        
+340        			REQFC    : begin
+341        									bfm_grant = 1'b0;
+           <font color = "green">									==></font>
+342        									request(RC);
+343        									request(NR);
+344        									bfm_grant = 1'b1;
+345        								end
+346        
+347        			SACC     : begin
+348        									bfm_grant = 1'b0;
+           <font color = "green">									==></font>
+349        									set_acc(8'd25);                    
+350        									bfm_grant = 1'b1;
+351        								end 
+352        						 
+353        			ATCAB    : begin
+354        									bfm_grant = 1'b0;
+           <font color = "green">									==></font>
+355        									request(RA);
+356        									any2req(RAB,6'd25);
+357        									bfm_grant = 1'b1;
+358        								end 
+359        
+360        			ATCBC    : begin
+361        									bfm_grant = 1'b0;                    
+           <font color = "green">									==></font>
+362        									any2req(RBC,6'd25);
+363        									bfm_grant = 1'b1;
+364        								end 
+365        
+366        			ATCCA    : begin
+367        									bfm_grant = 1'b0;                    
+           <font color = "green">									==></font>
+368        									any2req(RCA,6'd25);
+369        									bfm_grant = 1'b1;
+370        								end 
+           								MISSING_DEFAULT
+           <font color = "green">								==></font>
+</pre>
+<br clear=all>
+<span class=repname>Branches:</span>
+<br clear=all>
+<table align=left class="noborder">
+<tr>
+<th nowrap width=80>-1-</th><th nowrap width=80>Status</th></tr><tr class="uGreen">
+<td align=center>NOREQ </td>
+<td>Covered</td>
+</tr><tr class="uGreen">
+<td align=center>REQFA </td>
+<td>Covered</td>
+</tr><tr class="uGreen">
+<td align=center>REQFB </td>
+<td>Covered</td>
+</tr><tr class="uGreen">
+<td align=center>REQFC </td>
+<td>Covered</td>
+</tr><tr class="uGreen">
+<td align=center>SACC </td>
+<td>Covered</td>
+</tr><tr class="uGreen">
+<td align=center>ATCAB </td>
+<td>Covered</td>
+</tr><tr class="uGreen">
+<td align=center>ATCBC </td>
+<td>Covered</td>
+</tr><tr class="uGreen">
+<td align=center>ATCCA </td>
+<td>Covered</td>
+</tr><tr class="uGreen">
+<td align=center>MISSING_DEFAULT</td>
+<td>Covered</td>
+</tr></table><br clear=all>
+</div>
+</div>
+<div class="ui-layout-center-inner-north">
+<div id="center-bread-crumb" class="breadCrumb module urg-margin-bottom">
+  <ul name="inst_tag_2">
+    <li>
+      <a href="#Line">Line</a>    </li>
+    <li>
+      <a href="#Toggle">Toggle</a>    </li>
+    <li>
+      <a href="#Branch">Branch</a>    </li>
+  </ul>
+  <ul name="tag_bfm_arbiter">
+    <li>
+      <a href="#Line">Line</a>    </li>
+    <li>
+      <a href="#Toggle">Toggle</a>    </li>
+    <li>
+      <a href="#Branch">Branch</a>    </li>
+  </ul>
+</div>
+</div>
+</div>
+<div class="ui-layout-south">
+<table align=center><tr><td class="s0 cl">0%</td>
+<td class="s1 cl">10%</td>
+<td class="s2 cl">20%</td>
+<td class="s3 cl">30%</td>
+<td class="s4 cl">40%</td>
+<td class="s5 cl">50%</td>
+<td class="s6 cl">60%</td>
+<td class="s7 cl">70%</td>
+<td class="s8 cl">80%</td>
+<td class="s9 cl">90%</td>
+<td class="s10 cl">100%</td></tr></table></div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+VERSION 5.7 ;
+DIVIDERCHAR "/" ;
+BUSBITCHARS "[]" ;
+DESIGN blockA ;
+UNITS DISTANCE MICRONS 1000 ;
+DIEAREA ( 0 0 ) ( 1000000 1000000 ) ;
+COMPONENTS 18 ;
+- blockA_l1_i1/blockA_l2_i1/mem1 SYNC_1R1W_16x8         + PLACED ( 600000 200000 ) N ;
+- blockA_l1_i1/blockA_l2_i1/mem2 SYNC_1R1W_16x8         + PLACED ( 700000 200000 ) N ; 
+- blockA_l1_i1/blockA_l2_i1/mem3 SYNC_1R1W_16x8         + PLACED ( 800000 200000 ) N ; 
+- blockA_l1_i1/blockA_l2_i1/mem4 SYNC_2R2W_12x8         + PLACED ( 900000 200000 ) N ; 
+- blockA_l1_i1/blockA_l2_i1/mem5 SYNC_2R2W_12x8         + PLACED ( 600000 400000 ) N ; 
+- blockA_l1_i1/blockA_l2_i1/mem6 SYNC_1RW_32x16_RC_BISR + PLACED ( 600000 400000 ) N ; 
+- blockA_l1_i1/mem1              SYNC_1R1W_16x8         + PLACED ( 100000 200000 ) N ; 
+- blockA_l1_i1/mem2              SYNC_1R1W_16x8         + PLACED ( 200000 200000 ) N ; 
+- blockA_l1_i1/mem3              SYNC_1R1W_16x8         + PLACED ( 300000 200000 ) N ; 
+- blockA_l1_i1/mem4              SYNC_2R2W_12x8         + PLACED ( 400000 200000 ) N ; 
+- blockA_l1_i1/mem5              SYNC_2R2W_12x8         + PLACED ( 100000 400000 ) N ; 
+- blockA_l1_i1/mem6              SYNC_1RW_32x16_RC_BISR + PLACED ( 200000 400000 ) N ; 
+- mem1                           SYNC_1R1W_16x8         + PLACED ( 100000 700000 ) N ; 
+- mem2                           SYNC_1R1W_16x8         + PLACED ( 200000 700000 ) N ; 
+- mem3                           SYNC_1RW_32x16_RC_BISR + PLACED ( 300000 700000 ) N ; 
+- mem4                           SYNC_1RW_32x16_RC_BISR + PLACED ( 500000 700000 ) N ; 
+- mem5                           SYNC_1RW_32x16_RC_BISR + PLACED ( 400000 700000 ) N ; 
+- mem6                           SYNC_1RW_32x16_RC_BISR + PLACED ( 600000 700000 ) N ; 
+END COMPONENTS
+PINS 3 ;
+- CLK + NET CLK + DIRECTION INPUT ;
+- in + NET in + DIRECTION INPUT ;
+- out + NET out + DIRECTION OUTPUT ;
+END PINS
+END DESIGN

@@ -1,0 +1,1497 @@
+class apb_agent extends uvm_agent;
+	`uvm_component_utils(apb_agent)
+
+	apb_monitor apb_monh;
+	apb_driver apb_drvh;
+	apb_seqr apb_seqrh;
+
+	apb_config apb_cfg;
+
+	function new(string name="apb_agent",uvm_component parent);
+		super.new(name,parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		apb_monh = apb_monitor::type_id::create("apb_monh",this);
+
+		if(!uvm_config_db #(apb_config)::get(this,"","apb_config",apb_cfg))
+			`uvm_fatal(get_type_name(),"Have you set the config correctly?");
+
+		if(apb_cfg.is_active == UVM_ACTIVE)
+		begin
+			apb_drvh = apb_driver::type_id::create("apb_drvh",this);
+			apb_seqrh = apb_seqr::type_id::create("apb_seqrh",this);
+		end
+			
+	endfunction
+
+	function void connect_phase(uvm_phase phase);
+		if(apb_cfg.is_active == UVM_ACTIVE)
+		begin
+			apb_drvh.seq_item_port.connect(apb_seqrh.seq_item_export);
+		end
+	
+	endfunction
+
+endclass
+class apb_agent_top extends uvm_env;
+	`uvm_component_utils(apb_agent_top)
+
+	env_config env_cfg;
+	apb_agent apb_agt[];
+
+	function new(string name="apb_agent_top", uvm_component parent);
+		super.new(name,parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		if(! uvm_config_db #(env_config)::get(this,"","env_config",env_cfg))
+			`uvm_fatal(get_type_name(),"Have you set the config correctly?");
+
+		apb_agt = new[env_cfg.no_of_apb_agents];
+
+		foreach(apb_agt[i])begin
+			apb_agt[i] = apb_agent::type_id::create($sformatf("apb_agt[%0d]",i),this);
+
+			uvm_config_db #(apb_config)::set(this,$sformatf("apb_agt[%0d]*",i),"apb_config",env_cfg.apb_cfg[i]);
+		end
+	endfunction
+endclass
+
+class apb_config extends uvm_object;
+	`uvm_object_utils(apb_config)
+
+	function new(string name="apb_config");
+		super.new(name);
+	endfunction
+
+	virtual apb_if vif;
+	uvm_active_passive_enum is_active;
+endclass
+
+class apb_driver extends uvm_driver #(apb_trans);
+      `uvm_component_utils(apb_driver)
+   
+      virtual apb_if.DRV_MP vif;  
+      apb_config apb_cfg;
+ 
+  function new(string name="apb_driver",uvm_component parent);
+           super.new(name,parent);
+  endfunction
+ 
+  function void build_phase(uvm_phase phase);
+                if(!uvm_config_db #(apb_config)::get(this,"","apb_config",apb_cfg))
+	         `uvm_fatal("CONFIG","cannot get() apb_cfg from uvm_config_db. Have you set() it?") 
+  endfunction
+
+  function void connect_phase(uvm_phase phase);
+                super.connect_phase(phase);
+                vif = apb_cfg.vif;
+                $display("DRIVER: %p",vif);
+  endfunction
+
+  task send_to_dut(apb_trans xtn);
+
+        @(vif.drv_cb);
+
+         vif.drv_cb.psel<=1'b1;
+         vif.drv_cb.penable<=1'b0; 
+
+	 vif.drv_cb.paddr<=xtn.PADDR;
+         vif.drv_cb.pwdata<=xtn.PWDATA;
+         vif.drv_cb.pwrite<=xtn.PWRITE;
+
+       @(vif.drv_cb);
+       vif.drv_cb.psel<=1'b1;
+       vif.drv_cb.penable<=1'b1;
+
+       while(vif.drv_cb.pready!==1) 
+		@(vif.drv_cb);
+        
+       if(xtn.PADDR==8'h8 && xtn.PWRITE==0)
+         begin
+          while(vif.drv_cb.irq!==1)
+        	@(vif.drv_cb);
+
+          xtn.IIR = vif.drv_cb.prdata; //Why are we writing to IIR even when it is a Read-only register?
+          seq_item_port.put_response(xtn);
+          $display("IIR in DRIVER----------%0b",xtn.IIR);
+         end
+	//	@(vif.drv_cb);
+             	//`uvm_info("APB AGENT DRIVER",$sformatf("Send to DUT apb_transaction:"),UVM_LOW)
+         	//xtn.print();
+
+         vif.drv_cb.psel<=1'b0;
+         vif.drv_cb.penable<=1'b0;
+  endtask
+    
+  task run_phase(uvm_phase phase);
+       super.run_phase(phase);
+
+       `uvm_info("APB AGENT DRIVER","Run phase",UVM_HIGH)
+
+       @(vif.drv_cb);      
+         vif.drv_cb.presetn<=1'b0;
+
+       @(vif.drv_cb);      
+         vif.drv_cb.presetn<=1'b1;
+ 
+               	forever
+                  begin
+		    seq_item_port.get_next_item(req);
+		    send_to_dut(req);
+		    seq_item_port.item_done();
+		  end
+  endtask
+
+endclass
+
+class apb_monitor extends uvm_monitor;
+      `uvm_component_utils(apb_monitor)
+   
+      virtual apb_if.MON_MP vif;
+      apb_config apb_cfg;
+      uvm_analysis_port#(apb_trans) monitor_port;
+
+      apb_trans xtn;
+
+      bit [7:0] q_thr[$];
+      bit [7:0] q_rbr[$];
+
+      function new(string name="apb_monitor",uvm_component parent);
+               super.new(name,parent);
+
+      endfunction
+  
+      function void build_phase(uvm_phase phase);
+	   if(!uvm_config_db#(apb_config)::get(this,"","apb_config",apb_cfg))
+	    `uvm_fatal("MONITOR","cannot get vif to abp_cfg")
+
+               xtn=apb_trans::type_id::create("xtn");
+
+               monitor_port = new("monitor_port",this);
+
+      endfunction
+  
+      function void connect_phase(uvm_phase phase);
+                    super.connect_phase(phase);
+ 	            vif = apb_cfg.vif; 
+      endfunction
+  
+      task run_phase(uvm_phase phase);
+	   forever 
+            begin
+	       collect_data();
+	    end
+      endtask
+  
+      task collect_data();
+           //repeat(2);
+           @(vif.mon_cb);
+ 	   while(vif.mon_cb.psel!==1) //and pready is HIGH.//only need to monitor when psel is HIGH	
+		@(vif.mon_cb);
+        begin
+	   while(vif.mon_cb.pready!==1)
+		@(vif.mon_cb);
+		//pclk
+		xtn.PRESETn = vif.mon_cb.presetn;
+		xtn.PADDR   = vif.mon_cb.paddr;
+		xtn.PWDATA  = vif.mon_cb.pwdata;
+		xtn.PWRITE  = vif.mon_cb.pwrite;
+		xtn.PSEL    = vif.mon_cb.psel;
+		xtn.PENABLE  = vif.mon_cb.penable;
+		//rxd
+	
+		xtn.PREADY  = vif.mon_cb.pready;
+		xtn.PRDATA  = vif.mon_cb.prdata;
+		xtn.IRQ     = vif.mon_cb.irq;
+		xtn.PSLVERR = vif.mon_cb.pslverr;
+		//txd
+
+	//DIV1 MSB--------------------------------------- 2
+		if(xtn.PADDR == 8'h20 && xtn.PWRITE == 1)
+		begin
+			xtn.DIV2 = vif.mon_cb.pwdata;
+			$display("DIV2 in MONITOR : %0h",xtn.DIV2);
+		end
+
+	//DIV1 LSB--------------------------------------- 3
+		if(xtn.PADDR == 8'h1c && xtn.PWRITE == 1)
+		begin
+			xtn.DIV1 = vif.mon_cb.pwdata;
+			$display("DIV1 in MONITOR : %0h",xtn.DIV1);
+		end
+	 //LCR------------------------------------------- 1
+		if(xtn.PADDR == 8'hc && xtn.PWRITE == 1)
+		begin
+			xtn.LCR = vif.mon_cb.pwdata;
+			$display("LCR in MONITOR : %0h",xtn.LCR);
+		end
+
+	//FCR-------------------------------------------- 4
+		if(xtn.PADDR == 8'h8 && xtn.PWRITE == 1)
+		begin
+			xtn.FCR = vif.mon_cb.pwdata;
+			$display("FCR in MONITOR : %0h",xtn.FCR);
+		end
+	//IER-------------------------------------------- 6
+		if(xtn.PADDR == 8'h4 && xtn.PWRITE == 1)
+		begin
+			xtn.IER = vif.mon_cb.pwdata;
+			$display("IER in MONITOR : %0h",xtn.IER);
+		end
+
+	//MCR-------------------------------------------- 5
+		if(xtn.PADDR == 8'h10 && xtn.PWRITE == 1)
+		begin
+			xtn.MCR = vif.mon_cb.pwdata;
+			$display("MCR in MONITOR : %0h",xtn.MCR);
+		end
+	//THR-------------------------------------------- 7
+		if(xtn.PADDR == 8'h0 && xtn.PWRITE == 1)
+		begin
+		//	xtn.data_in_thr = 1'b1;
+                        //if(xtn.THR.size == 0 || xtn.THR[0] != vif.mon_cb.pwdata)
+                        xtn.data_in_thr=1'b1;
+			xtn.THR.push_back(vif.mon_cb.pwdata);
+			$display("THR in MONITOR : %0b",vif.mon_cb.pwdata);
+                        q_thr.push_back(vif.mon_cb.pwdata);
+		end
+
+
+
+	//IIR-------------------------------------------- 8 
+		if(xtn.PADDR == 8'h8 && xtn.PWRITE == 0)
+		begin
+		//	$display("%%%%%%%%%%%%%%%%%%%%%%");
+			while(vif.mon_cb.irq!==1)
+			  @(vif.mon_cb);
+		//	$display("^^^^^^^^^^^^^^^^^^^^^^^");
+			    xtn.IIR = vif.mon_cb.prdata;
+			    $display("IIR in MONITOR : %0b",xtn.IIR);
+		end
+		
+	//RBR------------------------------------------- 9
+		if(xtn.PADDR == 8'h0 && xtn.PWRITE == 0)
+		begin
+		//	xtn.data_in_rb = 1'b1;
+                        xtn.data_in_rbr=1'b1;
+			xtn.RBR.push_back(vif.mon_cb.prdata);
+			$display($time," RBR in MONITOR : %0b",vif.mon_cb.prdata);
+                        q_rbr.push_back(vif.mon_cb.prdata);
+		end
+
+
+	//LSR------------------------------------------- 11
+		if(xtn.PADDR == 8'h14 && xtn.PWRITE == 0)
+		begin
+			xtn.LSR = vif.mon_cb.prdata;
+			$display("LSR in MONITOR : %0b",xtn.LSR);
+		end
+         // end
+	//MSR------------------------------------------- 10 
+		if(xtn.PADDR == 8'h18 && xtn.PWRITE == 0)
+		begin
+			xtn.MSR = vif.mon_cb.prdata;
+			$display("MSR in MONITOR : %0b",xtn.MSR);
+		end
+
+	      //`uvm_info(get_full_name(), "Printing from APB agent monitor:", UVM_MEDIUM)
+		//xtn.print();				
+
+		monitor_port.write(xtn);
+
+       end
+  endtask
+
+	function void extract_phase(uvm_phase phase);
+		super.extract_phase(phase);
+		
+		$display("\n\nextract phase start\napb q_thr = %p", q_thr);
+		$display("apb q_rbr = %p\n", q_rbr);
+	endfunction
+endclass
+
+class apb_seqr extends uvm_sequencer #(apb_trans);
+  `uvm_component_utils(apb_seqr)
+
+   function new(string name="apb_seqr",uvm_component parent);
+     super.new(name,parent);
+   endfunction
+
+endclass
+
+//******************************************************************//Base sequence
+class apb_sequence extends uvm_sequence #(apb_trans);
+      `uvm_object_utils(apb_sequence)
+
+  function new(string name = "apb_sequence" );
+           super.new(name);
+  endfunction
+
+endclass
+
+//****************************************************************//apb_HD0
+class apb_HD0 extends apb_sequence;
+      `uvm_object_utils(apb_HD0)
+ 
+  function new(string name = "apb_HD0");
+	   super.new(name);
+  endfunction 
+
+
+  task body();
+     begin
+	req = apb_trans::type_id::create("req");
+  //Divisor2------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h20; PWRITE == 1; PWDATA == 'd0;});
+	finish_item(req);
+
+  //Divisor1------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h1c; PWRITE == 1; PWDATA == 'd54;});
+	finish_item(req);
+
+  //LCR-----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'hc; PWRITE == 1; PWDATA == 8'b0000_0011;});
+	finish_item(req);
+
+  //FCR-----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h8; PWRITE == 1; PWDATA == 8'b0000_0110;});
+	finish_item(req);
+
+  //IER-----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h4; PWRITE == 1; PWDATA == 8'b0000_0001;});
+	finish_item(req);
+
+  //THR-----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h0; PWRITE == 1; PWDATA== 8'd15;});
+	finish_item(req);
+     
+     end
+
+  endtask
+
+  endclass
+
+//****************************************************************//apb_HD0_mutliple_sequence 2 stop bits
+class apb_HD0_multiple_sequence extends apb_sequence;
+      `uvm_object_utils(apb_HD0_multiple_sequence)
+ 
+  function new(string name = "apb_HD0_multiple_sequence");
+	   super.new(name);
+  endfunction 
+
+  task body();
+     begin
+	req = apb_trans::type_id::create("req");
+  //Divisor2------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h20; PWRITE == 1; PWDATA == 'd0;});
+	finish_item(req);
+
+  //Divisor1------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h1c; PWRITE == 1; PWDATA == 'd54;});
+	finish_item(req);
+
+  //LCR-----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'hc; PWRITE == 1; PWDATA == 8'b0000_0111;});
+	finish_item(req);
+
+  //FCR-----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h8; PWRITE == 1; PWDATA == 8'b1000_0110;});
+	finish_item(req);
+
+  //IER-----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h4; PWRITE == 1; PWDATA == 8'b0000_0001;});
+	finish_item(req);
+
+  //THR-----------------
+	repeat(8)
+         begin
+     	  	start_item(req);
+	  	assert(req.randomize() with {PADDR == 8'h0; PWRITE == 1; PWDATA inside{[1:255]};})
+	  	finish_item(req);
+	  	#1000;
+         end
+     end
+     `uvm_info("APB HD0_Multiple SEQUENCE","This is APB sequence:%s",UVM_LOW)
+
+  endtask
+
+  endclass
+
+//************************************************************//apb_HD1
+class apb_HD1 extends apb_sequence;
+      `uvm_object_utils(apb_HD1)
+  
+  function new(string name = "apb_HD1");
+           super.new(name);
+  endfunction 
+
+  task body();     
+       begin
+	req = apb_trans::type_id::create("req");
+
+  //Divisor MSB------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h20; PWRITE == 1; PWDATA == 'd0;});
+	finish_item(req);
+
+  //Divisor LSB------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h1c; PWRITE == 1; PWDATA == 'd54;});
+	finish_item(req);
+
+  //LCR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'hc; PWRITE == 1; PWDATA == 8'b0000_0011;});
+	finish_item(req);
+
+  //FCR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h8; PWRITE == 1; PWDATA == 8'b0000_0110;});
+	finish_item(req);
+
+  //IER----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h4; PWRITE == 1; PWDATA == 8'b0000_0101;});
+	finish_item(req);
+
+  //IIR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR==8'h8; PWRITE==0; PWDATA == 8'b0000_0000;});
+        finish_item(req);
+	get_response(req);
+
+  //RBR----------------
+       	if(req.IIR[3:0] == 4) //When data is available in RBR interrupt, then you read from it.
+	  begin
+	    start_item(req);
+            assert(req.randomize() with {PADDR == 8'h00; PWRITE == 0; PWDATA == 8'b0000_0000;});
+	    finish_item(req);
+	  end
+
+  //LSR----------------       
+        if(req.IIR[3:0] == 6) //The interrupt is receiver line status.
+          begin
+            start_item(req);
+            assert(req.randomize() with {PADDR == 8'h14; PWRITE == 0; PWDATA == 8'b0000_0000;});
+	    finish_item(req);
+	  end
+       end
+  endtask
+
+endclass
+
+//****************************************************************//apb_HD1_multiple_sequence
+class apb_HD1_multiple_sequence extends apb_sequence;
+      `uvm_object_utils(apb_HD1_multiple_sequence)
+  
+  function new(string name = "apb_HD1_multiple_sequence");
+           super.new(name);
+  endfunction 
+
+  task body();     
+       begin
+	req = apb_trans::type_id::create("req");
+
+  //Divisor MSB------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h20; PWRITE == 1; PWDATA == 'd0;});
+	finish_item(req);
+
+  //Divisor LSB------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h1c; PWRITE == 1; PWDATA == 'd54;});
+	finish_item(req);
+
+  //LCR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'hc; PWRITE == 1; PWDATA == 8'b0000_0011;});
+	finish_item(req);
+
+  //FCR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h8; PWRITE == 1; PWDATA == 8'b1000_0110;});
+	finish_item(req);
+
+  //IER----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h4; PWRITE == 1; PWDATA == 8'b0000_0101;});
+	finish_item(req);
+
+  //IIR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR==8'h8; PWRITE==0; PWDATA == 8'b0000_0000;});
+        finish_item(req);
+	get_response(req);
+
+  //RBR----------------
+  	repeat(8)
+         begin
+       	//if(req.IIR[3:0] == 4) //When data is available in RBR interrupt, then you read from it.
+		begin
+	    		start_item(req);
+            		assert(req.randomize() with {PADDR == 8'h00; PWRITE == 0; PWDATA == 8'b0000_0000;});
+	    		finish_item(req);
+	  	end
+	end
+  //LSR----------------       
+        if(req.IIR[3:0] == 6) //The interrupt is receiver line status.
+          begin
+            start_item(req);
+            assert(req.randomize() with {PADDR == 8'h14; PWRITE == 0; PWDATA == 8'b0000_0000;});
+	    finish_item(req);
+	  end
+       end
+  endtask
+
+endclass
+
+//************************************************************//apb_FD_sequence
+class apb_FD_sequence extends apb_sequence;	
+      `uvm_object_utils(apb_FD_sequence)
+
+	function new(string name="apb_FD_sequence");
+		super.new(name);
+	endfunction
+
+	task body();
+	     begin
+
+		req=apb_trans::type_id::create("req");
+
+        //Divisor MSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h20; PWDATA==0;})
+		finish_item(req);
+
+	//Divisor LSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h1c; PWDATA==54;});
+		finish_item(req);
+
+	//LCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'hc; PWDATA==8'b0000_0011;});
+		finish_item(req);
+
+	//FCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h8; PWDATA==8'b0000_0110;});
+		finish_item(req);
+
+ 	//IER-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h4; PWDATA==8'b0000_0101;});
+		finish_item(req);
+
+	//THR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h0; PWDATA==8'b1010_1010;}); //inside{[0:255]};})
+		finish_item(req);
+
+	//IIR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==0; PADDR==32'h8;}) ;
+		finish_item(req);
+		get_response(req);
+
+	//RBR------------------------
+		if(req.IIR[3:0] == 4)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h0;PWRITE == 0;});
+				finish_item(req);
+			end
+			
+	//LSR------------------------
+		if(req.IIR[3:0] == 6)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h14; PWRITE == 0;});
+				finish_item(req);
+			end
+		end
+ 	endtask
+endclass
+
+//************************************************************//apb_FD_multiple_sequence
+class apb_FD_multiple_sequence extends apb_sequence;	
+      `uvm_object_utils(apb_FD_multiple_sequence)
+
+	function new(string name="apb_FD_multiple_sequence");
+		super.new(name);
+	endfunction
+
+	task body();
+	     begin
+		req=apb_trans::type_id::create("req");
+
+        //Divisor MSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h20; PWDATA==0;})
+		finish_item(req);
+
+	//Divisor LSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h1c; PWDATA==54;});
+		finish_item(req);
+
+	//LCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'hc; PWDATA==8'b0000_0011;});
+		finish_item(req);
+
+	//FCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h8; PWDATA==8'b1000_0110;});
+		finish_item(req);
+
+ 	//IER-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h4; PWDATA==8'b0000_0101;});
+		finish_item(req);
+
+	//THR-------------------
+                repeat(8)
+		 begin
+			start_item(req);
+			assert(req.randomize() with {PWRITE==1; PADDR==32'h0; PWDATA inside{[0:255]};})
+			finish_item(req);
+		 end
+
+	//IIR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==0; PADDR==32'h8;}) ;
+		finish_item(req);
+		get_response(req);
+
+	//RBR------------------------
+		if(req.IIR[3:0] == 4)
+                 repeat(8)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h0;PWRITE == 0;});
+				finish_item(req);
+			end
+			
+	//LSR------------------------
+		if(req.IIR[3:0] == 6)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h14; PWRITE == 0;});
+				finish_item(req);
+			end
+	
+		end
+ 	endtask
+endclass
+
+//************************************************************//apb_loopback_sequence
+class apb_loopback_sequence extends apb_sequence;	
+      `uvm_object_utils(apb_loopback_sequence)
+
+	function new(string name="apb_loopback_sequence");
+		super.new(name);
+	endfunction
+
+	task body();
+	     begin
+		req=apb_trans::type_id::create("req");
+
+        //Divisor MSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h20; PWDATA==0;})
+		finish_item(req);
+
+	//Divisor LSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h1c; PWDATA==54;});
+		finish_item(req);
+
+ 	//MCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h10; PWDATA==8'b0001_0000;});
+		finish_item(req);
+
+	//LCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'hc; PWDATA==8'b0000_0011;});
+		finish_item(req);
+
+	//FCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h8; PWDATA==8'b0000_0110;});
+		finish_item(req);
+
+ 	//IER-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h4; PWDATA==8'b0000_0001;});
+		finish_item(req);
+
+	//THR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h0; PWDATA=='h99;}); 
+		finish_item(req);
+
+	//IIR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==0; PADDR==32'h8;}) ;
+		finish_item(req);
+		get_response(req);
+
+	//RBR------------------------
+		if(req.IIR[3:0] == 4)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h0;PWRITE == 0;});
+				finish_item(req);
+			end
+			
+	//LSR------------------------
+		if(req.IIR[3:0] == 6)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h14; PWRITE == 0;});
+				finish_item(req);
+			end
+	
+		end
+ 	endtask
+endclass
+
+//************************************************************//apb_loopback_multiple_sequence
+class apb_loopback_multiple_sequence extends apb_sequence;	
+      `uvm_object_utils(apb_loopback_multiple_sequence)
+
+	function new(string name="apb_loopback_multiple_sequence");
+		super.new(name);
+	endfunction
+
+	task body();
+	     begin
+		req=apb_trans::type_id::create("req");
+
+        //Divisor MSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h20; PWDATA==0;})
+		finish_item(req);
+
+	//Divisor LSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h1c; PWDATA==54;});
+		finish_item(req);
+
+ 	//MCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h10; PWDATA==8'b0001_0000;});
+		finish_item(req);
+
+	//LCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'hc; PWDATA==8'b0000_0011;});
+		finish_item(req);
+
+	//FCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h8; PWDATA==8'b1000_0110;});
+		finish_item(req);
+
+ 	//IER-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h4; PWDATA==8'b0000_0101;});
+		finish_item(req);
+
+	//THR-------------------
+                repeat(8)
+                begin
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h0; PWDATA inside{[0:255]};})
+		finish_item(req);
+                end
+
+	//IIR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==0; PADDR==32'h8;}) ;
+		finish_item(req);
+		get_response(req);
+
+	//RBR------------------------
+		if(req.IIR[3:0] == 4)
+                repeat(8)
+
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h0;PWRITE == 0;});
+				finish_item(req);
+			end
+			
+	//LSR------------------------
+		if(req.IIR[3:0] == 6)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h14; PWRITE == 0;});
+				finish_item(req);
+			end
+	
+		end
+ 	endtask
+endclass
+
+//************************************************************//apb_THR_empty_sequence
+class apb_THR_empty_sequence extends apb_sequence;
+      `uvm_object_utils(apb_THR_empty_sequence)
+  
+  function new(string name = "apb_THR_empty_sequence");
+           super.new(name);
+  endfunction 
+
+  task body();     
+       begin
+	req = apb_trans::type_id::create("req");
+
+  //Divisor MSB------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h20; PWRITE == 1; PWDATA == 'd0;});
+	finish_item(req);
+
+  //Divisor LSB------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h1c; PWRITE == 1; PWDATA == 'd54;});
+	finish_item(req);
+
+  //LCR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'hc; PWRITE == 1; PWDATA == 8'b0000_0011;});
+	finish_item(req);
+
+  //FCR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h8; PWRITE == 1; PWDATA == 8'b1100_0110;});
+	finish_item(req);
+
+  //IER----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h4; PWRITE == 1; PWDATA == 8'b0000_0010;});
+	finish_item(req);
+
+  //IIR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR==8'h8; PWRITE==0;}) 
+        finish_item(req);
+	get_response(req);
+
+  //RBR----------------
+       	if(req.IIR[3:0] == 4) //When data is available in RBR interrupt, then you read from it.
+	  begin
+	    start_item(req);
+            assert(req.randomize() with {PADDR == 8'h00; PWRITE == 0;});
+	    finish_item(req);
+	  end
+
+  //LSR----------------       
+        if(req.IIR[3:0] == 6) //The interrupt is receiver line status.
+          begin
+            start_item(req);
+            assert(req.randomize() with {PADDR == 8'h14; PWRITE == 0;});
+	    finish_item(req);
+	  end
+       end
+  endtask
+
+endclass
+
+//****************************************************************//apb_HD0_parity_sequence
+class apb_HD0_parity_sequence extends apb_sequence;
+      `uvm_object_utils(apb_HD0_parity_sequence)
+ 
+  function new(string name = "apb_HD0_parity_sequence");
+	   super.new(name);
+  endfunction 
+
+  task body();
+     begin
+	req = apb_trans::type_id::create("req");
+  //Divisor2------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h20; PWRITE == 1; PWDATA == 'd0;});
+	finish_item(req);
+
+
+  //Divisor1------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h1c; PWRITE == 1; PWDATA == 'd54;});
+	finish_item(req);
+
+  //LCR-----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'hc; PWRITE == 1; PWDATA == 8'b0000_1011;});
+	finish_item(req);
+
+  //FCR-----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h8; PWRITE == 1; PWDATA == 8'b0000_0110;});
+	finish_item(req);
+
+  //IER-----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h4; PWRITE == 1; PWDATA == 8'b0000_0101;});
+	finish_item(req);
+
+  //THR-----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h0; PWRITE == 1; PWDATA==99;}); //inside {[1:255]};});
+	finish_item(req);
+     
+     end
+  endtask
+
+  endclass
+
+//****************************************************************//apb_HD1_parity_sequence( HD1 where the UART agent is sending data to the UART DUT)
+class apb_HD1_parity_sequence extends apb_sequence;
+      `uvm_object_utils(apb_HD1_parity_sequence)
+ 
+  function new(string name = "apb_HD1_parity_sequence");
+	   super.new(name);
+  endfunction 
+
+  task body();
+     begin
+	req = apb_trans::type_id::create("req");
+
+    //Divisor MSB------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h20; PWRITE == 1; PWDATA == 'd0;});
+	finish_item(req);
+
+  //Divisor LSB------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h1c; PWRITE == 1; PWDATA == 'd54;});
+	finish_item(req);
+
+  //LCR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'hc; PWRITE == 1; PWDATA == 8'b0001_1011;});
+	finish_item(req);
+
+  //FCR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h8; PWRITE == 1; PWDATA == 8'b0000_0110;});
+	finish_item(req);
+
+  //IER----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h4; PWRITE == 1; PWDATA == 8'b0000_0101;});
+	finish_item(req);
+
+  //IIR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR==8'h8; PWRITE==0;}) 
+        finish_item(req);
+	get_response(req);
+
+  //RBR----------------
+       	if(req.IIR[3:0] == 4) //When data is available in RBR interrupt, then you read from it.
+	  begin
+	    start_item(req);
+            assert(req.randomize() with {PADDR == 8'h00; PWRITE == 0;});
+	    finish_item(req);
+	  end
+
+  //LSR----------------       
+        if(req.IIR[3:0] == 6) //The interrupt is receiver line status.
+          begin
+            start_item(req);
+            assert(req.randomize() with {PADDR == 8'h14; PWRITE == 0;});
+	    finish_item(req);
+	  end
+       end
+  endtask
+
+endclass
+
+//************************************************************//apb_FD_parity_sequence
+class apb_FD_parity_sequence extends apb_sequence;	
+      `uvm_object_utils(apb_FD_parity_sequence)
+
+	function new(string name="apb_FD_parity_sequence");
+		super.new(name);
+	endfunction
+
+	task body();
+	     begin
+
+		req=apb_trans::type_id::create("req");
+
+        //Divisor MSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h20; PWDATA==0;})
+		finish_item(req);
+
+	//Divisor LSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h1c; PWDATA==54;});
+		finish_item(req);
+
+	//LCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'hc; PWDATA==8'b0001_1011;});
+		finish_item(req);
+
+	//FCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h8; PWDATA==8'b0000_0110;});
+		finish_item(req);
+
+ 	//IER-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h4; PWDATA==8'b0000_0101;});
+		finish_item(req);
+
+	//THR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h0; PWDATA==99;}); //inside{[0:255]};})
+		finish_item(req);
+
+	//IIR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==0; PADDR==32'h8;}) ;
+		finish_item(req);
+		get_response(req);
+
+	//RBR------------------------
+		if(req.IIR[3:0] == 4)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h0;PWRITE == 0;});
+				finish_item(req);
+			end
+			
+	//LSR------------------------
+		if(req.IIR[3:0] == 6)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h14; PWRITE == 0;});
+				finish_item(req);
+			end
+		end
+ 	endtask
+endclass
+
+ //************************************************************//apb_HD1_break_sequence
+class apb_HD1_break_sequence extends apb_sequence;	
+      `uvm_object_utils(apb_HD1_break_sequence)
+
+	function new(string name="apb_HD1_break_sequence");
+		super.new(name);
+	endfunction
+
+	task body();
+	     begin
+		req=apb_trans::type_id::create("req");
+
+        //Divisor MSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h20; PWDATA==32'h1;})
+		finish_item(req);
+
+	//Divisor LSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h1c; PWDATA==32'h46;});
+		finish_item(req);
+
+	//LCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'hc; PWDATA==8'b0100_0011;});
+		finish_item(req);
+
+	//FCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h8; PWDATA==8'b0000_0110;});
+		finish_item(req);
+
+ 	//IER-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h4; PWDATA==8'b0000_0100;});
+		finish_item(req);
+
+	//IIR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==0; PADDR==32'h8;}) ;
+		finish_item(req);
+		get_response(req);
+
+	//RBR------------------------
+		if(req.IIR[3:0] == 4)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h0;PWRITE == 0;});
+				finish_item(req);
+			end
+			
+	//LSR------------------------
+		if(req.IIR[3:0] == 6)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h14; PWRITE == 0;});
+				finish_item(req);
+			end
+		end
+ 	endtask
+endclass
+
+//****************************************************************//apb_HD_frame_sequence
+class apb_HD_frame_sequence extends apb_sequence;
+      `uvm_object_utils(apb_HD_frame_sequence)
+ 
+  function new(string name = "apb_HD_frame_sequence");
+	   super.new(name);
+  endfunction 
+
+
+  task body();
+     begin
+	req = apb_trans::type_id::create("req");
+ 
+  //Divisor MSB------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h20; PWRITE == 1; PWDATA == 'd0;});
+	finish_item(req);
+
+  //Divisor LSB------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h1c; PWRITE == 1; PWDATA == 'd54;});
+	finish_item(req);
+
+  //LCR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'hc; PWRITE == 1; PWDATA == 8'b0000_0000;});
+	finish_item(req);
+
+  //FCR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h8; PWRITE == 1; PWDATA == 8'b0000_0110;});
+	finish_item(req);
+
+  //IER----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h4; PWRITE == 1; PWDATA == 8'b0000_0100;});
+	finish_item(req);
+
+  //IIR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR==8'h8; PWRITE==0;}) 
+        finish_item(req);
+	get_response(req);
+
+  //RBR----------------
+       	if(req.IIR[3:0] == 4) //When data is available in RBR interrupt, then you read from it.
+	  begin
+	    start_item(req);
+            assert(req.randomize() with {PADDR == 8'h00; PWRITE == 0;});
+	    finish_item(req);
+	  end
+
+  //LSR----------------       
+        if(req.IIR[3:0] == 6) //The interrupt is receiver line status.
+          begin
+            start_item(req);
+            assert(req.randomize() with {PADDR == 8'h14; PWRITE == 0;});
+	    finish_item(req);
+	  end
+       end
+  endtask
+
+endclass
+
+//************************************************************//apb_FD_frame_sequence
+class apb_FD_frame_sequence extends apb_sequence;	
+      `uvm_object_utils(apb_FD_frame_sequence)
+
+	function new(string name="apb_FD_frame_sequence");
+		super.new(name);
+	endfunction
+
+	task body();
+	     begin
+		req=apb_trans::type_id::create("req");
+
+        //Divisor MSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h20; PWDATA== 0;});
+		finish_item(req);
+		
+	//Divisor LSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h1c; PWDATA== 54;});
+		finish_item(req);
+
+	//LCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'hc; PWDATA==8'b0000_0000;});
+		finish_item(req);
+
+	//FCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h8; PWDATA==32'h6;});
+		finish_item(req);
+
+	//IER-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h4; PWDATA==8'b0000_0100;});
+		finish_item(req);
+
+	//IIR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==0; PADDR==32'h8;});
+		finish_item(req);
+		get_response(req);
+	
+	//RBR-------------------
+		if(req.IIR[3:0] == 4)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h0;PWRITE == 0;});
+				finish_item(req);
+			end
+			
+	//LSR------------------------
+		if(req.IIR[3:0] == 6)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h14; PWRITE == 0;});
+				finish_item(req);
+			end
+	//THR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h0; PWDATA==8'b0000_1111;}); // inside {[0:255]};})
+		finish_item(req);
+	
+		end
+	endtask
+endclass
+
+//************************************************************//apb_HD1_overrun
+class apb_HD1_overrun extends apb_sequence;
+      `uvm_object_utils(apb_HD1_overrun)
+  
+  function new(string name = "apb_HD1_overrun");
+           super.new(name);
+  endfunction 
+
+  task body();     
+       begin
+	req = apb_trans::type_id::create("req");
+
+  //Divisor MSB------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h20; PWRITE == 1; PWDATA == 'd0;});
+	finish_item(req);
+
+  //Divisor LSB------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h1c; PWRITE == 1; PWDATA == 'd54;});
+	finish_item(req);
+
+  //LCR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'hc; PWRITE == 1; PWDATA == 8'b0000_0011;});
+	finish_item(req);
+
+  //FCR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h8; PWRITE == 1; PWDATA == 8'b0000_0110;});
+	finish_item(req);
+
+  //IER----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR == 8'h4; PWRITE == 1; PWDATA == 8'b0000_0100;});
+	finish_item(req);
+
+  //IIR----------------
+	start_item(req);
+	assert(req.randomize() with {PADDR==8'h8; PWRITE==0;}) 
+        finish_item(req);
+	get_response(req);
+
+  //RBR----------------
+       	if(req.IIR[3:0] == 4) //When data is available in RBR interrupt, then you read from it.
+	  begin
+	    start_item(req);
+            assert(req.randomize() with {PADDR == 8'h00; PWRITE == 0;});
+	    finish_item(req);
+	  end
+
+  //LSR----------------       
+        if(req.IIR[3:0] == 6) //The interrupt is receiver line status.
+          begin
+            start_item(req);
+            assert(req.randomize() with {PADDR == 8'h14; PWRITE == 0;});
+	    finish_item(req);
+	  end
+       end
+  endtask
+
+endclass
+
+//************************************************************//apb_HD1_timeout_sequence
+class apb_HD1_timeout_sequence extends apb_sequence;	
+      `uvm_object_utils(apb_HD1_timeout_sequence)
+
+	function new(string name="apb_HD1_timeout_sequence");
+		super.new(name);
+	endfunction
+
+	task body();
+	     begin
+		req=apb_trans::type_id::create("req");
+
+	//Divisor MSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h20; PWDATA==0;});
+		finish_item(req);
+		
+	//Divisor LSB-----------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h1c; PWDATA==54;});
+		finish_item(req);
+
+	//LCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'hc; PWDATA==8'b0000_0011;});
+		finish_item(req);
+
+	//FCR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h8; PWDATA==8'b1100_0110;});
+		finish_item(req);
+
+	//IER-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==1; PADDR==32'h4; PWDATA==8'b0000_0000;});
+		finish_item(req);
+
+	//IIR-------------------
+		start_item(req);
+		assert(req.randomize() with {PWRITE==0; PADDR==32'h8;});
+		finish_item(req);
+		get_response(req);
+	
+	//RBR-------------------
+		if(req.IIR[3:0] == 4)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h0;PWRITE == 0;});
+				finish_item(req);
+			end
+			
+	//LSR------------------------
+		if(req.IIR[3:0] == 6)
+			begin 
+				start_item(req);
+				assert(req.randomize() with {PADDR == 32'h14; PWRITE == 0;});
+				finish_item(req);
+			end
+            end	
+          endtask
+endclass
+
+class apb_trans extends uvm_sequence_item;
+      `uvm_object_utils(apb_trans)
+   
+      function new(string name="apb_trans");
+               super.new(name);
+      endfunction
+
+      //Signals-Inputs	
+      rand bit [7:0]PADDR;
+      rand bit [7:0]PWDATA;
+      rand bit PWRITE;
+      bit PSEL;
+      bit PRESETn;
+      bit PENABLE;
+      bit RXD;
+      
+      //Signals-Outputs
+      bit [7:0]PRDATA;
+      bit PREADY;
+      bit PSLVERR;
+      bit IRQ;
+      bit TXD;
+
+      //Registers 
+      bit [7:0] THR [$];
+      bit [7:0] RBR [$];
+
+      static bit [7:0] IER;
+      static bit [7:0] IIR;
+      static bit [7:0] FCR;
+      static bit [7:0] LCR;
+      static bit [7:0] MCR;
+      static bit [7:0] LSR;
+      static bit [7:0] MSR;
+      static bit [7:0] DIV1;
+      static bit [7:0] DIV2;
+ 
+      bit data_in_thr;
+      bit data_in_rbr;
+
+      function void do_print(uvm_printer printer);
+	super.do_print(printer);
+
+	//                   srting name   	bitstream value     size       radix for printing
+   	printer.print_field( "PADDR", 		this.PADDR, 	    8,		 UVM_HEX		);
+  	printer.print_field( "PWDATA", 		this.PWDATA, 	    8,		 UVM_DEC		);
+
+    	printer.print_field( "PSEL", 		this.PSEL, 	    1,		 UVM_BIN		);    	
+        printer.print_field( "PENABLE", 	this.PENABLE, 	    1,		 UVM_BIN		);
+    	printer.print_field( "PWRITE", 		this.PWRITE, 	    1,		 UVM_BIN		);
+
+	printer.print_field( "PRESETn", 	this.PRESETn, 	    1,		 UVM_BIN		);
+
+	printer.print_field( "PREADY", 		this.PREADY, 	    1,		 UVM_BIN		);
+	printer.print_field( "PRDATA", 		this.PRDATA, 	    8,		 UVM_DEC		);
+	printer.print_field( "PSLVERR", 	this.PSLVERR, 	    1,		 UVM_BIN		);
+        printer.print_field( "IRQ", 		this.IRQ, 	    1,		 UVM_BIN		);
+        printer.print_field( "TXD", 		this.TXD, 	    1,		 UVM_BIN		);
+	printer.print_field( "RXD", 		this.RXD, 	    1,		 UVM_BIN		);
+
+	printer.print_field( "DIV2",            this.DIV2, 	    8,		 UVM_DEC		);
+	printer.print_field( "DIV1",            this.DIV1, 	    8,		 UVM_DEC		);
+	printer.print_field( "LCR", 		this.LCR, 	    8,		 UVM_DEC		);
+    	printer.print_field( "FCR", 		this.FCR, 	    8,		 UVM_DEC		);
+    	printer.print_field( "IER", 	        this.IER, 	    8,		 UVM_DEC		);
+	printer.print_field( "MCR", 	        this.MCR, 	    8,		 UVM_DEC		);
+	
+      foreach(THR[i])
+       begin
+	printer.print_field($sformatf("THR[%0d]",i),	this.THR[i],	$bits(THR[i]),	UVM_HEX);
+       end
+
+	printer.print_field( "IIR", 	        this.IIR, 	    8,		 UVM_DEC		); 
+
+      foreach(RBR[i])
+       begin
+	printer.print_field($sformatf("RBR[%0d]",i),	this.RBR[i],	$bits(RBR[i]),	UVM_HEX);
+       end
+        printer.print_field( "LSR", 		this.IRQ, 	    8,		 UVM_DEC		);
+        printer.print_field( "MSR", 		this.TXD, 	    8,		 UVM_DEC		);
+        
+      
+      endfunction
+
+endclass
+    
+

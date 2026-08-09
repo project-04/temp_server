@@ -1,0 +1,530 @@
+vsim -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit mem_cov2;run -all; exit" -wlf wave_file2.wlf -l test2.log -sv_seed 3126729340 work.top "+UVM_OBJECTION_TRACE" "+UVM_TESTNAME=incr_seq_test" 
+Start time: 11:59:06 on Sep 27,2024
+** Note: (vsim-3813) Design is being optimized due to module recompilation...
+** Warning: ../tb/axi_top.sv(17): (vopt-2685) [TFMPC] - Too few port connections for 'DUV'.  Expected 47, found 45.
+** Warning: ../tb/axi_top.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'hlock'.
+** Warning: ../tb/axi_top.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'hbusreq'.
+//  Questa Sim-64
+//  Version 2019.2 linux_x86_64 Apr 16 2019
+//
+//  Copyright 1991-2019 Mentor Graphics Corporation
+//  All Rights Reserved.
+//
+//  QuestaSim and its associated documentation contain trade
+//  secrets and commercial or financial information that are the property of
+//  Mentor Graphics Corporation and are privileged, confidential,
+//  and exempt from disclosure under the Freedom of Information Act,
+//  5 U.S.C. Section 552. Furthermore, this information
+//  is prohibited from disclosure under the Trade Secrets Act,
+//  18 U.S.C. Section 1905.
+//
+Loading sv_std.std
+Loading work.axi_if(fast)
+Loading work.ahb_if(fast)
+Loading mtiUvm.uvm_pkg
+Loading work.axi_test_pkg(fast)
+Loading mtiUvm.questa_uvm_pkg(fast)
+Loading work.top(fast)
+Loading work.axi_if(fast)
+Loading work.ahb_if(fast)
+Loading work.axi2ahb_bridge_top(fast)
+Loading work.axi_controller(fast)
+Loading work.axi2fifo(fast)
+Loading work.fifo2axi(fast)
+Loading work.fifo_wrapper(fast)
+Loading work.id_resp_fifo(fast)
+Loading work.resp_fifo(fast)
+Loading work.rdata_fifo(fast)
+Loading work.size_fifo(fast)
+Loading work.id_send_fifo(fast)
+Loading work.write_fifo(fast)
+Loading work.data_fifo(fast)
+Loading work.addr_fifo(fast)
+Loading work.ahb_controller(fast)
+** Warning: (vsim-3015) [PCDPC] - Port size (64) does not match connection size (32) for port 'hwdata'. The port definition is at: ../rtl/axi2ahb_bridge_top.v(51).
+   Time: 0 ps  Iteration: 0  Instance: /top/DUV File: ../tb/axi_top.sv Line: 17
+** Warning: (vsim-3015) [PCDPC] - Port size (64) does not match connection size (32) for port 'hrdata'. The port definition is at: ../rtl/axi2ahb_bridge_top.v(55).
+   Time: 0 ps  Iteration: 0  Instance: /top/DUV File: ../tb/axi_top.sv Line: 17
+** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (1) for port 'hmaster'. The port definition is at: ../rtl/axi2ahb_bridge_top.v(59).
+   Time: 0 ps  Iteration: 0  Instance: /top/DUV File: ../tb/axi_top.sv Line: 17
+# Loading /home/cad/eda/Questa_2019/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+** Warning: (vsim-8634) Code was not compiled with coverage options.
+ log -r /* 
+coverage save -onexit mem_cov2
+run -all
+----------------------------------------------------------------
+UVM-1.1d
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+UVM_INFO @ 0: reporter [RNTST] Running test incr_seq_test...
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+----------------------------------------------------------------
+Name                         Type                    Size  Value
+----------------------------------------------------------------
+uvm_test_top                 incr_seq_test           -     @479 
+  env_h                      axi_env                 -     @495 
+    mst_agt_top              master_agent_top        -     @507 
+      mst_agt_h[0]           master_agent            -     @636 
+        mst_drv_h            master_driver           -     @651 
+          rsp_port           uvm_analysis_port       -     @666 
+          seq_item_port      uvm_seq_item_pull_port  -     @658 
+        mst_mon_h            master_monitor          -     @644 
+          mst_mon_port       uvm_analysis_port       -     @786 
+        mst_seqr_h           master_sequencer        -     @674 
+          rsp_export         uvm_analysis_export     -     @681 
+          seq_item_export    uvm_seq_item_pull_imp   -     @775 
+          arbitration_queue  array                   0     -    
+          lock_queue         array                   0     -    
+          num_last_reqs      integral                32    'd1  
+          num_last_rsps      integral                32    'd1  
+    slv_agt_top              ahb_agent_top           -     @518 
+      agnth                  ahb_agt                 -     @799 
+        drvh                 ahb_drv                 -     @826 
+          rsp_port           uvm_analysis_port       -     @841 
+          seq_item_port      uvm_seq_item_pull_port  -     @833 
+        monitor              ahb_mon                 -     @811 
+          monitor_port       uvm_analysis_port       -     @818 
+        seqrh                ahb_seqr                -     @849 
+          rsp_export         uvm_analysis_export     -     @856 
+          seq_item_export    uvm_seq_item_pull_imp   -     @950 
+          arbitration_queue  array                   0     -    
+          lock_queue         array                   0     -    
+          num_last_reqs      integral                32    'd1  
+          num_last_rsps      integral                32    'd1  
+    vseqr_h                  virtual_sequencer       -     @525 
+      rsp_export             uvm_analysis_export     -     @532 
+      seq_item_export        uvm_seq_item_pull_imp   -     @626 
+      arbitration_queue      array                   0     -    
+      lock_queue             array                   0     -    
+      num_last_reqs          integral                32    'd1  
+      num_last_rsps          integral                32    'd1  
+----------------------------------------------------------------
+
+UVM_INFO @ 0: run [OBJTN_TRC] Object uvm_test_top raised 1 objection(s): count=1  total=1
+UVM_INFO @ 0: run [OBJTN_TRC] Object uvm_top added 1 objection(s) to its total (raised from source object uvm_test_top): count=0  total=1
+start of drive_awaddr
+start of drive_raddr
+end of drive_awaddr
+start of drive_wdata
+UVM_INFO ../master_agent_top/master_driver.sv(153) @ 6500: uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_drv_h [DRV] DRV= -----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                       
+-----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @998                                                        
+  begin_time                   time      64    2500                                                        
+  end_time                     time      64    4500                                                        
+  depth                        int       32    'd2                                                         
+  parent sequence (name)       string    5     m_seq                                                       
+  parent sequence (full name)  string    60    uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_seqr_h.m_seq
+  sequencer                    string    54    uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_seqr_h      
+  AWID                         integral  4     11                                                          
+  AWADDR                       integral  32    'hf56619ab                                                  
+  AWLEN                        integral  4     'd5                                                         
+  AWSIZE                       integral  3     'd0                                                         
+  AWBURST                      integral  2     'd1                                                         
+  WID                          integral  4     11                                                          
+  WDATA                        integral  64    'he5ace64cfc39e2c9                                          
+  WSTRB                        integral  8     'b0                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h1829e72de2876226                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'he0f71380e267038f                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h57576a5031e66c17                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h1d3feea61fbfc2ad                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'hf79d8a79d410e605                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  BID                          integral  4     11                                                          
+  BRESP                        integral  2     'd0                                                         
+  ARID                         integral  4     'd0                                                         
+  ARADDR                       integral  32    'hded8c9e7                                                  
+  ARLEN                        integral  8     'd8                                                         
+  ARSIZE                       integral  3     'd2                                                         
+  ARBURST                      integral  2     'd1                                                         
+  RID                          integral  4     'd0                                                         
+  RDATA                        integral  64    'h9f5a79c018a64d61                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'hb4b36924b6da3ab0                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h825bfef4b93539f4                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'hb7d176f98e43b807                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h5e3083db205bac37                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h3f6892e3114238b2                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h3f110f1cd859e1b3                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'haa4ee04cefc1b1a3                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h2d040db562f933cb                                          
+  RRESP                        integral  2     'd0                                                         
+-----------------------------------------------------------------------------------------------------------
+
+inside drive_raddr before wait ARREADY
+UVM_INFO ../master_agent_top/master_driver.sv(153) @ 8500: uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_drv_h [DRV] DRV= -----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                       
+-----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @998                                                        
+  begin_time                   time      64    2500                                                        
+  end_time                     time      64    4500                                                        
+  depth                        int       32    'd2                                                         
+  parent sequence (name)       string    5     m_seq                                                       
+  parent sequence (full name)  string    60    uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_seqr_h.m_seq
+  sequencer                    string    54    uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_seqr_h      
+  AWID                         integral  4     11                                                          
+  AWADDR                       integral  32    'hf56619ab                                                  
+  AWLEN                        integral  4     'd5                                                         
+  AWSIZE                       integral  3     'd0                                                         
+  AWBURST                      integral  2     'd1                                                         
+  WID                          integral  4     11                                                          
+  WDATA                        integral  64    'he5ace64cfc39e2c9                                          
+  WSTRB                        integral  8     'b0                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h1829e72de2876226                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'he0f71380e267038f                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h57576a5031e66c17                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h1d3feea61fbfc2ad                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'hf79d8a79d410e605                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  BID                          integral  4     11                                                          
+  BRESP                        integral  2     'd0                                                         
+  ARID                         integral  4     'd0                                                         
+  ARADDR                       integral  32    'hded8c9e7                                                  
+  ARLEN                        integral  8     'd8                                                         
+  ARSIZE                       integral  3     'd2                                                         
+  ARBURST                      integral  2     'd1                                                         
+  RID                          integral  4     'd0                                                         
+  RDATA                        integral  64    'h9f5a79c018a64d61                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'hb4b36924b6da3ab0                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h825bfef4b93539f4                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'hb7d176f98e43b807                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h5e3083db205bac37                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h3f6892e3114238b2                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h3f110f1cd859e1b3                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'haa4ee04cefc1b1a3                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h2d040db562f933cb                                          
+  RRESP                        integral  2     'd0                                                         
+-----------------------------------------------------------------------------------------------------------
+
+UVM_INFO ../master_agent_top/master_driver.sv(153) @ 10500: uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_drv_h [DRV] DRV= -----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                       
+-----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @998                                                        
+  begin_time                   time      64    2500                                                        
+  end_time                     time      64    4500                                                        
+  depth                        int       32    'd2                                                         
+  parent sequence (name)       string    5     m_seq                                                       
+  parent sequence (full name)  string    60    uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_seqr_h.m_seq
+  sequencer                    string    54    uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_seqr_h      
+  AWID                         integral  4     11                                                          
+  AWADDR                       integral  32    'hf56619ab                                                  
+  AWLEN                        integral  4     'd5                                                         
+  AWSIZE                       integral  3     'd0                                                         
+  AWBURST                      integral  2     'd1                                                         
+  WID                          integral  4     11                                                          
+  WDATA                        integral  64    'he5ace64cfc39e2c9                                          
+  WSTRB                        integral  8     'b0                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h1829e72de2876226                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'he0f71380e267038f                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h57576a5031e66c17                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h1d3feea61fbfc2ad                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'hf79d8a79d410e605                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  BID                          integral  4     11                                                          
+  BRESP                        integral  2     'd0                                                         
+  ARID                         integral  4     'd0                                                         
+  ARADDR                       integral  32    'hded8c9e7                                                  
+  ARLEN                        integral  8     'd8                                                         
+  ARSIZE                       integral  3     'd2                                                         
+  ARBURST                      integral  2     'd1                                                         
+  RID                          integral  4     'd0                                                         
+  RDATA                        integral  64    'h9f5a79c018a64d61                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'hb4b36924b6da3ab0                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h825bfef4b93539f4                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'hb7d176f98e43b807                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h5e3083db205bac37                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h3f6892e3114238b2                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h3f110f1cd859e1b3                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'haa4ee04cefc1b1a3                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h2d040db562f933cb                                          
+  RRESP                        integral  2     'd0                                                         
+-----------------------------------------------------------------------------------------------------------
+
+end of drive_raddr
+start of drive_rdata
+UVM_INFO ../master_agent_top/master_driver.sv(153) @ 12500: uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_drv_h [DRV] DRV= -----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                       
+-----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @998                                                        
+  begin_time                   time      64    2500                                                        
+  end_time                     time      64    4500                                                        
+  depth                        int       32    'd2                                                         
+  parent sequence (name)       string    5     m_seq                                                       
+  parent sequence (full name)  string    60    uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_seqr_h.m_seq
+  sequencer                    string    54    uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_seqr_h      
+  AWID                         integral  4     11                                                          
+  AWADDR                       integral  32    'hf56619ab                                                  
+  AWLEN                        integral  4     'd5                                                         
+  AWSIZE                       integral  3     'd0                                                         
+  AWBURST                      integral  2     'd1                                                         
+  WID                          integral  4     11                                                          
+  WDATA                        integral  64    'he5ace64cfc39e2c9                                          
+  WSTRB                        integral  8     'b0                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h1829e72de2876226                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'he0f71380e267038f                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h57576a5031e66c17                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h1d3feea61fbfc2ad                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'hf79d8a79d410e605                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  BID                          integral  4     11                                                          
+  BRESP                        integral  2     'd0                                                         
+  ARID                         integral  4     'd0                                                         
+  ARADDR                       integral  32    'hded8c9e7                                                  
+  ARLEN                        integral  8     'd8                                                         
+  ARSIZE                       integral  3     'd2                                                         
+  ARBURST                      integral  2     'd1                                                         
+  RID                          integral  4     'd0                                                         
+  RDATA                        integral  64    'h9f5a79c018a64d61                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'hb4b36924b6da3ab0                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h825bfef4b93539f4                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'hb7d176f98e43b807                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h5e3083db205bac37                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h3f6892e3114238b2                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h3f110f1cd859e1b3                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'haa4ee04cefc1b1a3                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h2d040db562f933cb                                          
+  RRESP                        integral  2     'd0                                                         
+-----------------------------------------------------------------------------------------------------------
+
+UVM_INFO ../master_agent_top/master_driver.sv(153) @ 14500: uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_drv_h [DRV] DRV= -----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                       
+-----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @998                                                        
+  begin_time                   time      64    2500                                                        
+  end_time                     time      64    4500                                                        
+  depth                        int       32    'd2                                                         
+  parent sequence (name)       string    5     m_seq                                                       
+  parent sequence (full name)  string    60    uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_seqr_h.m_seq
+  sequencer                    string    54    uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_seqr_h      
+  AWID                         integral  4     11                                                          
+  AWADDR                       integral  32    'hf56619ab                                                  
+  AWLEN                        integral  4     'd5                                                         
+  AWSIZE                       integral  3     'd0                                                         
+  AWBURST                      integral  2     'd1                                                         
+  WID                          integral  4     11                                                          
+  WDATA                        integral  64    'he5ace64cfc39e2c9                                          
+  WSTRB                        integral  8     'b0                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h1829e72de2876226                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'he0f71380e267038f                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h57576a5031e66c17                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h1d3feea61fbfc2ad                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'hf79d8a79d410e605                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  BID                          integral  4     11                                                          
+  BRESP                        integral  2     'd0                                                         
+  ARID                         integral  4     'd0                                                         
+  ARADDR                       integral  32    'hded8c9e7                                                  
+  ARLEN                        integral  8     'd8                                                         
+  ARSIZE                       integral  3     'd2                                                         
+  ARBURST                      integral  2     'd1                                                         
+  RID                          integral  4     'd0                                                         
+  RDATA                        integral  64    'h9f5a79c018a64d61                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'hb4b36924b6da3ab0                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h825bfef4b93539f4                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'hb7d176f98e43b807                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h5e3083db205bac37                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h3f6892e3114238b2                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h3f110f1cd859e1b3                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'haa4ee04cefc1b1a3                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h2d040db562f933cb                                          
+  RRESP                        integral  2     'd0                                                         
+-----------------------------------------------------------------------------------------------------------
+
+UVM_INFO ../master_agent_top/master_driver.sv(153) @ 16500: uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_drv_h [DRV] DRV= -----------------------------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                                       
+-----------------------------------------------------------------------------------------------------------
+req                            axi_xtn   -     @998                                                        
+  begin_time                   time      64    2500                                                        
+  end_time                     time      64    4500                                                        
+  depth                        int       32    'd2                                                         
+  parent sequence (name)       string    5     m_seq                                                       
+  parent sequence (full name)  string    60    uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_seqr_h.m_seq
+  sequencer                    string    54    uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_seqr_h      
+  AWID                         integral  4     11                                                          
+  AWADDR                       integral  32    'hf56619ab                                                  
+  AWLEN                        integral  4     'd5                                                         
+  AWSIZE                       integral  3     'd0                                                         
+  AWBURST                      integral  2     'd1                                                         
+  WID                          integral  4     11                                                          
+  WDATA                        integral  64    'he5ace64cfc39e2c9                                          
+  WSTRB                        integral  8     'b0                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h1829e72de2876226                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'he0f71380e267038f                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h57576a5031e66c17                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'h1d3feea61fbfc2ad                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  WDATA                        integral  64    'hf79d8a79d410e605                                          
+  WSTRB                        integral  8     'b1                                                         
+  WLAST                        integral  1     'dX                                                         
+  BID                          integral  4     11                                                          
+  BRESP                        integral  2     'd0                                                         
+  ARID                         integral  4     'd0                                                         
+  ARADDR                       integral  32    'hded8c9e7                                                  
+  ARLEN                        integral  8     'd8                                                         
+  ARSIZE                       integral  3     'd2                                                         
+  ARBURST                      integral  2     'd1                                                         
+  RID                          integral  4     'd0                                                         
+  RDATA                        integral  64    'h9f5a79c018a64d61                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'hb4b36924b6da3ab0                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h825bfef4b93539f4                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'hb7d176f98e43b807                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h5e3083db205bac37                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h3f6892e3114238b2                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h3f110f1cd859e1b3                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'haa4ee04cefc1b1a3                                          
+  RRESP                        integral  2     'd0                                                         
+  RDATA                        integral  64    'h2d040db562f933cb                                          
+  RRESP                        integral  2     'd0                                                         
+-----------------------------------------------------------------------------------------------------------
+
+end of drive_wdata
+start of drive_bresp
+UVM_INFO @ 48500: run [OBJTN_TRC] Object uvm_test_top dropped 1 objection(s): count=0  total=0
+UVM_INFO @ 48500: run [OBJTN_TRC] Object uvm_test_top all_dropped 1 objection(s): count=0  total=0
+UVM_INFO @ 48500: run [OBJTN_TRC] Object uvm_top subtracted 1 objection(s) from its total (dropped from source object uvm_test_top): count=0  total=0
+UVM_INFO @ 48500: run [OBJTN_TRC] Object uvm_top subtracted 1 objection(s) from its total (all_dropped from source object uvm_test_top): count=0  total=0
+UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 48500: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO ../master_agent_top/master_monitor.sv(260) @ 48500: uvm_test_top.env_h.mst_agt_top.mst_agt_h[0].mst_mon_h [MASTER MONITOR] no of packet sent are:0
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   18
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[DRV]     6
+[MASTER MONITOR]     1
+[OBJTN_TRC]     6
+[Questa UVM]     2
+[RNTST]     1
+[TEST_DONE]     1
+[UVMTOP]     1
+** Note: $finish    : /home/cad/eda/Questa_2019/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+   Time: 485 ns  Iteration: 54  Instance: /top
+Saving coverage database on exit...
+End time: 11:59:09 on Sep 27,2024, Elapsed time: 0:00:03
+Errors: 0, Warnings: 7

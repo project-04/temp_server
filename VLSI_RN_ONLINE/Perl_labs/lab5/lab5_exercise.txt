@@ -1,0 +1,5 @@
+
+
+  1)Calculate Simple interest for year 2000.
+    Assume Principal = 10000,time = 5years ,rate = 10% .
+   (Hint) SI = PTR/100 .

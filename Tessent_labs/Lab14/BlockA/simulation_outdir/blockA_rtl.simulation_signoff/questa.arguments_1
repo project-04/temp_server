@@ -1,0 +1,6 @@
+ -y ../../../Libs/mem
+ -y ../../../Libs/rtl
+ -v ../../../Libs/adk_4_1/verilog/adk.v
+ -v /home/cad/eda/tessent/lnx-x86/lib64/hdleng/lib/dft_sim.v
+ +libext+.v+.v.gz
+ +incdir+"../.."

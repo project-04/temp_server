@@ -1,0 +1,23 @@
+//-------------------------------------------------
+//  File created by: Tessent Shell
+//          Version: 2019.1
+//       Created on: Wed Aug 14 12:11:37 IST 2019
+//-------------------------------------------------
+
+
+Core(blockA) {
+  DesignInfo {
+    design_id : rtl;
+    design_level : sub_block;
+    ChildBlockModules {
+    }
+    Clocks {
+      Clock(CLK) {
+        domain_label : clka;
+        type : async_source;
+        base_period : 12.00ns;
+        period : 12.0;
+      }
+    }
+  }
+}

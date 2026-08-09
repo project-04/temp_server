@@ -1,0 +1,157 @@
+set simulation_dict {
+  top_design_logical_library "work"
+  patterns {
+    ICLNetwork {
+      testbench_module_name      TB
+      top_design_instance_name   DUT_inst
+      top_module_name_list {}
+      extra_simulation_file_list {}
+      simulation_macro_list {}
+      lower_instances {}
+      file_list {
+         "ICLNetwork.pdl"
+         "ICLNetwork.v"
+         "ICLNetwork.v.0.vec"
+         "ICLNetwork.v.cfg"
+         "ICLNetwork.v.po.name"
+      }
+      icl_time "Wed Aug 14 06:41:38 GMT 2019"
+      sim_data_files ok
+    }
+    MemoryBist_P1 {
+      testbench_module_name      TB
+      top_design_instance_name   DUT_inst
+      top_module_name_list {}
+      extra_simulation_file_list {}
+      simulation_macro_list {}
+      lower_instances {}
+      file_list {
+         "MemoryBist_P1.pdl"
+         "MemoryBist_P1.v"
+         "MemoryBist_P1.v.0.vec"
+         "MemoryBist_P1.v.cfg"
+         "MemoryBist_P1.v.po.name"
+      }
+      icl_time "Wed Aug 14 06:41:38 GMT 2019"
+      sim_data_files ok
+    }
+    MemoryBist_ParallelRetentionTest_P1 {
+      testbench_module_name      TB
+      top_design_instance_name   DUT_inst
+      top_module_name_list {}
+      extra_simulation_file_list {}
+      simulation_macro_list {}
+      lower_instances {}
+      file_list {
+         "MemoryBist_ParallelRetentionTest_P1.pdl"
+         "MemoryBist_ParallelRetentionTest_P1.v"
+         "MemoryBist_ParallelRetentionTest_P1.v.0.vec"
+         "MemoryBist_ParallelRetentionTest_P1.v.cfg"
+         "MemoryBist_ParallelRetentionTest_P1.v.po.name"
+      }
+      icl_time "Wed Aug 14 06:41:38 GMT 2019"
+      sim_data_files ok
+    }
+  }
+
+  design_source_dictionary {
+    read1 {
+      format       "verilog_2001"
+      work_library "work"
+
+      files {
+        "../../dft_inserted_designs/blockA_rtl.dft_inserted_design/modified_rtl_files/blockA.v"
+      }
+      libraries {
+        { directory "../../../../Libs/mem" }
+        { directory "../../../../Libs/rtl" }
+      }
+      extensions {
+        ".v" ".v.gz"
+      }
+      defines {
+      }
+      incdirs {
+        "../../.."
+      }
+      options {
+      }
+    }
+
+    read2 {
+      format       "verilog_2001"
+      work_library "work"
+
+      files {
+        "../../instruments/blockA_rtl_cells.instrument/blockA_rtl_tessent_posedge_synchronizer_reset.v"
+      }
+      libraries {
+        { directory "../../../../Libs/mem" }
+        { directory "../../../../Libs/rtl" }
+      }
+      extensions {
+        ".v" ".v.gz"
+      }
+      defines {
+      }
+      incdirs {
+        "../../.."
+      }
+      options {
+        "-no_overwrite"
+      }
+    }
+
+    read3 {
+      format       "verilog_2001"
+      work_library "work"
+
+      files {
+        "../../instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_1.v"
+        "../../instruments/blockA_rtl_ijtag.instrument/blockA_rtl_tessent_sib_2.v"
+      }
+      libraries {
+        { directory "../../../../Libs/mem" }
+        { directory "../../../../Libs/rtl" }
+      }
+      extensions {
+        ".v" ".v.gz"
+      }
+      defines {
+      }
+      incdirs {
+        "../../.."
+      }
+      options {
+        "-no_overwrite"
+      }
+    }
+
+    read4 {
+      format       "verilog_2001"
+      work_library "work"
+
+      files {
+        "../../instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_bap.v"
+        "../../instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_controller.v"
+        "../../instruments/blockA_rtl_mbist.instrument/blockA_rtl_tessent_mbist_c1_interface_m1.v"
+      }
+      libraries {
+        { directory "../../../../Libs/mem" }
+        { directory "../../../../Libs/rtl" }
+      }
+      extensions {
+        ".v" ".v.gz"
+      }
+      defines {
+      }
+      incdirs {
+        "../../.."
+      }
+      options {
+        "-no_overwrite"
+      }
+    }
+    logical_design_library_list { work }
+  }
+}

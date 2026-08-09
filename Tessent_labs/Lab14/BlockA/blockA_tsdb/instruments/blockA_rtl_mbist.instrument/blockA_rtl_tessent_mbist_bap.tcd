@@ -1,0 +1,31 @@
+//--------------------------------------------------------
+//
+//  Copyright Mentor Graphics Corporation
+//  All Rights Reserved
+//
+//  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY
+//  INFORMATION WHICH IS THE PROPERTY OF MENTOR GRAPHICS
+//  CORPORATION OR ITS LICENSORS AND IS SUBJECT
+//  TO LICENSE TERMS.
+//
+//--------------------------------------------------------
+//  File created by: Tessent Shell
+//          Version: 2019.1
+//       Created on: Wed Aug 14 12:11:31 IST 2019
+//--------------------------------------------------------
+
+Core(blockA_rtl_tessent_mbist_bap) {
+  BistAccessPort {
+    version: 43;
+    design_name: blockA;
+    design_id: rtl;
+    Interface {
+    }
+    Controllers {
+      Controller(c1) {
+        module_name: blockA_rtl_tessent_mbist_c1_controller;
+        clock_domain_label: clka;
+      } 
+    }
+  }
+}

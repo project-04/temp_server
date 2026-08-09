@@ -1,0 +1,257 @@
+vsim -cvgperinstance -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit mem_cov11;run -all; exit" -wlf wave_file11.wlf -l test11.log -sv_seed random work.top "+UVM_TESTNAME=spi_low_power_mode_test" 
+Start time: 12:19:55 on Mar 21,2025
+** Note: (vsim-3813) Design is being optimized due to module recompilation...
+** Warning: ../master_agent/master_seqs.sv(428): (vopt-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+//  Questa Sim-64
+//  Version 2019.2 linux_x86_64 Apr 16 2019
+//
+//  Copyright 1991-2019 Mentor Graphics Corporation
+//  All Rights Reserved.
+//
+//  QuestaSim and its associated documentation contain trade
+//  secrets and commercial or financial information that are the property of
+//  Mentor Graphics Corporation and are privileged, confidential,
+//  and exempt from disclosure under the Freedom of Information Act,
+//  5 U.S.C. Section 552. Furthermore, this information
+//  is prohibited from disclosure under the Trade Secrets Act,
+//  18 U.S.C. Section 1905.
+//
+Loading sv_std.std
+Loading work.apb_intf(fast)
+Loading work.spi_intf(fast)
+Loading mtiUvm.uvm_pkg
+Loading work.spi_pkg(fast)
+Loading mtiUvm.questa_uvm_pkg(fast)
+Loading work.top(fast)
+Loading work.apb_intf(fast)
+Loading work.spi_intf(fast)
+Loading work.spi_core(fast)
+Loading work.apb_slave(fast)
+Loading work.baud_generator(fast)
+Loading work.spi_slave_select(fast)
+Loading work.shifter(fast)
+** Warning: (vsim-3764) Stand-alone call to function 'get' treated as implicit void cast.
+   Time: 0 ps  Iteration: 0  Region: /spi_pkg File: ../tb/spi_scoreboard.sv Line: 149
+** Warning: (vsim-3764) Stand-alone call to function 'get' treated as implicit void cast.
+   Time: 0 ps  Iteration: 0  Region: /spi_pkg File: ../tb/spi_scoreboard.sv Line: 151
+# Loading /home/cad/eda/Questa_2019/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+** Warning: (vsim-8634) Code was not compiled with coverage options.
+Sv_Seed = 4154587621
+ log -r /* 
+coverage save -onexit mem_cov11
+run -all
+----------------------------------------------------------------
+UVM-1.1d
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+UVM_INFO @ 0: reporter [RNTST] Running test spi_low_power_mode_test...
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+----------------------------------------------------------------------
+Name                         Type                          Size  Value
+----------------------------------------------------------------------
+uvm_test_top                 spi_low_power_mode_test       -     @482 
+  env_h                      spi_env                       -     @554 
+    apb2reg_predictor        uvm_reg_predictor #(apb_xtn)  -     @704 
+      bus_in                 uvm_analysis_imp              -     @711 
+      reg_ap                 uvm_analysis_port             -     @719 
+    apb_top                  apb_agent_top                 -     @566 
+      agnth[0]               apb_agent                     -     @733 
+        drvh                 apb_driver                    -     @757 
+          rsp_port           uvm_analysis_port             -     @772 
+          seq_item_port      uvm_seq_item_pull_port        -     @764 
+        monh                 apb_monitor                   -     @742 
+          monitor_port       uvm_analysis_port             -     @749 
+        seqrh                apb_sequencer                 -     @780 
+          rsp_export         uvm_analysis_export           -     @787 
+          seq_item_export    uvm_seq_item_pull_imp         -     @881 
+          arbitration_queue  array                         0     -    
+          lock_queue         array                         0     -    
+          num_last_reqs      integral                      32    'd1  
+          num_last_rsps      integral                      32    'd1  
+    sb_h                     spi_scoreboard                -     @689 
+      fifo_apb[0]            uvm_tlm_analysis_fifo #(T)    -     @897 
+        analysis_export      uvm_analysis_imp              -     @936 
+        get_ap               uvm_analysis_port             -     @928 
+        get_peek_export      uvm_get_peek_imp              -     @912 
+        put_ap               uvm_analysis_port             -     @920 
+        put_export           uvm_put_imp                   -     @904 
+      fifo_spi[0]            uvm_tlm_analysis_fifo #(T)    -     @944 
+        analysis_export      uvm_analysis_imp              -     @983 
+        get_ap               uvm_analysis_port             -     @975 
+        get_peek_export      uvm_get_peek_imp              -     @959 
+        put_ap               uvm_analysis_port             -     @967 
+        put_export           uvm_put_imp                   -     @951 
+    spi_top                  spi_agent_top                 -     @573 
+      agnth[0]               spi_agent                     -     @996 
+        drvh                 spi_driver                    -     @1020
+          rsp_port           uvm_analysis_port             -     @1035
+          seq_item_port      uvm_seq_item_pull_port        -     @1027
+        monh                 spi_monitor                   -     @1005
+          monitor_port       uvm_analysis_port             -     @1012
+        seqrh                spi_sequencer                 -     @1043
+          rsp_export         uvm_analysis_export           -     @1050
+          seq_item_export    uvm_seq_item_pull_imp         -     @1144
+          arbitration_queue  array                         0     -    
+          lock_queue         array                         0     -    
+          num_last_reqs      integral                      32    'd1  
+          num_last_rsps      integral                      32    'd1  
+    v_seqrh                  spi_virt_sequencer            -     @580 
+      rsp_export             uvm_analysis_export           -     @587 
+      seq_item_export        uvm_seq_item_pull_imp         -     @681 
+      arbitration_queue      array                         0     -    
+      lock_queue             array                         0     -    
+      num_last_reqs          integral                      32    'd1  
+      num_last_rsps          integral                      32    'd1  
+----------------------------------------------------------------------
+
+UVM_INFO ../slave_agent/slave_monitor.sv(49) @ 0: uvm_test_top.env_h.spi_top.agnth[0].monh [spi_monitor] SPI Slave Monitor: The ctrl value is 11101
+UVM_INFO ../master_agent/master_driver.sv(61) @ 75000: uvm_test_top.env_h.apb_top.agnth[0].drvh [apb_driver] The Transaction sent to the DUT is from spi master driver is  
+ ---------------------------------
+Name       Type      Size  Value 
+---------------------------------
+req        apb_xtn   -     @1203 
+  PRESETn  integral  1     'b1   
+  PWRITE   integral  1     'b0   
+  PSEL     integral  1     'b0   
+  PENABLE  integral  1     'b0   
+  PADDR    integral  3     'b10  
+  PWDATA   integral  8     'b1010
+  PRDATA   integral  8     'b0   
+  PREADY   integral  1     'b0   
+  PSLVERR  integral  1     'b0   
+---------------------------------
+
+UVM_INFO ../master_agent/master_monitor.sv(61) @ 75000: uvm_test_top.env_h.apb_top.agnth[0].monh [apb_monitor] The Data Collected from APB Monitor is 
+ --------------------------------
+Name       Type      Size  Value
+--------------------------------
+xtn        apb_xtn   -     @1191
+  PRESETn  integral  1     'b1  
+  PWRITE   integral  1     'b0  
+  PSEL     integral  1     'b1  
+  PENABLE  integral  1     'b1  
+  PADDR    integral  3     'b10 
+  PWDATA   integral  8     'b0  
+  PRDATA   integral  8     'b0  
+  PREADY   integral  1     'b1  
+  PSLVERR  integral  1     'b0  
+--------------------------------
+
+UVM_INFO ../ral_agent/spi_adapter.sv(34) @ 75000: reporter [spi_adapter] The Values of rw.kind ='{kind:UVM_READ, addr:2, data:0, n_bits:0, byte_en:255, status:UVM_IS_OK}
+UVM_INFO ../master_agent/master_driver.sv(61) @ 115000: uvm_test_top.env_h.apb_top.agnth[0].drvh [apb_driver] The Transaction sent to the DUT is from spi master driver is  
+ ----------------------------------
+Name       Type      Size  Value  
+----------------------------------
+req        apb_xtn   -     @1203  
+  PRESETn  integral  1     'b1    
+  PWRITE   integral  1     'b1    
+  PSEL     integral  1     'b0    
+  PENABLE  integral  1     'b0    
+  PADDR    integral  3     'b101  
+  PWDATA   integral  8     'b11111
+  PRDATA   integral  8     'b0    
+  PREADY   integral  1     'b0    
+  PSLVERR  integral  1     'b0    
+----------------------------------
+
+UVM_INFO ../master_agent/master_monitor.sv(61) @ 115000: uvm_test_top.env_h.apb_top.agnth[0].monh [apb_monitor] The Data Collected from APB Monitor is 
+ ----------------------------------
+Name       Type      Size  Value  
+----------------------------------
+xtn        apb_xtn   -     @1298  
+  PRESETn  integral  1     'b1    
+  PWRITE   integral  1     'b1    
+  PSEL     integral  1     'b1    
+  PENABLE  integral  1     'b1    
+  PADDR    integral  3     'b101  
+  PWDATA   integral  8     'b11111
+  PRDATA   integral  8     'b0    
+  PREADY   integral  1     'b1    
+  PSLVERR  integral  1     'b0    
+----------------------------------
+
+UVM_INFO ../ral_agent/spi_adapter.sv(34) @ 115000: reporter [spi_adapter] The Values of rw.kind ='{kind:UVM_WRITE, addr:5, data:31, n_bits:0, byte_en:255, status:UVM_IS_OK}
+UVM_INFO ../master_agent/master_driver.sv(61) @ 745000: uvm_test_top.env_h.apb_top.agnth[0].drvh [apb_driver] The Transaction sent to the DUT is from spi master driver is  
+ -------------------------------------
+Name       Type      Size  Value     
+-------------------------------------
+req        apb_xtn   -     @1319     
+  PRESETn  integral  1     'b1       
+  PWRITE   integral  1     'b0       
+  PSEL     integral  1     'b0       
+  PENABLE  integral  1     'b0       
+  PADDR    integral  3     'b101     
+  PWDATA   integral  8     'b11101001
+  PRDATA   integral  8     'b11111   
+  PREADY   integral  1     'b0       
+  PSLVERR  integral  1     'b0       
+-------------------------------------
+
+UVM_INFO ../master_agent/master_monitor.sv(61) @ 745000: uvm_test_top.env_h.apb_top.agnth[0].monh [apb_monitor] The Data Collected from APB Monitor is 
+ ----------------------------------
+Name       Type      Size  Value  
+----------------------------------
+xtn        apb_xtn   -     @1309  
+  PRESETn  integral  1     'b1    
+  PWRITE   integral  1     'b0    
+  PSEL     integral  1     'b1    
+  PENABLE  integral  1     'b1    
+  PADDR    integral  3     'b101  
+  PWDATA   integral  8     'b0    
+  PRDATA   integral  8     'b11111
+  PREADY   integral  1     'b1    
+  PSLVERR  integral  1     'b0    
+----------------------------------
+
+UVM_INFO ../ral_agent/spi_adapter.sv(34) @ 745000: reporter [spi_adapter] The Values of rw.kind ='{kind:UVM_READ, addr:5, data:31, n_bits:0, byte_en:255, status:UVM_IS_OK}
+###############################  Score Board Report #################################
+UVM_INFO ../tb/spi_scoreboard.sv(184) @ 745000: uvm_test_top.env_h.sb_h [spi_scoreboard] Low Power Mode Data Comparision is successfull
+######################################################################################
+UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 845000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO ../master_agent/master_driver.sv(70) @ 845000: uvm_test_top.env_h.apb_top.agnth[0].drvh [apb_driver] APB DRIVER: No of data sent from APB DRIVER are : 3
+UVM_INFO ../master_agent/master_monitor.sv(74) @ 845000: uvm_test_top.env_h.apb_top.agnth[0].monh [apb_monitor] APB Monitor:Collected in the APB Monitor is : 3
+UVM_INFO ../tb/spi_scoreboard.sv(216) @ 845000: uvm_test_top.env_h.sb_h [spi_scoreboard] SPI SCOREBOARD: The no of compared transactions in Scoreboard are 3
+UVM_INFO ../slave_agent/slave_driver.sv(142) @ 845000: uvm_test_top.env_h.spi_top.agnth[0].drvh [spi_driver] SPI DRIVER: The Transations sents from SPI Driver is :  0
+UVM_INFO ../slave_agent/slave_monitor.sv(123) @ 845000: uvm_test_top.env_h.spi_top.agnth[0].monh [spi_monitor] SPI MONITOR: The no of transaction received in spi monitor : 0
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   21
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[Questa UVM]     2
+[RNTST]     1
+[TEST_DONE]     1
+[UVMTOP]     1
+[apb_driver]     4
+[apb_monitor]     4
+[spi_adapter]     3
+[spi_driver]     1
+[spi_monitor]     2
+[spi_scoreboard]     2
+** Note: $finish    : /home/cad/eda/Questa_2019/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+   Time: 845 ns  Iteration: 54  Instance: /top
+Saving coverage database on exit...
+End time: 12:19:58 on Mar 21,2025, Elapsed time: 0:00:03
+Errors: 0, Warnings: 4

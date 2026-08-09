@@ -1,0 +1,138 @@
+MemoryTemplate (SYNC_1RW_32x16_RC_BISR) {
+   MemoryType      : SRAM;  
+   CellName        : SYNC_1RW_32x16_RC_BISR;
+   Algorithm       : SMarchCHKBcil;
+   BitGrouping     : 1;
+   ReadOutofRangeOK: On;
+   TransparentMode : SyncMux;
+   DataOutStage    : None;
+   OperationSet    : syncWR;
+   logicalPorts    : 1RW;
+
+// [start] : Port functions {{{
+      Port (CLK)  {
+                    Function: Clock;
+                    Polarity:ActiveHigh;
+                  }
+      Port (BWE[15:0]) {
+                    Function: WriteEnable; 
+                    Polarity:ActiveHigh; 
+                  }
+      Port (WE) {
+                    Function: WriteEnable; 
+                    Polarity:ActiveHigh; 
+                  }
+      Port (OE)  {
+                    //Function: OutputEnable; 
+                    Function: LogicHigh; 
+                    Polarity:ActiveHigh; 
+                  }
+      Port (D[15:0]) { 
+                       Function: Data; 
+                       Direction: Input; 
+                     }
+      Port (Q[15:0]) { 
+                       Function: Data; 
+                       Direction: Output; 
+                     }
+      port (A[4:0]) {
+                       function:       address;
+                     }
+      port (RR0[3:0]) {
+          Function : BisrParallelData;
+      }
+      port (RR1[3:0]) {
+          Function : BisrParallelData;
+      }
+      port (CR0[6:0]) {
+          Function : BisrParallelData;
+      }
+// [end]   : Port functions }}}
+
+// [start] : AddressCounter {{{
+    // Implementing 127 rows and 4 columns
+
+  AddressCounter {
+      Function ( ColumnAddress ) {
+          LogicalAddressMap {
+             ColumnAddress[1:0]:Address[1:0];
+          }
+          CountRange[0:3];
+      }
+      Function  ( RowAddress ){
+          LogicalAddressMap {
+             RowAddress[2:0]:Address[4:2];
+          }
+          CountRange[0:7];
+      }
+   }
+// [end]   : AddressCounter }}}
+  RedundancyAnalysis {
+      // [start] : RowSegment {{{
+      RowSegment(rs) {
+          NumberOfSpareElements : 2;
+          FuseSet {
+              Fuse[0] : AddressPort(A[2]);
+              Fuse[1] : AddressPort(A[3]);
+              Fuse[2] : AddressPort(A[4]);
+          }
+          PinMap {
+              SpareElement {
+                  RepairEnable : RR0[3];
+                  Fuse[0]      : RR0[0];
+                  Fuse[1]      : RR0[1];
+                  Fuse[2]      : RR0[2];
+              }
+              SpareElement {
+                  RepairEnable : RR1[3];
+                  Fuse[0]      : RR1[0];
+                  Fuse[1]      : RR1[1];
+                  Fuse[2]      : RR1[2];
+              }
+          }
+      }
+      // [end]   : RowSegment }}}
+// [start] : ColumnSegment {{{
+      ColumnSegment(cs) {
+          ShiftedIORange : Q[15:0];
+          NumberOfSpareElements : 1;
+          FuseSet {
+              Fuse[0] : AddressPort(A[0]);
+              Fuse[1] : AddressPort(A[1]);
+              FuseMap[3:0] {
+                  ShiftedIO(Q[0])  : 4'b0000;
+                  ShiftedIO(Q[1])  : 4'b0001;
+                  ShiftedIO(Q[2])  : 4'b0010;
+                  ShiftedIO(Q[3])  : 4'b0011;
+                  ShiftedIO(Q[4])  : 4'b0100;
+                  ShiftedIO(Q[5])  : 4'b0101;
+                  ShiftedIO(Q[6])  : 4'b0110;
+                  ShiftedIO(Q[7])  : 4'b0111;
+                  ShiftedIO(Q[8])  : 4'b1000;
+                  ShiftedIO(Q[9])  : 4'b1001;
+                  ShiftedIO(Q[10]) : 4'b1010;
+                  ShiftedIO(Q[11]) : 4'b1011;
+                  ShiftedIO(Q[12]) : 4'b1100;
+                  ShiftedIO(Q[13]) : 4'b1101;
+                  ShiftedIO(Q[14]) : 4'b1110;
+                  ShiftedIO(Q[15]) : 4'b1111;
+              }
+          }              
+          PinMap {
+              SpareElement {
+                  RepairEnable  : CR0[6];
+                  Fuse[1]       : CR0[5];
+                  Fuse[0]       : CR0[4];
+                  FuseMap[3]    : CR0[3];
+                  FuseMap[2]    : CR0[2];
+                  FuseMap[1]    : CR0[1];
+                  FuseMap[0]    : CR0[0];
+              }
+          }
+      }
+// [end]   : ColumnSegment }}}
+  }
+
+
+
+}

@@ -1,0 +1,483 @@
+iProcsForModule blockA
+
+iProc run_time_prog {} {
+
+   iReset
+   iNote "Setting up MemoryBist controller blockA_rtl_tessent_mbist_c1_controller_inst"
+   iNote "Releasing asynchronous reset"
+   iWrite blockA_rtl_tessent_sib_sti_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_sti_inst.sib 0b0
+   iApply
+
+   iWrite blockA_rtl_tessent_sib_mbist_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_mbist_inst.sib 0b0
+   iWrite blockA_rtl_tessent_sib_sti_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_sti_inst.sib 0b0
+   iApply
+
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0b000
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0]
+   iWrite blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr
+   iWrite blockA_rtl_tessent_mbist_bap_inst.sib_0 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.sib_0 0b0
+   iWrite blockA_rtl_tessent_sib_mbist_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_mbist_inst.sib 0b0
+   iWrite blockA_rtl_tessent_sib_sti_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_sti_inst.sib 0b0
+   iApply
+
+   iNote "Setting TCK_MODE to 0"
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0b000
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0bX0X
+   iWrite blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.sib_0 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.sib_0 0b0
+   iWrite blockA_rtl_tessent_sib_mbist_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_mbist_inst.sib 0b0
+   iWrite blockA_rtl_tessent_sib_sti_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_sti_inst.sib 0b0
+   iApply
+
+   iNote "Enabling reduced address simulation"
+   iNote "Enabling BIRA mode"
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0b001
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0b000
+   iWrite blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.DIAG_EN_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.BIRA_EN_REG[0] 0b1
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.CMP_EN_MASK_EN[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.CMP_EN_PARITY[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.MEM_SELECT_REG0[0] 0b1
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.REDUCED_ADDR_CNT_EN_REG[0] 0b1
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.ALGO_SEL_CNT_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.SELECT_COMMON_OPSET_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.SELECT_COMMON_DATA_PAT_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.MICROCODE_EN_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.INST_POINTER_REG_HW[0:4] 0b00000
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.A_ADD_REG_Y_HW[0:3] 0b0000
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.A_ADD_REG_X_HW[0:8] 0b000000000
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.B_ADD_REG_Y_HW[0:3] 0b0000
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.B_ADD_REG_X_HW[0:8] 0b000000000
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.OPSET_SELECT_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.WDATA_REG_HW[0:1] 0b00
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.EDATA_REG_HW[0:1] 0b00
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.X_ADDR_BIT_SEL_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.Y_ADDR_BIT_SEL_REG[0] 0b0
+   iWrite memA_interface_inst.RA_STATUS_SHADOW_REG_HW[0:1] 0b00
+   iWrite memA_interface_inst.FREEZE_STOP_ERROR_REG[0] 0b0
+   iWrite memA_interface_inst.GO_ID_REG[31:0] 0b00000000000000000000000000000000
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.PRESERVE_BIRA_FUSE_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.LOAD_BISR_FUSE_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.STOP_ON_ERROR_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.FREEZE_STOP_ERROR_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.STOP_ERROR_CNT_REG_HW[0:11] 0b000000000000
+   iWrite blockA_rtl_tessent_mbist_bap_inst.sib_0 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.sib_0 0b1
+   iWrite blockA_rtl_tessent_sib_mbist_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_mbist_inst.sib 0b0
+   iWrite blockA_rtl_tessent_sib_sti_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_sti_inst.sib 0b0
+   iApply
+
+   iRunLoop 1 -tck
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0b011
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0bX01
+   iWrite blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.sib_0 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.sib_0 0b0
+   iWrite blockA_rtl_tessent_sib_mbist_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_mbist_inst.sib 0b0
+   iWrite blockA_rtl_tessent_sib_sti_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_sti_inst.sib 0b0
+   iApply
+
+   iRunLoop 1 -tck
+   iNote "Checking GO is FAIL before execution"
+   iNote "Checking DONE is FAIL before execution"
+   iNote "Starting MemoryBist controller execution : blockA_rtl_tessent_mbist_c1_controller_inst"
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0b011
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0bX1X
+   iWrite blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.sib_0 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.sib_0 0b0
+   iWrite blockA_rtl_tessent_sib_mbist_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_mbist_inst.sib 0b0
+   iWrite blockA_rtl_tessent_sib_sti_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_sti_inst.sib 0b0
+   iApply
+
+   iRunLoop 1 -tck
+   iRunLoop -time 1900ns
+   iNote "Checking GO is PASS after execution completion"
+   iNote "Checking DONE is PASS after execution completion"
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0b001
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0b011
+   iWrite blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.sib_0 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.sib_0 0b1
+   iWrite blockA_rtl_tessent_sib_mbist_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_mbist_inst.sib 0b0
+   iWrite blockA_rtl_tessent_sib_sti_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_sti_inst.sib 0b0
+   iApply
+
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0b000
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0bX01
+   iWrite blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.sib_0 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.sib_0 0b1
+   iWrite blockA_rtl_tessent_sib_mbist_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_mbist_inst.sib 0b0
+   iWrite blockA_rtl_tessent_sib_sti_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_sti_inst.sib 0b0
+   iApply
+
+   iNote "Checking GO_ID bits are PASS"
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0b000
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0b000
+   iWrite blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.DIAG_EN_REG[0] 0b0
+   iRead  blockA_rtl_tessent_mbist_c1_controller_inst.DIAG_EN_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.BIRA_EN_REG[0] 0b1
+   iRead  blockA_rtl_tessent_mbist_c1_controller_inst.BIRA_EN_REG[0] 0b1
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.CMP_EN_MASK_EN[0] 0b0
+   iRead  blockA_rtl_tessent_mbist_c1_controller_inst.CMP_EN_MASK_EN[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.CMP_EN_PARITY[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.MEM_SELECT_REG0[0] 0b1
+   iRead  blockA_rtl_tessent_mbist_c1_controller_inst.MEM_SELECT_REG0[0] 0b1
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.REDUCED_ADDR_CNT_EN_REG[0] 0b1
+   iRead  blockA_rtl_tessent_mbist_c1_controller_inst.REDUCED_ADDR_CNT_EN_REG[0] 0b1
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.ALGO_SEL_CNT_REG[0] 0b0
+   iRead  blockA_rtl_tessent_mbist_c1_controller_inst.ALGO_SEL_CNT_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.SELECT_COMMON_OPSET_REG[0] 0b0
+   iRead  blockA_rtl_tessent_mbist_c1_controller_inst.SELECT_COMMON_OPSET_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.SELECT_COMMON_DATA_PAT_REG[0] 0b0
+   iRead  blockA_rtl_tessent_mbist_c1_controller_inst.SELECT_COMMON_DATA_PAT_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.MICROCODE_EN_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.INST_POINTER_REG_HW[0:4] 0b00000
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.A_ADD_REG_Y_HW[0:3] 0b0000
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.A_ADD_REG_X_HW[0:8] 0b000000000
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.B_ADD_REG_Y_HW[0:3] 0b0000
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.B_ADD_REG_X_HW[0:8] 0b000000000
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.OPSET_SELECT_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.WDATA_REG_HW[0:1] 0b00
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.EDATA_REG_HW[0:1] 0b00
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.X_ADDR_BIT_SEL_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.Y_ADDR_BIT_SEL_REG[0] 0b0
+   iWrite memA_interface_inst.RA_STATUS_SHADOW_REG_HW[0:1] 0b00
+   iRead  memA_interface_inst.RA_STATUS_SHADOW_REG_HW[0:1] 0b00
+   iWrite memA_interface_inst.FREEZE_STOP_ERROR_REG[0] 0b0
+   iWrite memA_interface_inst.GO_ID_REG[31:0] 0b00000000000000000000000000000000
+   iRead  memA_interface_inst.GO_ID_REG[31:0] 0b00000000000000000000000000000000
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.PRESERVE_BIRA_FUSE_REG[0] 0b0
+   iRead  blockA_rtl_tessent_mbist_c1_controller_inst.PRESERVE_BIRA_FUSE_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.LOAD_BISR_FUSE_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.STOP_ON_ERROR_REG[0] 0b0
+   iRead  blockA_rtl_tessent_mbist_c1_controller_inst.STOP_ON_ERROR_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.FREEZE_STOP_ERROR_REG[0] 0b0
+   iWrite blockA_rtl_tessent_mbist_c1_controller_inst.STOP_ERROR_CNT_REG_HW[0:11] 0b000000000000
+   iWrite blockA_rtl_tessent_mbist_bap_inst.sib_0 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.sib_0 0b1
+   iWrite blockA_rtl_tessent_sib_mbist_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_mbist_inst.sib 0b0
+   iWrite blockA_rtl_tessent_sib_sti_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_sti_inst.sib 0b0
+   iApply
+
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0b000
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SETUP_tdr[2:0] 0bX0X
+   iWrite blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.TCK_MODE_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.INVERT_ASYNC_TCK_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_HOLD_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHAIN_BYPASS_EN_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_CLK_EN_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.FL_CNT_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ASYNC_RESET_tdr 0b1
+   iWrite blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.CHECK_REPAIR_NEEDED_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.PRESERVE_FUSE_REGISTER_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_DIAG_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIRA_EN_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE1_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_ALGO_MODE0_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.BIST_SELECT_TEST_DATA_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.REDUCED_ADDRESS_COUNT_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.ENABLE_MEM_RESET_tdr 0b0
+   iWrite blockA_rtl_tessent_mbist_bap_inst.sib_0 0b0
+   iRead  blockA_rtl_tessent_mbist_bap_inst.sib_0 0b0
+   iWrite blockA_rtl_tessent_sib_mbist_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_mbist_inst.sib 0b0
+   iWrite blockA_rtl_tessent_sib_sti_inst.sib 0b1
+   iRead  blockA_rtl_tessent_sib_sti_inst.sib 0b0
+   iApply
+
+   iRunLoop 1 -tck
+
+}

@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : full_adder
+Version: T-2022.03-SP4
+Date   : Sun Aug 24 09:48:11 2025
+****************************************
+
+Library(s) Used:
+
+    lsi_10k (File: /home/cad/eda/SYNOPSYS/Design_Compiler/syn/T-2022.03-SP4/libraries/syn/lsi_10k.db)
+
+Number of ports:                            5
+Number of nets:                             5
+Number of cells:                            1
+Number of combinational cells:              1
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                          0
+Number of references:                       1
+
+Combinational area:                  8.000000
+Buf/Inv area:                        0.000000
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                     8.000000
+Total area:                 undefined
+1

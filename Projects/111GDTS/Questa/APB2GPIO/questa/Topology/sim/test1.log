@@ -1,0 +1,153 @@
+vsim -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit mem_cov1;run -all; exit" -wlf wave_file1.wlf -l test1.log -sv_seed random work.top "+UVM_TESTNAME=base_test" 
+Start time: 15:59:43 on Jan 20,2025
+** Note: (vsim-3812) Design is being optimized...
+** Note: (vopt-143) Recognized 1 FSM in module "apb_slave_interface(fast)".
+** Warning: ../tb/top.sv(17): (vopt-2685) [TFMPC] - Too few port connections for 'DUV'.  Expected 13, found 12.
+** Warning: ../tb/top.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'ext_clk_pad_i'.
+//  Questa Sim-64
+//  Version 2019.2 linux_x86_64 Apr 16 2019
+//
+//  Copyright 1991-2019 Mentor Graphics Corporation
+//  All Rights Reserved.
+//
+//  QuestaSim and its associated documentation contain trade
+//  secrets and commercial or financial information that are the property of
+//  Mentor Graphics Corporation and are privileged, confidential,
+//  and exempt from disclosure under the Freedom of Information Act,
+//  5 U.S.C. Section 552. Furthermore, this information
+//  is prohibited from disclosure under the Trade Secrets Act,
+//  18 U.S.C. Section 1905.
+//
+Loading sv_std.std
+Loading work.apb_if(fast)
+Loading work.io_pad_if(fast)
+Loading mtiUvm.uvm_pkg
+Loading work.pkg(fast)
+Loading work.aux_input_if(fast)
+Loading mtiUvm.questa_uvm_pkg(fast)
+Loading work.top(fast)
+Loading work.apb_if(fast)
+Loading work.aux_input_if(fast)
+Loading work.io_pad_if(fast)
+Loading work.gpio_core(fast)
+Loading work.apb_slave_interface(fast)
+Loading work.aux_interface(fast)
+Loading work.gpio_register(fast)
+Loading work.io_interface(fast)
+** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'PWRITE'. The port definition is at: ../rtl/gpio_core.v(27).
+   Time: 0 ps  Iteration: 0  Instance: /top/DUV File: ../tb/top.sv Line: 17
+# Loading /home/cad/eda/Questa_2019/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+** Warning: (vsim-8634) Code was not compiled with coverage options.
+Sv_Seed = 1042760108
+ log -r /* 
+coverage save -onexit mem_cov1
+run -all
+----------------------------------------------------------------
+UVM-1.1d
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+UVM_INFO @ 0: reporter [RNTST] Running test base_test...
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+--------------------------------------------------------------------
+Name                         Type                        Size  Value
+--------------------------------------------------------------------
+uvm_test_top                 base_test                   -     @485 
+  envh                       env                         -     @499 
+    apb_agt_toph             apb_agent_top               -     @511 
+      agnth                  apb_agent                   -     @680 
+        drvh                 apb_driver                  -     @709 
+          rsp_port           uvm_analysis_port           -     @724 
+          seq_item_port      uvm_seq_item_pull_port      -     @716 
+        monitor              apb_monitor                 -     @694 
+          monitor_port       uvm_analysis_port           -     @701 
+        seqrh                apb_sequencer               -     @732 
+          rsp_export         uvm_analysis_export         -     @739 
+          seq_item_export    uvm_seq_item_pull_imp       -     @833 
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+    aux_agt_toph             aux_agent_top               -     @518 
+      agnth                  aux_agent                   -     @848 
+        drvh                 aux_driver                  -     @877 
+          rsp_port           uvm_analysis_port           -     @892 
+          seq_item_port      uvm_seq_item_pull_port      -     @884 
+        monitor              aux_monitor                 -     @862 
+          monitor_port       uvm_analysis_port           -     @869 
+        seqrh                aux_sequencer               -     @900 
+          rsp_export         uvm_analysis_export         -     @907 
+          seq_item_export    uvm_seq_item_pull_imp       -     @1001
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+    io_agt_toph              io_agent_top                -     @525 
+      agnth                  io_agent                    -     @1016
+        drvh                 io_driver                   -     @1045
+          rsp_port           uvm_analysis_port           -     @1060
+          seq_item_port      uvm_seq_item_pull_port      -     @1052
+        monitor              io_monitor                  -     @1030
+          monitor_port       uvm_analysis_port           -     @1037
+        seqrh                io_sequencer                -     @1068
+          rsp_export         uvm_analysis_export         -     @1075
+          seq_item_export    uvm_seq_item_pull_imp       -     @1169
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+    sb                       scoreboard                  -     @532 
+      apb_fifo               uvm_tlm_analysis_fifo #(T)  -     @539 
+        analysis_export      uvm_analysis_imp            -     @578 
+        get_ap               uvm_analysis_port           -     @570 
+        get_peek_export      uvm_get_peek_imp            -     @554 
+        put_ap               uvm_analysis_port           -     @562 
+        put_export           uvm_put_imp                 -     @546 
+      aux_fifo               uvm_tlm_analysis_fifo #(T)  -     @586 
+        analysis_export      uvm_analysis_imp            -     @625 
+        get_ap               uvm_analysis_port           -     @617 
+        get_peek_export      uvm_get_peek_imp            -     @601 
+        put_ap               uvm_analysis_port           -     @609 
+        put_export           uvm_put_imp                 -     @593 
+      io_fifo                uvm_tlm_analysis_fifo #(T)  -     @633 
+        analysis_export      uvm_analysis_imp            -     @672 
+        get_ap               uvm_analysis_port           -     @664 
+        get_peek_export      uvm_get_peek_imp            -     @648 
+        put_ap               uvm_analysis_port           -     @656 
+        put_export           uvm_put_imp                 -     @640 
+--------------------------------------------------------------------
+
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    4
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[Questa UVM]     2
+[RNTST]     1
+[UVMTOP]     1
+** Note: $finish    : /home/cad/eda/Questa_2019/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+   Time: 0 ps  Iteration: 215  Instance: /top
+Saving coverage database on exit...
+End time: 15:59:48 on Jan 20,2025, Elapsed time: 0:00:05
+Errors: 0, Warnings: 4

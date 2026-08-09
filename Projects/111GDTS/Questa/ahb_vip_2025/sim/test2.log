@@ -1,0 +1,611 @@
+vsim -cvgperinstance -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit mem_cov2;run -all; exit" -wlf wave_file2.wlf -l test2.log -sv_seed 1724291359 work.top "+UVM_TESTNAME=test1" 
+Start time: 12:49:28 on Jun 14,2025
+** Note: (vsim-8009) Loading existing optimized design _opt
+//  Questa Sim-64
+//  Version 2019.2 linux_x86_64 Apr 16 2019
+//
+//  Copyright 1991-2019 Mentor Graphics Corporation
+//  All Rights Reserved.
+//
+//  QuestaSim and its associated documentation contain trade
+//  secrets and commercial or financial information that are the property of
+//  Mentor Graphics Corporation and are privileged, confidential,
+//  and exempt from disclosure under the Freedom of Information Act,
+//  5 U.S.C. Section 552. Furthermore, this information
+//  is prohibited from disclosure under the Trade Secrets Act,
+//  18 U.S.C. Section 1905.
+//
+** Warning: License feature 'msimhdlsim' will expire in 6 days.
+Loading sv_std.std
+Loading work.ahb_rst_if(fast)
+Loading work.sl_if(fast)
+Loading mtiUvm.uvm_pkg
+Loading work.avip_pkg(fast)
+Loading work.av_if(fast)
+Loading mtiUvm.questa_uvm_pkg(fast)
+Loading work.top(fast)
+Loading work.ahb_rst_if(fast)
+Loading work.av_if(fast)
+Loading work.sl_if(fast)
+Loading work.decoder(fast)
+** Warning: (vsim-8441) Clocking block output vif.sdcb.hrdata is not legal in this
+or another expression.
+   Time: 0 ns  Iteration: 0  Region: /avip_pkg::s_driver File: ../slave_agent/slave_driver.sv Line: 39
+** Warning: (vsim-8441) Clocking block output vif.sdcb.hready_out is not legal in this
+or another expression.
+   Time: 0 ns  Iteration: 0  Region: /avip_pkg::s_driver File: ../slave_agent/slave_driver.sv Line: 44
+** Warning: (vsim-8441) Clocking block output vif.sdcb.hready_out is not legal in this
+or another expression.
+   Time: 0 ns  Iteration: 0  Region: /avip_pkg::s_driver File: ../slave_agent/slave_driver.sv Line: 44
+** Warning: (vsim-8441) Clocking block output vif.sdcb.hrdata is not legal in this
+or another expression.
+   Time: 0 ns  Iteration: 0  Region: /avip_pkg::s_driver File: ../slave_agent/slave_driver.sv Line: 39
+# Loading /home/cad/eda/Questa_2019/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+** Warning: License feature 'svverification' will expire in 6 days.
+** Warning: License feature 'msimcoverage' will expire in 6 days.
+** Warning: (vsim-8634) Code was not compiled with coverage options.
+ log -r /* 
+coverage save -onexit mem_cov2
+run -all
+----------------------------------------------------------------
+UVM-1.1d
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+UVM_INFO @ 0: reporter [RNTST] Running test test1...
+UVM_INFO ../rst_agent/ahb_rst_driver.sv(24) @ 0: uvm_test_top.env_h.rst_agt.drvh [ahb_rst_driver] ahb rst driver connect_phase
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+------------------------------------------------------------------
+Name                       Type                        Size  Value
+------------------------------------------------------------------
+uvm_test_top               test1                       -     @489 
+  env_h                    env                         -     @511 
+    m_agt[0]               m_agent                     -     @543 
+      m_drv                m_driver                    -     @721 
+        rsp_port           uvm_analysis_port           -     @736 
+        seq_item_port      uvm_seq_item_pull_port      -     @728 
+      m_mon                m_monitor                   -     @597 
+        monitor_port       uvm_analysis_port           -     @604 
+      m_seqr               ma_sequencer                -     @612 
+        rsp_export         uvm_analysis_export         -     @619 
+        seq_item_export    uvm_seq_item_pull_imp       -     @713 
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    rst_agt                ahb_rst_agent               -     @577 
+      drvh                 ahb_rst_driver              -     @768 
+        rsp_port           uvm_analysis_port           -     @783 
+        seq_item_port      uvm_seq_item_pull_port      -     @775 
+      monh                 ahb_rst_monitor             -     @753 
+        rst_monitor_port   uvm_analysis_port           -     @760 
+      seqrh                ahb_rst_sequencer           -     @791 
+        rsp_export         uvm_analysis_export         -     @798 
+        seq_item_export    uvm_seq_item_pull_imp       -     @892 
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    s_agt[0]               s_agent                     -     @554 
+      s_drv                s_driver                    -     @1033
+        rsp_port           uvm_analysis_port           -     @1048
+        seq_item_port      uvm_seq_item_pull_port      -     @1040
+      s_mon                s_monitor                   -     @909 
+        monitor_port       uvm_analysis_port           -     @916 
+      s_seqr               s_sequencer                 -     @924 
+        rsp_export         uvm_analysis_export         -     @931 
+        seq_item_export    uvm_seq_item_pull_imp       -     @1025
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    s_agt[1]               s_agent                     -     @562 
+      s_drv                s_driver                    -     @1193
+        rsp_port           uvm_analysis_port           -     @1208
+        seq_item_port      uvm_seq_item_pull_port      -     @1200
+      s_mon                s_monitor                   -     @1069
+        monitor_port       uvm_analysis_port           -     @1076
+      s_seqr               s_sequencer                 -     @1084
+        rsp_export         uvm_analysis_export         -     @1091
+        seq_item_export    uvm_seq_item_pull_imp       -     @1185
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    s_agt[2]               s_agent                     -     @570 
+      s_drv                s_driver                    -     @1353
+        rsp_port           uvm_analysis_port           -     @1368
+        seq_item_port      uvm_seq_item_pull_port      -     @1360
+      s_mon                s_monitor                   -     @1229
+        monitor_port       uvm_analysis_port           -     @1236
+      s_seqr               s_sequencer                 -     @1244
+        rsp_export         uvm_analysis_export         -     @1251
+        seq_item_export    uvm_seq_item_pull_imp       -     @1345
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    sbh                    scoreboard                  -     @588 
+      mst_fifo             uvm_tlm_analysis_fifo #(T)  -     @1388
+        analysis_export    uvm_analysis_imp            -     @1427
+        get_ap             uvm_analysis_port           -     @1419
+        get_peek_export    uvm_get_peek_imp            -     @1403
+        put_ap             uvm_analysis_port           -     @1411
+        put_export         uvm_put_imp                 -     @1395
+      slv_fifo[0]          uvm_tlm_analysis_fifo #(T)  -     @1435
+        analysis_export    uvm_analysis_imp            -     @1474
+        get_ap             uvm_analysis_port           -     @1466
+        get_peek_export    uvm_get_peek_imp            -     @1450
+        put_ap             uvm_analysis_port           -     @1458
+        put_export         uvm_put_imp                 -     @1442
+      slv_fifo[1]          uvm_tlm_analysis_fifo #(T)  -     @1482
+        analysis_export    uvm_analysis_imp            -     @1521
+        get_ap             uvm_analysis_port           -     @1513
+        get_peek_export    uvm_get_peek_imp            -     @1497
+        put_ap             uvm_analysis_port           -     @1505
+        put_export         uvm_put_imp                 -     @1489
+      slv_fifo[2]          uvm_tlm_analysis_fifo #(T)  -     @1529
+        analysis_export    uvm_analysis_imp            -     @1568
+        get_ap             uvm_analysis_port           -     @1560
+        get_peek_export    uvm_get_peek_imp            -     @1544
+        put_ap             uvm_analysis_port           -     @1552
+        put_export         uvm_put_imp                 -     @1536
+------------------------------------------------------------------
+
+UVM_INFO ../slave_agent/slave_driver.sv(40) @ 25: uvm_test_top.env_h.s_agt[0].s_drv [slave driver] slave driver reset  0
+UVM_INFO ../slave_agent/slave_driver.sv(46) @ 25: uvm_test_top.env_h.s_agt[0].s_drv [slave driver] slave driver hready 1
+UVM_INFO ../master_agent/master_driver.sv(49) @ 45: uvm_test_top.env_h.m_agt[0].m_drv [MASTER DRV] THIS IS AHB DRIVER 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+req           trans     -     @1739     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     2         
+  HWDATA      integral  32    'h402963b4
+  HLEN        integral  8     'd1       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                  55MM @@@@@@@@@@@@@@@@@@@@@@@  - 1076454324
+UVM_INFO ../master_agent/master_monitor.sv(100) @ 55: uvm_test_top.env_h.m_agt[0].m_mon [master monitor] Printing from master monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1591     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     2         
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                  55master monitor write operation mem[8000016e]=00000029
+                  55slave monitor write operation mem[8000016e]= 00000029
+UVM_INFO ../slave_agent/slave_monitor.sv(95) @ 55: uvm_test_top.env_h.s_agt[0].s_mon [slave monitor] Printing from slave monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1727     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     'd0       
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                  55slave haadr = 8000016e 
+ master addr = 8000016e
+UVM_INFO ../tb/scoreboard.sv(129) @ 55: uvm_test_top.env_h.sbh [SB] Address compared successfully
+UVM_INFO ../tb/scoreboard.sv(135) @ 55: uvm_test_top.env_h.sbh [SB] write data matched successfully
+                  65MM @@@@@@@@@@@@@@@@@@@@@@@  - 1076454324
+UVM_INFO ../master_agent/master_monitor.sv(100) @ 65: uvm_test_top.env_h.m_agt[0].m_mon [master monitor] Printing from master monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1753     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     2         
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                  65master monitor write operation mem[8000016e]=00000029
+                  65slave monitor write operation mem[8000016e]= 00000029
+UVM_INFO ../slave_agent/slave_monitor.sv(95) @ 65: uvm_test_top.env_h.s_agt[0].s_mon [slave monitor] Printing from slave monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1757     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     'd0       
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                  65slave haadr = 8000016e 
+ master addr = 8000016e
+UVM_INFO ../tb/scoreboard.sv(129) @ 65: uvm_test_top.env_h.sbh [SB] Address compared successfully
+UVM_INFO ../tb/scoreboard.sv(135) @ 65: uvm_test_top.env_h.sbh [SB] write data matched successfully
+                  75MM @@@@@@@@@@@@@@@@@@@@@@@  - 1076454324
+UVM_INFO ../master_agent/master_monitor.sv(100) @ 75: uvm_test_top.env_h.m_agt[0].m_mon [master monitor] Printing from master monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1761     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     2         
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                  75master monitor write operation mem[8000016e]=00000029
+                  75slave monitor write operation mem[8000016e]= 00000029
+UVM_INFO ../slave_agent/slave_monitor.sv(95) @ 75: uvm_test_top.env_h.s_agt[0].s_mon [slave monitor] Printing from slave monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1765     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     'd0       
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                  75slave haadr = 8000016e 
+ master addr = 8000016e
+UVM_INFO ../tb/scoreboard.sv(129) @ 75: uvm_test_top.env_h.sbh [SB] Address compared successfully
+UVM_INFO ../tb/scoreboard.sv(135) @ 75: uvm_test_top.env_h.sbh [SB] write data matched successfully
+                  85MM @@@@@@@@@@@@@@@@@@@@@@@  - 1076454324
+UVM_INFO ../master_agent/master_monitor.sv(100) @ 85: uvm_test_top.env_h.m_agt[0].m_mon [master monitor] Printing from master monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1769     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     2         
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                  85master monitor write operation mem[8000016e]=00000029
+                  85slave monitor write operation mem[8000016e]= 00000029
+UVM_INFO ../slave_agent/slave_monitor.sv(95) @ 85: uvm_test_top.env_h.s_agt[0].s_mon [slave monitor] Printing from slave monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1773     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     'd0       
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                  85slave haadr = 8000016e 
+ master addr = 8000016e
+UVM_INFO ../tb/scoreboard.sv(129) @ 85: uvm_test_top.env_h.sbh [SB] Address compared successfully
+UVM_INFO ../tb/scoreboard.sv(135) @ 85: uvm_test_top.env_h.sbh [SB] write data matched successfully
+                  95MM @@@@@@@@@@@@@@@@@@@@@@@  - 1076454324
+UVM_INFO ../master_agent/master_monitor.sv(100) @ 95: uvm_test_top.env_h.m_agt[0].m_mon [master monitor] Printing from master monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1777     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     2         
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                  95master monitor write operation mem[8000016e]=00000029
+                  95slave monitor write operation mem[8000016e]= 00000029
+UVM_INFO ../slave_agent/slave_monitor.sv(95) @ 95: uvm_test_top.env_h.s_agt[0].s_mon [slave monitor] Printing from slave monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1781     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     'd0       
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                  95slave haadr = 8000016e 
+ master addr = 8000016e
+UVM_INFO ../tb/scoreboard.sv(129) @ 95: uvm_test_top.env_h.sbh [SB] Address compared successfully
+UVM_INFO ../tb/scoreboard.sv(135) @ 95: uvm_test_top.env_h.sbh [SB] write data matched successfully
+                 105MM @@@@@@@@@@@@@@@@@@@@@@@  - 1076454324
+UVM_INFO ../master_agent/master_monitor.sv(100) @ 105: uvm_test_top.env_h.m_agt[0].m_mon [master monitor] Printing from master monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1785     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     2         
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                 105master monitor write operation mem[8000016e]=00000029
+                 105slave monitor write operation mem[8000016e]= 00000029
+UVM_INFO ../slave_agent/slave_monitor.sv(95) @ 105: uvm_test_top.env_h.s_agt[0].s_mon [slave monitor] Printing from slave monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1789     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     'd0       
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                 105slave haadr = 8000016e 
+ master addr = 8000016e
+UVM_INFO ../tb/scoreboard.sv(129) @ 105: uvm_test_top.env_h.sbh [SB] Address compared successfully
+UVM_INFO ../tb/scoreboard.sv(135) @ 105: uvm_test_top.env_h.sbh [SB] write data matched successfully
+                 115MM @@@@@@@@@@@@@@@@@@@@@@@  - 1076454324
+UVM_INFO ../master_agent/master_monitor.sv(100) @ 115: uvm_test_top.env_h.m_agt[0].m_mon [master monitor] Printing from master monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1793     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     2         
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                 115master monitor write operation mem[8000016e]=00000029
+                 115slave monitor write operation mem[8000016e]= 00000029
+UVM_INFO ../slave_agent/slave_monitor.sv(95) @ 115: uvm_test_top.env_h.s_agt[0].s_mon [slave monitor] Printing from slave monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1797     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     'd0       
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                 115slave haadr = 8000016e 
+ master addr = 8000016e
+UVM_INFO ../tb/scoreboard.sv(129) @ 115: uvm_test_top.env_h.sbh [SB] Address compared successfully
+UVM_INFO ../tb/scoreboard.sv(135) @ 115: uvm_test_top.env_h.sbh [SB] write data matched successfully
+                 125MM @@@@@@@@@@@@@@@@@@@@@@@  - 1076454324
+UVM_INFO ../master_agent/master_monitor.sv(100) @ 125: uvm_test_top.env_h.m_agt[0].m_mon [master monitor] Printing from master monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1801     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     2         
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                 125master monitor write operation mem[8000016e]=00000029
+                 125slave monitor write operation mem[8000016e]= 00000029
+UVM_INFO ../slave_agent/slave_monitor.sv(95) @ 125: uvm_test_top.env_h.s_agt[0].s_mon [slave monitor] Printing from slave monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1805     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     'd0       
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                 125slave haadr = 8000016e 
+ master addr = 8000016e
+UVM_INFO ../tb/scoreboard.sv(129) @ 125: uvm_test_top.env_h.sbh [SB] Address compared successfully
+UVM_INFO ../tb/scoreboard.sv(135) @ 125: uvm_test_top.env_h.sbh [SB] write data matched successfully
+                 135MM @@@@@@@@@@@@@@@@@@@@@@@  - 1076454324
+UVM_INFO ../master_agent/master_monitor.sv(100) @ 135: uvm_test_top.env_h.m_agt[0].m_mon [master monitor] Printing from master monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1809     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     2         
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                 135master monitor write operation mem[8000016e]=00000029
+                 135slave monitor write operation mem[8000016e]= 00000029
+UVM_INFO ../slave_agent/slave_monitor.sv(95) @ 135: uvm_test_top.env_h.s_agt[0].s_mon [slave monitor] Printing from slave monitor 
+ ----------------------------------------
+Name          Type      Size  Value     
+----------------------------------------
+txn           trans     -     @1813     
+  HRESETn     integral  1     'd0       
+  HBURST      integral  3     'd0       
+  HRESP       integral  2     'd0       
+  HADDR       integral  32    'h8000016e
+  HTRANS      integral  2     'd0       
+  HWDATA      integral  32    'h0       
+  HLEN        integral  8     'd0       
+  HRDATA      integral  32    'd0       
+  HSIZE       integral  3     'd0       
+  HWRITE      integral  1     1         
+  HREADY_OUT  integral  1     'd0       
+----------------------------------------
+
+                 135slave haadr = 8000016e 
+ master addr = 8000016e
+UVM_INFO ../tb/scoreboard.sv(129) @ 135: uvm_test_top.env_h.sbh [SB] Address compared successfully
+UVM_INFO ../tb/scoreboard.sv(135) @ 135: uvm_test_top.env_h.sbh [SB] write data matched successfully
+UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 145: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO ../tb/scoreboard.sv(173) @ 145: uvm_test_top.env_h.sbh [Addr Pass REPORT]  Address match count is 9
+UVM_INFO ../tb/scoreboard.sv(174) @ 145: uvm_test_top.env_h.sbh [Data Pass REPORT]  Data match count is 9
+UVM_INFO ../tb/scoreboard.sv(176) @ 145: uvm_test_top.env_h.sbh [Addr Fail Report]  Address mismatch count is 0
+UVM_INFO ../tb/scoreboard.sv(177) @ 145: uvm_test_top.env_h.sbh [Data Fail Reprot]  Data mismatch count is 0
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   49
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[Addr Fail Report]     1
+[Addr Pass REPORT]     1
+[Data Fail Reprot]     1
+[Data Pass REPORT]     1
+[MASTER DRV]     1
+[Questa UVM]     2
+[RNTST]     1
+[SB]    18
+[TEST_DONE]     1
+[UVMTOP]     1
+[ahb_rst_driver]     1
+[master monitor]     9
+[slave driver]     2
+[slave monitor]     9
+** Note: $finish    : /home/cad/eda/Questa_2019/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+   Time: 145 ns  Iteration: 54  Instance: /top
+Saving coverage database on exit...
+End time: 12:49:29 on Jun 14,2025, Elapsed time: 0:00:01
+Errors: 0, Warnings: 5

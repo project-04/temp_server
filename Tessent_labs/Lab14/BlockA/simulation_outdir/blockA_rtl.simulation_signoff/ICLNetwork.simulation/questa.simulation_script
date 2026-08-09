@@ -1,0 +1,40 @@
+#!/bin/sh
+unset noclobber
+xitval=0
+
+if [ -f ./questa.setup_script ] ; then
+  . ./questa.setup_script
+fi
+
+echo "Number of expected miscompares = 0"
+set -v
+
+
+vlib ./questa_testbench_library
+vmap testbench_library ./questa_testbench_library
+vmap dut_work ../questa.logical_libraries/dut_work
+
+# Entry 1
+vlog -work testbench_library -mixedansiports +librescan -vlog01compat -ysearchlib \
+      "../patterns_directory/ICLNetwork.v"
+if [ $? != 0 ] ; then xitval=-1; echo "Failure on entry 1"; fi
+
+# Entry 2
+vlog -work testbench_library -mixedansiports +librescan -vlog01compat -ysearchlib \
+      "./patterns.configuration"
+if [ $? != 0 ] ; then xitval=-1; echo "Failure on entry 2"; fi
+
+if [ $xitval -ne 0 ]; then
+  echo "Simulation of the pattern cancelled"
+  exit $xitval
+fi
+
+vsim -c -lib "testbench_library" -do 'run -all; exit' +nowarnTFMPC +NEWPATH=../patterns_directory \
+      ICLNetwork_configuration
+if [ $? != 0 ] ; then xitval=-1; fi
+
+if [ $xitval -ne 0 ]; then
+  echo "Simulation failed"
+fi
+
+exit $xitval

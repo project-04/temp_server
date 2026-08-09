@@ -1,0 +1,1269 @@
+class uart_agent extends uvm_agent;
+	`uvm_component_utils(uart_agent)
+
+	uart_monitor uart_monh;
+	uart_driver uart_drvh;
+	uart_seqr uart_seqrh;
+
+	uart_config uart_cfg;
+
+	function new(string name="uart_agent",uvm_component parent);
+		super.new(name,parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		uart_monh = uart_monitor::type_id::create("uart_monh",this);
+
+		if(!uvm_config_db #(uart_config)::get(this,"","uart_config",uart_cfg))
+			`uvm_fatal(get_type_name(),"Have you set the config correctly?");
+
+		if(uart_cfg.is_active == UVM_ACTIVE)begin
+			uart_drvh = uart_driver::type_id::create("uart_drvh",this);
+			uart_seqrh = uart_seqr::type_id::create("uart_seqrh",this);
+		end
+			
+	endfunction
+
+	function void connect_phase(uvm_phase phase);
+		if(uart_cfg.is_active == UVM_ACTIVE)begin
+			uart_drvh.seq_item_port.connect(uart_seqrh.seq_item_export);
+		end
+	
+	endfunction
+
+endclass
+class uart_agent_top extends uvm_env;
+	`uvm_component_utils(uart_agent_top)
+
+	env_config env_cfg;
+	uart_agent uart_agt[];
+
+	function new(string name="uart_agent_top", uvm_component parent);
+		super.new(name,parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		if(! uvm_config_db #(env_config)::get(this,"","env_config",env_cfg))
+			`uvm_fatal(get_type_name(),"Have you set the config correctly?");
+
+		uart_agt = new[env_cfg.no_of_uart_agents];
+
+		foreach(uart_agt[i])begin
+			uart_agt[i] = uart_agent::type_id::create($sformatf("uart_agt[%0d]",i),this);
+
+			uvm_config_db #(uart_config)::set(this,$sformatf("uart_agt[%0d]*",i),"uart_config",env_cfg.uart_cfg[i]);
+		end
+
+	endfunction
+
+	
+		
+endclass
+class uart_config extends uvm_object;
+	`uvm_object_utils(uart_config)
+
+	function new(string name="uart_config");
+		super.new(name);
+	endfunction
+
+	virtual uart_if vif;
+	uvm_active_passive_enum is_active;
+endclass
+class uart_driver extends uvm_driver #(uart_trans);
+	`uvm_component_utils(uart_driver)
+
+	uart_config uart_cfg;
+	bit [7:0] lcr;
+	virtual uart_if vif;
+
+	function new(string name="uart_driver", uvm_component parent);
+		super.new(name,parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		if(! uvm_config_db #(uart_config)::get(this,"","uart_config",uart_cfg))
+			`uvm_fatal(get_type_name(),"Have you set the config correctly?");
+
+		if(! uvm_config_db #(int)::get(this,"","lcr",lcr))
+			`uvm_fatal(get_type_name(),"Have you set the LCR correctly?");
+	endfunction
+
+	function void connect_phase(uvm_phase phase);
+		super.connect_phase(phase);
+
+		vif = uart_cfg.vif;
+	endfunction
+	
+	task delay;
+		repeat(16) 
+		@(posedge vif.baud_o);
+	endtask
+
+	task send_to_dut(uart_trans xtn);
+
+		@(posedge vif.baud_o);
+		vif.TX = 1'b0;
+		delay;
+		
+		if(lcr[6]==1)
+		begin
+			vif.TX = 1'b0;
+			repeat(4) delay;
+		end
+		else
+		begin
+			vif.TX = xtn.tx[0];
+			delay;
+			
+			vif.TX = xtn.tx[1];
+			delay;
+			
+			vif.TX = xtn.tx[2];
+			delay;
+			
+			vif.TX = xtn.tx[3];
+			delay;
+		end
+
+		case(lcr[1:0])
+			2'b00:  begin
+					if(lcr[6]==1)
+					begin
+						vif.TX = 1'b0;
+						repeat(1) delay;
+					end
+					else
+					begin
+						vif.TX = xtn.tx[4];
+						delay;
+					end
+				end
+
+			2'b01:  begin
+					if(lcr[6]==1)
+					begin
+						vif.TX = 1'b0;
+						repeat(2) delay;
+					end
+					else
+					begin
+					 	vif.TX = xtn.tx[4];
+						delay;
+						
+						vif.TX = xtn.tx[5];
+						delay;
+					end
+				end
+
+			2'b10:  begin
+					if(lcr[6]==1)
+					begin
+						vif.TX = 1'b0;
+						repeat(3) delay;
+					end
+					else
+					begin
+					 	vif.TX = xtn.tx[4];
+						delay;
+
+						vif.TX = xtn.tx[5];
+						delay;
+
+						vif.TX = xtn.tx[6];
+						delay;
+					end
+				end
+
+			2'b11:  begin
+					if(lcr[6]==1)
+					begin
+						vif.TX = 1'b0;
+						repeat(4) delay;
+					end
+					else
+					begin
+					 	vif.TX = xtn.tx[4];
+						delay;
+					 	
+						vif.TX = xtn.tx[5];
+						delay;
+
+						vif.TX = xtn.tx[6];
+						delay;
+
+						vif.TX = xtn.tx[7];
+						delay;
+					end
+				end
+		endcase
+
+		//parity bit
+		if(lcr[3] == 1'b1)
+			begin
+				if(lcr[6]==1)
+				begin
+					vif.TX = 1'b0;
+					repeat(1) delay;
+				end
+				else if(lcr[4] == 1'b1 && lcr[5] == 1'b0) 
+				begin
+					vif.TX = ^xtn.tx;
+					delay;
+				end
+				
+				else if(lcr[4] == 1'b0 && lcr[5] == 1'b0) 
+				begin
+					vif.TX = ~^xtn.tx;
+					delay;
+				end
+				
+				else if(lcr[5] == 1'b1) 
+				begin
+					vif.TX = ~lcr[4];
+					delay;
+				end
+			end
+
+		//stop bit
+		if(lcr[2] == 0)
+			begin
+				if(lcr[6]==1)
+				begin
+					vif.TX = 1'b0;
+					repeat(1) delay;
+				end
+				else
+				begin
+					vif.TX = 1'b1;
+					delay;
+				end
+			end
+		if(lcr[2] == 1)
+			begin	
+				if(lcr[6]==1)
+				begin
+					vif.TX = 1'b0;
+					repeat(1) delay;
+				end
+				else
+				begin
+					vif.TX = 1'b1;
+					delay;
+					delay;
+				end
+			end
+	endtask
+	
+	task send_to_dut_temp(uart_trans xtn);
+
+		@(posedge vif.baud_o);
+		vif.TX = 1'b0;
+		$display($time, " d start ", vif.TX);
+		delay;
+		
+		if(lcr[6]==1)
+		begin
+			vif.TX = 1'b0;
+			$display($time, " d break ", vif.TX);
+			repeat(4) delay;
+		end
+		else
+		begin
+			vif.TX = xtn.tx[0];
+			$display($time, " d 0 ", vif.TX);
+			delay;
+			
+			vif.TX = xtn.tx[1];
+			$display($time, " d 1 ", vif.TX);
+			delay;
+			
+			vif.TX = xtn.tx[2];
+			$display($time, " d 2 ", vif.TX);
+			delay;
+			
+			vif.TX = xtn.tx[3];
+			$display($time, " d 3 ", vif.TX);
+			delay;
+		end
+
+		case(lcr[1:0])
+			2'b00:  begin
+					if(lcr[6]==1)
+					begin
+						vif.TX = 1'b0;
+						$display($time, " d break ", vif.TX);
+						repeat(1) delay;
+					end
+					else
+					begin
+						vif.TX = xtn.tx[4];
+						$display($time, " d 4 ", vif.TX);
+						delay;
+					end
+				end
+
+			2'b01:  begin
+					if(lcr[6]==1)
+					begin
+						vif.TX = 1'b0;
+						$display($time, " d break ", vif.TX);
+						repeat(2) delay;
+					end
+					else
+					begin
+					 	vif.TX = xtn.tx[4];
+						$display($time, " d 4 ", vif.TX);
+						delay;
+						
+						vif.TX = xtn.tx[5];
+						$display($time, " d 5 ", vif.TX);
+						delay;
+					end
+				end
+
+			2'b10:  begin
+					if(lcr[6]==1)
+					begin
+						vif.TX = 1'b0;
+						$display($time, " d break ", vif.TX);
+						repeat(3) delay;
+					end
+					else
+					begin
+					 	vif.TX = xtn.tx[4];
+						$display($time, " d 4 ", vif.TX);
+						delay;
+
+						vif.TX = xtn.tx[5];
+						$display($time, " d 5 ", vif.TX);
+						delay;
+
+						vif.TX = xtn.tx[6];
+						$display($time, " d 6 ", vif.TX);
+						delay;
+					end
+				end
+
+			2'b11:  begin
+					if(lcr[6]==1)
+					begin
+						vif.TX = 1'b0;
+						$display($time, " d break ", vif.TX);
+						repeat(4) delay;
+					end
+					else
+					begin
+					 	vif.TX = xtn.tx[4];
+						$display($time, " d 4 ", vif.TX);
+						delay;
+					 	
+						vif.TX = xtn.tx[5];
+						$display($time, " d 5 ", vif.TX);
+						delay;
+
+						vif.TX = xtn.tx[6];
+						$display($time, " d 6 ", vif.TX);
+						delay;
+
+						vif.TX = xtn.tx[7];
+						$display($time, " d 7 ", vif.TX);
+						delay;
+					end
+				end
+		endcase
+
+		//parity bit
+		if(lcr[3] == 1'b1)
+			begin
+				if(lcr[6]==1)
+				begin
+					vif.TX = 1'b0;
+					$display($time, " d break ", vif.TX);
+					repeat(1) delay;
+				end
+				else if(lcr[4] == 1'b1 && lcr[5] == 1'b0) 
+				begin
+					vif.TX = ^xtn.tx;
+					$display($time, " d parity ", vif.TX);
+					delay;
+				end
+				
+				else if(lcr[4] == 1'b0 && lcr[5] == 1'b0) 
+				begin
+					vif.TX = ~^xtn.tx;
+					$display($time, " d parity ", vif.TX);
+					delay;
+				end
+				
+				else if(lcr[5] == 1'b1) 
+				begin
+					vif.TX = ~lcr[4];
+					$display($time, " d parity ", vif.TX);
+					delay;
+				end
+			end
+
+		//stop bit
+		if(lcr[2] == 0)
+			begin
+				if(lcr[6]==1)
+				begin
+					vif.TX = 1'b0;
+					$display($time, " d break ", vif.TX);
+					repeat(1) delay;
+				end
+				else
+				begin
+					vif.TX = 1'b1;
+					$display($time, " d 1stop ", vif.TX);
+					delay;
+				end
+			end
+		if(lcr[2] == 1)
+			begin	
+				if(lcr[6]==1)
+				begin
+					vif.TX = 1'b0;
+					$display($time, " d break ", vif.TX);
+					repeat(2) delay;
+				end
+				else
+				begin
+					vif.TX = 1'b1;
+					$display($time, " d 1stop ", vif.TX);
+					delay;
+					$display($time, " d 2stop ", vif.TX);
+					delay;
+				end
+			end
+	endtask
+	
+	task run_phase(uvm_phase phase);
+		vif.TX = 1'b1;
+
+		forever begin
+			seq_item_port.get_next_item(req);
+
+			//`uvm_info("UART DRIVER","Printing from the UART agent Driver", UVM_LOW)
+			//req.print();
+
+			//send_to_dut_temp(req);
+			send_to_dut(req);
+			seq_item_port.item_done();
+			
+		end
+	endtask
+endclass
+
+class uart_monitor extends uvm_monitor;
+	`uvm_component_utils(uart_monitor)
+
+	uart_config uart_cfg;
+	bit [7:0] lcr;
+	bit [7:0] q_thr[$];
+      	bit [7:0] q_rbr[$];
+	virtual uart_if vif;
+	uart_trans t_xtn, r_xtn;
+	
+	uvm_analysis_port #(uart_trans) monitor_port;
+
+	function new(string name="uart_driver", uvm_component parent);
+		super.new(name,parent);
+		monitor_port = new("monitor_port", this);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		if(! uvm_config_db #(uart_config)::get(this,"","uart_config",uart_cfg))
+			`uvm_fatal(get_type_name(),"Have you set the config correctly?");
+
+		t_xtn = uart_trans::type_id::create("t_xtn");
+		r_xtn = uart_trans::type_id::create("r_xtn");
+
+		if(! uvm_config_db #(int)::get(this,"","lcr",lcr))
+			`uvm_fatal(get_type_name(),"Have you set the LCR correctly?");
+	endfunction
+
+	function void connect_phase(uvm_phase phase);
+		super.connect_phase(phase);
+
+		vif = uart_cfg.vif;
+	endfunction
+
+	task delay;
+		repeat(16) 
+		@(posedge vif.baud_o);
+	endtask
+	
+	task collect_uart_tx_temp (ref bit line, ref bit [7:0]data, ref bit parity);
+		
+			//wait(line == 1'b1)
+			//@(posedge vif.baud_o);
+			
+			wait(line == 1'b0);
+			$display($time, " m start ",line);
+			
+			repeat(8) 
+				@(posedge vif.baud_o);
+			delay;
+			
+			$display($time, " m 1 ",line);
+			data[0] = line;
+			delay;
+			
+			$display($time, " m 2 ",line);
+			data[1] = line;
+			delay;
+
+			$display($time, " m 3 ",line);
+			data[2] = line;
+			delay;
+			
+			$display($time, " m 4 ",line);
+			data[3] = line;
+			delay;
+
+			case(lcr[1:0])
+				2'b00: 	begin
+						data[4] = line;
+						delay;
+					end
+
+				2'b01: 	begin
+						data[4] = line;
+						delay;
+
+						data[5] = line;
+						delay;
+					end
+
+				2'b10: 	begin
+						data[4] = line;
+						delay;
+
+						data[5] = line;
+						delay;
+						
+						data[6] = line;
+						delay;
+					end
+
+				2'b11: 	begin
+						$display($time, " m 5 ",line);
+						data[4] = line;
+						delay;
+
+						$display($time, " m 6 ",line);
+						data[5] = line;
+						delay;
+
+						$display($time, " m 7 ",line);
+						data[6] = line;
+						delay;
+
+						$display($time, " m 8 ",line);
+						data[7] = line;
+						delay;
+							
+					end
+			endcase	
+
+			if(lcr[3] == 1)
+				begin
+					$display($time," m parity ", line);
+					parity = line;
+					delay;
+				end
+
+			if(lcr[2] == 0)
+				begin
+					$display($time, " m 1stop ", line);
+					repeat(8)
+					@(posedge vif.baud_o);
+				end
+			else
+				begin
+					$display($time, " m 1stop ", line);
+					repeat(8)
+					@(posedge vif.baud_o);
+					$display($time, " m 2stop ", line);
+					delay;
+				end
+				
+	endtask
+
+	task collect_uart_rx_temp (ref bit line, ref bit [7:0]data, ref bit parity);
+		
+			wait(line == 1'b1)
+			//@(posedge vif.baud_o);
+			
+			wait(line == 1'b0);
+			$display($time, " m start ",line);
+			
+			repeat(8) 
+				@(posedge vif.baud_o);
+			delay;
+			
+			$display($time, " m 1 ",line);
+			data[0] = line;
+			delay;
+			
+			$display($time, " m 2 ",line);
+			data[1] = line;
+			delay;
+
+			$display($time, " m 3 ",line);
+			data[2] = line;
+			delay;
+			
+			$display($time, " m 4 ",line);
+			data[3] = line;
+			delay;
+
+			case(lcr[1:0])
+				2'b00: 	begin
+						data[4] = line;
+						delay;
+					end
+
+				2'b01: 	begin
+						data[4] = line;
+						delay;
+
+						data[5] = line;
+						delay;
+					end
+
+				2'b10: 	begin
+						data[4] = line;
+						delay;
+
+						data[5] = line;
+						delay;
+						
+						data[6] = line;
+						delay;
+					end
+
+				2'b11: 	begin
+						$display($time, " m 5 ",line);
+						data[4] = line;
+						delay;
+
+						$display($time, " m 6 ",line);
+						data[5] = line;
+						delay;
+
+						$display($time, " m 7 ",line);
+						data[6] = line;
+						delay;
+
+						$display($time, " m 8 ",line);
+						data[7] = line;
+						delay;
+							
+					end
+			endcase	
+
+			if(lcr[3] == 1)
+				begin
+					$display($time," m parity ", line);
+					parity = line;
+					delay;
+				end
+
+			if(lcr[2] == 0)
+				begin
+					$display($time, " m 1stop ", line);
+					repeat(8)
+					@(posedge vif.baud_o);
+				end
+			else
+				begin
+					$display($time, " m 1stop ", line);
+					repeat(8)
+					@(posedge vif.baud_o);
+					$display($time, " m 2stop ", line);
+					delay;
+				end
+				
+	endtask
+	
+	task collect_uart_tx (ref bit line, ref bit [7:0]data, ref bit parity);
+	begin
+			//wait(line == 1'b1)
+			//@(posedge vif.baud_o);
+
+			wait(line == 1'b0);
+			
+			repeat(8) 
+				@(posedge vif.baud_o);
+			delay;
+			
+			data[0] = line;
+			delay;
+			
+			data[1] = line;
+			delay;
+
+			data[2] = line;
+			delay;
+			
+			data[3] = line;
+			delay;
+
+			case(lcr[1:0])
+				2'b00: 	begin
+						data[4] = line;
+						delay;
+					end
+
+				2'b01: 	begin
+						data[4] = line;
+						delay;
+
+						data[5] = line;
+						delay;
+					end
+
+				2'b10: 	begin
+						data[4] = line;
+						delay;
+
+						data[5] = line;
+						delay;
+						
+						data[6] = line;
+						delay;
+					end
+
+				2'b11: 	begin
+						data[4] = line;
+						delay;
+
+						data[5] = line;
+						delay;
+
+						data[6] = line;
+						delay;
+
+						data[7] = line;
+						delay;
+							
+					end
+			endcase	
+
+			if(lcr[3] == 1)
+				begin
+					parity = line;
+					delay;
+				end
+
+			if(lcr[2] == 0)
+				begin
+					repeat(8)
+					@(posedge vif.baud_o);
+				end
+			else
+				begin
+					repeat(8)
+					@(posedge vif.baud_o);
+					delay;
+				end
+		
+		/*q_thr.push_back(t_xtn.tx);
+		monitor_port.write(t_xtn);
+		$display("----------This is the TX line data :%d, Parity=%b", t_xtn.tx, t_xtn.parity);*/
+	end
+	endtask
+	
+	task collect_uart_rx (ref bit line, ref bit [7:0]data, ref bit parity);
+	begin
+			wait(line == 1'b1)
+			//@(posedge vif.baud_o);
+
+			wait(line == 1'b0);
+			
+			repeat(8) 
+				@(posedge vif.baud_o);
+			delay;
+			
+			data[0] = line;
+			delay;
+			
+			data[1] = line;
+			delay;
+
+			data[2] = line;
+			delay;
+			
+			data[3] = line;
+			delay;
+
+			case(lcr[1:0])
+				2'b00: 	begin
+						data[4] = line;
+						delay;
+					end
+
+				2'b01: 	begin
+						data[4] = line;
+						delay;
+
+						data[5] = line;
+						delay;
+					end
+
+				2'b10: 	begin
+						data[4] = line;
+						delay;
+
+						data[5] = line;
+						delay;
+						
+						data[6] = line;
+						delay;
+					end
+
+				2'b11: 	begin
+						data[4] = line;
+						delay;
+
+						data[5] = line;
+						delay;
+
+						data[6] = line;
+						delay;
+
+						data[7] = line;
+						delay;
+							
+					end
+			endcase	
+
+			if(lcr[3] == 1)
+				begin
+					parity = line;
+					delay;
+				end
+
+			if(lcr[2] == 0)
+				begin
+					repeat(8)
+					@(posedge vif.baud_o);
+				end
+			else
+				begin
+					repeat(8)
+					@(posedge vif.baud_o);
+					delay;
+				end
+		
+		/*q_thr.push_back(t_xtn.tx);
+		monitor_port.write(t_xtn);
+		$display("----------This is the TX line data :%d, Parity=%b", t_xtn.tx, t_xtn.parity);*/
+	end
+	endtask
+
+	task run_phase(uvm_phase phase);
+		bit tx_busy, rx_busy;
+
+		forever
+			fork
+				begin
+					if(tx_busy == 1'b0)
+					begin
+						tx_busy = 1'b1;
+			      			t_xtn = uart_trans::type_id::create("t_xtn");
+						collect_uart_tx(vif.TX, t_xtn.tx, t_xtn.parity);
+						//collect_uart_tx_temp(vif.TX, t_xtn.tx, t_xtn.parity);
+						
+						q_thr.push_back(t_xtn.tx);
+                                              	t_xtn.THR.push_back(t_xtn.tx);
+						monitor_port.write(t_xtn);
+						$display("----------This is the TX line data : %0d, Parity=%b", t_xtn.tx, t_xtn.parity);
+						
+						tx_busy = 1'b0;
+					end
+
+					else
+						@(posedge vif.baud_o);
+				end
+
+				begin
+					if(rx_busy == 1'b0)
+					begin
+						rx_busy = 1'b1;
+			      			r_xtn = uart_trans::type_id::create("r_xtn");
+						collect_uart_rx(vif.RX, r_xtn.rx, r_xtn.parity);
+						//collect_uart_rx_temp(vif.RX, r_xtn.rx, r_xtn.parity);
+						
+						q_rbr.push_back(r_xtn.rx);
+                                              	r_xtn.RBR.push_back(r_xtn.rx);
+						monitor_port.write(r_xtn);
+						$display("----------This is the RX line data : %0d, Parity=%b", r_xtn.rx, r_xtn.parity);
+						
+						rx_busy = 1'b0;
+					end
+
+					else
+						@(posedge vif.baud_o);
+				end
+
+			join_any
+	endtask
+
+	function void extract_phase(uvm_phase phase);
+	super.extract_phase(phase);
+		//`uvm_info(get_type_name(),"Printing from UART agent monitor",UVM_LOW)
+		//t_xtn.print();
+
+		//`uvm_info(get_type_name(),"Printing from UART agent monitor",UVM_LOW)
+		//r_xtn.print();
+		$display("\nuart q_thr = %p", q_thr);
+		$display("uart q_rbr = %p\nextract phase end\n\n", q_rbr);
+	endfunction
+endclass
+class uart_seqr extends uvm_sequencer #(uart_trans);
+	`uvm_component_utils(uart_seqr)
+
+	function new(string name="uart_seqr", uvm_component parent);
+		super.new(name,parent);
+	endfunction
+
+endclass
+//*******************************************************Base sequence
+class base_seq extends uvm_sequence #(uart_trans);
+	`uvm_object_utils(base_seq)
+
+	bit [7:0]lcr;
+
+	function new(string name="base_seq");
+		super.new(name);
+	endfunction
+	
+endclass
+
+//*******************************************************UART agent(receiving) Half_duplex
+class uart_HD0 extends base_seq;
+	`uvm_object_utils(uart_HD0)
+
+	function new(string name="uart_HD0");
+		super.new(name);
+	endfunction
+
+	task body();
+		req = uart_trans::type_id::create("req");
+
+		start_item(req);
+		assert(req.randomize() with {tx == 8'hff;});
+		finish_item(req);
+	
+		//`uvm_info("UART HALF_DUPLEX_0 SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+		//req.print();
+	endtask
+endclass 
+
+//*******************************************************HD0_multiple
+class uart_HD0_multiple extends base_seq;
+	`uvm_object_utils(uart_HD0_multiple)
+
+	function new(string name="uart_HD0_multiple");
+		super.new(name);
+	endfunction
+
+	task body();
+
+		repeat(8)
+			begin
+				req = uart_trans::type_id::create("req");
+
+				start_item(req);
+				assert(req.randomize() with {tx == 8'hff;});
+				finish_item(req);
+	
+				//`uvm_info("UART HD0_Multiple SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+				//req.print();
+			end
+	endtask
+endclass
+
+//*******************************************************UART agent(sending) Half_duplex
+class uart_HD1 extends base_seq;
+	`uvm_object_utils(uart_HD1)
+
+	function new(string name="uart_HD1");
+		super.new(name);
+	endfunction
+
+	task body();
+		req = uart_trans::type_id::create("req");
+
+		start_item(req);
+		assert(req.randomize() with {tx == 8'b1010_1010;});
+		finish_item(req);
+	
+		//`uvm_info("UART HALF_DUPLEX_1 SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+		//req.print();
+	endtask
+endclass
+
+//*******************************************************HD1_multiple
+class uart_HD1_multiple extends base_seq;
+	`uvm_object_utils(uart_HD1_multiple)
+
+	function new(string name="uart_HD1_multiple");
+		super.new(name);
+	endfunction
+
+	task body();
+
+		repeat(8)
+			begin
+				req = uart_trans::type_id::create("req");
+
+				start_item(req);
+				assert(req.randomize() with {tx inside {[1:32]};});
+				finish_item(req);
+	
+				//`uvm_info("UART HD1_Multiple SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+				//req.print();
+			end
+	endtask
+endclass
+
+//*******************************************************Full_duplex
+class uart_FD extends base_seq;
+	`uvm_object_utils(uart_FD)
+
+	function new(string name="uart_FD");
+		super.new(name);
+	endfunction
+
+	task body();
+		req = uart_trans::type_id::create("req");
+
+		start_item(req);
+		assert(req.randomize() with {tx == 8'b0101_0101;});
+		finish_item(req);
+	
+		//`uvm_info("UART FULL_DUPLEX SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+		//req.print();
+	endtask
+endclass
+
+//*******************************************************Full_duplex_multiple
+class uart_FD_multiple extends base_seq;
+	`uvm_object_utils(uart_FD_multiple)
+
+	function new(string name="uart_FD_multiple");
+		super.new(name);
+	endfunction
+
+	task body();
+		repeat(8)
+			begin
+				req = uart_trans::type_id::create("req");
+
+				start_item(req);
+				assert(req.randomize() with {tx inside {[1:32]};});
+				finish_item(req);
+	
+				//`uvm_info("UART FD_Multiple SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+				//req.print();
+			end
+	endtask
+endclass
+
+//******************************************************* No need for UART sequence for loopback
+//******************************************************* No need for UART sequence for THR empty
+
+//*******************************************************HD0_parity
+class uart_HD0_parity extends base_seq;
+	`uvm_object_utils(uart_HD0_parity)
+
+	function new(string name="uart_HD0_parity");
+		super.new(name);
+	endfunction
+
+	task body();
+		req = uart_trans::type_id::create("req");
+
+		start_item(req);
+		assert(req.randomize() with {tx == 8'hff; parity == 1'b1;});
+		finish_item(req);
+
+		//`uvm_info("UART FD_Multiple SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+		//req.print();
+	endtask
+endclass
+
+//*******************************************************HD1_parity error
+class uart_HD1_parity extends base_seq;
+	`uvm_object_utils(uart_HD1_parity)
+
+	function new(string name="uart_HD1_parity");
+		super.new(name);
+	endfunction
+
+	task body();
+		req = uart_trans::type_id::create("req");
+
+		start_item(req);
+		assert(req.randomize() with {tx inside {[1:32]}; parity == 1'b1;});
+		finish_item(req);
+
+		//`uvm_info("UART FD_Multiple SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+		//req.print();
+	endtask
+endclass
+
+//*******************************************************FD_parity
+class uart_FD_parity extends base_seq;
+	`uvm_object_utils(uart_FD_parity)
+
+	function new(string name="uart_FD_parity");
+		super.new(name);
+	endfunction
+
+	task body();
+		req = uart_trans::type_id::create("req");
+
+		start_item(req);
+		assert(req.randomize() with {tx inside {[1:32]}; parity == 1'b1;});
+		finish_item(req);
+
+		//`uvm_info("UART FD_Multiple SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+		//req.print();
+	endtask
+endclass
+
+//*******************************************************HD_break
+class uart_HD_break extends base_seq;
+	`uvm_object_utils(uart_HD_break)
+
+	function new(string name="uart_HD_break");
+		super.new(name);
+	endfunction
+
+	task body();
+		req = uart_trans::type_id::create("req");
+
+		start_item(req);
+		assert(req.randomize() with {tx inside {[1:32]};});
+		finish_item(req);
+
+		//`uvm_info("UART FD_Multiple SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+		//req.print();
+	endtask
+endclass
+
+//*******************************************************HD_frame
+class uart_HD_frame extends base_seq;
+	`uvm_object_utils(uart_HD_frame)
+
+	function new(string name="uart_HD_frame");
+		super.new(name);
+	endfunction
+
+	task body();
+		req = uart_trans::type_id::create("req");
+
+		start_item(req);
+		assert(req.randomize() with {tx ==  8'b0000_1111;});
+		finish_item(req);
+
+		//`uvm_info("UART FD_Multiple SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+		//req.print();
+	endtask
+endclass
+
+//*******************************************************FD_frame
+class uart_FD_frame extends base_seq;
+	`uvm_object_utils(uart_FD_frame)
+
+	function new(string name="uart_FD_frame");
+		super.new(name);
+	endfunction
+
+	task body();
+		req = uart_trans::type_id::create("req");
+
+		start_item(req);
+		assert(req.randomize() with {tx ==  8'b0000_1111; });
+		finish_item(req);
+
+		//`uvm_info("UART FD_Multiple SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+		//req.print();
+	endtask
+endclass
+
+//*******************************************************HD1_overrun
+class uart_HD1_overrun extends base_seq;
+	`uvm_object_utils(uart_HD1_overrun)
+
+	function new(string name="uart_HD1_overrun");
+		super.new(name);
+	endfunction
+
+	task body();
+
+		repeat(17)
+			begin
+				req = uart_trans::type_id::create("req");
+
+				start_item(req);
+				assert(req.randomize() with {tx inside {[1:32]};});
+				finish_item(req);
+	
+				//`uvm_info("UART HD1_Multiple SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+				//req.print();
+			end
+	endtask
+endclass
+
+//*******************************************************HD1_timeout
+class uart_HD1_timeout extends base_seq;
+	`uvm_object_utils(uart_HD1_timeout)
+
+	function new(string name="uart_HD1_timeout");
+		super.new(name);
+	endfunction
+
+	task body();
+
+		repeat(17)
+			begin
+				req = uart_trans::type_id::create("req");
+
+				start_item(req);
+				assert(req.randomize() with {tx inside {[1:32]};});
+				finish_item(req);
+	
+				//`uvm_info("UART HD1_Multiple SEQUENCE","This is UART Agent sequence:%s",UVM_LOW)
+				//req.print();
+			end
+	endtask
+endclass
+class uart_trans extends uvm_sequence_item;
+	`uvm_object_utils(uart_trans)
+
+	function new(string name="uart_trans");
+		super.new(name);
+	endfunction
+
+   static   bit [7:0] THR [$];
+   static   bit [7:0] RBR [$];
+      
+	rand bit [7:0]tx;
+	rand bit parity;
+	bit [7:0]rx;
+
+	function void do_print(uvm_printer printer);
+		super.do_print(printer);
+	
+		printer.print_field("tx",this.tx,8,UVM_BIN);
+		printer.print_field("rx",this.rx,8,UVM_BIN);
+		printer.print_field("Parity",this.parity,1,UVM_BIN);
+	endfunction
+
+endclass

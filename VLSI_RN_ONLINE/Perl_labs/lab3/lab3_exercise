@@ -1,0 +1,6 @@
+
+     1)Write a program that prompts for a number and prints out a string,
+		   the number of times indicated by the number on separate lines. 
+			(Hint: Use the "x" operator) .
+       If the user enters "3" and the script has a string value "fred",
+			 the output should be printed on three next lines as "fred".

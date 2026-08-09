@@ -1,0 +1,130 @@
+vsim -cvgperinstance -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit mem_cov1;run -all; exit" -wlf wave_file1.wlf -l test1.log -sv_seed random work.top "+UVM_TESTNAME=test" 
+Start time: 14:50:43 on May 12,2025
+** Note: (vsim-3813) Design is being optimized due to module recompilation...
+//  Questa Sim-64
+//  Version 2019.2 linux_x86_64 Apr 16 2019
+//
+//  Copyright 1991-2019 Mentor Graphics Corporation
+//  All Rights Reserved.
+//
+//  QuestaSim and its associated documentation contain trade
+//  secrets and commercial or financial information that are the property of
+//  Mentor Graphics Corporation and are privileged, confidential,
+//  and exempt from disclosure under the Freedom of Information Act,
+//  5 U.S.C. Section 552. Furthermore, this information
+//  is prohibited from disclosure under the Trade Secrets Act,
+//  18 U.S.C. Section 1905.
+//
+Loading sv_std.std
+Loading work.intf(fast)
+Loading mtiUvm.uvm_pkg
+Loading work.avip_pkg(fast)
+Loading mtiUvm.questa_uvm_pkg(fast)
+Loading work.top(fast)
+Loading work.intf(fast)
+Loading work.reg_mem_block(fast)
+# Loading /home/cad/eda/Questa_2019/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+** Warning: (vsim-8634) Code was not compiled with coverage options.
+Sv_Seed = 790094335
+ log -r /* 
+coverage save -onexit mem_cov1
+run -all
+----------------------------------------------------------------
+UVM-1.1d
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+UVM_INFO @ 0: reporter [RNTST] Running test test...
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+------------------------------------------------------------------
+Name                       Type                        Size  Value
+------------------------------------------------------------------
+uvm_test_top               test                        -     @474 
+  env_h                    env                         -     @503 
+    m_agt[0]               m_agent                     -     @515 
+      m_drv                m_driver                    -     @690 
+        rsp_port           uvm_analysis_port           -     @705 
+        seq_item_port      uvm_seq_item_pull_port      -     @697 
+      m_mon                m_monitor                   -     @566 
+        monitor_port       uvm_analysis_port           -     @573 
+      m_seqr               ma_sequencer                -     @581 
+        rsp_export         uvm_analysis_export         -     @588 
+        seq_item_export    uvm_seq_item_pull_imp       -     @682 
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    predictor              uvm_reg_predictor #(trans)  -     @540 
+      bus_in               uvm_analysis_imp            -     @547 
+      reg_ap               uvm_analysis_port           -     @555 
+    s_agt[0]               s_agent                     -     @526 
+      s_drv                s_driver                    -     @850 
+        rsp_port           uvm_analysis_port           -     @865 
+        seq_item_port      uvm_seq_item_pull_port      -     @857 
+      s_mon                s_monitor                   -     @726 
+        monitor_port       uvm_analysis_port           -     @733 
+      s_seqr               s_sequencer                 -     @741 
+        rsp_export         uvm_analysis_export         -     @748 
+        seq_item_export    uvm_seq_item_pull_imp       -     @842 
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    sbh                    scoreboard                  -     @533 
+      mst_fifo             uvm_tlm_analysis_fifo #(T)  -     @885 
+        analysis_export    uvm_analysis_imp            -     @924 
+        get_ap             uvm_analysis_port           -     @916 
+        get_peek_export    uvm_get_peek_imp            -     @900 
+        put_ap             uvm_analysis_port           -     @908 
+        put_export         uvm_put_imp                 -     @892 
+      slv_fifo             uvm_tlm_analysis_fifo #(T)  -     @932 
+        analysis_export    uvm_analysis_imp            -     @971 
+        get_ap             uvm_analysis_port           -     @963 
+        get_peek_export    uvm_get_peek_imp            -     @947 
+        put_ap             uvm_analysis_port           -     @955 
+        put_export         uvm_put_imp                 -     @939 
+------------------------------------------------------------------
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ reg_data=0  mem = 0
+UVM_INFO ../tb/scoreboard.sv(86) @ 0: uvm_test_top.env_h.sbh [Addr Pass REPORT]  Address match count is 0
+UVM_INFO ../tb/scoreboard.sv(87) @ 0: uvm_test_top.env_h.sbh [Data Pass REPORT]  Data match count is 0
+UVM_INFO ../tb/scoreboard.sv(89) @ 0: uvm_test_top.env_h.sbh [Addr Fail Report]  Address mismatch count is 0
+UVM_INFO ../tb/scoreboard.sv(90) @ 0: uvm_test_top.env_h.sbh [Data Fail Reprot]  Data mismatch count is 0
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    8
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[Addr Fail Report]     1
+[Addr Pass REPORT]     1
+[Data Fail Reprot]     1
+[Data Pass REPORT]     1
+[Questa UVM]     2
+[RNTST]     1
+[UVMTOP]     1
+** Note: $finish    : /home/cad/eda/Questa_2019/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+   Time: 0 ns  Iteration: 215  Instance: /top
+Saving coverage database on exit...
+End time: 14:50:46 on May 12,2025, Elapsed time: 0:00:03
+Errors: 0, Warnings: 1

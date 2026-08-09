@@ -1,0 +1,313 @@
+vsim -cvgperinstance -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit mem_cov2;run -all; exit" -wlf wave_file2.wlf -l test2.log -sv_seed random work.top "+UVM_TESTNAME=test1" 
+Start time: 11:59:37 on Mar 24,2025
+** Note: (vsim-3813) Design is being optimized due to module recompilation...
+** Warning: ../test/test.sv(111): (vopt-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+//  Questa Sim-64
+//  Version 2019.2 linux_x86_64 Apr 16 2019
+//
+//  Copyright 1991-2019 Mentor Graphics Corporation
+//  All Rights Reserved.
+//
+//  QuestaSim and its associated documentation contain trade
+//  secrets and commercial or financial information that are the property of
+//  Mentor Graphics Corporation and are privileged, confidential,
+//  and exempt from disclosure under the Freedom of Information Act,
+//  5 U.S.C. Section 552. Furthermore, this information
+//  is prohibited from disclosure under the Trade Secrets Act,
+//  18 U.S.C. Section 1905.
+//
+Loading sv_std.std
+Loading work.apb_if(fast)
+Loading mtiUvm.uvm_pkg
+Loading work.pkg(fast)
+Loading mtiUvm.questa_uvm_pkg(fast)
+Loading work.top(fast)
+Loading work.apb_if(fast)
+Loading work.apb_interconnect_top(fast)
+Loading work.apb_master(fast)
+Loading work.apb_interconnect(fast)
+Loading work.apb_slave(fast)
+# Loading /home/cad/eda/Questa_2019/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+** Warning: (vsim-8634) Code was not compiled with coverage options.
+Sv_Seed = 2004754569
+ log -r /* 
+coverage save -onexit mem_cov2
+run -all
+----------------------------------------------------------------
+UVM-1.1d
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+UVM_INFO @ 0: reporter [RNTST] Running test test1...
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+------------------------------------------------------------------
+Name                       Type                        Size  Value
+------------------------------------------------------------------
+uvm_test_top               test1                       -     @474 
+  envh                     env                         -     @496 
+    magth[0]               master_agent                -     @504 
+      drv                  master_driver               -     @683 
+        rsp_port           uvm_analysis_port           -     @698 
+        seq_item_port      uvm_seq_item_pull_port      -     @690 
+      mon                  master_monitor              -     @668 
+        monitor_port       uvm_analysis_port           -     @675 
+      seqr                 master_seqr                 -     @706 
+        rsp_export         uvm_analysis_export         -     @713 
+        seq_item_export    uvm_seq_item_pull_imp       -     @807 
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    sagth[0]               slave_agent                 -     @515 
+      drv                  slave_driver                -     @839 
+        rsp_port           uvm_analysis_port           -     @854 
+        seq_item_port      uvm_seq_item_pull_port      -     @846 
+      mon                  slave_monitor               -     @824 
+        monitor_port       uvm_analysis_port           -     @831 
+      seqr                 slave_seqr                  -     @862 
+        rsp_export         uvm_analysis_export         -     @869 
+        seq_item_export    uvm_seq_item_pull_imp       -     @963 
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    sagth[1]               slave_agent                 -     @526 
+      drv                  slave_driver                -     @995 
+        rsp_port           uvm_analysis_port           -     @1010
+        seq_item_port      uvm_seq_item_pull_port      -     @1002
+      mon                  slave_monitor               -     @980 
+        monitor_port       uvm_analysis_port           -     @987 
+      seqr                 slave_seqr                  -     @1018
+        rsp_export         uvm_analysis_export         -     @1025
+        seq_item_export    uvm_seq_item_pull_imp       -     @1119
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    sagth[2]               slave_agent                 -     @534 
+      drv                  slave_driver                -     @1151
+        rsp_port           uvm_analysis_port           -     @1166
+        seq_item_port      uvm_seq_item_pull_port      -     @1158
+      mon                  slave_monitor               -     @1136
+        monitor_port       uvm_analysis_port           -     @1143
+      seqr                 slave_seqr                  -     @1174
+        rsp_export         uvm_analysis_export         -     @1181
+        seq_item_export    uvm_seq_item_pull_imp       -     @1275
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    sagth[3]               slave_agent                 -     @542 
+      drv                  slave_driver                -     @1307
+        rsp_port           uvm_analysis_port           -     @1322
+        seq_item_port      uvm_seq_item_pull_port      -     @1314
+      mon                  slave_monitor               -     @1292
+        monitor_port       uvm_analysis_port           -     @1299
+      seqr                 slave_seqr                  -     @1330
+        rsp_export         uvm_analysis_export         -     @1337
+        seq_item_export    uvm_seq_item_pull_imp       -     @1431
+        arbitration_queue  array                       0     -    
+        lock_queue         array                       0     -    
+        num_last_reqs      integral                    32    'd1  
+        num_last_rsps      integral                    32    'd1  
+    sb                     scoreboard                  -     @659 
+      mst_fifo[0]          uvm_tlm_analysis_fifo #(T)  -     @1447
+        analysis_export    uvm_analysis_imp            -     @1486
+        get_ap             uvm_analysis_port           -     @1478
+        get_peek_export    uvm_get_peek_imp            -     @1462
+        put_ap             uvm_analysis_port           -     @1470
+        put_export         uvm_put_imp                 -     @1454
+      slv_fifo[0]          uvm_tlm_analysis_fifo #(T)  -     @1494
+        analysis_export    uvm_analysis_imp            -     @1533
+        get_ap             uvm_analysis_port           -     @1525
+        get_peek_export    uvm_get_peek_imp            -     @1509
+        put_ap             uvm_analysis_port           -     @1517
+        put_export         uvm_put_imp                 -     @1501
+      slv_fifo[1]          uvm_tlm_analysis_fifo #(T)  -     @1541
+        analysis_export    uvm_analysis_imp            -     @1580
+        get_ap             uvm_analysis_port           -     @1572
+        get_peek_export    uvm_get_peek_imp            -     @1556
+        put_ap             uvm_analysis_port           -     @1564
+        put_export         uvm_put_imp                 -     @1548
+      slv_fifo[2]          uvm_tlm_analysis_fifo #(T)  -     @1588
+        analysis_export    uvm_analysis_imp            -     @1627
+        get_ap             uvm_analysis_port           -     @1619
+        get_peek_export    uvm_get_peek_imp            -     @1603
+        put_ap             uvm_analysis_port           -     @1611
+        put_export         uvm_put_imp                 -     @1595
+      slv_fifo[3]          uvm_tlm_analysis_fifo #(T)  -     @1635
+        analysis_export    uvm_analysis_imp            -     @1674
+        get_ap             uvm_analysis_port           -     @1666
+        get_peek_export    uvm_get_peek_imp            -     @1650
+        put_ap             uvm_analysis_port           -     @1658
+        put_export         uvm_put_imp                 -     @1642
+    v_sequencer            virtual_sequencer           -     @550 
+      rsp_export           uvm_analysis_export         -     @557 
+      seq_item_export      uvm_seq_item_pull_imp       -     @651 
+      arbitration_queue    array                       0     -    
+      lock_queue           array                       0     -    
+      num_last_reqs        integral                    32    'd1  
+      num_last_rsps        integral                    32    'd1  
+------------------------------------------------------------------
+
+UVM_INFO ../apb_master/master_monitor.sv(59) @ 110: uvm_test_top.envh.magth[0].mon [master_monitor] Printing from master_monitor ---------------------------------------
+Name        Type        Size  Value    
+---------------------------------------
+xtn         master_xtn  -     @1704    
+  Preset_n  integral    1     'd0      
+  Pwrite    integral    1     1        
+  Paddr     integral    32    'h75fa3a7
+  Pwdata    integral    32    'h0      
+  Prdata    integral    32    'h0      
+  transfer  integral    1     'd0      
+  pslverr   integral    1     'd0      
+---------------------------------------
+ 
+
+UVM_INFO ../apb_master/master_driver.sv(57) @ 130: uvm_test_top.envh.magth[0].drv [MASTER_DRIVER] Printing from master driver ----------------------------------------
+Name        Type        Size  Value     
+----------------------------------------
+req         master_xtn  -     @1721     
+  Preset_n  integral    1     'd0       
+  Pwrite    integral    1     1         
+  Paddr     integral    32    'h75fa3a7 
+  Pwdata    integral    32    'h6b457c36
+  Prdata    integral    32    'h0       
+  transfer  integral    1     'd0       
+  pslverr   integral    1     'd0       
+----------------------------------------
+
+
+UVM_INFO ../apb_master/master_monitor.sv(59) @ 130: uvm_test_top.envh.magth[0].mon [master_monitor] Printing from master_monitor ----------------------------------------
+Name        Type        Size  Value     
+----------------------------------------
+xtn         master_xtn  -     @1873     
+  Preset_n  integral    1     'd0       
+  Pwrite    integral    1     1         
+  Paddr     integral    32    'h75fa3a7 
+  Pwdata    integral    32    'h6b457c36
+  Prdata    integral    32    'h0       
+  transfer  integral    1     'd0       
+  pslverr   integral    1     'd0       
+----------------------------------------
+ 
+
+UVM_INFO ../apb_slave/slave_driver.sv(56) @ 130: uvm_test_top.envh.sagth[3].drv [SLAVE_DRIVER] Printing from slave driver -------------------------------------
+Name      Type       Size  Value     
+-------------------------------------
+req       slave_xtn  -     @1725     
+  Pwrite  integral   1     'd0       
+  Prdata  integral   32    'h17a53381
+-------------------------------------
+
+
+UVM_INFO ../apb_master/master_driver.sv(57) @ 150: uvm_test_top.envh.magth[0].drv [MASTER_DRIVER] Printing from master driver ---------------------------------------
+Name        Type        Size  Value    
+---------------------------------------
+req         master_xtn  -     @1721    
+  Preset_n  integral    1     'd0      
+  Pwrite    integral    1     'd0      
+  Paddr     integral    32    'h75fa3a7
+  Pwdata    integral    32    'h0      
+  Prdata    integral    32    'h0      
+  transfer  integral    1     'd0      
+  pslverr   integral    1     'd0      
+---------------------------------------
+
+
+@@!!!!!!!!!!!!!!!!    00000000  0
+UVM_INFO ../apb_master/master_monitor.sv(59) @ 190: uvm_test_top.envh.magth[0].mon [master_monitor] Printing from master_monitor ---------------------------------------
+Name        Type        Size  Value    
+---------------------------------------
+xtn         master_xtn  -     @1879    
+  Preset_n  integral    1     'd0      
+  Pwrite    integral    1     'd0      
+  Paddr     integral    32    'h75fa3a7
+  Pwdata    integral    32    'h0      
+  Prdata    integral    32    'h0      
+  transfer  integral    1     'd0      
+  pslverr   integral    1     'd0      
+---------------------------------------
+ 
+
+UVM_INFO ../apb_master/master_monitor.sv(59) @ 210: uvm_test_top.envh.magth[0].mon [master_monitor] Printing from master_monitor ---------------------------------------
+Name        Type        Size  Value    
+---------------------------------------
+xtn         master_xtn  -     @1884    
+  Preset_n  integral    1     'd0      
+  Pwrite    integral    1     'd0      
+  Paddr     integral    32    'h75fa3a7
+  Pwdata    integral    32    'h0      
+  Prdata    integral    32    'h0      
+  transfer  integral    1     'd0      
+  pslverr   integral    1     'd0      
+---------------------------------------
+ 
+
+UVM_INFO ../apb_master/master_monitor.sv(59) @ 270: uvm_test_top.envh.magth[0].mon [master_monitor] Printing from master_monitor ---------------------------------------
+Name        Type        Size  Value    
+---------------------------------------
+xtn         master_xtn  -     @1888    
+  Preset_n  integral    1     'd0      
+  Pwrite    integral    1     'd0      
+  Paddr     integral    32    'h75fa3a7
+  Pwdata    integral    32    'h0      
+  Prdata    integral    32    'h0      
+  transfer  integral    1     'd0      
+  pslverr   integral    1     'd0      
+---------------------------------------
+ 
+
+UVM_INFO ../apb_master/master_monitor.sv(59) @ 290: uvm_test_top.envh.magth[0].mon [master_monitor] Printing from master_monitor ---------------------------------------
+Name        Type        Size  Value    
+---------------------------------------
+xtn         master_xtn  -     @1892    
+  Preset_n  integral    1     'd0      
+  Pwrite    integral    1     'd0      
+  Paddr     integral    32    'h75fa3a7
+  Pwdata    integral    32    'h0      
+  Prdata    integral    32    'h0      
+  transfer  integral    1     'd0      
+  pslverr   integral    1     'd0      
+---------------------------------------
+ 
+
+UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 350: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   14
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[MASTER_DRIVER]     2
+[Questa UVM]     2
+[RNTST]     1
+[SLAVE_DRIVER]     1
+[TEST_DONE]     1
+[UVMTOP]     1
+[master_monitor]     6
+** Note: $finish    : /home/cad/eda/Questa_2019/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+   Time: 350 ns  Iteration: 56  Instance: /top
+Saving coverage database on exit...
+End time: 11:59:40 on Mar 24,2025, Elapsed time: 0:00:03
+Errors: 0, Warnings: 2

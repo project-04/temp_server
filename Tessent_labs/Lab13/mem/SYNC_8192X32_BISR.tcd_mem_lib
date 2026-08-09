@@ -1,0 +1,134 @@
+MemoryTemplate (SYNC_8192X32_BISR) {
+
+   OperationSet : SYNC;
+   memoryType      : sram;
+   CellName        : SYNC_8192X32_BISR;
+   Algorithm       : SMarchCHKB;
+   NumberOfWords   : 8192;
+   ShadowRead      : Off;
+   TransparentMode : SyncMux;
+   MilliWattsPerMegaHertz : 0.036;
+   logicalPorts    : 1RW;
+
+      Port (CLK)  {
+                    Function: Clock;
+                    Polarity:ActiveHigh;
+                  }
+      Port (WEB)  {
+                    Function: WRITEENABLE;
+                    Polarity:ActiveLow;
+                  }
+      Port (BWEB[31:0])  {
+                    Function: WRITEENABLE;
+                    Polarity:ActiveLow;
+                  }
+      Port (CEB)  {
+                    Function : Select;
+                    Polarity: ActiveLow;
+                  }
+      Port (D[31:0]) {
+                       Function: Data;
+                       Direction: Input;
+                     }
+      Port (Q[31:0]) {
+                       Function: Data;
+                       Direction: Output;
+                     }
+      port (A[12:0]) {
+                       Function: Address;
+                       Direction: Input;
+                     }
+      port (TSEL[1:0]) {
+                       Function: None;
+                       Direction: Input;
+                     }
+      port (RSTB) {
+                       Function: BisrReset;
+                       Direction: Input;
+			Polarity: ActiveLow;
+                     }
+      port (SCLK) {
+                       Function: BisrClock;
+                       Direction: Input;
+			Polarity: ActiveHigh;
+                     }
+      port (SDIN) {
+                       Function: BisrSerialData;
+                       Direction: Input;
+                     }
+      port (SDOUT) {
+                       Function: BisrSerialData;
+                       Direction: Output;
+                     }
+
+   AddressCounter {
+       Function (Address) {
+           LogicalAddressMap {
+               ColumnAddress[3:0]: Address[3:0];
+               RowAddress[8:0]: Address[12:4];
+           } // End Logical Address
+       } // end Function Address
+   } // end Address Counter
+
+RedundancyAnalysis {
+        ColumnSegment (Seg1) {
+                ShiftedIORange: D[31:0];
+                FuseSet {
+
+Fuse[3]: AddressPort(A[3]);
+Fuse[2]: AddressPort(A[2]);
+Fuse[1]: AddressPort(A[1]);
+Fuse[0]: AddressPort(A[0]);
+
+                        FuseMap[4:0] {
+                           ShiftedIO(D[0]): 5'b00000;
+                           ShiftedIO(D[1]): 5'b00001;
+                           ShiftedIO(D[2]): 5'b00010;
+                           ShiftedIO(D[3]): 5'b00011;
+                           ShiftedIO(D[4]): 5'b00100;
+                           ShiftedIO(D[5]): 5'b00101;
+                           ShiftedIO(D[6]): 5'b00110;
+                           ShiftedIO(D[7]): 5'b00111;
+                           ShiftedIO(D[8]): 5'b01000;
+                           ShiftedIO(D[9]): 5'b01001;
+                           ShiftedIO(D[10]): 5'b01010;
+                           ShiftedIO(D[11]): 5'b01011;
+                           ShiftedIO(D[12]): 5'b01100;
+                           ShiftedIO(D[13]): 5'b01101;
+                           ShiftedIO(D[14]): 5'b01110;
+                           ShiftedIO(D[15]): 5'b01111;
+                           ShiftedIO(D[16]): 5'b10000;
+                           ShiftedIO(D[17]): 5'b10001;
+                           ShiftedIO(D[18]): 5'b10010;
+                           ShiftedIO(D[19]): 5'b10011;
+                           ShiftedIO(D[20]): 5'b10100;
+                           ShiftedIO(D[21]): 5'b10101;
+                           ShiftedIO(D[22]): 5'b10110;
+                           ShiftedIO(D[23]): 5'b10111;
+                           ShiftedIO(D[24]): 5'b11000;
+                           ShiftedIO(D[25]): 5'b11001;
+                           ShiftedIO(D[26]): 5'b11010;
+                           ShiftedIO(D[27]): 5'b11011;
+                           ShiftedIO(D[28]): 5'b11100;
+                           ShiftedIO(D[29]): 5'b11101;
+                           ShiftedIO(D[30]): 5'b11110;
+                           ShiftedIO(D[31]): 5'b11111;
+                        }  // end FuseMap
+                } // end FuseSet
+                PinMap {
+                    SpareElement {
+                        Fuse[0]      : RepairRegister[9];
+                        Fuse[1]      : RepairRegister[8];
+                        Fuse[2]      : RepairRegister[7];
+                        Fuse[3]      : RepairRegister[6];
+                        FuseMap[0]   : RepairRegister[5];
+                        FuseMap[1]   : RepairRegister[4];
+                        FuseMap[2]   : RepairRegister[3];
+                        FuseMap[3]   : RepairRegister[2];
+                        FuseMap[4]   : RepairRegister[1];
+                        RepairEnable : RepairRegister[0];
+                    }
+                }
+        }  // end column segment
+}       //end redundancy analysis
+}

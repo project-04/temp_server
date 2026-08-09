@@ -1,0 +1,10 @@
+create_clock -name virtual_clk -period 5.0
+set_input_delay 1 -clock virtual_clk [get_port a_in]
+set_input_delay 1 -clock virtual_clk [get_port b_in]
+set_input_delay 1 -clock virtual_clk [get_port c_in]
+
+set_output_delay 1 -clock virtual_clk [get_ports sum_out]
+
+set_max_dealy 5 form [get_ports a_in] -to [get_ports_sum_out]
+
+set_max_area 30

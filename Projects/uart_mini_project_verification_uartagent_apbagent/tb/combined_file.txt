@@ -1,0 +1,879 @@
+class env_config extends uvm_object;
+	`uvm_object_utils(env_config)
+
+	function new(string name="env_config");
+		super.new(name);
+	endfunction
+
+	apb_config apb_cfg[];
+	uart_config uart_cfg[];
+
+	int no_of_agents;
+	int no_of_uart_agents;
+	int no_of_apb_agents;
+	
+	bit has_virtual_sequencer;
+
+endclass
+class env extends uvm_env;
+	`uvm_component_utils(env)
+
+	apb_agent_top apb_agt_top;
+	uart_agent_top uart_agt_top;
+	scoreboard sbh;
+	virtual_seqr virtual_seqrh;
+
+	env_config env_cfg;
+
+	function new(string name="env",uvm_component parent);
+		super.new(name,parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		sbh = scoreboard::type_id::create("sbh",this);
+
+		if(!uvm_config_db #(env_config)::get(this,"","env_config",env_cfg))
+			`uvm_fatal(get_type_name,"Have you set the config?")
+
+		if(env_cfg.no_of_apb_agents != 0)
+			apb_agt_top = apb_agent_top::type_id::create("apb_agt_top",this);
+
+		if(env_cfg.no_of_uart_agents != 0)
+			uart_agt_top = uart_agent_top::type_id::create("uart_agt_top",this);
+
+		virtual_seqrh = virtual_seqr::type_id::create("virtual_seqrh",this);
+	endfunction
+
+	function void connect_phase(uvm_phase phase);			
+		foreach(apb_agt_top.apb_agt[i])
+		begin
+			apb_agt_top.apb_agt[i].apb_monh.monitor_port.connect(sbh.fifo_apb.analysis_export);
+			
+			virtual_seqrh.apb_seqrh[i] = apb_agt_top.apb_agt[i].apb_seqrh;
+		end
+		
+		foreach(uart_agt_top.uart_agt[i])
+		begin
+			uart_agt_top.uart_agt[i].uart_monh.monitor_port.connect(sbh.fifo_uart.analysis_export);
+			
+			virtual_seqrh.uart_seqrh[i] = uart_agt_top.uart_agt[i].uart_seqrh;
+		end
+	endfunction
+endclass
+class scoreboard extends uvm_scoreboard;
+	`uvm_component_utils(scoreboard)
+
+env_config m_cfg;
+
+uvm_tlm_analysis_fifo#(apb_trans) fifo_apb;
+uvm_tlm_analysis_fifo#(uart_trans) fifo_uart;
+
+apb_trans uart1;
+uart_trans uart2;
+apb_trans cov_data1;
+uart_trans cov_data2;
+
+int thr1size, rbr1size;
+int thr2size, rbr2size;
+
+
+	covergroup apb_signals_cov;
+		option.per_instance=1;
+
+		ADDRESS: coverpoint cov_data1.PADDR { bins add = {[0:255]}; }
+
+	//	DATA: coverpoint cov_data.addr_i[2:0] { bins addr_sign = {[0:7]}; }
+
+		WR_ENB: coverpoint cov_data1.PWRITE { bins rd = {0};
+						bins wr = {1}; }  
+	//	ERROR: coverpoint cov_data.Pslverr {bins p1={0};
+	//						bins p2 = {1};}
+	endgroup
+
+	covergroup apb_lcr_cov;
+                option.per_instance=1;
+
+                CHAR_SIZE: coverpoint cov_data1.LCR[1:0] { bins five = {2'b00};
+                                                          bins eight = {2'b11}; }
+
+                STOP_BIT: coverpoint cov_data1.LCR[2] { bins one = {1'b0};
+                                                        bins more = {1'b1}; }
+
+                PARITY: coverpoint cov_data1.LCR[3] { bins no_parity = {1'b0};
+                                                       bins parity_en = {1'b1}; }
+		
+                EV_ODD_PARITY: coverpoint cov_data1.LCR[4] { bins odd_parity = {1'b0};
+								bins even_parity = {1'b1};}
+		
+		
+               // STICK_PARITY: coverpoint cov_data.lcr[5] { bins no_stick_parity = {1'b0};
+                 //                                       bins stick_parity = {1'b1}; }
+
+                //BREAK: coverpoint cov_data.lcr[6] { bins low = {1'b0};
+                  //                                      bins high = {1'b1}; }
+
+                //DIV_LCH: coverpoint cov_data.lcr[7] { bins low = {1'b0};
+                                                //        bins high = {1'b1}; }
+
+		//LCR_RST: coverpoint cov_data.lcr[7:0] { bins lcr_rst = {8'd3};}
+
+                //CHAR_SIZE_X_STOP_BIT_X_EV_ODD_PARITY: cross CHAR_SIZE,STOP_BIT,EV_ODD_PARITY;
+        endgroup
+
+        covergroup apb_ier_cov;
+                option.per_instance=1;
+
+                RCVD_INT: coverpoint cov_data1.IER[0] { bins dis = {1'b0};
+                                                        bins en = {1'b1}; }
+
+                THRE_INT: coverpoint cov_data1.IER[1] { bins dis = {1'b0};
+                                                        bins en = {1'b1}; }
+
+                LSR_INT: coverpoint cov_data1.IER[2] { bins dis = {1'b0};
+                                                        bins en = {1'b1}; }
+
+		IER_RST: coverpoint cov_data1.IER[7:0] { bins ier_rst = {8'd0};}
+
+        endgroup
+
+        covergroup apb_fcr_cov;
+                option.per_instance=1;
+
+                RFIFO: coverpoint cov_data1.FCR[1] { bins dis = {1'b0};
+                                                    bins clr = {1'b1}; }
+
+                TFIFO: coverpoint cov_data1.FCR[2] { bins dis = {1'b0};
+                                                    bins clr = {1'b1}; }
+
+                TRG_LVL: coverpoint cov_data1.FCR[7:6] { bins one = {2'b00};
+                                                       // bins four = {2'b01};
+                                                        bins eight = {2'b10};
+                                                        bins fourteen = {2'b11}; }
+		
+		//FCR_RST: coverpoint cov_data.fcr[7:0] { bins fcr_rst = {8'd192};}
+
+        endgroup
+
+        covergroup apb_mcr_cov;
+                option.per_instance=1;
+
+                LB: coverpoint cov_data1.MCR[4] {bins dis = {1'b0};
+                                                bins en = {1'b1}; }
+	
+		MCR_RST: coverpoint cov_data1.MCR[7:0] { bins lcr_rst = {8'd0};}
+
+        endgroup
+
+        covergroup apb_iir_cov;
+                option.per_instance=1;
+
+                IIR: coverpoint cov_data1.IIR[3:1] {bins lsr = {3'b011};
+                                                   bins rdf = {3'b010};
+                                                   bins ti_o = {3'b110};
+                                                    }
+		
+	//	IIR_RST: coverpoint cov_data.iir[3:0] { bins iir_rst = {4'h1};}
+
+        endgroup
+
+        covergroup apb_lsr_cov;
+                option.per_instance=1;
+
+                DATA_READY: coverpoint cov_data1.LSR[0] {bins fifoempty = {1'b0};
+                                                        bins datarcvd = {1'b1}; }
+
+                OVER_RUN: coverpoint cov_data1.LSR[1] {bins nooverrun = {1'b0};
+                                                        bins overrun = {1'b1}; }
+
+                PARITY_ERR: coverpoint cov_data1.LSR[2] {bins noparityerr = {1'b0};
+                                                        bins parityerr = {1'b1} ;}
+
+                FRAME_ERR: coverpoint cov_data1.LSR[3] {
+                                                        bins frameerr = {1'b0}; }
+
+                BREAK_INT: coverpoint cov_data1.LSR[4] {bins nobreakint = {1'b0};
+                                                        bins breakint = {1'b1}; }
+
+		b1: coverpoint cov_data1.LSR[5] {bins a1 = {1'b0};
+						bins a2 = {1'b1}; }	
+        endgroup
+
+function new(string name = "scoreboard",uvm_component parent);
+        super.new(name,parent);
+	apb_signals_cov = new();
+	apb_lcr_cov = new();
+        apb_ier_cov = new();
+        apb_fcr_cov = new();
+        apb_mcr_cov = new();
+        apb_iir_cov = new();
+        apb_lsr_cov = new();
+        fifo_apb = new("fifo_apb",this);
+	fifo_uart = new("fifo_uart",this);
+endfunction
+
+
+
+
+function void build_phase(uvm_phase phase);
+	super.build_phase(phase);
+/*	if(!uvm_config_db#(env_config)::get(this,"","env_config",m_cfg))
+	`uvm_fatal("CONFIG","Cannot get config")
+
+ /*	fifo_h = new[1];
+        foreach(fifo_h[i]) 
+           fifo_apb = new("fifo_apb",this);
+	fifo_uart = new("fifo_uart",this);*/
+endfunction
+
+task run_phase(uvm_phase phase);
+	super.run_phase(phase);
+
+forever
+	fork 	
+		begin
+                        fifo_apb.get(uart1);
+			//uart1.print;
+			thr1size = uart1.THR.size;
+			rbr1size = uart1.RBR.size;
+      
+ //   $display("@@@@@@@@@@@@@@ size of thr UART1 = %0d",thr1size);
+   // $display("@@@@@@@@@@@@@@ size of rbr UART1 = %0d",rbr1size);
+//	`uvm_info("SCOREBOARD",$sformatf("PRINTING FROM SCOREBOARD OF UART1 \n %s",uart1.sprint()),UVM_LOW)
+
+			cov_data1=uart1;
+			apb_signals_cov.sample();
+	                apb_lcr_cov.sample();
+        	        apb_ier_cov.sample();
+                	apb_fcr_cov.sample();
+	                apb_mcr_cov.sample();
+        	        apb_iir_cov.sample();
+                        apb_lsr_cov.sample();
+
+		end
+
+			begin
+                    fifo_uart.get(uart2);
+			//uart2.print;
+		
+			thr2size = uart2.THR.size;
+			rbr2size = uart2.RBR.size;
+
+//    $display("@@@@@@@@@@@@@@ size of thr UART2 = %0d",thr2size);
+  //  $display("@@@@@@@@@@@@@@ size of rbr UART2 = %0d",rbr2size);
+/*			cov_data2=uart2;
+		//	apb_signals_cov.sample();
+	             //   apb_lcr_cov.sample();
+        	      //  apb_ier_cov.sample();
+                //	apb_fcr_cov.sample();
+	         //       apb_mcr_cov.sample();
+        	  //      apb_iir_cov.sample();
+               /// 	apb_lsr_cov.sample();
+
+	//`uvm_info("SCOREBOARD",$sformatf("PRINTING FROM SCOREBOARD OF UART2 \n %s",uart2.sprint()),UVM_LOW)
+*/
+		end
+	join_any
+endtask
+
+function void check_phase(uvm_phase phase);
+	$display("size of thr UART1 = %p \n",thr1size);
+	$display("size of thr UART2 = %p \n",thr2size);
+	$display("size of rbr UART1 = %p \n",rbr1size);
+	$display("size of rbr UART2 = %p \n",rbr2size);
+	$display("values sent by UART1 = %p \n",uart1.THR);
+	$display("values sent by UART2 = %p \n",uart2.THR);
+	$display("values received by UART1 = %p \n",uart1.RBR);
+	$display("values received by UART2 = %p \n",uart2.RBR);
+
+if((uart1.IIR[3:1]==3'b010))
+     begin  
+       if((uart1.MCR[4]==0))
+     begin
+       if(uart1.THR.size()==0)
+         begin
+         
+           if((uart1.THR==uart2.RBR)||(uart2.THR==uart1.RBR))
+         `uvm_info(get_type_name(),"\n-------In scoreboard half duplex comparison passed",UVM_LOW)
+           else
+         `uvm_info(get_type_name(),"\n-------In scoreboard half duplex comparison failed",UVM_LOW)
+         end
+       else
+         begin
+           if((uart1.THR==uart2.RBR)&&(uart2.THR==uart1.RBR))
+                 `uvm_info(get_type_name(),"\n-------In scoreboard full duplex comparison passed",UVM_LOW)
+               else
+                 `uvm_info(get_type_name(),"\n-------In scoreboard full duplex comparison failed",UVM_LOW)
+             end
+     end
+       else
+     begin
+           if((uart1.THR==uart1.RBR))
+             `uvm_info(get_type_name(),"\n-------In scoreboard loop back comparison passed",UVM_LOW)
+           else
+             `uvm_info(get_type_name(),"\n-------In scoreboard loop back comparison failed",UVM_LOW)
+         end
+     end
+
+   if(uart1.IIR[3:1]==3)
+     begin
+       if((uart1.LSR[1]==1))
+     `uvm_info(get_type_name(),"\n-------In scoreboard overrun error",UVM_LOW)
+       if((uart1.LSR[2]==1))
+         `uvm_info(get_type_name(),"\n-------In scoreboard parity error",UVM_LOW)
+       if((uart1.LSR[3]==1))
+         `uvm_info(get_type_name(),"\n-------In scoreboard framing error",UVM_LOW)
+       if((uart1.LSR[4]==1))
+         `uvm_info(get_type_name(),"\n-------In scoreboard break interrupt error",UVM_LOW)
+     end
+   if((uart1.IIR[3:1]==3'b110))
+     `uvm_info(get_type_name(),"\n-------In scoreboard timeout error",UVM_LOW)
+   if((uart1.IIR[3:1]==3'b001))
+     `uvm_info(get_type_name(),"\n-------In scoreboard thr empty ",UVM_LOW)
+
+
+//	if((thr1size==0)&&(thr2size==0)) $display("NO DATA IN THR1 AND THR2. SOMETHING WENT WRONG. \n");
+
+endfunction
+	
+	function void report_phase(uvm_phase phase);
+		$display("\n\n\n------------------------ SCOREBOARD REPORT -----------------------");
+	      	$display("UART CORE Coverage = %0f", apb_lcr_cov.get_coverage());
+                       
+	      	$display("------------------------------------------------------------------\n\n\n");
+	endfunction
+endclass
+
+class virtual_seqr extends uvm_sequencer #(uvm_sequence_item) ;
+   
+    // Factory Registration
+	`uvm_component_utils(virtual_seqr)
+
+    // Declare handles for sequencers
+	uart_seqr uart_seqrh[];
+	apb_seqr apb_seqrh[];
+        
+	env_config env_cfg;
+
+    // Define Constructor new() function
+	function new(string name="virtual_seqr",uvm_component parent);
+	         super.new(name,parent);
+	endfunction
+
+        function void build_phase(uvm_phase phase);
+                      	if(!uvm_config_db #(env_config)::get(this,"","env_config",env_cfg)) //Here we are getting to find the no of agents. 
+		      		`uvm_fatal("CONFIG","cannot get() env_cfg from uvm_config_db. Have you set() it?")
+
+                      	apb_seqrh=new[env_cfg.no_of_apb_agents];
+			uart_seqrh=new[env_cfg.no_of_uart_agents];
+	endfunction
+          
+endclass
+
+
+//***************************************************************//Base virtual sequence
+class virtual_seq extends uvm_sequence #(uvm_sequence_item);
+ 	`uvm_object_utils(virtual_seq)
+
+	uart_seqr uart_seqrh[];
+	apb_seqr apb_seqrh[];
+	virtual_seqr virtual_seqrh;
+
+	env_config env_cfg;
+
+	function new(string name ="virtual_seq");
+		super.new(name);
+	endfunction
+        
+        task body();
+                assert($cast(virtual_seqrh,m_sequencer)) else 
+          	`uvm_error("BODY", "Error in $cast of virtual sequencer")
+
+                if(!uvm_config_db #(env_config)::get(null,get_full_name(),"env_config",env_cfg))
+		`uvm_fatal("CONFIG","cannot get() env_cfg from uvm_config_db. Have you set() it?")
+
+                apb_seqrh=new[env_cfg.no_of_apb_agents];
+		uart_seqrh=new[env_cfg.no_of_uart_agents];
+
+		foreach(apb_seqrh[i])
+                	apb_seqrh[i] = virtual_seqrh.apb_seqrh[i];
+
+		foreach(uart_seqrh[i])
+                	uart_seqrh[i] = virtual_seqrh.uart_seqrh[i];
+        endtask
+endclass
+
+//**************************************************************//HD0_sequence
+class HD0_sequence extends virtual_seq;
+      `uvm_object_utils(HD0_sequence)
+
+	apb_HD0  			hd0_apb_seqh;
+	uart_HD0 			hd0_uart_seqh;
+  
+     function new(string name = "HD0_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  hd0_apb_seqh = apb_HD0::type_id::create("hd0_apb_seqh");
+	  hd0_uart_seqh = uart_HD0::type_id::create("hd0_uart_seqh");
+         
+          fork
+		foreach(apb_seqrh[i])begin
+	    		hd0_apb_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		hd0_uart_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//HD0_multiple_sequence
+class HD0_multiple_sequence extends virtual_seq;
+      `uvm_object_utils(HD0_multiple_sequence)
+  
+	apb_HD0_multiple_sequence 	hd0_multiple_apb_seqh;
+	uart_HD0_multiple 		hd0_multiple_uart_seqh;
+
+     function new(string name = "HD0_multiple_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  hd0_multiple_apb_seqh = apb_HD0_multiple_sequence::type_id::create("hd0_multiple_apb_seqh");
+	  hd0_multiple_uart_seqh = uart_HD0_multiple::type_id::create("hd0_multiple_uart_seqh");
+         
+          fork
+		foreach(apb_seqrh[i])begin
+	    		hd0_multiple_apb_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		hd0_multiple_uart_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//HD1_sequence
+class HD1_sequence extends virtual_seq;
+      `uvm_object_utils(HD1_sequence)
+
+	apb_HD1  			hd1_apb_seqh;
+	uart_HD1 			hd1_uart_seqh;
+  
+     function new(string name = "HD1_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  hd1_apb_seqh = apb_HD1::type_id::create("hd1_apb_seqh");
+	  hd1_uart_seqh = uart_HD1::type_id::create("hd1_uart_seqh");
+         
+          fork
+		foreach(apb_seqrh[i])begin
+	    		hd1_apb_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		hd1_uart_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//HD1_multiple_sequence
+class HD1_multiple_sequence extends virtual_seq;
+      `uvm_object_utils(HD1_multiple_sequence)
+
+	apb_HD1_multiple_sequence hd1_multiple_apb_seqh;
+	uart_HD1_multiple	hd1_multiple_uart_seqh;
+  
+     function new(string name = "HD1_multiple_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  hd1_multiple_apb_seqh = apb_HD1_multiple_sequence::type_id::create("hd1_multiple_apb_seqh");
+	  hd1_multiple_uart_seqh = uart_HD1_multiple::type_id::create("hd1_multiple_uart_seqh");
+         
+          fork
+		foreach(apb_seqrh[i])begin
+	    		hd1_multiple_apb_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		hd1_multiple_uart_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//FD_sequence
+class FD_sequence extends virtual_seq;
+      `uvm_object_utils(FD_sequence)
+
+	apb_FD_sequence 		fd_apb_seqh;
+	uart_FD 			fd_uart_seqh;
+  
+     function new(string name = "FD_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  fd_apb_seqh = apb_FD_sequence::type_id::create("fd_apb_seqh");
+	  fd_uart_seqh = uart_FD::type_id::create("fd_uart_seqh");
+         
+          fork
+		foreach(apb_seqrh[i])begin
+	    		fd_apb_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		fd_uart_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//FD_multiple_sequence
+class FD_multiple_sequence extends virtual_seq;
+      `uvm_object_utils(FD_multiple_sequence)
+
+	apb_FD_multiple_sequence	fd_multiple_apb_seqh;
+	uart_FD_multiple		fd_multiple_uart_seqh;
+  
+     function new(string name = "FD_multiple_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  fd_multiple_apb_seqh = apb_FD_multiple_sequence::type_id::create("fd_multiple_apb_seqh");
+	  fd_multiple_uart_seqh = uart_FD_multiple::type_id::create("fd_multiple_uart_seqh");
+         
+          fork
+		foreach(apb_seqrh[i])begin
+	    		fd_multiple_apb_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		fd_multiple_uart_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//Loopback_sequence
+class loopback_sequence extends virtual_seq;
+      `uvm_object_utils(loopback_sequence)
+
+	apb_loopback_sequence 		loopback_apb_seqh;
+  
+     function new(string name = "loopback_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  loopback_apb_seqh = apb_loopback_sequence::type_id::create("loopback_apb_seqh");
+	  
+	  fork
+		foreach(apb_seqrh[i])begin
+	    		loopback_apb_seqh.start(apb_seqrh[i]);
+		end
+          join
+     endtask	
+endclass
+
+//**************************************************************//loopback_multiple_sequence
+class loopback_multiple_sequence extends virtual_seq;
+      `uvm_object_utils(loopback_multiple_sequence)
+  	
+     apb_loopback_multiple_sequence 	loopback_apb_multiple_seqh;
+
+     function new(string name = "loopback_multiple_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  loopback_apb_multiple_seqh = apb_loopback_multiple_sequence::type_id::create("loopback_apb_multiple_seqh");
+          
+	  fork
+		foreach(apb_seqrh[i])begin
+	    		loopback_apb_multiple_seqh.start(apb_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//THR_empty_sequence
+class THR_empty_sequence extends virtual_seq;
+      `uvm_object_utils(THR_empty_sequence)
+  	
+     apb_THR_empty_sequence 	apb_THR_empty_seqh;
+
+     function new(string name = "THR_empty_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  apb_THR_empty_seqh = apb_THR_empty_sequence::type_id::create("apb_THR_empty_seqh");
+          
+	  fork
+		foreach(apb_seqrh[i])begin
+	    		apb_THR_empty_seqh.start(apb_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//parity_error_hd0_sequence
+class parity_error_hd0_sequence extends virtual_seq;
+      `uvm_object_utils(parity_error_hd0_sequence)
+  	
+     apb_HD0_parity_sequence 	hd0_apb_parity_seqh;
+     uart_HD0_parity		hd0_uart_parity_seqh;
+
+     function new(string name = "parity_error_hd0_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  hd0_apb_parity_seqh = apb_HD0_parity_sequence::type_id::create("hd0_apb_parity_seqh");
+          hd0_uart_parity_seqh = uart_HD0_parity::type_id::create("hd0_uart_parity_seqh");
+
+	  fork
+		foreach(apb_seqrh[i])begin
+	    		hd0_apb_parity_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		hd0_uart_parity_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//parity_error_hd1_sequence
+class parity_error_hd1_sequence extends virtual_seq;
+      `uvm_object_utils(parity_error_hd1_sequence)
+  	
+     apb_HD1_parity_sequence 	hd1_apb_parity_seqh;
+     uart_HD1_parity		hd1_uart_parity_seqh;
+
+     function new(string name = "parity_error_hd1_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  hd1_apb_parity_seqh = apb_HD1_parity_sequence::type_id::create("hd1_apb_parity_seqh");
+          hd1_uart_parity_seqh = uart_HD1_parity::type_id::create("hd1_uart_parity_seqh");
+
+	  fork
+		foreach(apb_seqrh[i])begin
+	    		hd1_apb_parity_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		hd1_uart_parity_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//parity_error_fd_sequence
+class parity_error_fd_sequence extends virtual_seq;
+      `uvm_object_utils(parity_error_fd_sequence)
+  	
+     apb_FD_parity_sequence 	fd_apb_parity_seqh;
+     uart_FD_parity		fd_uart_parity_seqh;
+
+     function new(string name = "parity_error_fd_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  fd_apb_parity_seqh = apb_FD_parity_sequence::type_id::create("fd_apb_parity_seqh");
+          fd_uart_parity_seqh = uart_FD_parity::type_id::create("fd_uart_parity_seqh");
+
+	  fork
+		foreach(apb_seqrh[i])begin
+	    		fd_apb_parity_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		fd_uart_parity_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//break_error_hd_sequence
+class break_error_hd_sequence extends virtual_seq;
+      `uvm_object_utils(break_error_hd_sequence)
+  	
+     uart_HD_break	 		hd_uart_break_seqh;
+     apb_HD1_break_sequence		hd_apb_break_seqh;		
+
+     function new(string name = "break_error_hd_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  hd_apb_break_seqh = apb_HD1_break_sequence::type_id::create("hd_apb_break_seqh");
+          hd_uart_break_seqh = uart_HD_break::type_id::create("hd_uart_break_seqh");
+
+	  fork
+		foreach(apb_seqrh[i])begin
+	    		hd_apb_break_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		hd_uart_break_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//frame_error_hd_sequence
+class frame_error_hd_sequence extends virtual_seq;
+      `uvm_object_utils(frame_error_hd_sequence)
+  	
+     uart_HD_frame 			hd_uart_frame_seqh;
+     apb_HD_frame_sequence		hd_apb_frame_seqh;		
+
+     function new(string name = "frame_error_hd_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  hd_apb_frame_seqh = apb_HD_frame_sequence::type_id::create("hd_apb_frame_seqh");
+          hd_uart_frame_seqh = uart_HD_frame::type_id::create("hd_uart_frame_seqh");
+
+	  fork
+		foreach(apb_seqrh[i])begin
+	    		hd_apb_frame_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		hd_uart_frame_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//frame_error_fd_sequence
+class frame_error_fd_sequence extends virtual_seq;
+      `uvm_object_utils(frame_error_fd_sequence)
+  	
+     uart_FD_frame 			fd_uart_frame_seqh;
+     apb_FD_frame_sequence		fd_apb_frame_seqh;		
+
+     function new(string name = "frame_error_fd_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  fd_apb_frame_seqh = apb_FD_frame_sequence::type_id::create("fd_apb_frame_seqh");
+          fd_uart_frame_seqh = uart_FD_frame::type_id::create("fd_uart_frame_seqh");
+
+	  fork
+		foreach(apb_seqrh[i])begin
+	    		fd_apb_frame_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		fd_uart_frame_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+ 
+//**************************************************************//overrun_sequence
+class overrun_sequence extends virtual_seq;
+      `uvm_object_utils(overrun_sequence)
+  	
+     uart_HD1_overrun 		hd1_uart_overrun_seqh;
+     apb_HD1_overrun		hd1_apb_overrun_seqh;		
+
+     function new(string name = "overrun_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  hd1_apb_overrun_seqh = apb_HD1_overrun::type_id::create("hd1_apb_overrun_seqh");
+          hd1_uart_overrun_seqh = uart_HD1_overrun::type_id::create("hd1_uart_overrun_seqh");
+
+	  fork
+		foreach(apb_seqrh[i])begin
+	    		hd1_apb_overrun_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		hd1_uart_overrun_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+
+//**************************************************************//timeout_sequence
+class timeout_sequence extends virtual_seq;
+      `uvm_object_utils(timeout_sequence)
+  	
+     uart_HD1_timeout 			hd1_uart_timeout_seqh;
+     apb_HD1_timeout_sequence		hd1_apb_timeout_seqh;		
+
+     function new(string name = "timeout_sequence");
+	      super.new(name);
+     endfunction 
+
+     task body();
+	  super.body();
+	
+ 	  hd1_uart_timeout_seqh = uart_HD1_timeout::type_id::create("hd1_uart_timeout_seqh");
+          hd1_apb_timeout_seqh = apb_HD1_timeout_sequence::type_id::create("hd1_apb_timeout_seqh");
+
+	  fork
+		foreach(apb_seqrh[i])begin
+	    		hd1_apb_timeout_seqh.start(apb_seqrh[i]);
+		end
+
+		foreach(uart_seqrh[i])begin
+	    		hd1_uart_timeout_seqh.start(uart_seqrh[i]);
+		end
+          join
+     endtask
+endclass
+

@@ -1,0 +1,3 @@
+1. write a consitarint to randomize struct data type which contains of addr and data and addr should be in between [0x10] to [0xF0], data should be in between [0:F] and addr should be even numbers and none repetative numbers without using randc, implement this with user define datatype and randomize?
+
+2. write a cover group to detect transction bins 6 to 64 to 128 to 256?

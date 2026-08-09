@@ -1,0 +1,67 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+!s11f vlog 2022.1_2 2022.04, Apr  2 2022
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/home1/BPRN24/BokkaCS/VLSI_RN_ONLINE/Verilog_labs/lab2/sim
+T_opt
+!s110 1756032172
+V7kG?7z0AQHh=UOGJOaD6J0
+04 6 4 work alu_tb fast 0
+=1-208810b9d0a7-68aaecac-2b4b0-d98f3
+R0
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work alu
+Z2 tCvgOpt 0
+n@_opt
+OL;O;2022.1_2;75
+valu
+Z3 !s110 1756032147
+!i10b 1
+!s100 =2kZL7R6kR?iZlNn^<g;U0
+Iabn>`GKc5jQdT24_Zzi2;0
+R1
+w1756031544
+8../rtl/alu.v
+F../rtl/alu.v
+!i122 0
+L0 1 55
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+Z5 OL;L;2022.1_2;75
+r1
+!s85 0
+31
+Z6 !s108 1756032147.000000
+Z7 !s107 ../tb/alu_tb.v|../rtl/alu.v|
+Z8 !s90 -work|alu|../rtl/alu.v|../tb/alu_tb.v|
+!i113 0
+Z9 o-work alu -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+valu_tb
+R3
+!i10b 1
+!s100 4Bnid123i5L1d36@Z:^L63
+Ieh5amZf^``ogj8NF_gLOL1
+R1
+w1756031620
+8../tb/alu_tb.v
+F../tb/alu_tb.v
+!i122 0
+L0 1 125
+R4
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R2

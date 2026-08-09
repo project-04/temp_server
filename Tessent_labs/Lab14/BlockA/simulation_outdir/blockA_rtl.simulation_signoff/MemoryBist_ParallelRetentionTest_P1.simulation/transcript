@@ -1,0 +1,106 @@
+# vsim -c -lib testbench_library -do "run -all; exit" "+nowarnTFMPC" "+NEWPATH=../patterns_directory" MemoryBist_ParallelRetentionTest_P1_configuration 
+# Start time: 12:11:46 on Aug 14,2019
+# ** Note: (vsim-3812) Design is being optimized...
+# 
+# //  MGLS: This application requires a newer mgls_asynch
+# //  MGLS library version is v9.17_10.2, mgls_asynch version is v9.13_5.4
+# //  MGLS at /home/cad/eda/tessent/lnx-x86/bin64/mgls/
+# //  Questa Sim-64
+# //  Version 2019.2 linux_x86_64 Apr 16 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.MemoryBist_ParallelRetentionTest_P1_configuration(fast)
+# Loading work.TB(fast)
+# Loading dut_work.SYNC_8192X32_BISR(fast)
+# Loading dut_work.buf02(fast)
+# Loading dut_work.cgand(fast)
+# Loading dut_work.clock_mux21(fast)
+# Loading dut_work.inv01(fast)
+# Loading dut_work.mux21(fast)
+# Loading dut_work.and02(fast)
+# run -all
+# Found New Path ../patterns_directory
+# 
+# Loading ../patterns_directory/MemoryBist_ParallelRetentionTest_P1.v.po.name
+# 
+# Loading ../patterns_directory/MemoryBist_ParallelRetentionTest_P1.v.0.vec
+# 
+# 	Warning TB.DUT_inst.memA : input CEB unknown/high-Z at simulation time 6.0
+# 
+# 	Warning TB.DUT_inst.memA : input CEB unknown/high-Z at simulation time 18.0
+# 
+# 	Warning TB.DUT_inst.memA : input CEB unknown/high-Z at simulation time 30.0
+# 
+# 	Warning TB.DUT_inst.memA : input CEB unknown/high-Z at simulation time 42.0
+# 
+# 	Warning TB.DUT_inst.memA : input CEB unknown/high-Z at simulation time 54.0
+# 
+# 	Warning TB.DUT_inst.memA : input CEB unknown/high-Z at simulation time 66.0
+# 
+# 	Warning TB.DUT_inst.memA : input CEB unknown/high-Z at simulation time 78.0
+# 
+# 	Warning TB.DUT_inst.memA : input CEB unknown/high-Z at simulation time 90.0
+# 
+# 100ns: Pattern_set ParallelRetentionTest__1_StartToPause
+# 300ns:  Setting up MemoryBist controller blockA_rtl_tessent_mbist_c1_controller_inst
+# 300ns:  Releasing asynchronous reset
+# 300ns: Start Clock Monitoring on:  blockA_rtl_tessent_mbist_c1_controller_inst.BIST_CLK
+# 445.400ns: Clock Monitoring passed: blockA_rtl_tessent_mbist_c1_controller_inst.BIST_CLK.  Period = 12.000ns as expected (within 1.00% margin of 12.000ns) 
+# 4400ns:  Setting TCK_MODE to 0
+# 4400ns:  Enabling reduced address simulation
+# 4400ns:  Maintaining BIST inputs to the memory
+# 4400ns:  Enabling parallel retention test : Start to Pause
+# 10100ns:  Checking GO is FAIL before execution
+# 10100ns:  Checking DONE is FAIL before execution
+# 10100ns:  Starting MemoryBist controller execution : blockA_rtl_tessent_mbist_c1_controller_inst
+# 13500ns:  Checking GO is PASS after execution completion
+# 13500ns:  Checking DONE is PASS after execution completion
+# 19100ns:  Checking GO_ID bits are PASS
+# 34700ns: Pattern_set ParallelRetentionTest__1_PauseToPause
+# 34700ns:  Setting up MemoryBist controller blockA_rtl_tessent_mbist_c1_controller_inst
+# 34700ns:  Releasing asynchronous reset
+# 34700ns: Start Clock Monitoring on:  blockA_rtl_tessent_mbist_c1_controller_inst.BIST_CLK
+# 34845.400ns: Clock Monitoring passed: blockA_rtl_tessent_mbist_c1_controller_inst.BIST_CLK.  Period = 12.000ns as expected (within 1.00% margin of 12.000ns) 
+# 37500ns:  Setting TCK_MODE to 0
+# 37500ns:  Enabling reduced address simulation
+# 37500ns:  Maintaining BIST inputs to the memory
+# 37500ns:  Enabling parallel retention test : Pause to Pause
+# 43200ns:  Starting MemoryBist controller execution : blockA_rtl_tessent_mbist_c1_controller_inst
+# 46500ns:  Checking GO is PASS after execution completion
+# 46500ns:  Checking DONE is PASS after execution completion
+# 52100ns:  Checking GO_ID bits are PASS
+# 67700ns: Pattern_set ParallelRetentionTest__1_PauseToEnd
+# 67700ns:  Setting up MemoryBist controller blockA_rtl_tessent_mbist_c1_controller_inst
+# 67700ns:  Releasing asynchronous reset
+# 67700ns: Start Clock Monitoring on:  blockA_rtl_tessent_mbist_c1_controller_inst.BIST_CLK
+# 67845.400ns: Clock Monitoring passed: blockA_rtl_tessent_mbist_c1_controller_inst.BIST_CLK.  Period = 12.000ns as expected (within 1.00% margin of 12.000ns) 
+# 70500ns:  Setting TCK_MODE to 0
+# 70500ns:  Enabling reduced address simulation
+# 70500ns:  Maintaining BIST inputs to the memory
+# 70500ns:  Enabling parallel retention test : Pause to End
+# 76200ns:  Starting MemoryBist controller execution : blockA_rtl_tessent_mbist_c1_controller_inst
+# 79500ns:  Checking GO is PASS after execution completion
+# 79500ns:  Checking DONE is PASS after execution completion
+# 85100ns:  Checking GO_ID bits are PASS
+# 
+# Simulation finished at time 100701
+# Number of miscompares  =           0
+# Number of 0/1 compares =         527
+# Number of Z compares   =           0
+# 
+# No error between simulated and expected patterns
+# 
+# ** Note: $finish    : ../patterns_directory/MemoryBist_ParallelRetentionTest_P1.v(1533)
+#    Time: 100702 ns  Iteration: 0  Instance: /TB
+# End time: 12:11:46 on Aug 14,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

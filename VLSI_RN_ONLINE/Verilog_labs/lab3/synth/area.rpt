@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : mux4_1
+Version: T-2022.03-SP4
+Date   : Wed Apr 29 12:10:10 2026
+****************************************
+
+Library(s) Used:
+
+    lsi_10k (File: /home1/BPRN24/BokkaCS/VLSI_RN_ONLINE/Verilog_labs/lab3/lib/lsi_10k.db)
+
+Number of ports:                            7
+Number of nets:                             7
+Number of cells:                            1
+Number of combinational cells:              1
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                          0
+Number of references:                       1
+
+Combinational area:                  7.000000
+Buf/Inv area:                        0.000000
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                     7.000000
+Total area:                 undefined
+1

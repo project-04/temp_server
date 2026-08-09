@@ -1,0 +1,201 @@
+vsim -cvgperinstance -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit mem_cov1;run -all; exit" -wlf wave_file1.wlf -l test1.log -sv_seed 3659609970 work.axi2ahb_bridge_tb_top "+UVM_TESTNAME=base_test" 
+Start time: 12:15:34 on Feb 07,2025
+** Note: (vsim-3812) Design is being optimized...
+** Warning: ../test/test.sv(120): (vopt-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+** Note: (vopt-143) Recognized 1 FSM in module "axi2fifo(fast)".
+** Note: (vopt-143) Recognized 1 FSM in module "ahb_controller(fast)".
+//  Questa Sim-64
+//  Version 2019.2 linux_x86_64 Apr 16 2019
+//
+//  Copyright 1991-2019 Mentor Graphics Corporation
+//  All Rights Reserved.
+//
+//  QuestaSim and its associated documentation contain trade
+//  secrets and commercial or financial information that are the property of
+//  Mentor Graphics Corporation and are privileged, confidential,
+//  and exempt from disclosure under the Freedom of Information Act,
+//  5 U.S.C. Section 552. Furthermore, this information
+//  is prohibited from disclosure under the Trade Secrets Act,
+//  18 U.S.C. Section 1905.
+//
+Loading sv_std.std
+Loading work.ahb_if(fast)
+Loading work.axi_rst_if(fast)
+Loading mtiUvm.uvm_pkg
+Loading work.axi2ahb_pkg(fast)
+Loading work.axi_if(fast)
+Loading work.ahb_rst_if(fast)
+Loading mtiUvm.questa_uvm_pkg(fast)
+Loading work.axi2ahb_bridge_tb_top(fast)
+Loading work.axi_if(fast)
+Loading work.ahb_if(fast)
+Loading work.axi_rst_if(fast)
+Loading work.ahb_rst_if(fast)
+Loading work.axi2ahb_bridge_top(fast)
+Loading work.axi_controller(fast)
+Loading work.axi2fifo(fast)
+Loading work.fifo2axi(fast)
+Loading work.fifo_wrapper(fast)
+Loading work.id_resp_fifo(fast)
+Loading work.resp_fifo(fast)
+Loading work.rdata_fifo(fast)
+Loading work.size_fifo(fast)
+Loading work.id_send_fifo(fast)
+Loading work.write_fifo(fast)
+Loading work.data_fifo(fast)
+Loading work.addr_fifo(fast)
+Loading work.ahb_controller(fast)
+** Warning: (vsim-8441) Clocking block output vif.axi_drv_cb.arlen is not legal in this
+or another expression.
+   Time: 0 ns  Iteration: 0  Region: /axi2ahb_pkg::axi_driver File: ../AXI_AGENT/axi_driver.sv Line: 177
+# Loading /home/cad/eda/Questa_2019/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+** Warning: (vsim-8634) Code was not compiled with coverage options.
+ log -r /* 
+coverage save -onexit mem_cov1
+run -all
+----------------------------------------------------------------
+UVM-1.1d
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+UVM_INFO @ 0: reporter [RNTST] Running test base_test...
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+----------------------------------------------------------------------------
+Name                                 Type                        Size  Value
+----------------------------------------------------------------------------
+uvm_test_top                         base_test                   -     @491 
+  envh                               environment                 -     @511 
+    ahb_agth[0]                      ahb_agent                   -     @541 
+      drvh                           ahb_driver                  -     @696 
+        rsp_port                     uvm_analysis_port           -     @711 
+        seq_item_port                uvm_seq_item_pull_port      -     @703 
+      monh                           ahb_monitor                 -     @681 
+        monitor_port                 uvm_analysis_port           -     @688 
+      seqrh                          ahb_sequencer               -     @719 
+        rsp_export                   uvm_analysis_export         -     @726 
+        seq_item_export              uvm_seq_item_pull_imp       -     @820 
+        arbitration_queue            array                       0     -    
+        lock_queue                   array                       0     -    
+        num_last_reqs                integral                    32    'd1  
+        num_last_rsps                integral                    32    'd1  
+    ahb_rst_agth[0]                  ahb_rst_agent               -     @552 
+      drvh                           ahb_rst_driver              -     @854 
+        rsp_port                     uvm_analysis_port           -     @869 
+        seq_item_port                uvm_seq_item_pull_port      -     @861 
+      monh                           ahb_rst_monitor             -     @839 
+        rst_monitor_port             uvm_analysis_port           -     @846 
+      seqrh                          ahb_rst_sequencer           -     @877 
+        rsp_export                   uvm_analysis_export         -     @884 
+        seq_item_export              uvm_seq_item_pull_imp       -     @978 
+        arbitration_queue            array                       0     -    
+        lock_queue                   array                       0     -    
+        num_last_reqs                integral                    32    'd1  
+        num_last_rsps                integral                    32    'd1  
+    axi_agth[0]                      axi_agent                   -     @519 
+      drvh                           axi_driver                  -     @1028
+        rsp_port                     uvm_analysis_port           -     @1043
+        seq_item_port                uvm_seq_item_pull_port      -     @1035
+      monh                           axi_monitor                 -     @997 
+        axi_monitor_port             uvm_analysis_port           -     @1004
+        axi_read_data_monitor_port   uvm_analysis_port           -     @1020
+        axi_write_data_monitor_port  uvm_analysis_port           -     @1012
+      seqrh                          axi_sequencer               -     @1051
+        rsp_export                   uvm_analysis_export         -     @1058
+        seq_item_export              uvm_seq_item_pull_imp       -     @1152
+        arbitration_queue            array                       0     -    
+        lock_queue                   array                       0     -    
+        num_last_reqs                integral                    32    'd1  
+        num_last_rsps                integral                    32    'd1  
+    axi_rst_agth[0]                  axi_rst_agent               -     @530 
+      drvh                           axi_rst_driver              -     @1185
+        rsp_port                     uvm_analysis_port           -     @1200
+        seq_item_port                uvm_seq_item_pull_port      -     @1192
+      monh                           axi_rst_monitor             -     @1170
+        rst_monitor_port             uvm_analysis_port           -     @1177
+      seqrh                          axi_rst_sequencer           -     @1208
+        rsp_export                   uvm_analysis_export         -     @1215
+        seq_item_export              uvm_seq_item_pull_imp       -     @1309
+        arbitration_queue            array                       0     -    
+        lock_queue                   array                       0     -    
+        num_last_reqs                integral                    32    'd1  
+        num_last_rsps                integral                    32    'd1  
+    scoreboardh                      scoreboard                  -     @672 
+      fifo_ahb_h[0]                  uvm_tlm_analysis_fifo #(T)  -     @1565
+        analysis_export              uvm_analysis_imp            -     @1604
+        get_ap                       uvm_analysis_port           -     @1596
+        get_peek_export              uvm_get_peek_imp            -     @1580
+        put_ap                       uvm_analysis_port           -     @1588
+        put_export                   uvm_put_imp                 -     @1572
+      fifo_ahb_rst_h[0]              uvm_tlm_analysis_fifo #(T)  -     @1377
+        analysis_export              uvm_analysis_imp            -     @1416
+        get_ap                       uvm_analysis_port           -     @1408
+        get_peek_export              uvm_get_peek_imp            -     @1392
+        put_ap                       uvm_analysis_port           -     @1400
+        put_export                   uvm_put_imp                 -     @1384
+      fifo_axi_h[0]                  uvm_tlm_analysis_fifo #(T)  -     @1424
+        analysis_export              uvm_analysis_imp            -     @1463
+        get_ap                       uvm_analysis_port           -     @1455
+        get_peek_export              uvm_get_peek_imp            -     @1439
+        put_ap                       uvm_analysis_port           -     @1447
+        put_export                   uvm_put_imp                 -     @1431
+      fifo_axi_rdata_h[0]            uvm_tlm_analysis_fifo #(T)  -     @1518
+        analysis_export              uvm_analysis_imp            -     @1557
+        get_ap                       uvm_analysis_port           -     @1549
+        get_peek_export              uvm_get_peek_imp            -     @1533
+        put_ap                       uvm_analysis_port           -     @1541
+        put_export                   uvm_put_imp                 -     @1525
+      fifo_axi_rst_h[0]              uvm_tlm_analysis_fifo #(T)  -     @1330
+        analysis_export              uvm_analysis_imp            -     @1369
+        get_ap                       uvm_analysis_port           -     @1361
+        get_peek_export              uvm_get_peek_imp            -     @1345
+        put_ap                       uvm_analysis_port           -     @1353
+        put_export                   uvm_put_imp                 -     @1337
+      fifo_axi_wdata_h[0]            uvm_tlm_analysis_fifo #(T)  -     @1471
+        analysis_export              uvm_analysis_imp            -     @1510
+        get_ap                       uvm_analysis_port           -     @1502
+        get_peek_export              uvm_get_peek_imp            -     @1486
+        put_ap                       uvm_analysis_port           -     @1494
+        put_export                   uvm_put_imp                 -     @1478
+    vseqrh                           virtual_sequencer           -     @563 
+      rsp_export                     uvm_analysis_export         -     @570 
+      seq_item_export                uvm_seq_item_pull_imp       -     @664 
+      arbitration_queue              array                       0     -    
+      lock_queue                     array                       0     -    
+      num_last_reqs                  integral                    32    'd1  
+      num_last_rsps                  integral                    32    'd1  
+----------------------------------------------------------------------------
+
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    4
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[Questa UVM]     2
+[RNTST]     1
+[UVMTOP]     1
+** Note: $finish    : /home/cad/eda/Questa_2019/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+   Time: 0 ns  Iteration: 215  Instance: /axi2ahb_bridge_tb_top
+Saving coverage database on exit...
+End time: 12:15:38 on Feb 07,2025, Elapsed time: 0:00:04
+Errors: 0, Warnings: 3

@@ -1,0 +1,11 @@
+Design Hierarchy
+
+
+----------------
+SCORE  LINE   COND   TOGGLE FSM    BRANCH            
+ 59.21  74.31  33.33  71.67  38.46  78.26 tb_coincol 
+  
+  ----------------
+  SCORE  LINE   COND   TOGGLE FSM    BRANCH     
+   64.58  86.84  33.33  86.00  38.46  78.26 DUT 
+

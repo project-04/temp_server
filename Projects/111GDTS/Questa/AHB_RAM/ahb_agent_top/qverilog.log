@@ -1,0 +1,6 @@
+Start time: 14:57:21 on May 07,2022
+qverilog Manu.sv 
+** Error: (vlib-13069) Manu.sv(1): near "gjhbbhbjhj": syntax error, unexpected end of source code.
+** Error: Manu.sv(1): (vlib-13205) Syntax error found in the scope following 'gjhbbhbjhj'. Is there a missing '::'?
+End time: 14:57:21 on May 07,2022, Elapsed time: 0:00:00
+Errors: 2, Warnings: 0

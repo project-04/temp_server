@@ -1,0 +1,32 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : mux4_1
+Version: T-2022.03-SP4
+Date   : Wed Apr 29 12:10:10 2026
+****************************************
+
+Operating Conditions: nom_pvt   Library: lsi_10k
+Wire Load Model Mode: top
+
+  Startpoint: s[0] (input port)
+  Endpoint: y (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 f
+  s[0] (in)                                0.00       0.00 f
+  U6/Z (MUX41P)                            1.24       1.24 f
+  y (out)                                  0.00       1.24 f
+  data arrival time                                   1.24
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+1

@@ -1,0 +1,22 @@
+module test;
+	initial begin:BLOCK_1
+		integer a;
+		a = 10;
+		$display("d a=%0d",a);
+		$strobe("s a=%0d",a);
+		
+		a <= 40;
+		$display("d a<=%0d",a);
+		$strobe("s a<=%0d",a);
+		
+		#0 a <= 20;
+		$display("d #0 a=%0d",a);
+		$strobe("s #0 a=%0d",a);
+		
+		#0 a <= 30;
+		$display("d #0 a<=%0d",a);
+		$strobe("s #0 a<=%0d",a);
+		
+	end
+endmodule
+
