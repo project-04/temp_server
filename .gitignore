@@ -1,0 +1,11 @@
+# All files and folders which have to ignore
+file.*
+*.extenstion
+
+
+#Questa
+work/
+
+
+#VCS
+cscr/
