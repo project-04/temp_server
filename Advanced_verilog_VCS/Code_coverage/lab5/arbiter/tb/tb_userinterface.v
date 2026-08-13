@@ -125,14 +125,14 @@ Version: 1.0
 				bfm_command = REQFC;
 				@(posedge bfm_grant);
 					
-				bfm_command = ATCAB;
-				@(posedge bfm_grant);
-				
-				bfm_command = ATCBC;
+				bfm_command = ATCCA;
 				@(posedge bfm_grant);
 				
 				bfm_command = REQFB;
 				@(posedge bfm_grant);
+				
+				//bfm_command = REQFB;
+				//@(posedge bfm_grant);
 				
 				bfm_command = ATCAB;
 				@(posedge bfm_grant);

@@ -1,0 +1,9 @@
+/home1/BPRN24/BokkaCS/snipets_sv/clock_period.sv {1 {vlog -work work -vopt -sv -stats=none /home1/BPRN24/BokkaCS/snipets_sv/clock_period.sv
+QuestaSim-64 vlog 2022.1_2 Compiler 2022.04 Apr  2 2022
+-- Compiling module clock_calculation
+-- Compiling module tb
+
+Top level modules:
+	tb
+
+} {} {}}
