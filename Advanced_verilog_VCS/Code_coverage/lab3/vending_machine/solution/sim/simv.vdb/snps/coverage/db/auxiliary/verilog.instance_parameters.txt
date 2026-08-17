@@ -1,5 +1,0 @@
-tb_coincol.DUT.STATE000
-tb_coincol.DUT.STATE1004
-tb_coincol.DUT.STATE251
-tb_coincol.DUT.STATE502
-tb_coincol.DUT.STATE753

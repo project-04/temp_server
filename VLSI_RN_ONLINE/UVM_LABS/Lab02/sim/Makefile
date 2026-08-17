@@ -37,7 +37,7 @@ run_test_Questa: sv_cmp
 	vsim  $(VSIMOPT) $(VSIMCOV) $(VSIMBATCH)  -l test1.log  -sv_seed random  work.top 
 		
 clean_Questa:
-	rm -rf transcript* *log*  vsim.wlf fcover* covhtml* mem_cov* *.wlf modelsim.ini
+	rm -rf work transcript* *log*  vsim.wlf fcover* covhtml* mem_cov* *.wlf modelsim.ini
 	clear
 
 # ----------------------------- End of Definitions for Mentor's Questa Specific Targets -------------------------------#

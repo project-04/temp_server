@@ -65,8 +65,12 @@ module top;
 		
 		repeat(5) build();
 		
+	        //$display("%g",write_xtn::type_id::get()); //for class name
+		$display("%p",write_xtn::type_id::get()); //for class name
+		//$display("%g",write_xtn::get_type); //for class name
+		$display("%p",write_xtn::get_type); //for class name
 		
-		$display("%p",wr_xtnh.get_type);
+		$display("%p",wr_xtnh.get_type); //for handle name
 		$display("%d",wr_xtnh.get_inst_id);
 		$display("%p",wr_xtnh.get_object_type);
 		$display("%d",wr_xtnh.get_inst_count);
@@ -75,7 +79,21 @@ module top;
 		wr_xtnh.set_name("hehehe");
 		$display("%s",wr_xtnh.get_name);
 		
-/*
+/* Questa
+# '{type_name:"write_xtn", me:@uvm_object_registry__35@1}
+# '{type_name:"write_xtn", me:@uvm_object_registry__35@1}
+# '{type_name:"write_xtn", me:@uvm_object_registry__35@1}
+#         522
+# '{type_name:"long_xtn", me:@uvm_object_registry__37@1}
+#         526
+# wr_xtnh
+# wr_xtnh
+# hehehe
+*/
+
+/* VCS
+'{type_name:"write_xtn", me:{ ref to class uvm_object_registry#(ram_pkg::write_xtn,"write_xtn")}, Tname:"write_xtn"}
+'{type_name:"write_xtn", me:{ ref to class uvm_object_registry#(ram_pkg::write_xtn,"write_xtn")}, Tname:"write_xtn"}
 '{type_name:"write_xtn", me:{ ref to class uvm_object_registry#(ram_pkg::write_xtn,"write_xtn")}, Tname:"write_xtn"}
         512
 '{type_name:"long_xtn", me:{ ref to class uvm_object_registry#(ram_pkg::long_xtn,"long_xtn")}, Tname:"long_xtn"}
@@ -83,6 +101,7 @@ module top;
 wr_xtnh
 wr_xtnh
 hehehe
+
 */
       	end
 endmodule

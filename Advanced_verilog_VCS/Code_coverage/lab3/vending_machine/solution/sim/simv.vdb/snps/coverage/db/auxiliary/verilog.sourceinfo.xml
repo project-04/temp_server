@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE cov SYSTEM "ucdb_srcinfo.dtd">
-  <srcinfo name="/home1/BPRN24/BokkaCS/Advanced_verilog_VCS/Code_coverage/lab3/vending_machine/solution/sim"  >
-    <ucapi_version  major_ver="13"  minor_ver="1"  patch_str="T-2022.06-SP1"  />
-      <fileinfo name="../rtl/coincol.v"  id="0"  timestamp="1758687877"  />
-      <fileinfo name="../tb/tb_coincol3.v"  id="1"  timestamp="1758687877"  />
-    </srcinfo>

@@ -1,4 +1,0 @@
-tb_userinterface.BFM1.DUT1.GRANT_A1
-tb_userinterface.BFM1.DUT1.GRANT_B2
-tb_userinterface.BFM1.DUT1.GRANT_C6
-tb_userinterface.BFM1.DUT1.IDLE0
