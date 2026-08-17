@@ -1,5 +1,11 @@
 #!/bin/bash
 
+echo " "
+chmod 755 ~/temp_projects/
+chmod 755 ~/temp_server/
+echo "temp_server unlocked"
+echo " "
+
 echo "Comparing the files"
 
 echo " "
@@ -35,6 +41,11 @@ diff -r ~/VLSI_RN_ONLINE ~/temp_server/VLSI_RN_ONLINE
 echo " "
 
 
+echo " "
+chmod 000 ~/temp_projects/
+chmod 000 ~/temp_server/
+echo "temp_server locked"
+echo " "
 
 
 
