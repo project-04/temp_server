@@ -248,7 +248,7 @@ endtask
 
 task slave_monitor::collect_r(axi_xtn xtn_read);
 
-	//`uvm_info("SLAVE_MONITOR", "Slave Monitor starts collecting from Read Data Channel...", UVM_HIGH)
+//`uvm_info("SLAVE_MONITOR", "Slave Monitor starts collecting from Read Data Channel...", UVM_HIGH)
 	
 		xtn_read.RDATA		= new[xtn_read.ARLEN+1];
 		xtn_read.RRESP		= new[xtn_read.ARLEN+1];

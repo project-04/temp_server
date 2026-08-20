@@ -1,4 +1,4 @@
-module factory_overriding_dynamic_classes;
+module factory_overriding;
 	import uvm_pkg::*;
 	`include "uvm_macros.svh"
 	
@@ -38,7 +38,7 @@ module factory_overriding_dynamic_classes;
 			
 
 			//factory.set_type_override_by_name("driver", "old_drv", 1);
-			set_inst_override_by_type("*driverh*", driver::get_type(), new_drv::get_type());
+			set_inst_override_by_type("*driverh*", driver::get_type(), new_drv::get_type()); //inst has highest priority
 			set_type_override_by_type(driver::get_type(), old_drv::get_type(), 1);
 			//factory.set_inst_override_by_name("driver", "new_drv", "*.driverh[3]");
 			
@@ -56,9 +56,9 @@ module factory_overriding_dynamic_classes;
 	
 	
 	initial begin
-		//qverilog -vopt +acc ../factory_overriding_dynamic_classes.sv; vsim work.top -voptargs=+acc
-		//qverilog factory_overriding_dynamic_classes.sv
-		//vcs -sverilog -ntb_opts uvm factory_overriding_dynamic_classes.sv; ./simv
+		//qverilog -vopt +acc ../factory_overriding.sv; vsim work.top -voptargs=+acc
+		//qverilog factory_overriding.sv
+		//vcs -sverilog -ntb_opts uvm factory_overriding.sv; ./simv
 		
 		//uvm_top.set_report_verbosity_level(UVM_NONE);		
 		run_test("test");
@@ -126,15 +126,14 @@ Top level modules:
 # 
 # Instance Overrides:
 # 
-#   Requested Type  Override Path             Override Type
-#   --------------  ------------------------  -------------
-#   driver          uvm_test_top.*driverh[2]  new_drv
-#   driver          *.driverh[3]              new_drv
+#   Requested Type  Override Path           Override Type
+#   --------------  ----------------------  -------------
+#   driver          uvm_test_top.*driverh*  new_drv
 # 
 # Type Overrides:
 # 
-#   Requested Type  Override Type           
-#   --------------  ------------------------
+#   Requested Type  Override Type         
+#   --------------  ----------------------
 #   driver          old_drv
 # 
 # All types registered with the factory: 41 total
@@ -142,9 +141,9 @@ Top level modules:
 # 
 #   Type Name
 #   ---------
+#   driver
 #   new_drv
 #   old_drv
-#   driver
 #   questa_uvm_recorder
 #   test
 # (*) Types with no associated type name will be printed as <unknown>
@@ -156,11 +155,12 @@ Top level modules:
 # Name          Type     Size  Value
 # ----------------------------------
 # uvm_test_top  test     -     @466 
-#   driverh[0]  old_drv  -     @473 
-#   driverh[1]  old_drv  -     @480 
+#   driverh[0]  new_drv  -     @473 
+#   driverh[1]  new_drv  -     @480 
 #   driverh[2]  new_drv  -     @487 
 #   driverh[3]  new_drv  -     @494 
 # ----------------------------------
+
 # 
 # 
 # --- UVM Report Summary ---

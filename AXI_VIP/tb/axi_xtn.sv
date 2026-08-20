@@ -88,7 +88,7 @@ class axi_xtn extends uvm_sequence_item;
 	constraint ar_length		{if(ARBURST==2) 
 			 		   (ARLEN+1) inside {2,4,8,16};}
 
-	constraint write_alignment2	{((AWBURST==2'b10 || AWBURST==2'b00) && AWSIZE==1) -> AWADDR%2==0;} //0,2,4,6,8------------Only Aligned transfer for Fixed and INCR.
+	constraint write_alignment2	{((AWBURST==2'b10 || AWBURST==2'b00) && AWSIZE==1) -> AWADDR%2==0;} //0,2,4,6,8------------Only Aligned transfer for Fixed and WRAP.
 
 	constraint read_alignment2	{((ARBURST==2'b10 || ARBURST==2'b00) && ARSIZE==1) -> ARADDR%2==0;} //0,2,4,6,8
 

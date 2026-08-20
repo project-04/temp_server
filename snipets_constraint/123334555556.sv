@@ -47,7 +47,7 @@ module test1;
 
                 constraint c2{ foreach(a[i]){
                                         if(i==0) a[i] == 0;
-                                        else if (i%2==1)  a[i] == a[i-1] + i;
+                                        else if (i%2==1) a[i] == a[i-1] + i;
 					else a[i] == a[i-1]+1;
                                 }
                 }

@@ -1,0 +1,72 @@
+# //  Questa Sim-64
+# //  Version 2022.1_2 linux_x86_64 Apr  2 2022
+# //
+# //  Copyright 1991-2022 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading project ijiniernf
+# reading /home/cad/eda/Mentor_Graphics/Questasim/questasim/linux_x86_64/../modelsim.ini
+# Loading project trmocdnd
+# Compile of how_to_run_assertions.sv was successful.
+vsim work.tb -voptargs=+acc
+# vsim work.tb -voptargs="+acc" 
+# Start time: 11:35:26 on Aug 19,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.tb(fast)
+# Loading work.test1(fast)
+# Loading work.assertion1(fast)
+add wave -position insertpoint sim:/tb/*
+add wave -position insertpoint sim:/tb/*
+add wave /tb/assertion_duv/a1 /tb/assertion_duv/a2
+run -all
+# 0 & 0 = x, time = 0
+# 0 & 0 = 0, time = 5
+# 0 & 1 = 0, time = 20
+# 1 & 0 = 0, time = 40
+# 1 & 1 = 0, time = 60
+# --------------------p1 fail 	 time = 65
+# 1 & 1 = 1, time = 65
+# --------------------p1 success 	 time = 75
+# --------------------p2 success 	 time = 75
+# 0 & 0 = 1, time = 80
+# --------------------p2 success 	 time = 85
+# 0 & 0 = 0, time = 85
+# 0 & 1 = 0, time = 100
+# 1 & 0 = 0, time = 120
+# 1 & 1 = 0, time = 140
+# --------------------p1 fail 	 time = 145
+# 1 & 1 = 1, time = 145
+# --------------------p1 success 	 time = 155
+# --------------------p2 success 	 time = 155
+# 0 & 0 = 1, time = 160
+# --------------------p2 success 	 time = 165
+# 0 & 0 = 0, time = 165
+# 0 & 1 = 0, time = 180
+# 1 & 0 = 0, time = 200
+# 1 & 1 = 0, time = 220
+# --------------------p1 fail 	 time = 225
+# 1 & 1 = 1, time = 225
+# --------------------p1 success 	 time = 235
+# --------------------p2 success 	 time = 235
+# 0 & 0 = 1, time = 240
+# --------------------p2 success 	 time = 245
+# 0 & 0 = 0, time = 245
+# 0 & 1 = 0, time = 260
+# 1 & 0 = 0, time = 280
+# ** Note: $finish    : /home1/BPRN24/BokkaCS/snipets_assertions/how_to_run_assertions.sv(41)
+#    Time: 300 ns  Iteration: 0  Instance: /tb
+# 1
+# Break in Module tb at /home1/BPRN24/BokkaCS/snipets_assertions/how_to_run_assertions.sv line 41
+# End time: 11:42:26 on Aug 19,2026, Elapsed time: 0:07:00
+# Errors: 0, Warnings: 6

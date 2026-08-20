@@ -32,12 +32,13 @@ endmodule
 
 module test1;
 	class cls;
-		randc int arr[];
+		randc bit[2:0] arr[];
 		randc int pa[10];
 		
 		constraint c0 { arr.size() == 10;}
 		
-		constraint c4{ arr.sum() with ((item%2 == 0)?1:0) == 10;}
+		//constraint c4{ arr.sum() with ((item%2 == 0)?1:0) == 10;}
+		constraint c4{ arr.sum() with (int'(item%2 == 0)) == 10;}
 		
 		/*constraint c2 { foreach(arr[i]){
 					arr[i] inside {[0:100]};

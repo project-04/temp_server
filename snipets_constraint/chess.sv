@@ -79,7 +79,7 @@ class test;
 			foreach(board[i])
 				board[i][0] + board[i][1] + board[i][2] + board[i][3] + board[i][4] + board[i][5] + board[i][6] + board[i][7] == 1;
 
-//board[i].sum == 1; //is not woring why?
+//board[i].sum == 1; //is not working why?
                 }
 
 	/*constraint c3{

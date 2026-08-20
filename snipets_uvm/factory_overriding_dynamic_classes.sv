@@ -39,7 +39,7 @@ module factory_overriding_dynamic_classes;
 			set_type_override_by_type(driver::get_type(), axi_drv::get_type(), 1);
 			//factory.set_type_override_by_name("driver", "axi_drv", 1);
 			set_inst_override_by_type("*driverh[2]", driver::get_type(), apb_drv::get_type());
-			factory.set_inst_override_by_name("driver", "apb_drv", "*.driverh[3]");
+			//factory.set_inst_override_by_name("driver", "apb_drv", "*.driverh[3]");
 			
 			foreach(driverh[i])
 				driverh[i] = driver::type_id::create($sformatf("driverh[%0d]",i), this);
@@ -128,7 +128,6 @@ Top level modules:
 #   Requested Type  Override Path             Override Type
 #   --------------  ------------------------  -------------
 #   driver          uvm_test_top.*driverh[2]  apb_drv
-#   driver          *.driverh[3]              apb_drv
 # 
 # Type Overrides:
 # 
@@ -158,8 +157,9 @@ Top level modules:
 #   driverh[0]  axi_drv  -     @473 
 #   driverh[1]  axi_drv  -     @480 
 #   driverh[2]  apb_drv  -     @487 
-#   driverh[3]  apb_drv  -     @494 
+#   driverh[3]  axi_drv  -     @494 
 # ----------------------------------
+
 # 
 # 
 # --- UVM Report Summary ---

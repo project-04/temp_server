@@ -4,7 +4,7 @@ module test_coverage;
 		rand bit [3:0] addr;
 		rand bit [3:0] data;
 
-		function display(string str);
+		function void display(string str);
 			$display("%s",str);
 			$display("addr=%d, data=%d\n", addr, data);
 		endfunction
@@ -25,7 +25,7 @@ module test_coverage;
 
 		task start;
 		fork
-          repeat(3)
+          	repeat(10)
 			begin
 				p_h = new;
 				assert(p_h.randomize());
@@ -55,6 +55,7 @@ module test_coverage;
 				bins zero   = {0};
 				bins max    = {15};
 				bins others = {[1:14]};
+				//bins test[] = {[0:15]} with ((item%3==0)*item); // only {3,6,9,12,15
 			}
 
 			cx_addr_data: cross cp_addr, cp_data;
@@ -89,7 +90,7 @@ module test_coverage;
 
 		task start;
 		fork
-          repeat(3)
+          	repeat(10)
 			begin
 				gen2drv.get(p_h);
 				p_h.display("Recived data");

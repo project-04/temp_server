@@ -43,7 +43,7 @@ module tb;
 endmodule
 
 module assertion1(input clk, a, b, y);
-	test1 duv(clk, a, b, y);
+	//test1 duv(clk, a, b, y);
 
 	property p1;
 		@(posedge clk) a & b |-> y;

@@ -129,7 +129,7 @@ endmodule
 #           9          1          3
 #           1          8          2
 #           3          2          9
-Symmetric Matrix (A=A)
+Symmetric Matrix (A = A tranpose)
 */ 
 module tset4;
 	class cls1;
@@ -167,7 +167,7 @@ endmodule
 #           5          6          0
 #           0          8          5
 #           7          3          3
-Asymmetric Matrix (A = A tranpose)
+Asymmetric Matrix (A != A tranpose)
 */ 
 module tset5;
 	class cls1;
